@@ -1,13 +1,52 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.Navbar 
+{
+  background-color:#1F406D;
+  color:white;
+  padding-top:8px;
+  padding-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap:30px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+.innertext
+{
+  /* padding-bottom: 20px; */
+  align-self: center;
+}
+.inner{
+   display: flex;
+   align-items: center;
+}
+
+
+.logoItems
+{
+  margin-top: 3px;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content:center;
+  gap:20px;
+}
+
+#logo 
+{
+   height: 100px;
+   width: auto;
+}
+.logoContaint
+{
+  color: #337AB7;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.collegeName
+{
+  font-size: medium;
+  color:black;
 }
