@@ -1,6 +1,6 @@
 import React from 'react'
 
-import logo from "./images/logo.png"
+import logo from "../images/logo.png"
 
 export const Navbar = () => {
   return (
@@ -11,9 +11,6 @@ export const Navbar = () => {
        
           <img src="https://img.icons8.com/fluency/25/000000/mail.png" alt='mail' style={{alignItems:'center' }}/>
             <span className='innertext'> webmail : abcd@nitap.ac.in</span>
-           
-
-         
           </div>
 
           <div className='inner'>
@@ -23,7 +20,7 @@ export const Navbar = () => {
           </div>
 
           <div>
-            <button>NIT HOME</button>
+            <button className='homeButton'>NIT HOME</button>
           </div>
       </div>
 
@@ -41,10 +38,17 @@ export const Navbar = () => {
         NIT Arunachal Pradesh
       </p>
       </div>
-
-
-
       </div>
+
+
+    <div className='TopNavigation'>
+      <div>Home</div>
+      <div>About Us</div>
+      <div>Departments</div>\
+      <div>Sections</div>
+      <div>Technonodaya Newsletters</div>
+    </div>
+    
     </>
   )
 }
