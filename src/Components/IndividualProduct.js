@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 export const IndividualProduct = ({individualProduct}) => {
     // console.log(individualProduct);
     
-    const myblogs=((individualProduct)=>{
+    const Myblogs=((individualProduct)=>{
         // console.log('hello blogs')
         //console.log(individualProduct);
         const history = useNavigate();
@@ -23,7 +23,7 @@ export const IndividualProduct = ({individualProduct}) => {
       <div className='product-text description'>{individualProduct.brief}</div>
       <div className='product-text description'>{individualProduct.category}</div>
 
-      <button onClick={myblogs(individualProduct)}>Read More</button>
+      <button onClick={Myblogs(individualProduct)}>Read More</button>
     </div> 
 
   )
