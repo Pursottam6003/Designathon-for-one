@@ -14,8 +14,7 @@ function App() {
       {/* <Route path="/signup" element={<Signup/>}/>
       <Route path="/login" element={<Login/>}/> */}
       {/* <Route path="/add_blogs" element ={<Add_blogs/>}/>
-      <Route path="/show_blogs" element={<ShowBlogs/>} /> */}
-      <Route path="/layout" element={<Layout/>} />      
+      <Route path="/show_blogs" element={<ShowBlogs/>} /> */} 
       
       {/* <Route path="/show_products" element={<ShowProducts/>} />
       <Route path ="show_products/cart" element={<Cart/>} />
