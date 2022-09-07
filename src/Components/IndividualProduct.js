@@ -12,7 +12,6 @@ export const IndividualProduct = ({individualProduct}) => {
         const history = useNavigate();
         <ReadBlog key = {individualProduct.ID} ReadBlog={individualProduct} />
         history('/ReadBlog')
-    
     })
 
     return ( 
