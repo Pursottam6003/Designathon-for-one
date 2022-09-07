@@ -69,66 +69,103 @@ export const Add_blogs = () => {
     return (
         <div className='add-blogs'>
             <header className='hero'>
-                <h1 className='container'>Add blogs</h1>
+                <h1 className='container'>Add new activity</h1>
             </header>
             {/* <div className='img-fluid' style={{ maxWidth: '100%', height: 'auto' }}>
                 <img src={addBlogs} className='container img-fluid' style={{ maxWidth: '100%', height: 'auto' }} alt='add_images of cake'></img>
             </div> */}
-            <div className='container'>
+            <div className='container form-ctnr'>
                 {successMsg && <>
                     <div className='success-msg'>{successMsg}</div>
                 </>}
                 <form autoComplete="off" className='form-group' onSubmit={handleAddProducts}>
-                    <label>Event Title</label>
-                    <input type="text" className='form-control' required
-                        onChange={(e) => setTitle(e.target.value)} value={title}></input>
-                    <br></br>
 
-                    <label>Blog Category</label>
-                    <select type="number" className='form-control' required
+                    <div className='form-field'>
+                        <input 
+                            type="text" 
+                            className='form-control form-title' 
+                            required
+                            onChange={(e) => setTitle(e.target.value)} 
+                            value={title} 
+                            placeholder="New activity title here..."
+                        />
+                    </div>
 
-                        onChange={(e) => blogCategory(e.target.value)} value={category}>
-                        <option value={'Event'}>Event</option>
-                        <option value={'News'}>News</option>
-                        <option value={'Programme'}>Programme</option>
-                        <option value={'Festival'}>Festival</option>
-                        <option value={'Academics'}>Academics</option>
-                        <option value={'Innugration'}>Innugration</option>
-                        <option value={'Misc'}>Misc</option>
-                    </select>
+                    <div className='form-field'>
+                        <label>Select the activity category from below</label>
+                        <select type="number" className='form-control' required
 
-                    <br></br>
-                    <label>Short Description</label>
-                    <input type="text" className='form-control' required
-                        onChange={(e) => setbriefDescription(e.target.value)} value={brief}></input>
+                            onChange={(e) => blogCategory(e.target.value)} value={category}>
+                            
+                            <option value={'Event'}>Event</option>
+                            <option value={'News'}>News</option>
+                            <option value={'Programme'}>Programme</option>
+                            <option value={'Festival'}>Festival</option>
+                            <option value={'Academics'}>Academics</option>
+                            <option value={'Innugration'}>Innugration</option>
+                            <option value={'Misc'}>Misc</option>
+                        </select>
+                    </div>
+                    
+                    <div className='form-field'>
+                        <input type="text"
+                            className='form-control'
+                            required
+                            onChange={(e) => setbriefDescription(e.target.value)} 
+                            value={brief}
+                            placeholder="Write a short description..."
+                        />
+                    </div>
+                    
 
-                    <br></br>
-                    <label>Full Description</label>
-                    <input type="text" className='form-control' required
-                        onChange={(e) => setDescription(e.target.value)} value={description}></input>
-                    <br></br>
+                    <div className='form-field'>
+                        <textarea 
+                            className='form-control'
+                            required
+                            onChange={(e) => setDescription(e.target.value)} 
+                            value={description}
+                            placeholder="Start writing the full description..."
+                        />
+                    </div>
+                    
+                    {/* <input
+                        type="text"
+                        className='form-control'
+                        required
+                        onChange={(e) => setDescription(e.target.value)} 
+                        value={description}
+                        placeholder="Start writing the full description..." 
+                    /> */}
                     {/* <label>Product Price</label>
                 <input type="number" className='form-control' required
                 onChange={(e)=>setPrice(e.target.value)} value={price}></input>
                 <br></br> */}
-                    <label>Upload their Image</label>
-                    <input type="file" id="file" className='form-control' required
-                        onChange={handleProductImg}></input>
 
-                    {imageError && <>
+                    <div className='form-field'>
+                        <label>Upload activity image</label>
+                        <input
+                            type="file"
+                            id="file"
+                            className='form-control'
+                            required
+                            onChange={handleProductImg} />
+
+                        {imageError && <>
+                            <br></br>
+                            <div className='error-msg'>{imageError}</div>
+                        </>}
                         <br></br>
-                        <div className='error-msg'>{imageError}</div>
-                    </>}
-                    <br></br>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <button type="submit" className='LoginAuthBtn'>
-                            SUBMIT
-                        </button>
+                        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                            <button type="submit" className='LoginAuthBtn'>
+                                SUBMIT
+                            </button>
+                        </div>
                     </div>
                 </form>
                 {uploadError && <>
                     <br></br>
                     <div className='error-msg'>{uploadError}</div>
+                    
                 </>}
 
             </div>

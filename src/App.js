@@ -37,8 +37,6 @@ function App() {
           <ShowBlogs/>
         </Layout>
       } />
-      
- 
     </Routes>
   </BrowserRouter> 
   )
