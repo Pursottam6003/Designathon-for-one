@@ -42,11 +42,11 @@ export const Navbar = () => {
 
 
     <div className='TopNavigation'>
-      <div>Home</div>
-      <div>About Us</div>
-      <div>Departments</div>\
-      <div>Sections</div>
-      <div>Technonodaya Newsletters</div>
+      <div  className='nav_items'>Home</div>
+      <div className='nav_items'>About Us</div>
+      <div className='nav_items'>Departments</div>
+      <div className='nav_items'>Sections</div>
+      <div className='nav_items'>Technonodaya Newsletters</div>
     </div>
     
     </>
