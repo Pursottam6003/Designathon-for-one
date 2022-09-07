@@ -46,7 +46,7 @@ export const Add_blogs = () => {
             console.log(progress);
         },error=>setUploadError(error.message),()=>{
             storage.ref(`Categories/${category}/`).child(image.name).getDownloadURL().then(url=>{
-                fs.collection('Categories').add({
+                fs.collection('Blogs').add({
                     title,
                     category,
                     brief,
