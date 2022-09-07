@@ -143,4 +143,10 @@ transform: scale(1.2);
    padding: 10px;
    position: absolute;
    top: 90%;
+   }
+
+.products
+{
+  width: auto;
+  height: 200px;
 }
