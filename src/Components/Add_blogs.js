@@ -1,8 +1,6 @@
 
 import React,{useState} from 'react'
 import {storage,fs} from '../config/config'
-import {Navbar} from './Navbar'
-import {Footer} from './Footer'
 import addBlogs from '../images/AddBlogs.jpeg'
 
 export const Add_blogs = () => {
@@ -70,7 +68,6 @@ export const Add_blogs = () => {
   
     return (
         <>
-        <Navbar/>
 
         <div  className='img-fluid' style={{maxWidth:'100%', height:'auto'}}>
             <img src={addBlogs} className='container img-fluid' style={{maxWidth:'100%', height:'auto'}}  alt='add_images of cake'></img>
@@ -140,8 +137,6 @@ export const Add_blogs = () => {
         </div>
 
         <br></br>
-
-        <Footer/>
 
         </>
     )

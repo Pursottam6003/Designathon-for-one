@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Navbar } from './Navbar'
 import AddBlogs from '../images/AddBlogs.jpeg'
-import { Footer } from './Footer'
 export const Home = () => {
   return (
     <>
-      <Navbar />
       <div className='main'>
 
         <div className='blog_card'>
@@ -67,7 +64,6 @@ export const Home = () => {
         </div>
 
       </div>
-      <Footer />
     </>
   )
 }

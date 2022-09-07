@@ -150,3 +150,9 @@ transform: scale(1.2);
   width: auto;
   height: 200px;
 }
+
+/* showblogs */
+
+.product-img > img {
+  width: 100%;
+}
