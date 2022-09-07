@@ -1,3 +1,8 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 .Navbar 
 {
   background-color:#1F406D;
@@ -9,6 +14,7 @@
   align-items: center;
   justify-content: center;
   gap:30px;
+  
 }
 
 
@@ -25,7 +31,7 @@
 
 .logoItems
 {
-  margin-top: 3px;
+  margin-top: 5px;
   display: flex;
   flex-direction: row;
   align-self: center;
