@@ -39,20 +39,51 @@
   gap:20px;
 }
 
+.homeButton
+{
+  background-color: #5BC0DE;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.homeButton :hover
+{
+  background-color: #2fbce6;
+}
+
+.homeButton ::after
+{
+  background-color: #2694b5;
+}
+
 #logo 
 {
-   height: 100px;
+   height: 80px;
    width: auto;
+   margin-top: 15px;
 }
 .logoContaint
 {
   color: #337AB7;
   font-size: 30px;
   font-weight: bold;
+  margin-top: 20px;
 }
 
 .collegeName
 {
   font-size: medium;
   color:black;
+}
+
+.TopNavigation
+{
+  display: flex;
+  flex-direction: row;
+  gap:30px;
+  justify-content: center;
+  background-color: #2fbce6;
+  
 }
