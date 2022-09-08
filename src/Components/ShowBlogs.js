@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import {auth,fs} from '../config/config'
+import {fs} from '../config/config'
 import { Items } from './Items';
 
 export const ShowBlogs = () => {

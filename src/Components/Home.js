@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import AddBlogs from '../images/AddBlogs.jpeg'
+import React  from 'react'
+// import AddBlogs from '../images/AddBlogs.jpeg'
+import {ShowBlogs} from './ShowBlogs'
 export const Home = () => {
   return (
     <>
-      <div className='main'>
+      {/* <div className='main'>
 
         <div className='blog_card'>
 
@@ -63,7 +64,11 @@ export const Home = () => {
 
         </div>
 
-      </div>
+      </div> */}
+
+      <ShowBlogs/>
+
+      
     </>
   )
 }

@@ -103,7 +103,7 @@ export const Add_blogs = () => {
                             <option value={'Festival'}>Festival</option>
                             <option value={'Academics'}>Academics</option>
                             <option value={'Innugration'}>Innugration</option>
-                            <option value={'Misc'}>Misc</option>
+                            <option value={'Mou'}>MOU</option>
                         </select>
                     </div>
                     

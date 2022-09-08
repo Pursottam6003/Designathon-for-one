@@ -127,7 +127,7 @@ transform: scale(1.2);
   padding-top: 30px;
    max-width: 270px;
    margin: auto;
- margin-bottom: 5.7rem;
+ margin-bottom: 5.4rem;
 
 }
 .cont h4{
@@ -142,20 +142,21 @@ transform: scale(1.2);
  background:  #67d6e7;
    padding: 10px;
    position: absolute;
-   top: 90%;
+   top: 85%;
+   padding-bottom: 20px;
    }
 
-.products
+/* .products
 {
   width: auto;
   height: 200px;
-}
+} */
 
 /* showblogs */
 
-.product-img > img {
+/* .product-img > img {
   width: 100%;
-}
+} */
 
 .Footer
 {
@@ -200,3 +201,4 @@ transform: scale(1.2);
   border-bottom: 2px solid rgb(18, 244, 18);
   margin-bottom: 10px;
 }
+

@@ -104,6 +104,7 @@
   height: auto;
   position: relative;
   box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+  padding-bottom: 30px;
 
 }
 
@@ -145,17 +146,21 @@
   position: absolute;
   top: 90%;
 }
-
-.products {
-  width: auto;
-  height: 200px;
+.btn 
+{
+  left:10%;
 }
 
-/* showblogs */
+// .products {
+//   width: auto;
+//   height: 200px;
+// }
 
-.product-img>img {
-  width: 100%;
-}
+// /* showblogs */
+
+// .product-img>img {
+//   width: 100%;
+// }
 
 // add blogs
 
@@ -267,7 +272,7 @@
   border-bottom: 2px solid rgb(18, 244, 18);
   margin-bottom: 10px;
 }
-
+ 
 .QLinks
 {
   padding: 10px;
@@ -283,3 +288,69 @@
   border-bottom: 2px solid rgb(18, 244, 18);
   margin-bottom: 10px;
 }
+
+
+.products-box{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+// .product{
+//   width: 350px;
+//   height: auto; 
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   margin-bottom: 50px;
+//   margin-right: 24px;
+//   transition: all 0.3s ease-in-out;
+//   padding: 12px;
+//   border-radius: 10px; 
+//   position: relative;
+//   margin-bottom: 4rem;
+
+// }
+
+// .product:hover {
+//   box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.1);
+// }
+
+// @media(min-width: 768px){
+//   .product{
+//     width: 300px;
+//   }
+// }
+
+// .product .product-img{
+//   width: 180px;
+//   height: 215px;  
+// }
+
+// .product .product-img img{
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .product .product-text{
+//   margin-bottom: 10px;
+//   font-size: 16px;
+//   text-align: center;  
+// }
+
+// .readMoreBtn
+// {
+//   padding:5px;
+//   background-color: #2694b5;
+//   position: absolute;
+//   top:90%;
+//   left:10%;
+
+// }
+
+ 
