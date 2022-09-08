@@ -9,7 +9,7 @@ export const Home = () => {
 
           <img className='blogimg' src={AddBlogs} alt='this is image'></img>
           <div className='cont'>
-            <h4> EVENT TITLE</h4>
+            <h4>EVENT TITLE</h4>
             <p>nit ap MOU with govt. school with jote meow meow meow meow meow meow meow meow moew meow
             </p>
             <button className='btn'>read article</button>
