@@ -127,19 +127,6 @@ export const Add_blogs = () => {
                             placeholder="Start writing the full description..."
                         />
                     </div>
-                    
-                    {/* <input
-                        type="text"
-                        className='form-control'
-                        required
-                        onChange={(e) => setDescription(e.target.value)} 
-                        value={description}
-                        placeholder="Start writing the full description..." 
-                    /> */}
-                    {/* <label>Product Price</label>
-                <input type="number" className='form-control' required
-                onChange={(e)=>setPrice(e.target.value)} value={price}></input>
-                <br></br> */}
 
                     <div className='form-field'>
                         <label>Upload activity image</label>

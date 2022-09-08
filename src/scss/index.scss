@@ -1,48 +1,45 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: 'Times New Roman', Times, serif;
-  
+
 }
-.Navbar 
-{
-  background-color:#1F406D;
-  color:white;
-  padding-top:8px;
+
+.Navbar {
+  background-color: #1F406D;
+  color: white;
+  padding-top: 8px;
   padding-bottom: 8px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap:30px;
-  
+  gap: 30px;
+
 }
 
-
-.innertext
-{
+.innertext {
   /* padding-bottom: 20px; */
   align-self: center;
 }
-.inner{
-   display: flex;
-   align-items: center;
+
+.inner {
+  display: flex;
+  align-items: center;
 }
 
 
-.logoItems
-{
+.logoItems {
   margin-top: 5px;
   display: flex;
   flex-direction: row;
   align-self: center;
-  justify-content:center;
-  gap:20px;
+  justify-content: center;
+  gap: 20px;
 }
 
-.homeButton
-{
+.homeButton {
   background-color: #5BC0DE;
   color: white;
   border: none;
@@ -50,110 +47,113 @@
   padding: 5px;
 }
 
-.homeButton :hover
-{
+.homeButton :hover {
   background-color: #2fbce6;
 }
 
-.homeButton ::after
-{
+.homeButton ::after {
   background-color: #2694b5;
 }
 
-#logo 
-{
-   height: 80px;
-   width: auto;
-   margin-top: 15px;
+#logo {
+  height: 80px;
+  width: auto;
+  margin-top: 15px;
 }
-.logoContaint
-{
+
+.logoContaint {
   color: #337AB7;
   font-size: 30px;
   font-weight: bold;
   margin-top: 20px;
 }
 
-.collegeName
-{
+.collegeName {
   font-size: medium;
-  color:black;
+  color: black;
 }
 
-.TopNavigation
-{
+.TopNavigation {
   display: flex;
   flex-direction: row;
-  gap:30px;
+  gap: 30px;
   justify-content: center;
   padding: 1rem;
   background-color: #2fbce6;
-  
-}
-.TopNavigation .nav_items:hover{
-   color: aliceblue;
-   transform: scale(1.2);
-   transition:  600ms ease;
-}
-.main{
- max-width: 1300px;
- margin-top: 2rem;
-   display: flex;
-   flex-wrap: wrap;
-   gap: 1rem;
-   margin: auto;
-   padding: 1rem;
-}
-.blog_card{
-   width: 300px;
-   height: auto;
-   position: relative;
-   box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
 
 }
-.blog_card:hover{
+
+.TopNavigation .nav_items:hover {
+  color: aliceblue;
+  transform: scale(1.2);
+  transition: 600ms ease;
+}
+
+.main {
+  max-width: 1300px;
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: auto;
+  padding: 1rem;
+}
+
+.blog_card {
+  width: 300px;
+  height: auto;
+  position: relative;
+  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
+
+}
+
+.blog_card:hover {
   box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
 }
-.blog_card.blogimg:hover{
-transform: scale(1.2);
+
+.blog_card.blogimg:hover {
+  transform: scale(1.2);
 }
-.blog_card img{
-   width: 300px;
-   height: 200px;
+
+.blog_card img {
+  width: 300px;
+  height: 200px;
 
 
 }
-.cont{
+
+.cont {
   padding-top: 30px;
-   max-width: 270px;
-   margin: auto;
- margin-bottom: 5.7rem;
+  max-width: 270px;
+  margin: auto;
+  margin-bottom: 5.7rem;
 
 }
-.cont h4{
+
+.cont h4 {
   color: #444444;
 
 }
-.cont p{
+
+.cont p {
   color: #666666;
 }
 
- .blog_card .btn{
- background:  #67d6e7;
-   padding: 10px;
-   position: absolute;
-   top: 90%;
-   }
+.blog_card .btn {
+  background: #67d6e7;
+  padding: 10px;
+  position: absolute;
+  top: 90%;
+}
 
-.products
-{
+.products {
   width: auto;
   height: 200px;
 }
 
 /* showblogs */
 
-.product-img > img {
+.product-img>img {
   width: 100%;
 }
 
@@ -161,12 +161,12 @@ transform: scale(1.2);
 
 .add-blogs {
   background-color: #f5f5f5;
+
   header.hero {
     height: 20rem;
-    background: linear-gradient(
-      rgb(0, 0, 0, 0.5) 0%,
-      rgb(0, 0, 0, 0.5)  100%),
-     no-repeat url('../images/AddBlogs.jpeg') left bottom;
+    background: linear-gradient(rgb(0, 0, 0, 0.5) 0%,
+        rgb(0, 0, 0, 0.5) 100%),
+      no-repeat url('../images/AddBlogs.jpeg') left bottom;
     background-size: cover;
     position: relative;
 
@@ -187,27 +187,30 @@ transform: scale(1.2);
       background-color: #fff;
       border-radius: 0.25rem;
       box-shadow: 0 2px 8px -5px #696969cf,
-      0 -2px 6px -5px #7b7b7b8a;
+        0 -2px 6px -5px #7b7b7b8a;
       max-width: 720px;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
       .form-field {
         font-family: inherit;
         margin: 0.5rem 0 1.5rem;
-        
+
         label {
           font-family: inherit;
           margin-bottom: 0.3rem;
         }
+
         select:focus {
           box-shadow: none;
         }
-        input[type="text"], textarea {
+
+        input[type="text"],
+        textarea {
           border: solid 2px transparent;
           padding-left: 0;
           padding-right: 0;
         }
-  
+
         .form-title {
           font-size: 2.2rem;
           font-weight: 600;
@@ -229,6 +232,7 @@ transform: scale(1.2);
           border-bottom: solid 2px blue;
         }
       }
+
       .form-field.select {
         background-color: #f5f5f5;
       }
