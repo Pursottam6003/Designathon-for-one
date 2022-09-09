@@ -7,11 +7,340 @@ const Field = (props) => {
   return (
     <div className='form-field'>
       {hasLabel && (
-        <label>{label}</label> 
+        <label>{label}</label>
       )}
       {children}
     </div>
   )
+}
+
+const ActivityCategoryForm = (props) => {
+  const {category} = props
+
+  if (category === 1) {
+    return (
+      <>
+        <p className='sub-label'>Institute Section</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Institute name"
+          />
+        </Field>
+  
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Partner institute name"
+          />
+        </Field>
+  
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Partner institute address"
+          />
+        </Field>
+  
+        <p className='sub-label'>MoU details</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Theme"
+          />
+        </Field>
+  
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Purpose of Agreement"
+          />
+        </Field>
+  
+        <p className='sub-label'>Members present</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Members present from NITAP with their designation"
+          />
+        </Field>
+  
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Members present from partner Institute/Organization with their designation "
+          />
+        </Field>
+  
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Other Renowned Members’ names with their designation"
+          />
+        </Field>
+      </>
+    )
+  } else if (category === 2) {
+    return (
+      <>
+        <p className='sub-label'>Details of the speaker</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Speaker name"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+        <input type="text"
+          className='form-control'
+          required
+          placeholder="Designation"
+        />
+        </Field>
+
+        <p className='sub-label'>Event details</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Title of speech"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Event name"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Keynote"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Inaugural address"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Organizer with address"
+          />
+        </Field>
+      </>
+    )
+  } else if (category === 3) {
+    return (
+      <>
+        <p className='sub-label'>Details of the speaker</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Speaker name"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+        <input type="text"
+          className='form-control'
+          required
+          placeholder="Designation"
+        />
+        </Field>
+
+        <Field hasLabel={false}>
+        <input type="text"
+          className='form-control'
+          required
+          placeholder="Institute name"
+        />
+        </Field>
+
+        <p className='sub-label'>Event details</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Title of speech"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Keynote"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Inaugural address"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Organizing member/department/section (NITAP)"
+          />
+        </Field>
+      </>
+    )
+  } else if (category === 4) {
+    return (
+      <>
+        <p className='sub-label'>Principal and Co-principal Investigators' details</p>
+        <Field hasLabel={false}>
+          <input type="number"
+            className='form-control'
+            required
+            placeholder="No. of PIs"
+            min={1}
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="number"
+            className='form-control'
+            required
+            placeholder="No. of CoPIs"
+            min={0}
+          />
+        </Field>
+
+        <p className='sub-label'>Project details</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Project title"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Funding Agency"
+          />
+        </Field>
+      </>
+    )
+  } else if (category === 5) {
+    return (
+      <>
+        <p className='sub-label'>Faculty member details</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Name of faculty"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Designation"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Department"
+          />
+        </Field>
+
+        <p className='sub-label'>Project details</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Project Title"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Sponsored agency"
+          />
+        </Field>
+      </>
+    )
+  } else if (category === 6) {
+    return (
+      <>
+        <p className='sub-label'>Patent details</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Name of inventor to whom the patent was issued"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="number"
+            className='form-control'
+            required
+            min={1950}
+            placeholder="Year the patent was issued"
+          />
+        </Field>
+
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Unique patent identifier (patent number)"
+          />
+        </Field>
+
+        <p className='sub-label'>Official source of the patent information</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Patent office name"
+          />
+        </Field>
+      </>
+    )
+  }
+  else {
+    return (<h3>Yet to do</h3>)
+  }
 }
 
 export const AddBlogs = () => {
@@ -47,8 +376,7 @@ export const AddBlogs = () => {
 
   const handleAddProducts = (e) => {
     e.preventDefault();
-    // console.log(title, description, price);
-    // console.log(image);
+
     const uploadTask = storage.ref(`Categories/${category}/${image.name}`).put(image);
     uploadTask.on('state_changed', snapshot => {
       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
@@ -84,7 +412,7 @@ export const AddBlogs = () => {
     { value: 3, name: 'Visits and Invited/Expert Lectures to NITAP from other insitutes' },
     { value: 4, name: 'External Funded Projects' },
     { value: 5, name: 'Consultancy Projects' },
-    { value: 6, name: 'Patent (APA 7th edition format' },
+    { value: 6, name: 'Patent (APA 7th edition format)' },
     { value: 7, name: 'Research Papers' },
     { value: 8, name: 'Books' },
     { value: 9, name: 'Conference Paper' },
@@ -111,10 +439,10 @@ export const AddBlogs = () => {
 
           <Field hasLabel={true} label="Select the activity category">
             <select
-              type="number" 
+              type="number"
               className='form-control'
               required
-              onChange={(e)=>blogCategory(e.target.value)}
+              onChange={(e) => blogCategory(e.target.value)}
               value={category}
             >
               {selectOptions.map((opt, key) => {
@@ -133,87 +461,18 @@ export const AddBlogs = () => {
               placeholder="New activity title here..."
             />
           </Field>
-          
-          {category === "1" && (
-            <>            
-              <p className='sub-label'>Institute Section</p>
-              <Field hasLabel={false}>
-                <input type="text"
-                  className='form-control'
-                  required
-                  placeholder="Institute name"
-                />
-              </Field>
 
-              <Field hasLabel={false}>
-                <input type="text"
-                  className='form-control'
-                  required
-                  placeholder="Partner institute name"
-                />
-              </Field>
+          <ActivityCategoryForm category={parseInt(category)} />
+      
 
-              <Field hasLabel={false}>
-                <input type="text"
-                  className='form-control'
-                  required
-                  placeholder="Partner institute address"
-                />
-              </Field>
-
-              <p className='sub-label'>MoU details</p>
-              <Field hasLabel={false}>
-                <input type="text"
-                  className='form-control'
-                  required
-                  placeholder="Theme"
-                />
-              </Field>
-
-              <Field hasLabel={false}>
-                <input type="text"
-                  className='form-control'
-                  required
-                  placeholder="Purpose of Agreement"
-                />
-              </Field>
-
-              <p className='sub-label'>Members present</p>
-              <Field hasLabel={false}>
-                <input type="text"
-                  className='form-control'
-                  required
-                  placeholder="Members present from NITAP with their designation"
-                />
-              </Field>
-
-              <Field hasLabel={false}>
-                <input type="text"
-                  className='form-control'
-                  required
-                  placeholder="Members present from partner Institute/Organization with their designation "
-                />
-              </Field>
-
-              <Field hasLabel={false}>
-                <input type="text"
-                  className='form-control'
-                  required
-                  placeholder="Other Renowned Members’ names with their designation"
-                />
-              </Field>
-            </>
-
-          )}
-
-          <br/>
+          <br />
           <Field hasLabel={true} label="Date of event">
-            <input type="date" 
-              required 
-              style={{display: "block", minWidth: "15rem"}}
-              />
+            <input type="date"
+              required
+              style={{ display: "block", minWidth: "15rem" }}
+            />
           </Field>
-          
+
           <Field hasLabel={false}>
             <textarea
               className='form-control'
@@ -230,7 +489,7 @@ export const AddBlogs = () => {
               id="file"
               className='form-control'
               required
-              onChange={handleProductImg} 
+              onChange={handleProductImg}
             />
 
             {imageError && <>

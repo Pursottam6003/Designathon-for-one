@@ -233,11 +233,11 @@
         }
         input[type=date] {
           outline: none;
-          padding-left: 0;
-          padding-right: 0;
         }
 
         input[type="text"],
+        input[type="number"],
+        input[type="date"],
         textarea {
           padding-left: 0;
           padding-right: 0;
@@ -266,7 +266,8 @@
 
         button.LoginAuthBtn {
           background-color: white;
-          border: solid 2px rgb(71, 71, 71);
+          color: #333;
+          border: solid 1px rgb(71, 71, 71);
           border-radius: 0.2rem;
           font-weight: 500;
           padding: 0.25rem 0.8rem;
