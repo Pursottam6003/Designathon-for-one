@@ -15,6 +15,8 @@ export const Add_blogs = () => {
     const [successMsg, setSuccessMsg] = useState('');
     const [uploadError, setUploadError] = useState('');
 
+
+
     const types = ['image/jpg', 'image/jpeg', 'image/png', 'image/PNG', 'image/webp', 'image/svg'];
 
     const handleProductImg = (e) => {
@@ -97,16 +99,294 @@ export const Add_blogs = () => {
 
                             onChange={(e) => blogCategory(e.target.value)} value={category}>
                             
-                            <option value={'Event'}>Event</option>
-                            <option value={'News'}>News</option>
-                            <option value={'Programme'}>Programme</option>
+                            <option value={'Invited/Expert_Lectures'}>Invited Expert Lectures Event Ny NITAP</option>
+                            <option value={'Expert_Lectures_to_NITAP_By_Other_Institutes'}>Expert Lectures to NITAP By Other Institutes</option>
+                            <option value={'Funded_Project'}>External Funded Project</option>
                             <option value={'Festival'}>Festival</option>
                             <option value={'Academics'}>Academics</option>
                             <option value={'Innugration'}>Innugration</option>
-                            <option value={'Mou'}>MOU</option>
+                            <option value={'MOU'}>MOU</option>
                         </select>
                     </div>
+
+                  
+                    {category==="MOU" &&
+                    <>
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="NITAP/Institute Section Name"
+                            />
+                        </div>
+
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Patner Institutes/Organization with Full Address"
+                            />
+                        </div>
+
+
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="NITAP/Institute Section Name"
+                            />
+                        </div>
+
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Theme"
+                            />
+                        </div>
+
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Members Present with their Designation"
+                            />
+                        </div>
+
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Members Name with their designation"
+                            />
+                        </div>
+
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Other Renould Members with thier name and designation"
+                            />
+                        </div>
+
+                        <div className='form-field'>
+                            <textarea 
+                            className='form-control'
+                            required
+                            onChange={(e) => setDescription(e.target.value)} 
+                            value={description}
+                            placeholder="Purpose of Agreement"
+                        />
+                        </div>
+                    </>
+                    }
                     
+                    {
+                        category ==="Invited/Expert_Lectures" &&
+                        <>
+                            
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Name of the Speaker Designation and Dept"
+                            />
+                        </div>
+
+                        
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Keynote Special"
+                            />
+                        </div>
+
+                        
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Title of speech"
+                            />
+                        </div>
+
+                        
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Event Name"
+                            />
+                        </div>
+
+                        
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Organiser with address"
+                            />
+                        </div>
+                        </>
+                    }
+
+
+                    {
+                        category ==="Expert_Lectures_to_NITAP_By_Other_Institutes" && <>
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Name of the speaker"
+                            />
+                        </div>
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Institute Name"
+                            />
+                        </div>
+
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Designation"
+                            />
+                        </div>
+
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Keynote Special"
+                            />
+                        </div>
+
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Title of Speech"
+                            />
+                        </div>
+
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Organising Member"
+                            />
+                        </div>
+
+                        <div className='form-field'>
+                            <input type="text"
+                                className='form-control'
+                                required
+                                onChange={(e) => setbriefDescription(e.target.value)} 
+                                value={brief}
+                                placeholder="Department/Section (NITAP)"
+                            />
+                        </div>
+                        </>
+                    }
+
+                    {
+                        category==="Funded_Project" && <>
+                        <div className='form-field'>
+                        <input type="text"
+                            className='form-control'
+                            required
+                            onChange={(e) => setbriefDescription(e.target.value)} 
+                            value={brief}
+                            placeholder="No. of Pls and CoPls"
+                        />
+                        </div>
+
+                        <div className='form-field'>
+                        <input type="text"
+                            className='form-control'
+                            required
+                            onChange={(e) => setbriefDescription(e.target.value)} 
+                            value={brief}
+                            placeholder="Principal Investigator (PLs) Name"
+                        />
+                        </div>
+
+                        <div className='form-field'>
+                                <input type="text"
+                                    className='form-control'
+                                    required
+                                    onChange={(e) => setbriefDescription(e.target.value)} 
+                                    value={brief}
+                                    placeholder="Designation"
+                                />
+                        </div>
+
+                        <div className='form-field'>
+                        <input type="text"
+                            className='form-control'
+                            required
+                            onChange={(e) => setbriefDescription(e.target.value)} 
+                            value={brief}
+                            placeholder="Department"
+                        />
+                        </div>
+                        
+
+                        <div className='form-field'>
+                        <input type="text"
+                            className='form-control'
+                            required
+                            onChange={(e) => setbriefDescription(e.target.value)} 
+                            value={brief}
+                            placeholder="Co-Principal Investigators"
+                        />
+                        </div>
+                     
+                        </>
+                    }
+
+                    
+
                     <div className='form-field'>
                         <input type="text"
                             className='form-control'
