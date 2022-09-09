@@ -338,8 +338,765 @@ const ActivityCategoryForm = (props) => {
       </>
     )
   }
-  else {
-    return (<h3>Yet to do</h3>)
+  else if(category ===7) {
+
+    return (
+      <>
+        <p className='sub-label'>Research Papers</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Two boxes for National or International Journals"
+          />
+        </Field>
+
+        <p className='sub-label'>No of authors</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="No of authors"
+          />
+        </Field>
+
+        <p className='sub-label'>Author FUll Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="List the author first and last name"
+          />
+        </Field>
+
+
+        <p className='sub-label'>Year</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="List the publications year between parenthesis followed by a period"
+          />
+        </Field>
+
+        <p className='sub-label'>Article Title</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Article title"
+          />
+        </Field>
+
+
+        <p className='sub-label'>Subtitle</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Article Subtitle"
+          />
+        </Field>
+
+        <p className='sub-label'>Journals Title</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Journals Title"
+          />
+        </Field>
+
+        <p className='sub-label'>Volume</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Volume No."
+          />
+        </Field>
+
+        <p className='sub-label'>Issue No.</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Issue No."
+          />
+        </Field>
+
+        
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Page No"
+          />
+        </Field>
+
+        <p className='sub-label'>Research Papers</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            placeholder="DOI or Url if available"
+          />
+        </Field>
+      </>
+    )
+  }
+  else if(category ===8)
+  {
+    return(
+      <>
+        <p className='sub-label'>Books</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="No of authors"
+          />
+        </Field>
+
+        <p className='sub-label'>Author Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="List the authors full name"
+          />
+        </Field>
+
+        <p className='sub-label'>Year</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="List the publication Year"
+          />
+        </Field>
+
+        <p className='sub-label'>Book Title</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Title of Book"
+          />
+        </Field>
+
+        <p className='sub-label'>Subtitle</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="subtitle of book"
+          />
+        </Field>
+
+        <p className='sub-label'>Publisher Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="List name of Publisher "
+          />
+        </Field>
+
+        <p className='sub-label'>DOI</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="DOI if avialable"
+          />
+        </Field>
+      </>
+    )
+  }
+
+  else if(category ===9)
+  {
+    return(
+      <>
+        <p className='sub-label'>No of authors</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="No. of authors"
+          />
+        </Field>
+
+        <p className='sub-label'>National Or International </p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Mention it was National or International Confrence"
+          />
+        </Field>
+
+        <p className='sub-label'>Author Full Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Mention author full name"
+          />
+        </Field>
+
+        <p className='sub-label'>Title of Contribution</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Mention the title of contribution"
+          />
+        </Field>
+
+        <p className='sub-label'>Confrence Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="List the name of Confrence"
+          />
+        </Field>
+
+        <p className='sub-label'>Location</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="List the location of the confrence"
+          />
+        </Field>
+
+        <p className='sub-label'>DOI</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="DOI if avialable"
+          />
+        </Field>
+
+      </>
+    )
+  }
+
+
+  else if(category ===10)
+  {
+    <>
+
+      <p className='sub-label'>No. of authors</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="No of authors"
+          />
+        </Field>
+
+
+        <p className='sub-label'>Author List</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Full name of author"
+          />
+        </Field>
+
+        <p className='sub-label'>Title</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Title"
+          />
+        </Field>
+
+        <p className='sub-label'>Editor's Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Mention Editors Name"
+          />
+        </Field>
+
+        <p className='sub-label'>Book Title</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Title of Book"
+          />
+        </Field>
+
+        <p className='sub-label'>Page Numbers</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Page Numbers"
+          />
+        </Field>
+
+        <p className='sub-label'>Publisher</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Publisher Name"
+          />
+        </Field>
+
+        <p className='sub-label'>DOI</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="DOI if avialable"
+          />
+        </Field>
+    </>
+  }
+
+  else if(category === 11)
+  {
+    return(<>
+        <p className='sub-label'>Full Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Name of the faculty"
+          />
+        </Field>
+
+        <p className='sub-label'>Designation</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Designation"
+          />
+        </Field>
+
+        <p className='sub-label'>Department</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Department"
+          />
+        </Field>
+
+        <p className='sub-label'>Type of Program</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Please mention workshop/confrence/seminaar/FDP/EDP"
+          />
+        </Field>
+
+        <p className='sub-label'>Title of Program</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Title of Programme"
+          />
+        </Field>
+
+        <p className='sub-label'>Organising Institute Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Organising Institute name"
+          />
+        </Field>
+
+        <p className='sub-label'>Address</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Address"
+          />
+        </Field>
+    </>)
+  }
+
+  else if(category ===12)
+  {
+    return (<>
+     <p className='sub-label'>Full Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Name of the faculty"
+          />
+        </Field>
+
+        <p className='sub-label'>Designation</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Designation"
+          />
+        </Field>
+
+        <p className='sub-label'>Department</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Department"
+          />
+        </Field>
+
+        <p className='sub-label'>Journal name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Journal Name"
+          />
+        </Field>
+
+        <p className='sub-label'>Publishing House</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Publishing House"
+          />
+        </Field>
+
+    </>)
+  }
+  else if(category === 13)
+  {
+    return(<>
+        <p className='sub-label'>Full Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Name of the faculty"
+          />
+        </Field>
+
+        <p className='sub-label'>Designation</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Designation"
+          />
+        </Field>
+
+        <p className='sub-label'>Department</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Department"
+          />
+        </Field>
+
+        <p className='sub-label'>Type of Program</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Please mention workshop/confrence/seminaar/FDP/EDP"
+          />
+        </Field>
+
+ 
+
+        <p className='sub-label'>Organising Institute Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Organising Institute name"
+          />
+        </Field>
+
+        <p className='sub-label'>Address</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Address"
+          />
+        </Field>
+    </>)
+  }
+
+
+  else if(category ===14)
+  {
+    return(<>
+        <p className='sub-label'>Name of the winner</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Name with Roll No"
+          />
+        </Field>
+
+
+        <p className='sub-label'>Name of Competition </p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Mention name of competition"
+          />
+        </Field>
+
+        <p className='sub-label'>Theme of competition</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Theme of Competition"
+          />
+        </Field>
+
+        <p className='sub-label'>First Prize/Second/third</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="First Prize/Second/third"
+          />
+        </Field>
+
+        <p className='sub-label'>Organising Section</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Organising Section"
+          />
+        </Field>
+
+
+        <p className='sub-label'>Institute Name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Institute Name"
+          />
+        </Field>
+
+        <p className='sub-label'>collaboration</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Mention Collaboration / Association"
+          />
+        </Field>
+        
+    </>)
+  }
+
+
+  else if(category ===15)
+  {
+    return(<>
+
+        <p className='sub-label'>Name of the Event</p>
+        <Field hasLabel={false}>
+        <input type="text"
+        className='form-control'
+        required
+        placeholder="Name of the event"
+        />
+        </Field>
+
+        <p className='sub-label'>Title</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Mention Title(theme)"
+          />
+        </Field>
+
+        <p className='sub-label'>Coordinators</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Coordinators Name"
+          />
+        </Field>
+
+        <p className='sub-label'>Designation</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Desingation"
+          />
+        </Field>
+
+        <p className='sub-label'>If collaboration </p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="If collaboration mention its full address"
+          />
+        </Field>
+
+        <p className='sub-label'>Place</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Place Name"
+          />
+        </Field>
+
+        </>)
+  }
+
+  
+  else if(category ===16)
+  {
+    return(<>
+
+        <p className='sub-label'>Name of the Event</p>
+        <Field hasLabel={false}>
+        <input type="text"
+        className='form-control'
+        required
+        placeholder="Name of the event"
+        />
+        </Field>
+
+        <p className='sub-label'>Theme</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Mention Title(theme)"
+          />
+        </Field>
+
+        <p className='sub-label'>Organiser name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Coordinators Name"
+          />
+        </Field>
+
+        <p className='sub-label'>Designation</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Desingation"
+          />
+        </Field>
+
+        <p className='sub-label'>If collaboration </p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="If collaboration mention its full address"
+          />
+        </Field>
+        </>)
+  }
+
+  else if(category ===17) 
+  {
+    return(<>
+    <p className='sub-label'>Name of the Event</p>
+        <Field hasLabel={false}>
+        <input type="text"
+        className='form-control'
+        required
+        placeholder="Name of the event"
+        />
+        </Field>
+
+        <p className='sub-label'>Theme</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Mention Title(theme)"
+          />
+        </Field>
+
+        <p className='sub-label'>Organiser name</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Coordinators Name"
+          />
+        </Field>
+
+        <p className='sub-label'>Designation</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Desingation"
+          />
+        </Field>
+
+        <p className='sub-label'>If collaboration </p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="If collaboration mention its full address"
+          />
+        </Field>
+
+        <p className='sub-label'>Link for the event </p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Mention the link of the event"
+          />
+        </Field>
+
+        <p className='sub-label'>Event Brochure</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Upload Brochure"
+          />
+        </Field>
+
+    </>)
   }
 }
 
