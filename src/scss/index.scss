@@ -20,7 +20,6 @@
 }
 
 .innertext {
-  /* padding-bottom: 20px; */
   align-self: center;
 }
 
@@ -169,9 +168,11 @@
 
   header.hero {
     height: 20rem;
-    background: linear-gradient(rgb(0, 0, 0, 0.5) 0%,
-        rgb(0, 0, 0, 0.5) 100%),
-      no-repeat url('../images/AddBlogs.jpeg') left bottom;
+    
+    background: linear-gradient(rgb(0, 0, 0, 0.4) 0%,
+      rgb(0, 0, 0, 0.4) 100%),
+      no-repeat url('../images/addactivity.jpg') left bottom;
+  
     background-size: cover;
     position: relative;
 
@@ -196,22 +197,48 @@
       max-width: 720px;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
+      label, p.sub-label {
+        font-family: inherit;
+        color: #757575;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      p.sub-label {
+        padding-left: 0.05rem;
+        margin: 1.5rem 0 0.4rem;
+      }
+
       .form-field {
         font-family: inherit;
-        margin: 0.5rem 0 1.5rem;
+        margin: 0.2rem 0 0.4rem;
 
         label {
           font-family: inherit;
           margin-bottom: 0.3rem;
         }
 
+        select {
+          font-size: 0.85rem;
+        }
+
         select:focus {
           box-shadow: none;
         }
 
+        input, textarea {
+          border: solid 2px transparent;
+          font-size: 0.85rem;
+          padding: 0.375rem 0.75rem;
+        }
+        input[type=date] {
+          outline: none;
+          padding-left: 0;
+          padding-right: 0;
+        }
+
         input[type="text"],
         textarea {
-          border: solid 2px transparent;
           padding-left: 0;
           padding-right: 0;
         }
@@ -222,7 +249,7 @@
         }
 
         textarea {
-          min-height: 248px;
+          min-height: 180px;
           width: 100%;
         }
 
@@ -236,6 +263,26 @@
           border-top: solid 2px blue;
           border-bottom: solid 2px blue;
         }
+
+        button.LoginAuthBtn {
+          background-color: white;
+          border: solid 2px rgb(71, 71, 71);
+          border-radius: 0.2rem;
+          font-weight: 500;
+          padding: 0.25rem 0.8rem;
+          font-size: 0.9rem;
+          font-family: Arial, Helvetica, sans-serif;
+          transition: all 0.3s ease;
+        }
+        button.LoginAuthBtn:hover {
+          background-color: #2c2c2c;
+          color: #ccc;
+        }
+        button.LoginAuthBtn:focus {
+          background-color: #181818;
+          color: white;
+
+        }
       }
 
       .form-field.select {
@@ -244,6 +291,8 @@
     }
   }
 }
+
+// add activity ends
 
 .Footer
 {

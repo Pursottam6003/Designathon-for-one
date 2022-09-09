@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from "./Components/layout/Layout"
 import { Home } from "./Components/Home"
-import {Add_blogs} from "./Components/Add_blogs"
+import {AddBlogs} from "./Components/AddBlogs"
 import { ShowBlogs } from "./Components/ShowBlogs";
+import { Add_blogs } from "./Components/Add_blogs";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       {/* <Route exact path="/" element=  {<Home/>}/> */}
       {/* <Route path="/signup" element={<Signup/>}/>
       <Route path="/login" element={<Login/>}/> */}
-      {/* <Route path="/add_blogs" element ={<Add_blogs/>}/>
+      {/* <Route path="/add_blogs" element ={<AddBlogs/>}/>
       <Route path="/show_blogs" element={<ShowBlogs/>} /> */} 
       
       {/* <Route path="/show_products" element={<ShowProducts/>} />
@@ -32,6 +33,13 @@ function App() {
           <Add_blogs/>
         </Layout>
       } />
+
+      <Route exact path="/addblogs" element={
+        <Layout>
+          <AddBlogs/>
+        </Layout>
+      } />
+
       <Route exact path="/show_blogs" element={
         <Layout>
           <ShowBlogs/>
