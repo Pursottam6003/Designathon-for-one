@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useState, Component } from 'react'
 import { storage, fs } from '../config/config'
 
 const Field = (props) => {
@@ -12,6 +12,73 @@ const Field = (props) => {
       {children}
     </div>
   )
+}
+
+class ListFields extends Component {
+  initialState = {
+    isCoPi: false,
+    name: '',
+    designation: '',
+    department: '',
+    institute: ''
+  }
+
+  state = this.initialState
+
+  handleChange = (event) => {
+    const {name, value} = event.target
+    console.log(name, value)
+    this.setState({
+      [name]: value
+    })
+  }
+
+  render() {
+    return (
+      <>
+        <Field>
+          <div className='list-fields'>
+            <input type="text"
+              name="name"
+              className='form-control'
+              required
+              placeholder="Name"
+              onChange={this.handleChange}
+            />
+
+            <input type="text"
+              name="designation"
+              className="form-control" 
+              required 
+              placeholder="Designation"
+              onChange={this.handleChange}
+            />
+
+            <input type="text"
+              name="department"
+              className="form-control" 
+              required 
+              placeholder="Department"
+              onChange={this.handleChange}
+            />
+
+            <label>
+              Is a CoPI
+              <input type="checkbox" 
+                name="isCoPi"
+                onChange={this.handleChange} 
+              />
+            </label>
+          </div>
+          
+          <button>
+            +
+          </button>
+        </Field>
+      </>
+
+    )
+  }
 }
 
 const ActivityCategoryForm = (props) => {
@@ -216,14 +283,7 @@ const ActivityCategoryForm = (props) => {
     return (
       <>
         <p className='sub-label'>Principal and Co-principal Investigators' details</p>
-        <Field hasLabel={false}>
-          <input type="number"
-            className='form-control'
-            required
-            placeholder="No. of PIs"
-            min={1}
-          />
-        </Field>
+        <ListFields />
 
         <Field hasLabel={false}>
           <input type="number"

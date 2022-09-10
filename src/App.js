@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from "./Components/layout/Layout"
 import { Home } from "./Components/Home"
 import {AddBlogs} from "./Components/AddBlogs"
+import {AddBlogs2} from "./Components/addBlogs2"
 import { ShowBlogs } from "./Components/ShowBlogs";
 import { Add_blogs } from "./Components/Add_blogs";
 
@@ -11,18 +12,6 @@ function App() {
     
     <BrowserRouter>
     <Routes>
-      {/* <Route exact path="/" element=  {<Home/>}/> */}
-      {/* <Route path="/signup" element={<Signup/>}/>
-      <Route path="/login" element={<Login/>}/> */}
-      {/* <Route path="/add_blogs" element ={<AddBlogs/>}/>
-      <Route path="/show_blogs" element={<ShowBlogs/>} /> */} 
-      
-      {/* <Route path="/show_products" element={<ShowProducts/>} />
-      <Route path ="show_products/cart" element={<Cart/>} />
-      <Route path ="/cart" element ={<Cart/>} />
-      <Route path ="/about_user" element={<About_user/>} />
-      <Route path ="/contact_us" element={<Contact_Us/>} /> */}
-
       <Route exact path="/" element={
         <Layout>
           <Home/>
@@ -39,6 +28,14 @@ function App() {
           <AddBlogs/>
         </Layout>
       } />
+
+      <Route exact path="/addblogs2" element={
+        <Layout>
+          <AddBlogs2/>
+        </Layout>
+      } />
+
+      
 
       <Route exact path="/show_blogs" element={
         <Layout>
