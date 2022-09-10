@@ -6,6 +6,87 @@
 
 }
 
+//for news display 
+
+.all-news {
+  display: flex;
+  margin: auto;
+  max-width: 1200px;
+  gap: 2rem;
+  margin-top: 5rem;
+  color: rgb(62, 61, 61);
+}
+
+
+.highlight {
+  position: relative;
+  height: 600px;
+  width: 60%;
+  margin-bottom: 3rem;
+
+  img {
+    height: 600px;
+    width: 100%;
+  }
+
+
+}
+
+.writing {
+  padding: 1rem;
+  position: absolute;
+  bottom: 12%;
+  background-color: rgba(114, 93, 93, 0.9);
+  color: antiquewhite;
+  right: 5%;
+
+}
+
+
+.writing h1 {
+  line-height: 1.6rem;
+  padding-bottom: 1rem;
+}
+
+.writing p {
+  line-height: 1.2rem;
+}
+
+.date {
+  display: flex;
+  gap: 1rem;
+  padding: 16px 0;
+}
+
+.date img {
+  width: 25px;
+  height: 30px;
+}
+
+.red {
+  color: red;
+}
+
+.news-block {
+  width: 30%;
+  margin-bottom: 3rem;
+
+
+}
+.block{
+  padding:  0 1rem ;
+ 
+}
+
+hr {
+  width: 100%;
+}
+
+.block {
+  width: 100%;
+}
+
+//end of news thisplay 
 .Navbar {
   background-color: #1F406D;
   color: white;
@@ -87,67 +168,6 @@
   transition: 600ms ease;
 }
 
-.main {
-  max-width: 1300px;
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: auto;
-  padding: 1rem;
-}
-
-.blog_card {
-  width: 300px;
-  height: auto;
-  position: relative;
-  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
-  padding-bottom: 30px;
-
-}
-
-.blog_card:hover {
-  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
-}
-
-.blog_card.blogimg:hover {
-  transform: scale(1.2);
-}
-
-.blog_card img {
-  width: 300px;
-  height: 200px;
-
-
-}
-
-.cont {
-  padding-top: 30px;
-  max-width: 270px;
-  margin: auto;
-  margin-bottom: 5.7rem;
-
-}
-
-.cont h4 {
-  color: #444444;
-
-}
-
-.cont p {
-  color: #666666;
-}
-
-.blog_card .btn {
-  background: #67d6e7;
-  padding: 10px;
-  position: absolute;
-  top: 90%;
-}
-.btn 
-{
-  left:10%;
-}
 
 // .products {
 //   width: auto;
@@ -167,11 +187,11 @@
 
   header.hero {
     height: 20rem;
-    
+
     background: linear-gradient(rgb(0, 0, 0, 0.4) 0%,
-      rgb(0, 0, 0, 0.4) 100%),
+        rgb(0, 0, 0, 0.4) 100%),
       no-repeat url('../images/addactivity.jpg') left bottom;
-  
+
     background-size: cover;
     position: relative;
 
@@ -196,7 +216,8 @@
       max-width: 720px;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-      label, p.sub-label {
+      label,
+      p.sub-label {
         font-family: inherit;
         color: #757575;
         font-size: 0.75rem;
@@ -225,11 +246,13 @@
           box-shadow: none;
         }
 
-        input, textarea {
+        input,
+        textarea {
           border: solid 2px transparent;
           font-size: 0.85rem;
           padding: 0.375rem 0.75rem;
         }
+
         input[type=date] {
           outline: none;
         }
@@ -274,10 +297,12 @@
           font-family: Arial, Helvetica, sans-serif;
           transition: all 0.3s ease;
         }
+
         button.LoginAuthBtn:hover {
           background-color: #2c2c2c;
           color: #ccc;
         }
+
         button.LoginAuthBtn:focus {
           background-color: #181818;
           color: white;
@@ -508,44 +533,39 @@
 
 // add activity ends
 
-.Footer
-{
+.Footer {
   background-color: #181818;
   color: white;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap:20px;
+  gap: 20px;
   justify-content: center;
   padding: 20px;
 }
 
-.Academic
-{
+.Academic {
   padding: 10px;
   margin-top: 15px;
   border-bottom: 2px solid rgb(18, 244, 18);
   margin-bottom: 10px;
 }
 
-.college
-{
-  padding: 10px;
-  margin-top: 15px;
-  border-bottom: 2px solid rgb(18, 244, 18);
-  margin-bottom: 10px;
-}
- 
-.QLinks
-{
+.college {
   padding: 10px;
   margin-top: 15px;
   border-bottom: 2px solid rgb(18, 244, 18);
   margin-bottom: 10px;
 }
 
-.ExternalLinks
-{
+.QLinks {
+  padding: 10px;
+  margin-top: 15px;
+  border-bottom: 2px solid rgb(18, 244, 18);
+  margin-bottom: 10px;
+}
+
+.ExternalLinks {
   padding: 10px;
   margin-top: 15px;
   border-bottom: 2px solid rgb(18, 244, 18);
@@ -553,7 +573,7 @@
 }
 
 
-.products-box{
+.products-box {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -615,5 +635,3 @@
 //   left:10%;
 
 // }
-
- 

@@ -1304,6 +1304,7 @@ export const AddBlogs = () => {
             <input
               type="file"
               id="file"
+              multiple
               className='form-control'
               required
               onChange={handleProductImg}
