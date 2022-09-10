@@ -14,18 +14,21 @@ export const IndividualProduct = ({individualProduct}) => {
     //     history('/ReadBlog')
     // })
 
-    return ( 
-      <div className='main'>
-      <div className='blog_card'>
-        <img src={individualProduct.url} className="blogimg" alt="product-img"/>
-        <div className='cont'>
-        <h4>{individualProduct.title}</h4>
-        <p>{individualProduct.brief}</p>
+    return (  
+      
+      <div className='block'>
+      
+        {/* <img src={individualProduct.url} className="blogimg" alt="product-img"/> */}
+       
+         <hr/>
+          <div className='date'> <img src={require("../images/icons8-calendar-week-32.png")} /> <p className='red'>11 sep 2022</p></div>
+        <h2>{individualProduct.title}</h2>
+        {/* <p>{individualProduct.brief}</p> */}
         <button className='btn'>Read article </button>
-        </div>
+       
 
 
-      </div>
+   
       {/* <div className='product-text title'>{individualProduct.title}</div>
       <div className='product-text description'>{individualProduct.brief}</div>
       <div className='product-text description'>{individualProduct.category}</div>
