@@ -173,22 +173,6 @@ class Person extends Component {
   }
 }
 
-class ListFields extends Component {
-  initialState = {
-    persons: []
-  }
-
-  state = this.initialState
-
-  render() {
-    const {children} = this.props
-
-    return (
-      <></>
-    )
-  }
-}
-
 export class CategoryForm extends Component {
   initialState = {
     insName: '',        // 1, 3
@@ -256,6 +240,32 @@ export class CategoryForm extends Component {
         copi: [...this.state.copi, person]
       })
     }
+  }
+
+  removePerson = (index, personType) => {
+    if (personType === "PI") {
+      const {pi} = this.state
+      this.setState({
+        pi: pi.filter((person, i) => {
+          return i !== index;
+        }) 
+      })
+    } else if (personType === "CoPI") {
+      const {copi} = this.state
+      this.setState({
+        copi: copi.filter((person, i) => {
+          return i !== index;
+        })
+      })
+    } else {
+      const {authors} = this.state
+      this.setState({
+        authors: authors.filter((person, i) => {
+          return i !== index;
+        })
+      })
+    }
+    console.log(index);
   }
 
   categoryFormFields = [
@@ -699,6 +709,49 @@ export class CategoryForm extends Component {
           <p className='sub-label'>Principal and Co-principal Investigators' details</p>
           <h4>Testing</h4>
 
+          <table>
+            {this.state.pi.length !== 0 && (
+              <>
+              <p className='sub-level'>Principal investigators</p>
+
+              {this.state.pi.map((person, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{person.name}</td>
+                    <td>{person.designation}</td>
+                    <td>{person.department}</td>
+                    <td>
+                      <button onClick={() => {this.removePerson(i, "PI")}}>x</button>
+                    </td>
+                  </tr>
+                )
+              })}
+              </>
+            )}
+
+            {this.state.copi.length !== 0 && (
+              <>
+                <p className='sub-level'>Co-principal investigators</p>
+
+                {this.state.copi.map((person, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>{person.name}</td>
+                      <td>{person.designation}</td>
+                      <td>{person.department}</td>
+
+                      {this.state.insName.length === 0 && (
+                        <td>{person.insName}</td>
+                      )}
+                      <td>
+                        <button onClick={() => { this.removePerson(i, "CoPI") }}>x</button>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </>
+            )}
+          </table>
           {this.state.pi.length === 0 && (
             <Person personType="investigator" multiple="0" handleSubmit={this.addPerson}/>
           )}
