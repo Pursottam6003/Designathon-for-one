@@ -183,7 +183,72 @@ const ActivityCategoryForm = (props) => {
             placeholder="Title of speech"
           />
         </Field>
-
+        <p className='sub-label'>Institute Section</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Institute name"
+          />
+        </Field>
+  
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Partner institute name"
+          />
+        </Field>
+  
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Partner institute address"
+          />
+        </Field>
+  
+        <p className='sub-label'>MoU details</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Theme"
+          />
+        </Field>
+  
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Purpose of Agreement"
+          />
+        </Field>
+  
+        <p className='sub-label'>Members present</p>
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Members present from NITAP with their designation"
+          />
+        </Field>
+  
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Members present from partner Institute/Organization with their designation "
+          />
+        </Field>
+  
+        <Field hasLabel={false}>
+          <input type="text"
+            className='form-control'
+            required
+            placeholder="Other Renowned Members’ names with their designation"
+          />
+        </Field>
         <Field hasLabel={false}>
           <input type="text"
             className='form-control'
