@@ -17,6 +17,16 @@ const Field = (props) => {
 const ActivityCategoryForm = (props) => {
   const {category} = props
 
+  // const [categoryName,setCategory] = useState('');
+  const [insituteName,setInstituteName] = useState('');
+  const [PatnerInstituteName,setPatnerInstituteName] = useState('');
+  const [PatnerInstituteAddress,setPatnerInstituteAddress] = useState('');
+  const [theme,setTheme] = useState('');
+  const [agreement,setAgrement] = useState('');
+  const [members,setMembers] = useState('')
+  const [membersFromPatnerInst,setMembersFromPatnerInst] = useState('');
+  const [otherMember,setOtherMember] = useState('');
+
   if (category === 1) {
     return (
       <>
@@ -25,14 +35,19 @@ const ActivityCategoryForm = (props) => {
           <input type="text"
             className='form-control'
             required
+            onChange ={(e) =>setInstituteName(e.target.value)} 
+            value={insituteName}
+            // value ={insituteName}
             placeholder="Institute name"
           />
-        </Field>
+        </Field> 
   
         <Field hasLabel={false}>
           <input type="text"
             className='form-control'
             required
+            onChange ={(e) => setPatnerInstituteName(e.target.value)} 
+            value={PatnerInstituteName}
             placeholder="Partner institute name"
           />
         </Field>
@@ -41,6 +56,8 @@ const ActivityCategoryForm = (props) => {
           <input type="text"
             className='form-control'
             required
+            value={PatnerInstituteAddress}
+            onChange ={(e) =>setPatnerInstituteAddress(e.target.value)} 
             placeholder="Partner institute address"
           />
         </Field>
@@ -50,6 +67,8 @@ const ActivityCategoryForm = (props) => {
           <input type="text"
             className='form-control'
             required
+            value={theme}
+            onChange ={(e) =>setTheme(e.target.value)} 
             placeholder="Theme"
           />
         </Field>
@@ -58,6 +77,8 @@ const ActivityCategoryForm = (props) => {
           <input type="text"
             className='form-control'
             required
+            value={agreement}
+            onChange ={(e) =>setAgrement(e.target.value)} 
             placeholder="Purpose of Agreement"
           />
         </Field>
@@ -67,6 +88,8 @@ const ActivityCategoryForm = (props) => {
           <input type="text"
             className='form-control'
             required
+            value={members}
+            onChange ={(e) =>setMembers(e.target.value)} 
             placeholder="Members present from NITAP with their designation"
           />
         </Field>
@@ -75,6 +98,8 @@ const ActivityCategoryForm = (props) => {
           <input type="text"
             className='form-control'
             required
+            value={membersFromPatnerInst}
+            onChange ={(e) =>setMembersFromPatnerInst(e.target.value)} 
             placeholder="Members present from partner Institute/Organization with their designation "
           />
         </Field>
@@ -83,6 +108,8 @@ const ActivityCategoryForm = (props) => {
           <input type="text"
             className='form-control'
             required
+            value={otherMember}
+            onChange ={(e) =>setOtherMember(e.target.value)} 
             placeholder="Other Renowned Members’ names with their designation"
           />
         </Field>
@@ -105,6 +132,15 @@ const ActivityCategoryForm = (props) => {
           className='form-control'
           required
           placeholder="Designation"
+        />
+        </Field>
+
+        
+        <Field hasLabel={false}>
+        <input type="text"
+          className='form-control'
+          required
+          placeholder="Department"
         />
         </Field>
 
@@ -162,11 +198,22 @@ const ActivityCategoryForm = (props) => {
           />
         </Field>
 
+
+
         <Field hasLabel={false}>
         <input type="text"
           className='form-control'
           required
           placeholder="Designation"
+        />
+        </Field>
+
+        
+        <Field hasLabel={false}>
+        <input type="text"
+          className='form-control'
+          required
+          placeholder="Department"
         />
         </Field>
 
@@ -230,8 +277,11 @@ const ActivityCategoryForm = (props) => {
             className='form-control'
             required
             placeholder="No. of CoPIs"
+
             min={0}
           />
+
+          <span>No of PI</span>
         </Field>
 
         <p className='sub-label'>Project details</p>
@@ -1102,18 +1152,31 @@ const ActivityCategoryForm = (props) => {
 
 export const AddBlogs = () => {
 
-  const [title, setTitle] = useState('');
-  const [brief, setbriefDescription] = useState('');
   const [description, setDescription] = useState('');
   // const [price, setPrice]=useState('');
-  const [image, setImage] = useState(null);
+
   const [category, blogCategory] = useState('1')
   const [imageError, setImageError] = useState(null);
-  const [successMsg, setSuccessMsg] = useState('');
+  const [successMsg, setSuccessMsg] = useState(' ');
   const [uploadError, setUploadError] = useState('');
+  // states for mou
+  // const [categoryName,setCategory] = useState('');
+  // const [title, setTitle] = useState('');
+  // const [insituteName,setInstituteName] = useState('');
+  // const [PatnerInstituteName,setPatnerInstituteName] = useState('');
+  // const [PatnerInstituteAddress,setPatnerInstituteAddress] = useState('');
+  // const [theme,settheme] = useState('');
+  // const [Agreement,setAgrement] = useState('');
+  // const [members,setMembers] = useState('')
+  // const [membersFromPatnerInst,SetmembersFromPatnerInst] = useState('');
+  // const [othermember,Setothermember] = useState('');
+  // const [date,SetDate] = useState('');
+  // const [brief, setbriefDescription] = useState('');
+  const [image, setImage] = useState(null);
 
+
+  
   const types = ['image/jpg', 'image/jpeg', 'image/png', 'image/PNG', 'image/webp', 'image/svg'];
-
   const handleProductImg = (e) => {
     let selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -1131,36 +1194,56 @@ export const AddBlogs = () => {
     }
   }
 
-  const handleAddProducts = (e) => {
-    e.preventDefault();
+  // const handleAddProducts = (e) => {
+  //   e.preventDefault();
 
-    const uploadTask = storage.ref(`Categories/${category}/${image.name}`).put(image);
-    uploadTask.on('state_changed', snapshot => {
-      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-      console.log(progress);
-    }, error => setUploadError(error.message), () => {
-      storage.ref(`Categories/${category}/`).child(image.name).getDownloadURL().then(url => {
-        fs.collection('Blogs').add({
-          title,
-          category,
-          brief,
-          description,
-          url
-        }).then(() => {
-          setSuccessMsg('Product added successfully');
-          setTitle('');
-          setbriefDescription('');
-          setDescription('');
-          document.getElementById('file').value = '';
-          setImageError('');
-          setUploadError('');
-          setTimeout(() => {
-            setSuccessMsg('');
-          }, 3000)
-        }).catch(error => setUploadError(error.message));
-      })
-    })
-  }
+  //   const uploadTask = storage.ref(`Categories/${category}/${image.name}`).put(image);
+  //   uploadTask.on('state_changed', snapshot => {
+  //     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+  //     console.log(progress);
+  //   }, error => setUploadError(error.message), () => {
+  //     storage.ref(`Categories/${category}/`).child(image.name).getDownloadURL().then(url => {
+  //       fs.collection('Blogs').add({
+  //         categoryName,
+  //         title,
+  //         insituteName,
+  //         PatnerInstituteName,
+  //         PatnerInstituteAddress,
+  //         theme,
+  //         Agreement,
+  //         members,
+  //         membersFromPatnerInst,
+  //         othermember,
+  //         date,
+  //         brief,
+  //         url
+  //       }).then(() => {
+  //         setSuccessMsg('Product added successfully');
+  //         setCategory('');
+  //         setTitle('');
+  //         setInstituteName('');
+  //         setPatnerInstituteName('')
+  //         setPatnerInstituteAddress('');
+  //         settheme('')
+  //         setTitle('');
+  //         setMembers('');
+  //         setAgrement('');
+  //         setMembers('');
+  //         SetmembersFromPatnerInst('');
+  //         Setothermember('');
+  //         SetDate('');
+  //         setbriefDescription('');
+  //         setDescription('');
+  //         document.getElementById('file').value = '';
+  //         setImageError('');
+  //         setUploadError('');
+  //         setTimeout(() => {
+  //           setSuccessMsg('');
+  //         }, 3000)
+  //       }).catch(error => setUploadError(error.message));
+  //     })
+  //   })
+  // }
 
   // form options
   const selectOptions = [
@@ -1183,6 +1266,8 @@ export const AddBlogs = () => {
     { value: 17, name: 'Announcement' },
   ]
 
+  const [title, setTitle] = useState('');
+
   return (
     <div className='add-blogs'>
       <header className='hero'>
@@ -1192,7 +1277,7 @@ export const AddBlogs = () => {
         {successMsg && <>
           <div className='success-msg'>{successMsg}</div>
         </>}
-        <form autoComplete="off" className='form-group' onSubmit={handleAddProducts}>
+        <form autoComplete="off" className='form-group' onSubmit={() => {console.log("submitting :)")}}>
 
           <Field hasLabel={true} label="Select the activity category">
             <select
