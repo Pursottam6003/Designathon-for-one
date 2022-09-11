@@ -11,7 +11,15 @@ const Preview = () => {
 	)
 }
 
+
+
 export class AddBlogs2 extends Component {
+
+	handleSubmit = () => {
+		
+	}
+
+	
 	render() {
 		return (
 			<div className='add-blogs2'>
@@ -20,7 +28,7 @@ export class AddBlogs2 extends Component {
 				</header>
 
 				<div className='activity-form container'>
-        			<Form />
+        			<Form  />
 					<Preview />
 				</div>
 			</div>

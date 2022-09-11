@@ -1,10 +1,12 @@
 import React, { Component, useState } from 'react'
 
 const Field = (props) => {
-  const { children, labeltxt } = props
+  const { children, labeltxt, showLabel } = props
   return (
     <div className='form-field'>
-      <label className='field-label'>{labeltxt}</label>
+      {parseInt(showLabel) !== 0 && (
+        <label className='field-label'>{labeltxt}</label>
+      )}
       {children}
     </div>
   )
@@ -222,7 +224,7 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Institute Section</p>
-          <Field labeltxt="Institute name">
+          <Field labeltxt="Institute name" showLabel={this.state.insName.length}>
             <input type="text"
               className='form-control'
               required
@@ -233,7 +235,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Partner institute name">
+          <Field labeltxt="Partner institute name" showLabel={this.state.partnerInsName.length}>
             <input type="text"
               className='form-control'
               required
@@ -244,7 +246,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Partner institute address">
+          <Field labeltxt="Partner institute address" showLabel={this.state.partnerInsAddr.length}>
             <input type="text"
               className='form-control'
               required
@@ -256,7 +258,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>MoU details</p>
-          <Field labeltxt="Theme">
+          <Field labeltxt="Theme" showLabel={this.state.theme.length}>
             <input type="text"
               className='form-control'
               required
@@ -267,19 +269,19 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Purpose of Agreement">
+          <Field labeltxt="Purpose of agreement" showLabel={this.state.pursposeAgreement.length}>
             <input type="text"
               className='form-control'
               required
-              name="purposeAgreement"
+              name="pursposeAgreement"
               value={this.state.pursposeAgreement}
               onChange={this.handleChange}
-              placeholder="Purpose of Agreement"
+              placeholder="Purpose of agreement"
             />
           </Field>
 
           <p className='sub-label'>Members present</p>
-          <Field labeltxt="Members present from NITAP with their designation">
+          <Field labeltxt="Members present from NITAP with their designation" showLabel={this.state.insMembers.length}>
             <input type="text"
               className='form-control'
               required
@@ -290,7 +292,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Members present from partner Institute/Organization with their designation">
+          <Field labeltxt="Members present from partner Institute/Organization with their designation" showLabel={this.state.outMembers.length}>
             <input type="text"
               className='form-control'
               required
@@ -301,7 +303,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Other Renowned Members’ names with their designation">
+          <Field labeltxt="Other Renowned Members’ names with their designation" showLabel={this.state.otherMembers.length}>
             <input type="text"
               className='form-control'
               required
@@ -312,7 +314,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date">
+          <Field labeltxt="Date" showLabel={0}>
             <input type="date"
               className='form-control'
               required
@@ -327,7 +329,7 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Details of the speaker</p>
-          <Field labeltxt="Speaker name">
+          <Field showlabel={this.state.speakerName.length} labeltxt="Speaker name">
             <input type="text"
               className='form-control'
               required
@@ -338,7 +340,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Designation">
+          <Field showlabel={this.state.designation.length} labeltxt="Designation">
             <input type="text"
               className='form-control'
               required
@@ -349,7 +351,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Department">
+          <Field showlabel={this.state.department.length} labeltxt="Department">
             <input type="text"
               className='form-control'
               required
@@ -361,7 +363,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Event details</p>
-          <Field labeltxt="Event name">
+          <Field showlabel={this.state.eventName.length} labeltxt="Event name">
             <input type="text"
               className='form-control'
               required
@@ -372,7 +374,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Title of speech">
+          <Field showlabel={this.state.title.length} labeltxt="Title of speech">
             <input type="text"
               className='form-control'
               required
@@ -383,7 +385,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Keynote/special lecture/inagural address etc.">
+          <Field showlabel={this.state.lectureType.length} labeltxt="Keynote/special lecture/inagural address etc.">
             <input type="text"
               className='form-control'
               required
@@ -394,7 +396,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Organizer with address">
+          <Field showlabel={this.state.organizer.length} labeltxt="Organizer with address">
             <input type="text"
               className='form-control'
               required
@@ -405,7 +407,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date">
+          <Field labeltxt="Date" showLabel={0}>
             <input type="date"
               className='form-control'
               required
@@ -420,7 +422,7 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Details of the speaker</p>
-          <Field labeltxt="Speaker name">
+          <Field showlabel={this.state.speakerName.length} labeltxt="Speaker name">
             <input type="text"
               className='form-control'
               required
@@ -431,7 +433,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Designation">
+          <Field showlabel={this.state.designation.length} labeltxt="Designation">
             <input type="text"
               className='form-control'
               required
@@ -442,7 +444,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Institute name">
+          <Field showlabel={this.state.insName.length} labeltxt="Institute name">
             <input type="text"
               className='form-control'
               required
@@ -454,7 +456,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Event details</p>
-          <Field labeltxt="Title of speech">
+          <Field showlabel={this.state.title.length} labeltxt="Title of speech">
             <input type="text"
               className='form-control'
               required
@@ -465,7 +467,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Keynote/special lecture/inagural address etc.">
+          <Field showlabel={this.state.speakerName.length} labeltxt="Keynote/special lecture/inagural address etc.">
             <input type="text"
               className='form-control'
               required
@@ -476,7 +478,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Organizing member/department/section (NITAP)">
+          <Field showlabel={this.state.organizer.length} labeltxt="Organizing member/department/section (NITAP)">
             <input type="text"
               className='form-control'
               required
@@ -487,7 +489,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date">
+          <Field labeltxt="Date" showLabel={0}>
             <input type="date"
               className='form-control'
               required
@@ -527,7 +529,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date">
+          <Field labeltxt="Date" showLabel={0}>
             <input type="date"
               className='form-control'
               required
@@ -594,7 +596,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date">
+          <Field labeltxt="Date" showLabel={0}>
             <input type="date"
               className='form-control'
               required
@@ -609,7 +611,7 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Patent details</p>
-          <Field labeltxt="Name of inventor to whom the patent was issued">
+          <Field showLabel={this.state.invName.length} labeltxt="Name of inventor to whom the patent was issued">
             <input type="text"
               className='form-control'
               required
@@ -620,7 +622,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Year the patent was issued">
+          <Field showLabel={this.state.patentYear.length} labeltxt="Year the patent was issued">
             <input type="number"
               className='form-control'
               required
@@ -632,7 +634,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Unique patent identifier (patent number)">
+          <Field showLabel={this.state.patId.length} labeltxt="Unique patent identifier (patent number)">
             <input type="text"
               className='form-control'
               required
@@ -644,7 +646,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Official source of the patent information</p>
-          <Field labeltxt="Patent office name">
+          <Field showLabel={this.state.patOffice.length} labeltxt="Patent office name">
             <input type="text"
               className='form-control'
               required
@@ -655,7 +657,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date">
+          <Field labeltxt="Date" showLabel={0}>
             <input type="date"
               className='form-control'
               required
@@ -665,6 +667,136 @@ export class CategoryForm extends Component {
             />
           </Field>
         </>
+      )
+    } else if (parseInt(categoryId) === 8) {
+      return (
+        <>
+          <p className='sub-label'>Author details</p>
+          <h4>TODO: list</h4>
+
+
+          <p className='sub-label'>Book details</p>
+          <Field showLabel={this.state.pubYear.length} labeltxt="Publication year">
+            <input type="text"
+              className='form-control'
+              required 
+              name="pubYear"
+              value={this.state.pubYear}
+              onChange={this.handleChange}
+              placeholder="Publication year"
+            />
+          </Field>
+
+          <Field showLabel={this.state.title.length} labeltxt="Book title, subtitle">
+            <input type="text"
+              className='form-control'
+              required 
+              name="title"
+              value={this.state.title}
+              onChange={this.handleChange}
+              placeholder="Book title, subtitle"
+            />
+          </Field>
+
+          <Field showLabel={this.state.publisher.length} labeltxt="Publisher name">
+            <input type="text"
+              className='form-control'
+              required 
+              name="publisher"
+              value={this.state.publisher}
+              onChange={this.handleChange}
+              placeholder="Publisher name"
+            />
+          </Field>
+
+          <Field showLabel={this.state.doiUrl.length} labeltxt="DOI (if avialable)">
+            <input type="text"
+              className='form-control'
+              name="doiUrl"
+              value={this.state.doiUrl}
+              onChange={this.handleChange}
+              placeholder="DOI (if avialable)"
+            />
+          </Field>
+        </>
+      )
+    } else if (parseInt(categoryId) === 9) {
+      return (
+        <>
+          <p className='sub-label'>Author details</p>
+          <h4>TODO: list</h4>
+
+          {/* <p className='sub-label'>National Or International </p>
+          <Field showLabel={this.state..length} labeltxt="">
+            <input type="text"
+              className='form-control'
+              required
+              placeholder="Mention it was National or International Confrence"
+            />
+          </Field>
+
+          <p className='sub-label'>Author Full Name</p>
+          <Field showLabel={this.state..length} labeltxt="">
+            <input type="text"
+              className='form-control'
+              required
+              placeholder="Mention author full name"
+            />
+          </Field>
+
+          <p className='sub-label'>Title of Contribution</p>
+          <Field showLabel={this.state..length} labeltxt="">
+            <input type="text"
+              className='form-control'
+              required
+              placeholder="Mention the title of contribution"
+            />
+          </Field>
+
+          <p className='sub-label'>Confrence Name</p>
+          <Field showLabel={this.state..length} labeltxt="">
+            <input type="text"
+              className='form-control'
+              required
+              placeholder="List the name of Confrence"
+            />
+          </Field>
+
+          <p className='sub-label'>Location</p>
+          <Field showLabel={this.state..length} labeltxt="">
+            <input type="text"
+              className='form-control'
+              required
+              placeholder="List the location of the confrence"
+            />
+          </Field>
+
+          <p className='sub-label'>DOI</p>
+          <Field showLabel={this.state..length} labeltxt="">
+            <input type="text"
+              className='form-control'
+              required
+              placeholder="DOI if avialable"
+            />
+          </Field> */}
+
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+          </Field>
+        </>
+      )
+    } else if (parseInt(categoryId) === 10 ) {
+      
+    }
+    else {
+      return (
+        <p>TODO</p>
       )
     }
   }
