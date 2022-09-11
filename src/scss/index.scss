@@ -369,27 +369,27 @@ width: 100%;
 }
 // form
 
-.form-field{
-  position: relative;
-}
+// .form-field{
+//   position: relative;
+// }
 
-input {
-  border: 1px solid gray;
-  border-radius: 6px;
-  position: relative;
-  width: 200px;
-  margin: 10px;
-  line-height: 6ex;
-}
+// input {
+//   border: 1px solid gray;
+//   border-radius: 6px;
+//   position: relative;
+//   width: 200px;
+//   margin: 10px;
+//   line-height: 6ex;
+// }
 
-label {
-  position: absolute;
-  top: 0.2ex;
-  z-index: 1;
-  left: 2em;
-  background-color: white;
-  padding: 0 5px;
-}
+// label {
+//   position: absolute;
+//   top: 0.2ex;
+//   z-index: 1;
+//   left: 2em;
+//   background-color: white;
+//   padding: 0 5px;
+// }
 
 // new form page
 .add-blogs2 {
@@ -483,6 +483,19 @@ label {
     }
   }
 
+
+
+  .activity-form{
+    display: flex;
+    .form-group{
+      flex: 1 1 0;
+
+    }
+    .preview{
+
+      flex: 1 1 0;
+    }
+  }
   .container.form-ctnr {
 
     .form-group {
