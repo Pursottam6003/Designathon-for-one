@@ -368,6 +368,7 @@ width: 100%;
   }
 }
 
+// new form page
 .add-blogs2 {
   background-color: #f5f5f5;
   padding-bottom: 1px;
@@ -392,7 +393,6 @@ width: 100%;
   .activity-form {
     display: flex;
     flex-direction: row;
-    // flex-wrap: wrap;
     margin: 2rem auto;
     padding: 0;
     gap: 0;
@@ -431,6 +431,10 @@ width: 100%;
       .form-title {
         font-size: 2.2rem;
         font-weight: 600;
+      }
+
+      .form-field {
+        display: block;
       }
     }
 
