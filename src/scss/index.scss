@@ -6,6 +6,87 @@
 
 }
 
+//for news display 
+
+.all-news {
+  display: flex;
+  margin: auto;
+  max-width: 1200px;
+  gap: 2rem;
+  margin-top: 5rem;
+  color: rgb(62, 61, 61);
+}
+
+
+.highlight {
+  position: relative;
+  height: 600px;
+  width: 60%;
+  margin-bottom: 3rem;
+
+  img {
+    height: 600px;
+    width: 100%;
+  }
+
+
+}
+
+.writing {
+  padding: 1rem;
+  position: absolute;
+  bottom: 12%;
+  background-color: rgba(114, 93, 93, 0.9);
+  color: antiquewhite;
+  right: 5%;
+
+}
+
+
+.writing h1 {
+  line-height: 1.6rem;
+  padding-bottom: 1rem;
+}
+
+.writing p {
+  line-height: 1.2rem;
+}
+
+.date {
+  display: flex;
+  gap: 1rem;
+  padding: 16px 0;
+}
+
+.date img {
+  width: 25px;
+  height: 30px;
+}
+
+.red {
+  color: red;
+}
+
+.news-block {
+  width: 30%;
+  margin-bottom: 3rem;
+
+
+}
+.block{
+  padding:  0 1rem ;
+ 
+}
+
+hr {
+  width: 100%;
+}
+
+.block {
+  width: 100%;
+}
+
+//end of news thisplay 
 .Navbar {
   background-color: #1F406D;
   color: white;
@@ -16,7 +97,6 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
-
 }
 
 .innertext {
@@ -88,67 +168,6 @@
   transition: 600ms ease;
 }
 
-.main {
-  max-width: 1300px;
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin: auto;
-  padding: 1rem;
-}
-
-.blog_card {
-  width: 300px;
-  height: auto;
-  position: relative;
-  box-shadow: 2px 6px 25px rgba(0, 0, 0, 0.1);
-  padding-bottom: 30px;
-
-}
-
-.blog_card:hover {
-  box-shadow: 2px 6px 30px rgba(0, 0, 0, 0.2);
-}
-
-.blog_card.blogimg:hover {
-  transform: scale(1.2);
-}
-
-.blog_card img {
-  width: 300px;
-  height: 200px;
-
-
-}
-
-.cont {
-  padding-top: 30px;
-  max-width: 270px;
-  margin: auto;
-  margin-bottom: 5.7rem;
-
-}
-
-.cont h4 {
-  color: #444444;
-
-}
-
-.cont p {
-  color: #666666;
-}
-
-.blog_card .btn {
-  background: #67d6e7;
-  padding: 10px;
-  position: absolute;
-  top: 90%;
-}
-.btn 
-{
-  left:10%;
-}
 
 // .products {
 //   width: auto;
@@ -168,11 +187,11 @@
 
   header.hero {
     height: 20rem;
-    
+
     background: linear-gradient(rgb(0, 0, 0, 0.4) 0%,
-      rgb(0, 0, 0, 0.4) 100%),
+        rgb(0, 0, 0, 0.4) 100%),
       no-repeat url('../images/addactivity.jpg') left bottom;
-  
+
     background-size: cover;
     position: relative;
 
@@ -182,6 +201,215 @@
       position: relative;
       top: 50%;
       transform: translateY(-50%);
+    }
+  }
+
+  .container.form-ctnr {
+
+    .form-group {
+      margin: 2rem 0;
+      padding: 3rem 2rem;
+      background-color: #fff;
+      border-radius: 0.25rem;
+      box-shadow: 0 2px 8px -5px #696969cf,
+        0 -2px 6px -5px #7b7b7b8a;
+      max-width: 720px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+      label,
+      p.sub-label {
+        font-family: inherit;
+        color: #757575;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      p.sub-label {
+        padding-left: 0.05rem;
+        margin: 1.5rem 0 0.4rem;
+      }
+
+      .form-field {
+        font-family: inherit;
+        margin: 0.2rem 0 0.4rem;
+
+        label {
+          font-family: inherit;
+          margin-bottom: 0.3rem;
+        }
+
+        select {
+          font-size: 0.85rem;
+        }
+
+        select:focus {
+          box-shadow: none;
+        }
+
+        input,
+        textarea {
+          border: solid 2px transparent;
+          font-size: 0.85rem;
+          padding: 0.375rem 0.75rem;
+        }
+
+        input[type=date] {
+          outline: none;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        textarea {
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        .form-title {
+          font-size: 2.2rem;
+          font-weight: 600;
+        }
+
+        textarea {
+          min-height: 180px;
+          width: 100%;
+        }
+
+        input:focus {
+          box-shadow: none;
+          border-bottom: solid 2px blue;
+        }
+
+        textarea:focus {
+          box-shadow: none;
+          border-top: solid 2px blue;
+          border-bottom: solid 2px blue;
+        }
+
+        button.LoginAuthBtn {
+          background-color: white;
+          color: #333;
+          border: solid 1px rgb(71, 71, 71);
+          border-radius: 0.2rem;
+          font-weight: 500;
+          padding: 0.25rem 0.8rem;
+          font-size: 0.9rem;
+          font-family: Arial, Helvetica, sans-serif;
+          transition: all 0.3s ease;
+        }
+
+        button.LoginAuthBtn:hover {
+          background-color: #2c2c2c;
+          color: #ccc;
+        }
+
+        button.LoginAuthBtn:focus {
+          background-color: #181818;
+          color: white;
+
+        }
+
+        .list-fields {
+          font-family: inherit;
+          display: flex;
+          flex-direction: row;
+          gap: 1rem 0.5rem;
+          flex: 1 1 10px;
+        }
+      }
+
+      .form-field.select {
+        background-color: #f5f5f5;
+      }
+    }
+  }
+}
+
+.add-blogs2 {
+  background-color: #f5f5f5;
+  padding-bottom: 1px;
+
+  header.hero {
+    height: 20rem;
+    background: linear-gradient(rgb(0, 0, 0, 0.4) 0%,
+      rgb(0, 0, 0, 0.4) 100%),
+      no-repeat url('../images/addactivity.jpg') left bottom;
+    background-size: cover;
+    position: relative;
+
+    h1 {
+      font-size: 4.76rem;
+      color: rgb(238, 238, 238);
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .activity-form {
+    display: flex;
+    flex-direction: row;
+    // flex-wrap: wrap;
+    margin: 2rem auto;
+    padding: 0;
+    gap: 0;
+    box-shadow: 0 2px 8px -5px #696969cf,
+    0 -2px 6px -5px #7b7b7b8a;
+
+    --partition-border: dashed 2px rgb(233, 233, 233);
+
+    .form-group {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      width: 100%;
+      border-right: var(--partition-border);
+      min-width: 550px;
+
+      .form-control {
+        box-shadow: none;
+        outline: none;
+        margin: 0.3rem 0 0.5rem;
+      }
+
+      input {
+        border: solid 2px transparent;
+        border-radius: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      input[type="text"]:focus, 
+      input[type="number"]:focus, 
+      input[type="date"]:focus {
+        border-bottom: solid 2px rgb(57, 57, 160); 
+      }
+      select:focus {
+        border:  solid 2px rgb(57, 57, 160);
+      }
+
+      .form-title {
+        font-size: 2.2rem;
+        font-weight: 600;
+      }
+    }
+
+  }
+  .activity-form>* {
+    padding: 3rem 2rem;
+    background-color: #fff;
+    border-radius: 0.25rem;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .activity-form {
+      flex-direction: column;
+      .form-group {
+        border-right: none;
+        border-bottom: var(--partition-border);
+      }
+    }
+    .activity-form>* {
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 0.25rem;
     }
   }
 
@@ -284,6 +512,14 @@
           color: white;
 
         }
+
+        .list-fields {
+          font-family: inherit;
+          display: flex;
+          flex-direction: row;
+          gap: 1rem 0.5rem;
+          flex: 1 1 10px;
+        }
       }
 
       .form-field.select {
@@ -293,46 +529,43 @@
   }
 }
 
+
+
 // add activity ends
 
-.Footer
-{
+.Footer {
   background-color: #181818;
   color: white;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap:20px;
+  gap: 20px;
   justify-content: center;
   padding: 20px;
 }
 
-.Academic
-{
+.Academic {
   padding: 10px;
   margin-top: 15px;
   border-bottom: 2px solid rgb(18, 244, 18);
   margin-bottom: 10px;
 }
 
-.college
-{
-  padding: 10px;
-  margin-top: 15px;
-  border-bottom: 2px solid rgb(18, 244, 18);
-  margin-bottom: 10px;
-}
- 
-.QLinks
-{
+.college {
   padding: 10px;
   margin-top: 15px;
   border-bottom: 2px solid rgb(18, 244, 18);
   margin-bottom: 10px;
 }
 
-.ExternalLinks
-{
+.QLinks {
+  padding: 10px;
+  margin-top: 15px;
+  border-bottom: 2px solid rgb(18, 244, 18);
+  margin-bottom: 10px;
+}
+
+.ExternalLinks {
   padding: 10px;
   margin-top: 15px;
   border-bottom: 2px solid rgb(18, 244, 18);
@@ -340,7 +573,7 @@
 }
 
 
-.products-box{
+.products-box {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -402,5 +635,3 @@
 //   left:10%;
 
 // }
-
- 
