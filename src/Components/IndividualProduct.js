@@ -23,7 +23,9 @@ export const IndividualProduct = ({individualProduct}) => {
          <hr/>
           <div className='date'> <img src={require("../images/icons8-calendar-week-32.png")} /> <p className='red'>11 sep 2022</p></div>
         <h2>{individualProduct.title}</h2>
-        {/* <p>{individualProduct.brief}</p> */}
+        {/* <p>{individualProduct.brief}</p>  
+        
+         NOTE SHARE*/}
         <button className='btn'>Read article </button>
        
 

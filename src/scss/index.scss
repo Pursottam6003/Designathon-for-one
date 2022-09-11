@@ -7,6 +7,15 @@
 
 }
 
+.txt{
+   max-width: 1200px;
+   margin: auto;
+   padding-top: 1rem;
+   span{
+    border-bottom: 1px solid #283858;
+   }
+}
+
 //for news display 
 
 .all-news {
@@ -14,11 +23,9 @@
   margin: auto;
   max-width: 1200px;
   gap: 2rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
   color: rgb(62, 61, 61);
 }
-
-
 .highlight {
   position: relative;
   height: 600px;
@@ -47,6 +54,7 @@
 .writing h1 {
   line-height: 1.6rem;
   padding-bottom: 1rem;
+  
 }
 
 .writing p {
@@ -75,7 +83,10 @@
 
 }
 .block{
-  padding:  0 1rem ;
+ 
+  h2:hover{
+    color: rgb(15, 157, 15);
+  }
  
 }
 
@@ -86,8 +97,34 @@ hr {
 .block {
   width: 100%;
 }
-
+@media only screen and (max-width: 800px) {
+  .all-news{
+   flex-direction: column;
+   align-items: center;
+   margin: 1rem;
+   .highlight{
+    width: 100%;
+   }
+   .news-block{
+    width: 100%;
+   }
+  }
+}
 //end of news thisplay 
+
+
+// for news preview 
+
+
+.txtarea{
+ border: none;
+width: 100%;
+
+}
+.txtarea:focus{
+  border: 1px solid rgb(116, 114, 114);
+}
+//end
 .Navbar {
   background-color: #1F406D;
   color: white;
@@ -159,10 +196,16 @@ hr {
   gap: 30px;
   justify-content: center;
   padding: 1rem;
-  background-color: #2fbce6;
+  background-color: #283858;
+  height: 10vh;
+  align-items: center;
 
 }
-
+.nav_items{
+   text-transform: uppercase;
+   font-weight: 600;
+   color: #fff;
+}
 .TopNavigation .nav_items:hover {
   color: aliceblue;
   transform: scale(1.2);
@@ -326,6 +369,7 @@ hr {
   }
 }
 
+// new form page
 .add-blogs2 {
   background-color: #f5f5f5;
   padding-bottom: 1px;
@@ -350,7 +394,6 @@ hr {
   .activity-form {
     display: flex;
     flex-direction: row;
-    // flex-wrap: wrap;
     margin: 2rem auto;
     padding: 0;
     gap: 0;
@@ -389,6 +432,10 @@ hr {
       .form-title {
         font-size: 2.2rem;
         font-weight: 600;
+      }
+
+      .form-field {
+        display: block;
       }
     }
 
