@@ -368,18 +368,20 @@ hr {
         box-shadow: none;
         outline: none;
         margin: 0.3rem 0 0.5rem;
+        padding: 0.5rem 0.8rem;
       }
 
       input {
         border: solid 2px transparent;
         border-radius: 0;
-        padding-left: 0;
-        padding-right: 0;
+        // padding-left: 0;
+        // padding-right: 0;
       }
       input[type="text"]:focus, 
       input[type="number"]:focus, 
       input[type="date"]:focus {
-        border-bottom: solid 2px rgb(57, 57, 160); 
+        // border-bottom: solid 2px rgb(57, 57, 160); 
+        border: solid 2px rgb(57, 57, 160); 
       }
       select:focus {
         border:  solid 2px rgb(57, 57, 160);
@@ -390,8 +392,31 @@ hr {
         font-weight: 600;
       }
 
+      p.sub-label {
+        color: #444749;
+        font-weight: 600;
+        font-size: 0.8rem;
+        font-family: inherit;
+        margin: 1.2rem 0 0.6rem;
+      }
       .form-field {
+        position: relative;
         display: block;
+        margin: 0.8rem 0;
+
+        .field-label {
+          position: absolute;
+          top: -0.2rem;
+          font-size: 0.7rem;
+          line-height: 1;
+          margin-bottom: 0;
+          padding: 0 0.3rem 0.1rem;
+          left: 1rem;
+          font-family: sans-serif;
+          color: rgb(57, 57, 160);
+          background-color: #fff;
+        }
+        
       }
     }
 
