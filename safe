@@ -1,0 +1,84 @@
+<>
+            <p className='sub-label'>Institute Section</p>
+              <input type="text"
+                className='form-control'
+                required 
+                name="insName"
+                onChange={this.handeChange}
+                placeholder="Institute name"
+              />
+            <Field labeltxt="Institute name">
+            </Field>
+  
+            <Field labeltxt="Partner institute name">
+              <input type="text"
+                className='form-control'
+                required 
+                name="partnerInsName"
+                onChange={this.handeChange}
+                placeholder="Partner institute name"
+              />
+            </Field>
+  
+            <Field labeltxt="Partner institute address">
+              <input type="text"
+                className='form-control'
+                required 
+                name="partnerInsAddr"
+                onChange={this.handeChange}
+                placeholder="Partner institute address"
+              />
+            </Field>
+  
+            <p className='sub-label'>MoU details</p>
+            <Field labeltxt="Theme">
+              <input type="text"
+                className='form-control'
+                required 
+                name="theme"
+                onChange={this.handeChange}
+                placeholder="Theme"
+              />
+            </Field>
+  
+            <Field labeltxt="Purpose of Agreement">
+              <input type="text"
+                className='form-control'
+                required 
+                name="purposeAgreement"
+                onChange={this.handeChange}
+                placeholder="Purpose of Agreement"
+              />
+            </Field>
+  
+            <p className='sub-label'>Members present</p>
+            <Field labeltxt="Members present from NITAP with their designation">
+              <input type="text"
+                className='form-control'
+                required 
+                name=""
+                onChange={this.handeChange}
+                placeholder="Members present from NITAP with their designation"
+              />
+            </Field>
+  
+            <Field labeltxt="Members present from partner Institute/Organization with their designation">
+              <input type="text"
+                className='form-control'
+                required 
+                name=""
+                onChange={this.handeChange}
+                placeholder="Members present from partner Institute/Organization with their designation"
+              />
+            </Field>
+  
+            <Field labeltxt="Other Renowned Members’ names with their designation">
+              <input type="text"
+                className='form-control'
+                required 
+                name=""
+                onChange={this.handeChange}
+                placeholder="Other Renowned Members’ names with their designation"
+              />
+            </Field>
+          </>
