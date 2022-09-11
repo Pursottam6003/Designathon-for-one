@@ -329,7 +329,7 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Details of the speaker</p>
-          <Field showlabel={this.state.speakerName.length} labeltxt="Speaker name">
+          <Field showLabel={this.state.speakerName.length} labeltxt="Speaker name">
             <input type="text"
               className='form-control'
               required
@@ -340,7 +340,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.designation.length} labeltxt="Designation">
+          <Field showLabel={this.state.designation.length} labeltxt="Designation">
             <input type="text"
               className='form-control'
               required
@@ -351,7 +351,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.department.length} labeltxt="Department">
+          <Field showLabel={this.state.department.length} labeltxt="Department">
             <input type="text"
               className='form-control'
               required
@@ -363,7 +363,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Event details</p>
-          <Field showlabel={this.state.eventName.length} labeltxt="Event name">
+          <Field showLabel={this.state.eventName.length} labeltxt="Event name">
             <input type="text"
               className='form-control'
               required
@@ -374,7 +374,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.title.length} labeltxt="Title of speech">
+          <Field showLabel={this.state.title.length} labeltxt="Title of speech">
             <input type="text"
               className='form-control'
               required
@@ -385,7 +385,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.lectureType.length} labeltxt="Keynote/special lecture/inagural address etc.">
+          <Field showLabel={this.state.lectureType.length} labeltxt="Keynote/special lecture/inagural address etc.">
             <input type="text"
               className='form-control'
               required
@@ -396,7 +396,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.organizer.length} labeltxt="Organizer with address">
+          <Field showLabel={this.state.organizer.length} labeltxt="Organizer with address">
             <input type="text"
               className='form-control'
               required
@@ -422,7 +422,7 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Details of the speaker</p>
-          <Field showlabel={this.state.speakerName.length} labeltxt="Speaker name">
+          <Field showLabel={this.state.speakerName.length} labeltxt="Speaker name">
             <input type="text"
               className='form-control'
               required
@@ -433,7 +433,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.designation.length} labeltxt="Designation">
+          <Field showLabel={this.state.designation.length} labeltxt="Designation">
             <input type="text"
               className='form-control'
               required
@@ -444,7 +444,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.insName.length} labeltxt="Institute name">
+          <Field showLabel={this.state.insName.length} labeltxt="Institute name">
             <input type="text"
               className='form-control'
               required
@@ -456,7 +456,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Event details</p>
-          <Field showlabel={this.state.title.length} labeltxt="Title of speech">
+          <Field showLabel={this.state.title.length} labeltxt="Title of speech">
             <input type="text"
               className='form-control'
               required
@@ -467,18 +467,18 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.speakerName.length} labeltxt="Keynote/special lecture/inagural address etc.">
+          <Field showLabel={this.state.lectureType.length} labeltxt="Keynote/special lecture/inagural address etc.">
             <input type="text"
               className='form-control'
               required
-              name="speakerName"
-              value={this.state.speakerName}
+              name="lectureType"
+              value={this.state.lectureType}
               onChange={this.handleChange}
               placeholder="Keynote/special lecture/inagural address etc."
             />
           </Field>
 
-          <Field showlabel={this.state.organizer.length} labeltxt="Organizing member/department/section (NITAP)">
+          <Field showLabel={this.state.organizer.length} labeltxt="Organizing member/department/section (NITAP)">
             <input type="text"
               className='form-control'
               required
@@ -744,7 +744,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <p className='sub-label'>Title of Contribution</p>
+          <p className='sub-label'>Title of Contribution</p>bad habits
           <Field showLabel={this.state..length} labeltxt="">
             <input type="text"
               className='form-control'
