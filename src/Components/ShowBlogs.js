@@ -34,7 +34,7 @@ export const ShowBlogs = () => {
     {myproducts.length > 0 && (
         <div className='my-products'>
 
-            <h1 className='text-center'>All News</h1>
+            <h1 className='txt'> <span> <b>NEWS</b></span></h1>
                 <div className='all-news'>
                 <div className='highlight'>
 {/* bass abi ke liya dal hu isme img , title , short ,discription  firebase se fetch karke daldena  */}

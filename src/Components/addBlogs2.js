@@ -4,8 +4,8 @@ import {Form} from './Form.js'
 const Preview = () => {
 	return (
 		<div>
-			<h3>This is the preview</h3>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias et corporis ex. Ipsa aspernatur sunt, esse deserunt repellendus laboriosam temporibus eius aut similique non libero.</p>
+			<h3> MEOW </h3>
+		 <textarea className='txtarea' placeholder='your output will show here'>heel </textarea>
 		</div>
 
 	)
