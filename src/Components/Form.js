@@ -611,7 +611,7 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Patent details</p>
-          <Field labeltxt="Name of inventor to whom the patent was issued">
+          <Field showLabel={this.state.invName.length} labeltxt="Name of inventor to whom the patent was issued">
             <input type="text"
               className='form-control'
               required
@@ -622,7 +622,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Year the patent was issued">
+          <Field showLabel={this.state.patentYear.length} labeltxt="Year the patent was issued">
             <input type="number"
               className='form-control'
               required
@@ -634,7 +634,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Unique patent identifier (patent number)">
+          <Field showLabel={this.state.patId.length} labeltxt="Unique patent identifier (patent number)">
             <input type="text"
               className='form-control'
               required
@@ -646,7 +646,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Official source of the patent information</p>
-          <Field labeltxt="Patent office name">
+          <Field showLabel={this.state.patOffice.length} labeltxt="Patent office name">
             <input type="text"
               className='form-control'
               required
@@ -676,7 +676,7 @@ export class CategoryForm extends Component {
 
 
           <p className='sub-label'>Book details</p>
-          <Field labeltxt="Publication year">
+          <Field showLabel={this.state.pubYear.length} labeltxt="Publication year">
             <input type="text"
               className='form-control'
               required 
@@ -687,7 +687,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Book title, subtitle">
+          <Field showLabel={this.state.title.length} labeltxt="Book title, subtitle">
             <input type="text"
               className='form-control'
               required 
@@ -698,7 +698,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Publisher name">
+          <Field showLabel={this.state.publisher.length} labeltxt="Publisher name">
             <input type="text"
               className='form-control'
               required 
@@ -709,7 +709,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="DOI (if avialable)">
+          <Field showLabel={this.state.doiUrl.length} labeltxt="DOI (if avialable)">
             <input type="text"
               className='form-control'
               name="doiUrl"
@@ -726,8 +726,8 @@ export class CategoryForm extends Component {
           <p className='sub-label'>Author details</p>
           <h4>TODO: list</h4>
 
-          <p className='sub-label'>National Or International </p>
-          <Field labeltxt="">
+          {/* <p className='sub-label'>National Or International </p>
+          <Field showLabel={this.state..length} labeltxt="">
             <input type="text"
               className='form-control'
               required
@@ -736,7 +736,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Author Full Name</p>
-          <Field labeltxt="">
+          <Field showLabel={this.state..length} labeltxt="">
             <input type="text"
               className='form-control'
               required
@@ -745,7 +745,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Title of Contribution</p>
-          <Field labeltxt="">
+          <Field showLabel={this.state..length} labeltxt="">
             <input type="text"
               className='form-control'
               required
@@ -754,7 +754,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Confrence Name</p>
-          <Field labeltxt="">
+          <Field showLabel={this.state..length} labeltxt="">
             <input type="text"
               className='form-control'
               required
@@ -763,7 +763,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Location</p>
-          <Field labeltxt="">
+          <Field showLabel={this.state..length} labeltxt="">
             <input type="text"
               className='form-control'
               required
@@ -772,13 +772,13 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>DOI</p>
-          <Field labeltxt="">
+          <Field showLabel={this.state..length} labeltxt="">
             <input type="text"
               className='form-control'
               required
               placeholder="DOI if avialable"
             />
-          </Field>
+          </Field> */}
 
           <Field labeltxt="Date" showLabel={0}>
             <input type="date"
@@ -792,7 +792,7 @@ export class CategoryForm extends Component {
         </>
       )
     } else if (parseInt(categoryId) === 10 ) {
-
+      
     }
     else {
       return (
