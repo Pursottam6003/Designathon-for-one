@@ -4,14 +4,22 @@ import {Form} from './Form.js'
 const Preview = () => {
 	return (
 		<div>
-			<h3>This is the preview</h3>
-			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias et corporis ex. Ipsa aspernatur sunt, esse deserunt repellendus laboriosam temporibus eius aut similique non libero.</p>
+			<h3> MEOW </h3>
+		 <textarea className='txtarea' placeholder='your output will show here'>heel </textarea>
 		</div>
 
 	)
 }
 
+
+
 export class AddBlogs2 extends Component {
+
+	handleSubmit = () => {
+		
+	}
+
+	
 	render() {
 		return (
 			<div className='add-blogs2'>
@@ -20,7 +28,7 @@ export class AddBlogs2 extends Component {
 				</header>
 
 				<div className='activity-form container'>
-        			<Form />
+        			<Form  />
 					<Preview />
 				</div>
 			</div>
