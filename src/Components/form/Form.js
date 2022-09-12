@@ -615,12 +615,11 @@ export class CategoryForm extends Component {
               value={this.state.department}
               onChange={this.handleChange}
               placeholder="Department"
-              onChange={this.handleChange}
             />
           </Field>
 
           <p className='sub-label'>Project details</p>
-          <Field showLabel={this.state.title.length} showLabel={this.state.title.length} labeltxt="Project Title">
+          <Field showLabel={this.state.title.length} labeltxt="Project Title">
             <input type="text"
               className='form-control'
               required
@@ -631,7 +630,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showLabel={this.state.fundAgency.length} showLabel={this.state.fundAgency.length} labeltxt="Sponsored agency">
+          <Field showLabel={this.state.fundAgency.length} labeltxt="Sponsored agency">
             <input type="text"
               className='form-control'
               required
