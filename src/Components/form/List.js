@@ -46,12 +46,12 @@ export const List = (props) => {
 
   if (items.length > 0) {
     return (
-      <>
-        <p className="sub-level">{heading}</p>
-        <table>
+      <div className="list-component">
+        <h4 className="list-heading">{heading}</h4>
+        <table className="list-table">
           {rows}
         </table>
-      </>
+      </div>
     )
   } else {
     return <></>
