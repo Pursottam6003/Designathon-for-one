@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import {Form} from './form/Form.js'
-
+import Previews from './Previews.js'
 const Preview = () => {
 	return (
-		<div className='preview'>
-			<h3> MEOW </h3>
-		 <textarea className='txtarea' placeholder='your output will show here'>heel </textarea>
-		</div>
+		<Previews/>
 
 	)
 }
