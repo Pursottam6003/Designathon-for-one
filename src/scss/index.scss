@@ -113,16 +113,36 @@ hr {
 //end of news thisplay 
 
 
+.insidetable{
+  display: flex;
+}
+
 // for news preview 
 
 
+.textarea{
+  width: 100%;
+  height: auto;
+  border: none;
+  font-size: 14px;
+ 
+}
+.textarea:focus{
+  outline: none;
+}
+
 .txtarea{
+  display: block;
+  height: 90%;
  border: none;
 width: 100%;
+font-size: 12px;
+
 
 }
 .txtarea:focus{
-  border: 1px solid rgb(116, 114, 114);
+ 
+  outline: none;
 }
 //end
 .Navbar {
