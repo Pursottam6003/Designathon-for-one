@@ -717,9 +717,11 @@ export class CategoryForm extends Component {
               {this.state.pi.map((person, i) => {
                 return (
                   <tr key={i}>
+                    <span className='insidetable'>
                     <td>{person.name}</td>
                     <td>{person.designation}</td>
                     <td>{person.department}</td>
+                    </span>
                     <td>
                       <button onClick={() => {this.removePerson(i, "PI")}}>x</button>
                     </td>
