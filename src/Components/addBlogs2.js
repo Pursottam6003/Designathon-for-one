@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Form} from './Form.js'
+import {Form} from './form/Form.js'
 
 const Preview = () => {
 	return (

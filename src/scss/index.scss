@@ -505,6 +505,30 @@ font-size: 12px;
         }
         
       }
+
+      .person-form {
+        display: flex;
+        flex-direction: row;
+
+        input, select {
+          border: solid 2px transparent;
+          border-radius: 0;
+          outline: none;
+        }
+        input[type="text"] {
+          padding: 0.5rem 0.8rem;
+        }
+        input[type="button"] {
+          height: 100%;
+          width: 2rem;
+        }
+        select {
+          height: 100%;
+        }
+        input[type="text"]:focus, select:focus {
+          border: solid 2px rgb(57, 57, 160); 
+        }
+      }
     }
 
   }
