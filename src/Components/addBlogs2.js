@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import {Form} from './form/Form.js'
+import {Previews} from './Previews'
 
 const Preview = () => {
 	return (
+		<>
+		<Previews/>
 		<div className='preview'>
 		 <textarea className='textarea' placeholder='Title..'></textarea>
 	
 		 <textarea className='txtarea' placeholder='your output will show here'></textarea>
 		</div>
-
+</>
 	)
 }
 
