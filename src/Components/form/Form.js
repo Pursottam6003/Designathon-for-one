@@ -39,7 +39,7 @@ export class CategoryForm extends Component {
     pageNos: '',    // 7, 10 
     doiUrl: '',     // 7, 8, 9
     publisher: '',  // 8, 10
-    confType: '',   // 9
+    confType: 'national',   // 9
     place: '',  // 9, 15
     collaboration: '',  // 14, 15, 16, 17
     coordinatorName: '',  // 15
@@ -254,7 +254,7 @@ export class CategoryForm extends Component {
   render() {
     const { categoryId } = this.props
 
-    if (parseInt(categoryId) === 1) {
+    if (parseInt(categoryId) === 1) {       // done
       return (
         <>
           <p className='sub-label'>Institute Section</p>
@@ -359,7 +359,7 @@ export class CategoryForm extends Component {
           </Field>
         </>
       )
-    } else if (parseInt(categoryId) === 2) {
+    } else if (parseInt(categoryId) === 2) {    // done
       return (
         <>
           <p className='sub-label'>Details of the speaker</p>
@@ -452,7 +452,7 @@ export class CategoryForm extends Component {
           </Field>
         </>
       )
-    } else if (parseInt(categoryId) === 3) {
+    } else if (parseInt(categoryId) === 3) {    // done
       return (
         <>
           <p className='sub-label'>Details of the speaker</p>
@@ -534,7 +534,7 @@ export class CategoryForm extends Component {
           </Field>
         </>
       )
-    } else if (parseInt(categoryId) === 4) {
+    } else if (parseInt(categoryId) === 4) {    // done
       return (
         <>
           <p className='sub-label'>Principal and Co-principal Investigators' details</p>
@@ -548,7 +548,7 @@ export class CategoryForm extends Component {
           )}
 
           <p className='sub-label'>Project details</p>
-          <Field labeltxt="Project title">
+          <Field showLabel={this.state.title.length} labeltxt="Project title">
             <input type="text"
               className='form-control'
               required
@@ -559,7 +559,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Funding Agency">
+          <Field showLabel={this.state.fundAgency.length} labeltxt="Funding Agency">
             <input type="text"
               className='form-control'
               required
@@ -581,11 +581,11 @@ export class CategoryForm extends Component {
           </Field>
         </>
       )
-    } else if (parseInt(categoryId) === 5) {
+    } else if (parseInt(categoryId) === 5) {    // done
       return (
         <>
           <p className='sub-label'>Faculty member details</p>
-          <Field labeltxt="Name of faculty">
+          <Field showLabel={this.state.facultyName.length} labeltxt="Name of faculty">
             <input type="text"
               className='form-control'
               required
@@ -596,59 +596,53 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Designation">
+          <Field showLabel={this.state.designation.length} labeltxt="Designation">
             <input type="text"
               className='form-control'
               required
               name="designation"
               value={this.state.designation}
+              onChange={this.handleChange}
               placeholder="Designation"
             />
           </Field>
 
-          <Field labeltxt="Department">
+          <Field showLabel={this.state.department.length} labeltxt="Department">
             <input type="text"
               className='form-control'
               required
               name="department"
               value={this.state.department}
+              onChange={this.handleChange}
               placeholder="Department"
             />
           </Field>
 
           <p className='sub-label'>Project details</p>
-          <Field labeltxt="Project Title">
+          <Field showLabel={this.state.title.length} labeltxt="Project Title">
             <input type="text"
               className='form-control'
               required
               name="title"
               value={this.state.title}
+              onChange={this.handleChange}
               placeholder="Project Title"
             />
           </Field>
 
-          <Field labeltxt="Sponsored agency">
+          <Field showLabel={this.state.fundAgency.length} labeltxt="Sponsored agency">
             <input type="text"
               className='form-control'
               required
               name="fundAgency"
               value={this.state.fundAgency}
-              placeholder="Sponsored agency"
-            />
-          </Field>
-
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
               onChange={this.handleChange}
+              placeholder="Sponsored agency"
             />
           </Field>
         </>
       )
-    } else if (parseInt(categoryId) === 6) {
+    } else if (parseInt(categoryId) === 6) {    // done
       return (
         <>
           <p className='sub-label'>Patent details</p>
@@ -697,26 +691,15 @@ export class CategoryForm extends Component {
               placeholder="Patent office name"
             />
           </Field>
-
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
         </>
       )
-    } else if (parseInt(categoryId) === 8) {
+    } else if (parseInt(categoryId) === 8) {    // done
       return (
         <>
           <p className='sub-label'>Author details</p>
           <List items={this.state.authors} itemType="author" removeItem={this.removePerson} />
           <Person personType="author" handleSubmit={this.addPerson} />
 
-          <h4>TODO: list</h4>
           <p className='sub-label'>Book details</p>
           <Field showLabel={this.state.pubYear.length} labeltxt="Publication year">
             <input type="text"
@@ -766,75 +749,67 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Author details</p>
-          <h4>TODO: list</h4>
+          <List items={this.state.authors} itemType="author" removeItem={this.removePerson} />
+          <Person personType="author" multiple="0" handleSubmit={this.addPerson} />
+          
+          <p className='sub-label'>Conference details </p>
+          <Field showLabel={1} labeltxt="Conference type">
+            <div className='radio-inputs'>
 
-          <p className='sub-label'>Select Confrence Type </p>
-          <Field showLabel={this.state.handleChange.length} labeltxt="">
-            <input type="radio"
-              value="National"
-              required
-              defaultChecked
-              onChange={this.handleChange}
-              name="confType" /> National
+              <div className='radio-btn'>
+                <input type="radio"
+                  value="national"
+                  required
+                  defaultChecked
+                  onChange={this.handleChange}
+                  name="confType"
+                /> National
+              </div>
 
-            <input type="radio"
-              value="International"
-              name="confType"
-              onChange={this.handleChange}
-            /> International
+              <div className='radio-btn'>
+                <input type="radio"
+                  value="international"
+                  name="confType"
+                  onChange={this.handleChange}
+                /> International
+              </div>
+            </div>
 
           </Field>
 
-
-          <p className='sub-label'>Full Name</p>
-          <Field showLabel={this.state.authors.length} labeltxt="Mention author full name">
-            <input type="text"
-              className='form-control'
-              name="authors"
-              required
-              value={this.state.authors}
-              onChange={this.handleChange}
-              placeholder="Mention author full name"
-            />
-          </Field>
-
-          {/* <p className='sub-label'>Title of Contribution</p> */}
-          <Field showLabel={this.state.title.length} labeltxt="Mention the title of contribution">
+          <Field showLabel={this.state.title.length} labeltxt="Contribution title">
             <input type="text"
               className='form-control'
               required
               name="title"
               value={this.state.title}
               onChange={this.handleChange}
-              placeholder="Mention the title of contribution"
+              placeholder="Contribution title"
             />
           </Field>
 
-          {/* <p className='sub-label'>Confrence Name</p> */}
-          <Field showLabel={this.state.eventName.length} labeltxt="">
+          <Field showLabel={this.state.eventName.length} labeltxt="Conferenece Name">
             <input type="text"
               className='form-control'
               required
               name="eventName"
               value={this.state.eventName}
               onChange={this.handleChange}
-              placeholder="List the name of Confrence"
+              placeholder="Conference Name"
             />
           </Field>
 
-          {/* <p className='sub-label'>Location</p> */}
-          <Field showLabel={this.state.place.length} labeltxt="List the location of the confrence">
+          <Field showLabel={this.state.place.length} labeltxt="Location of conference">
             <input type="text"
               className='form-control'
               required
               name="place"
               value={this.state.place}
               onChange={this.handleChange}
-              placeholder="List the location of the confrence"
+              placeholder="Location of conference"
             />
           </Field>
 
-          <p className='sub-label' >DOI</p>
           <Field showLabel={this.state.doiUrl.length} labeltxt="DOI if avialable">
             <input type="text"
               className='form-control'
@@ -845,7 +820,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={this.state.date.length}>
+          <Field labeltxt="Date" showLabel={0}>
             <input type="date"
               className='form-control'
               required
@@ -890,8 +865,8 @@ export class CategoryForm extends Component {
               className='form-control'
               required
               name="chapterTitle"
-              onChange={this.handleChange}
               value={this.state.chapterTitle}
+              onChange={this.handleChange}
               placeholder="Title"
             />
           </Field>
@@ -1384,7 +1359,7 @@ export class CategoryForm extends Component {
         </Field>
 
         <p className='sub-label'>Organiser name</p>
-        <Field hasLabel={this.state.organize.length} labeltxt="Coordinators Name">
+        <Field hasLabel={this.state.organizer.length} labeltxt="Coordinators Name">
           <input type="text"
             className='form-control'
             required
