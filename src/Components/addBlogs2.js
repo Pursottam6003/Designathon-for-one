@@ -3,7 +3,7 @@ import {Form} from './Form.js'
 
 const Preview = () => {
 	return (
-		<div>
+		<div className='preview'>
 			<h3> MEOW </h3>
 		 <textarea className='txtarea' placeholder='your output will show here'>heel </textarea>
 		</div>

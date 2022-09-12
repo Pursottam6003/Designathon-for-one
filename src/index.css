@@ -74,6 +74,9 @@
   margin-top: 20px;
 }
 
+.container{
+  display: flex;
+}
 .collegeName
 {
   font-size: medium;

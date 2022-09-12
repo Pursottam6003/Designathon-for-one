@@ -12,6 +12,167 @@ const Field = (props) => {
   )
 }
 
+class Person extends Component {
+  initialState = {
+    name: '',
+    lastName: '',
+    firstInitials: '',
+    designation: '',
+    department: '',
+    insName: '',
+    investigatorType: 'PI'
+  }
+
+  state = this.initialState
+
+  handleChange = (event) => {
+    const {name, value} = event.target
+    this.setState({
+      [name]: value
+    })
+  }
+
+  addPerson = () => {
+    if (this.props.personType === "author") {
+      const newPerson = {
+        type: "author",
+        lastName: this.state.lastName,
+        firstInitials: this.state.firstInitials
+      }
+      console.log(newPerson);
+      this.props.handleSubmit(newPerson);
+    } else {
+      const newPerson = {
+        type: this.state.investigatorType,
+        name: this.state.name,
+        designation: this.state.designation,
+        department: this.state.department,
+        insName: this.state.insName
+      }
+      console.log(newPerson);
+      this.props.handleSubmit(newPerson);
+    }
+
+    this.setState(this.initialState)
+  }
+
+  render() {
+    const { personType, multiple } = this.props
+    if ( personType === "author") {
+      return (
+        // lastname and firstInitials
+        <div className='person-form'>
+          <Field labeltxt="Last name" showLabel={this.state.lastName.length}>
+          <input 
+            type="text" 
+            placeholder='Last name'
+            required 
+            name="lastName"
+            value={this.state.lastName}
+            onChange={this.handleChange}
+          />
+          </Field>
+
+          <Field labeltxt="First initials (second initials)" showLabel={this.state.lastName.length}>
+          <input
+            type="text"
+            placeholder='First initials (second initials)'
+            required
+            name="firstInitials"
+            value={this.state.firstInitials}
+            onChange={this.handleChange}
+          />
+          </Field>
+
+          <Field labeltxt="" showLabel={0}>
+            <input 
+              type="button"
+              value="+"
+              className='list-add'
+              onClick={this.addPerson}
+            /> 
+          </Field>
+        </div>
+      )
+    } else {
+      return (
+        <div className='person-form'>
+          <Field labeltxt="Select PI or CoPI" showLabel={0}>
+            <select 
+              type="text" 
+              name="investigatorType" 
+              required
+              defaultValue={"PI"}
+              onChange={this.handleChange}
+              value={this.state.investigatorType}
+            >
+              <option value="PI">PI</option>
+              { multiple === "1" && (
+                <option value="CoPI">CoPI</option>
+              )} 
+            </select>
+          </Field>
+
+          <Field labeltxt="Name" showLabel={this.state.name.length}>
+          <input 
+            type="text" 
+            placeholder='Name'
+            required 
+            name="name"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+          </Field>
+
+          <Field labeltxt="Designation" showLabel={this.state.designation.length}>
+          <input
+            type="text"
+            placeholder='Designation'
+            required
+            name="designation"
+            value={this.state.designation}
+            onChange={this.handleChange}
+          />
+          </Field>
+
+          <Field labeltxt="Department" showLabel={this.state.department.length}>
+          <input
+            type="text"
+            placeholder='Department'
+            required
+            name="department"
+            value={this.state.department}
+            onChange={this.handleChange}
+          />
+          </Field>
+
+          {this.state.investigatorType === "CoPI" && (
+            <Field labeltxt="Institute name (if from outside NITAP)" showLabel={this.state.insName.length}>
+            <input
+              type="text"
+              placeholder='Institute name (if from outside NITAP)'
+              required
+              name="insName"
+              value={this.state.insName}
+              onChange={this.handleChange}
+            />
+            </Field>
+          )} 
+
+          <Field labeltxt="" showLabel={0}>
+            <input
+              type="button"
+              value="+"
+              className='list-add'
+              onClick={this.addPerson}
+            />
+          </Field>
+        </div>
+      )
+    }
+  }
+}
+
 export class CategoryForm extends Component {
   initialState = {
     insName: '',        // 1, 3
@@ -41,7 +202,7 @@ export class CategoryForm extends Component {
     patOffice: '', // 6
     journalType: '', // 7
     authors: [],    // 7, 8, 9, 10
-    pubYear: [],    // 7, 8
+    pubYear: '',    // 7, 8
     journalTitle: '',   // 7
     volNo: '',    // 7
     issueNo: '',    // 7
@@ -63,6 +224,48 @@ export class CategoryForm extends Component {
     this.setState({
       [name]: value
     })
+  }
+
+  addPerson = (person) => {
+    if (person["type"] === "author") {
+      this.setState({
+        authors: [...this.state.authors, person]
+      })
+    } else if (person["type"] === "PI") {
+      this.setState({
+        pi: [...this.state.pi, person]
+      })
+    } else {
+      this.setState({
+        copi: [...this.state.copi, person]
+      })
+    }
+  }
+
+  removePerson = (index, personType) => {
+    if (personType === "PI") {
+      const {pi} = this.state
+      this.setState({
+        pi: pi.filter((person, i) => {
+          return i !== index;
+        }) 
+      })
+    } else if (personType === "CoPI") {
+      const {copi} = this.state
+      this.setState({
+        copi: copi.filter((person, i) => {
+          return i !== index;
+        })
+      })
+    } else {
+      const {authors} = this.state
+      this.setState({
+        authors: authors.filter((person, i) => {
+          return i !== index;
+        })
+      })
+    }
+    console.log(index);
   }
 
   categoryFormFields = [
@@ -117,7 +320,7 @@ export class CategoryForm extends Component {
       patId: '',
       patOffice: ''
     },
-    {   // research papers
+    {   // 7. research papers
       journalType: '',   // international/national
       authors: [],
       pubYear: [],
@@ -128,9 +331,9 @@ export class CategoryForm extends Component {
       pageNos: '',
       doiUrl: ''        // optional
     },
-    {   // book
+    {   // 8. book
       authors: [],
-      pubYear: [],
+      pubYear: '',
       title: '',
       publisher: '',
       doiUrl: ''
@@ -330,7 +533,7 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Details of the speaker</p>
-          <Field showlabel={this.state.speakerName.length} labeltxt="Speaker name">
+          <Field showLabel={this.state.speakerName.length} labeltxt="Speaker name">
             <input type="text"
               className='form-control'
               required
@@ -341,7 +544,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.designation.length} labeltxt="Designation">
+          <Field showLabel={this.state.designation.length} labeltxt="Designation">
             <input type="text"
               className='form-control'
               required
@@ -352,7 +555,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.department.length} labeltxt="Department">
+          <Field showLabel={this.state.department.length} labeltxt="Department">
             <input type="text"
               className='form-control'
               required
@@ -364,7 +567,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Event details</p>
-          <Field showlabel={this.state.eventName.length} labeltxt="Event name">
+          <Field showLabel={this.state.eventName.length} labeltxt="Event name">
             <input type="text"
               className='form-control'
               required
@@ -375,7 +578,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.title.length} labeltxt="Title of speech">
+          <Field showLabel={this.state.title.length} labeltxt="Title of speech">
             <input type="text"
               className='form-control'
               required
@@ -386,7 +589,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.lectureType.length} labeltxt="Keynote/special lecture/inagural address etc.">
+          <Field showLabel={this.state.lectureType.length} labeltxt="Keynote/special lecture/inagural address etc.">
             <input type="text"
               className='form-control'
               required
@@ -397,7 +600,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.organizer.length} labeltxt="Organizer with address">
+          <Field showLabel={this.state.organizer.length} labeltxt="Organizer with address">
             <input type="text"
               className='form-control'
               required
@@ -423,7 +626,7 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Details of the speaker</p>
-          <Field showlabel={this.state.speakerName.length} labeltxt="Speaker name">
+          <Field showLabel={this.state.speakerName.length} labeltxt="Speaker name">
             <input type="text"
               className='form-control'
               required
@@ -434,7 +637,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.designation.length} labeltxt="Designation">
+          <Field showLabel={this.state.designation.length} labeltxt="Designation">
             <input type="text"
               className='form-control'
               required
@@ -445,7 +648,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.insName.length} labeltxt="Institute name">
+          <Field showLabel={this.state.insName.length} labeltxt="Institute name">
             <input type="text"
               className='form-control'
               required
@@ -457,7 +660,7 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Event details</p>
-          <Field showlabel={this.state.title.length} labeltxt="Title of speech">
+          <Field showLabel={this.state.title.length} labeltxt="Title of speech">
             <input type="text"
               className='form-control'
               required
@@ -468,18 +671,18 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field showlabel={this.state.speakerName.length} labeltxt="Keynote/special lecture/inagural address etc.">
+          <Field showLabel={this.state.lectureType.length} labeltxt="Keynote/special lecture/inagural address etc.">
             <input type="text"
               className='form-control'
               required
-              name="speakerName"
-              value={this.state.speakerName}
+              name="lectureType"
+              value={this.state.lectureType}
               onChange={this.handleChange}
               placeholder="Keynote/special lecture/inagural address etc."
             />
           </Field>
 
-          <Field showlabel={this.state.organizer.length} labeltxt="Organizing member/department/section (NITAP)">
+          <Field showLabel={this.state.organizer.length} labeltxt="Organizing member/department/section (NITAP)">
             <input type="text"
               className='form-control'
               required
@@ -505,7 +708,57 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Principal and Co-principal Investigators' details</p>
-          <h4>TODO</h4>
+          <h4>Testing</h4>
+
+          <table>
+            {this.state.pi.length !== 0 && (
+              <>
+              <p className='sub-level'>Principal investigators</p>
+
+              {this.state.pi.map((person, i) => {
+                return (
+                  <tr key={i}>
+                    <td>{person.name}</td>
+                    <td>{person.designation}</td>
+                    <td>{person.department}</td>
+                    <td>
+                      <button onClick={() => {this.removePerson(i, "PI")}}>x</button>
+                    </td>
+                  </tr>
+                )
+              })}
+              </>
+            )}
+
+            {this.state.copi.length !== 0 && (
+              <>
+                <p className='sub-level'>Co-principal investigators</p>
+
+                {this.state.copi.map((person, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>{person.name}</td>
+                      <td>{person.designation}</td>
+                      <td>{person.department}</td>
+
+                      {this.state.insName.length === 0 && (
+                        <td>{person.insName}</td>
+                      )}
+                      <td>
+                        <button onClick={() => { this.removePerson(i, "CoPI") }}>x</button>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </>
+            )}
+          </table>
+          {this.state.pi.length === 0 && (
+            <Person personType="investigator" multiple="0" handleSubmit={this.addPerson}/>
+          )}
+          {this.state.pi.length !== 0 && (
+            <Person personType="investigator" multiple="1" handleSubmit={this.addPerson}/>
+          )}
 
           <p className='sub-label'>Project details</p>
           <Field labeltxt="Project title">
