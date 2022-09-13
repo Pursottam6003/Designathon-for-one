@@ -16,6 +16,12 @@ export class Form extends Component {
     console.log(name, value)
     this.setState({
       [name]: value
+    }, () => {
+      this.props.getPreview({
+        category: this.state.category,
+        formData: this.state.formData,
+        activityTitle: this.state.activityTitle
+      });
     })
   }
 
@@ -26,6 +32,12 @@ export class Form extends Component {
   fetchCategoryData = (categoryData) => {
     this.setState({
       formData: categoryData
+    }, () => {
+      this.props.getPreview({
+        category: this.state.category,
+        formData: this.state.formData,
+        activityTitle: this.state.activityTitle
+      });
     });
   }
 

@@ -5,7 +5,7 @@ import {Previews} from './Previews'
 const Preview = (props) => {
 	return (
 		<>
-		<Previews/>
+			<Previews/>
 		</>
 	)
 }
@@ -13,10 +13,25 @@ const Preview = (props) => {
 
 
 export class AddBlogs2 extends Component {
+  initialState = {
+    category: 0,
+    formData: {},
+    activityTitle: ''
+  }
+
+  state = this.initialState
 
 	handleSubmit = () => {
 		
 	}
+
+  getPreview = (data) => {
+    this.setState({
+      category: data.category,
+      formData: data.formData,
+      activityTitle: data.activityTitle
+    })
+  }
 	
 	render() {
 		return (
@@ -26,8 +41,8 @@ export class AddBlogs2 extends Component {
 				</header>
 
 				<div className='activity-form container'>
-        			<Form  />
-					<Preview />
+          <Form getPreview={this.getPreview} />
+					<Preview title={this.state.activityTitle} fields={this.state.formData} categoryId={this.state.category} />
 				</div>
 			</div>
 		)
