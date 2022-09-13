@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Previews extends Component {
+export  class Previews extends Component {
   
   
   render() {
@@ -24,23 +24,23 @@ export default class Previews extends Component {
         'Announcement',
     ]
     
-    var fullstr1=`{CollegeName} and {patnerInstitutes}, singed a {theme}. {Purpose of Agreement} During the event {MembersPresent nitap }, {patner inst} were present . {Otherrenould Members} had witnessed the event {date}  {photo}`;
-    var fullstr2=`{speakername} delivered a {keynote lecture} on "{title of speech}" in the {event name} organised by {organiser with address} on {date} {photo}  `
-    var fullstr3 =`{name of speaker} visited and delivered a {keynote lecture} on "{title of speech}" organised by {organizing} on {date} {photo}`
-    var fullstr4=`{Pls} ,{designation} of {department} with {CoPls}  {designation} of {department} {insititute name} recieved a {project type/inside/outside} {title}. {funding agency} on {date} {photo}` 
-    var fullstr5=`{title of job}. Drawing for {sponserd agency} along with principle investigator {name of faculty members}`;
-    var fullstr6=`{name of inventor} {year}, {unique patent idenfier}  {name of official source of patent}`;
-    var fullstr7=`{author name} {year} Article title: {article title} Journal title : {joournal title} , Volume {volume no and isse no} {doi and url}`;
-    var fullstr8 =`{author last name}, {year} {booktitle} published by {publisher} {doi}`;
-    var fullstr9 =`{author last name} , {first initial} {date} {title of contribution} {paper representation} ,{confrence name}{location} {doi url}`;
-    var fullstr10 =`{authors last name} {first initial} {year}. {Title of chapter} {book title} with {page nos} published by {publisher} {doi or url}`;
-    var fullstr11 =`{name of faculty} {designation} of {department} on {title of programme} organised by {oragnising institute name} {address} {date} {photo}`;
-    var fullstr12=`{name of faculty} {designation} of {department} was reviewer of {journal name}. {Publishing house} {date}{photo}`;
-    var fullstr13=`{name of faculty} {designation} of {department} was the chairpeson of {name of programm} organised on {oragnising institute name} {address} {date} {photo}`;
-    var fullstr14=`{name of winner} {roll no} {college name} won the {prize} in the competition on the theme of "{theme of competition} of {organising section} in association with {collaboration institutes} on {date} {photo}"`;
-    var fullstr15=`{name of event} on {title}  by {coordinators} {designation} in {collaboraiton insitue}{full address} {date} {photo}`;
-    var fullstr16=`{name of event} was organised  by {organier name}  on the {theme} on {date} `;
-    var fullstr17=`{name of event} on {theme} will be {organiser with designation} sponsord by {collaboration full address} from {date} {link of event}`;
+    var fullstr1=`{this.props.insName} and {this.props.patnerInsName}, singed a {this.props.theme}. {this.porps.purposeAgreement} During the event {this.props.insMembers}, {this.props.outMembers} were present . {this.props.othersMembers} had witnessed the event {this.props.date}  {photo}`;
+    var fullstr2=`{this.props.speakerName} delivered a {this.props.lectureType} on "{this.props.title}" in the {this.props.eventName} organised by {this.state.organizer} on {date} {photo}  `
+    var fullstr3 =`{this.props.speakerName} ,{this.props.designation} of {this.props.department} visited and delivered a {this.props.lectureType} on "{this.state.title}" organised by {this.props.organizer} on {this.props.date} {photo}`
+    var fullstr4=`{this.props.pi[0]} ,{this.props.designation} of {this.props.department} with {this.props.copi[0]}  {designation} of {department} {insititute name} recieved a {project type/inside/outside} {title}. {funding agency} on {date} {photo}` 
+    var fullstr5=`{this.props.job}. Drawing for {this.props.title} along with principle investigator {this.props.facultyName} ,{this.props.designation} of {this.props.department}`;
+    var fullstr6=`{this.props.invName} {this.props.year}, {this.props.patId}  {this.props.patOffice}`;
+    var fullstr7=`{this.props.authors[0]} {this.props.year} Article title: {this.props.title} Journal title : {this.props.journalTitle} , Volume {this.props.volNo} {this.props.doiUrl}`;
+    var fullstr8 =`{this.props.authors[0]}, {this.props.year} {this.props.title} published by {this.props.publisher} {this.props.doiUrl}`;
+    var fullstr9 =`{this.props.authors[0]} , {firstinitial} {this.props.date} {this.props.title} {paper representation} ,{this.props.confType} {this.props.location} {this.props.doiUrl}`;
+    var fullstr10 =`{this.props.authors[0]} {first initial} {this.props.year}. {this.props.chapterTitle} {this.props.bookTitle} with {this.props.pageNos} published by {this.props.publisher} {doi}`;
+    var fullstr11 =`{this.props.facultyName} {this.props.designation} of {this.props.department} on {this.props.programTitle} organised by {this.props.organizingName} {this.props.organizingAddr} {this.props.date} {photo}`;
+    var fullstr12=`{this.props.facultyName} {this.props.designation} of {this.props.department}  was reviewer of {this.props.journalName}. {this.props.publishingName} {this.props.date} {photo}`;
+    var fullstr13=`{this.props.facultyName} {this.props.designation} of {this.props.department}  was the chairpeson of {this.props.name} organised on {this.props.organizing} {address} {date} {photo}`;
+    var fullstr14=`{this.props.winnerName} {this.props.winnerRoll} {this.props.insName} won the {this.props.rank} in the competition on the theme of "{this.props.theme} of {this.props.organizer} in association with {this.props.collaboration} on {this.props.date} {photo}"`;
+    var fullstr15=`{this.props.eventName} on {this.props.theme}  by {this.props.coordinatorsName} {this.props.designation} in {this.props.collaboration} {this.props.address} {date} {photo}`;
+    var fullstr16=`{this.props.eventName}was organised  by {this.props.organizer}  on the {theme} on {date} `;
+    var fullstr17=`{this.props.eventName} {theme} will be {this.props.organizer} {this.props.designation} sponsord by {this.props.collaboration} from {this.props.date} {this.props.eventLink}`;
     
     let categoryid=1;
 
@@ -49,11 +49,17 @@ export default class Previews extends Component {
       // mou
       return (
           <>
+
           <div className='preview'>
+          <textarea className='textarea' placeholder='Title..'>{selectOptions[0]}</textarea>
+        
+          <textarea className='txtarea' placeholder='your output will show here'>{fullstr1}</textarea>
+          </div>
+          {/* <div className='preview'>
           <h3>{selectOptions[0]} </h3>
           <textarea className='txtarea' placeholder='your output will show here'  value={fullstr1}>  
           </textarea>
-          </div>
+          </div> */}
           </>
       )
     }

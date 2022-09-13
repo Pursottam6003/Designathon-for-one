@@ -3,6 +3,8 @@ import { Person } from './Person'
 import { Field } from './Field'
 import { List } from './List'
 
+// import { AddBlogs2 } from '../addBlogs2'
+
 export class CategoryForm extends Component {
   initialState = {
     insName: '',        // 1, 3
@@ -76,6 +78,11 @@ export class CategoryForm extends Component {
     }
   }
 
+  
+	getpreview =()=>{
+		console.log('Hello world in preview');
+	}
+
   removePerson = (index, personType) => {
     if (personType === "PI") {
       const { pi } = this.state
@@ -101,7 +108,7 @@ export class CategoryForm extends Component {
     }
     console.log(index);
   }
-
+//  <AddBlogs2 initialState={{this.state}}/> 
   categoryFormFields = [
     {   // 1. MoU
       insName: '',
@@ -1608,6 +1615,7 @@ export class Form extends Component {
     return <option key={i} value={opt.value}>{opt.name}</option>
   })
 
+ 
   render() {
     return (
       <form autoComplete="off" className='form-group'>
