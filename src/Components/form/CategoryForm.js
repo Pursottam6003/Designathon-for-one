@@ -119,6 +119,17 @@ export class CategoryForm extends Component {
     console.log(index);
   }
 
+  componentDidMount() {
+    this.setState(this.initialState, () => {
+      if ((this.props.categoryId === 7) || (this.props.categoryId === 9)) {
+        this.setState({
+          formData: {...this.state.formData, confType: "national"}
+        }, () => {this.props.handleUpdate(this.state.formData)})
+      }
+      this.props.handleUpdate(this.state.formData)
+    });
+  }
+
   render() {
     const { categoryId } = this.props
 

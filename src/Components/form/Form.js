@@ -64,7 +64,6 @@ export class Form extends Component {
   categoriesSelect = this.selectOptions.map((opt, i) => {
     return <option key={i} value={opt.value}>{opt.name}</option>
   })
-
  
   render() {
     return (
