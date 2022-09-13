@@ -49,6 +49,7 @@ export class CategoryForm extends Component {
     coordinatorName: '',  // 15
     eventLink: '',  // 17
     eventBrochure: '',  // 17
+    formData: {}
   }
 
   state = this.initialState
@@ -56,8 +57,10 @@ export class CategoryForm extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
+      formData: {...this.state.formData, [name]: value}
     })
+    this.props.handleUpdate(this.state.formData)
   }
 
   addPerson = (person) => {
@@ -101,197 +104,6 @@ export class CategoryForm extends Component {
     }
     console.log(index);
   }
-
-  categoryFields = [
-    [],
-    // MOU
-    ["insName", "partnerInsName", "partnerInsAddr", "theme", "pursposeAgreement", "insMembers", "outMembers", "otherMembers", "date"],
-    // Invited expert lectures by nitap
-    ["date", "speakerName", "designation", "department", "lectureType", "eventName", "organizer", "title"],
-    // visits and invited/expert lectures from other institutes
-    ["insName","date","speakerName","designation","lectureType","organizer","title"],
-    //  ext funded proj
-    ["date","pi","copi","title","fundAgency"],
-    // consultancy proj
-    ["designation","department","title","fundAgency","facultyName"],
-    // patent
-    ["invName","year","patId","patOffice"],
-    // research papers
-    ["confType","title","year","authors","journalTitle","volNo","issueNo","pageNos","doiUrl"],
-    // book
-    ["year","title","authors","doiUrl","publisher"],
-    // conference paper
-    ["date","eventName","confType","title","authors","doiUrl","place"],
-    // book chapters
-    ["title","editors","bookTitle","authors","pageNos","doiUrl","publisher"],
-    // faculty empowered prog
-    ["designation","department","eventType","organizer","title","facultyName"],
-    // reviews
-    ["date","designation","department","facultyName","journalTitle","publisher"],
-    // session chairs
-    ["date","designation","department","eventName","organizer","facultyName"],
-    // winners of competitions
-    ["theme","eventName","organizer","winner","rank","collaboration"],
-    // Workshop/FDP/Conference/ seminar/short term course/etc
-    ["theme","date","designation","department","eventName","place","collaboration","coordinatorName"],
-    // OUTREACH ACTIVITY
-    ["date","theme","designation","eventName","organizer","collaboration"],
-    // announcements
-    ["date","theme","designation","eventName","organizer","collaboration","eventLink"],
-  ]
-
-  categoryFormFields = [
-    {   // 1. MoU
-      insName: '',
-      partnerInsName: '',
-      partnerInsAddr: '',
-      theme: '',
-      pursposeAgreement: '',
-      insMembers: [],
-      outMembers: [],
-      otherMembers: [],
-      date: ''
-    },
-    {   // 2. invited expert lecutres by nitap
-      speakerName: '',
-      designation: '',
-      department: '',
-      lectureType: '',    // keynote lecture/inaugural addr/special lecture
-      title: '',
-      eventName: '',
-      organizer: '',      /// organizer with address
-      date: ''
-    },
-    {   // 3. visits and invited/expert lectures from other institutes
-      speakerName: '',
-      designation: '',
-      department: '',
-      insName: '',
-      lectureType: '',    // keynote lecture/inaugural addr/special lecture
-      title: '',
-      organizer: '',
-      date: ''
-    },
-    {   // 4. ext funded proj
-      pi: [],
-      copi: [],
-      title: '',
-      fundAgency: '',
-      date: ''
-    },
-    {   // 5. consultancy proj
-      facultyName: '',
-      designation: '',
-      department: '',
-      job: '',
-      fundAgency: '',
-    },
-    {   // 6. patent
-      invName: '',
-      year: '',
-      patId: '',
-      patOffice: ''
-    },
-    {   // 7. research papers
-      journalType: '',   // international/national
-      authors: [],
-      year: [],
-      title: '',
-      journalTitle: '',
-      volNo: '',
-      issueNo: '',
-      pageNos: '',
-      doiUrl: ''        // optional
-    },
-    {   // 8. book
-      authors: [],
-      year: '',
-      title: '',
-      publisher: '',
-      doiUrl: ''
-    },
-    {   // conference paper
-      authors: [],
-      confType: '',   // national/international
-      date: '',       // complete date of conference rather than 
-      title: '',
-      eventName: '',
-      place: '',
-      doiUrl: ''
-    },
-    {   // book chapters
-      authors: [],
-      chapterTitle: '',
-      editorName: '',
-      bookTitle: '',
-      pageNos: '',
-      publisher: '',
-      doi: ''
-    },
-    {   // faculty empowered prog
-      facultyName: '',
-      designation: '',
-      department: '',
-      program: '',    // workshop/conference/seminar/short term course/FDP/EDP/webinar/others
-      programTitle: '',
-      organizingName: '',
-      organizingAddr: '',
-      date: ''
-    },
-    {   // reviewers
-      facultyName: '',
-      designation: '',
-      department: '',
-      journalName: '',
-      publishingName: '',
-      date: ''
-    },
-    {   // session chairs
-      facultyName: '',
-      designation: '',
-      department: '',
-      name: '',
-      workshop: ''
-    },
-    {   // winners of competitions
-      winnerName: '',
-      winnerRoll: '',
-      eventName: '',
-      theme: '',
-      rank: '',     // first/second/third present
-      organizer: '',
-      collaboration: '',  //optional
-      date: ''
-
-    },
-    {   // Workshop/FDP/Conference/ seminar/short term course/etc
-      eventName: '',
-      theme: '',
-      coordinatorName: '',
-      designation: '',
-      collaboration: '',   // optional
-      date: '',
-      place: ''
-    },
-    {   // outreach activities
-      eventName: '',
-      theme: '',
-      organizer: '',
-      designation: '',
-      collaboration: '', // optional
-      date: ''
-    },
-    {   // announcements
-      eventName: '',
-      theme: '',
-      organizer: '',
-      designation: '',
-      collaboration: '', // optinal (with full address)
-      eventLink: '',
-      date: '',
-      eventBrochure: ''
-    }
-  ]
 
   render() {
     const { categoryId } = this.props
