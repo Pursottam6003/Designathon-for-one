@@ -64,6 +64,7 @@ export class Person extends Component {
       return (
         // lastname and firstInitials
         <div className='person-form'>
+          <div className="fields">
           <Field labeltxt="Last name" showLabel={this.state.lastName.length}>
             <input
               type="text"
@@ -85,8 +86,9 @@ export class Person extends Component {
               onChange={this.handleChange}
             />
           </Field>
+          </div>
 
-          <Field labeltxt="" showLabel={0}>
+          <Field labeltxt="" className='test' showLabel={0}>
             <input
               type="button"
               value="+"
@@ -99,6 +101,7 @@ export class Person extends Component {
     } else {
       return (
         <div className='person-form'>
+          <div className="fields">
           <Field labeltxt="Select PI or CoPI" showLabel={0}>
             <select
               type="text"
@@ -160,6 +163,7 @@ export class Person extends Component {
               />
             </Field>
           )}
+          </div>
 
           <Field labeltxt="" showLabel={0}>
             <input
