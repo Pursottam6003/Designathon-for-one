@@ -544,12 +544,7 @@ export class CategoryForm extends Component {
           <p className='sub-label'>Principal and Co-principal Investigators' details</p>
           <List items={this.state.pi} itemType="PI" removeItem={this.removePerson} />
           <List items={this.state.copi} itemType="CoPI" removeItem={this.removePerson} />
-          {this.state.pi.length === 0 && (
-            <Person personType="investigator" multiple="0" handleSubmit={this.addPerson} />
-          )}
-          {this.state.pi.length !== 0 && (
-            <Person personType="investigator" multiple="1" handleSubmit={this.addPerson} />
-          )}
+          <Person personType="investigator" notFirst={this.state.pi.length} handleSubmit={this.addPerson} />
 
           <p className='sub-label'>Project details</p>
           <Field showLabel={this.state.title.length} labeltxt="Project title">
@@ -727,7 +722,7 @@ export class CategoryForm extends Component {
 
           <p className='sub-label'>Author details</p>
           <List items={this.state.authors} itemType="author" removeItem={this.removePerson} />
-          <Person personType="author" multiple="0" handleSubmit={this.addPerson} />
+          <Person personType="author" notFirst={this.state.authors.length} handleSubmit={this.addPerson} />
 
           <p className='sub-label'>Research details</p>
           <Field showLabel={this.state.year.length} labeltxt="Publication year">
@@ -814,7 +809,7 @@ export class CategoryForm extends Component {
         <>
           <p className='sub-label'>Author details</p>
           <List items={this.state.authors} itemType="author" removeItem={this.removePerson} />
-          <Person personType="author" handleSubmit={this.addPerson} />
+          <Person personType="author" notFirst={this.state.authors.length} handleSubmit={this.addPerson} />
 
           <p className='sub-label'>Book details</p>
           <Field showLabel={this.state.year.length} labeltxt="Publication year">
@@ -866,7 +861,7 @@ export class CategoryForm extends Component {
         <>
           <p className='sub-label'>Author details</p>
           <List items={this.state.authors} itemType="author" removeItem={this.removePerson} />
-          <Person personType="author" multiple="0" handleSubmit={this.addPerson} />
+          <Person personType="author" notFirst={this.state.authors.length} handleSubmit={this.addPerson} />
 
           <p className='sub-label'>Conference details </p>
           <Field showLabel={1} labeltxt="Conference type">
@@ -953,7 +948,7 @@ export class CategoryForm extends Component {
         <>
           <p className='sub-label'>Author details</p>
           <List items={this.state.authors} itemType="author" removeItem={this.removePerson} />
-          <Person personType="author" multiple="0" handleSubmit={this.addPerson} />
+          <Person personType="author" notFirst={this.state.authors.length} handleSubmit={this.addPerson} />
 
           <p className='sub-label'>Book details</p>
           <Field showLabel={this.state.title.length} labeltxt="Title">
@@ -1153,7 +1148,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date (optional)" showLabel={1}>
+          <Field labeltxt="Date YYYY-MM (optional)" showLabel={1}>
             <input type="month"
               className='form-control'
               name="date"
@@ -1584,6 +1579,10 @@ export class Form extends Component {
     })
   }
 
+  handleSubmit = () => {
+    console.log("Handle submit: TODO");
+  }
+
   selectOptions = [
     { value: 0, name: 'Select an activity category' },
     { value: 1, name: 'Memorandum of Understanding (MoU)' },
@@ -1633,7 +1632,13 @@ export class Form extends Component {
         </select>
 
         {parseInt(this.state.category) !== 0 && (
-          <CategoryForm categoryId={parseInt(this.state.category)} />
+          <>
+            <CategoryForm categoryId={parseInt(this.state.category)} />
+            <input
+              type="submit"
+              value="Submit" 
+            />
+          </>
         )}
 
       </form>

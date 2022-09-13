@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Previews extends Component {
-  
+export class Previews extends Component {
   
   render() {
    const selectOptions = [
