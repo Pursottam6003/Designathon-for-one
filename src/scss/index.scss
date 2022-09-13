@@ -534,22 +534,38 @@ font-size: 12px;
       .person-form {
         display: flex;
         flex-direction: row;
+        border: solid 1px #ced4da;
+        margin: 0.3rem 0;
 
-        input, select {
-          border: solid 2px transparent;
-          border-radius: 0;
-          outline: none;
+        .form-field {
+          margin: 0;
+
+          input, select {
+            border: solid 2px transparent;
+            border-radius: 0;
+            outline: none;
+          }
+          input[type="text"] {
+            padding: 0.5rem 0.8rem;
+            width: 100%;
+          }
+          input[type="button"] {
+            height: 100%;
+            width: 2rem;
+          }
+          select {
+            height: 100%;
+          }
+
+          .list-add {
+            font-weight: 600;
+            font-size: 1.2rem;
+          }
         }
-        input[type="text"] {
-          padding: 0.5rem 0.8rem;
+        .form-field.short-field {
+          flex: 1 1 7rem;
         }
-        input[type="button"] {
-          height: 100%;
-          width: 2rem;
-        }
-        select {
-          height: 100%;
-        }
+
         input[type="text"]:focus, select:focus {
           border: solid 2px rgb(57, 57, 160); 
         }
@@ -583,12 +599,12 @@ font-size: 12px;
   .activity-form{
     display: flex;
     .form-group{
-      flex: 1 1 0;
+      flex: 7 1 0;
 
     }
     .preview{
 
-      flex: 1 1 0;
+      flex: 3 1 0;
     }
   }
   .container.form-ctnr {

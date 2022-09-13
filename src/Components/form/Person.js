@@ -65,8 +65,9 @@ export class Person extends Component {
       if (notFirst) {
         return (
           <div className='person-form'>
-            <Field labeltxt="Last name" showLabel={this.state.lastName.length}>
+            <Field cls="short-field" labeltxt="Last name" showLabel={this.state.lastName.length}>
               <input
+                className="short-field"
                 type="text"
                 placeholder='Last name'
                 name="lastName"
@@ -75,8 +76,9 @@ export class Person extends Component {
               />
             </Field>
   
-            <Field labeltxt="First initials (second initials)" showLabel={this.state.firstInitials.length}>
+            <Field cls="short-field" labeltxt="First initials (second initials)" showLabel={this.state.firstInitials.length}>
               <input
+                className="short-field"
                 type="text"
                 placeholder='First initials (second initials)'
                 name="firstInitials"
@@ -99,8 +101,9 @@ export class Person extends Component {
         return (
           // lastname and firstInitials
           <div className='person-form'>
-            <Field labeltxt="Last name" showLabel={this.state.lastName.length}>
+            <Field cls="short-field" labeltxt="Last name" showLabel={this.state.lastName.length}>
               <input
+                className="short-field"
                 type="text"
                 placeholder='Last name'
                 required
@@ -110,8 +113,9 @@ export class Person extends Component {
               />
             </Field>
   
-            <Field labeltxt="First initials (second initials)" showLabel={this.state.firstInitials.length}>
+            <Field cls="short-field" labeltxt="First initials (second initials)" showLabel={this.state.firstInitials.length}>
               <input
+                className="short-field"
                 type="text"
                 placeholder='First initials (second initials)'
                 required
@@ -150,8 +154,9 @@ export class Person extends Component {
               </select>
             </Field>
   
-            <Field labeltxt="Name" showLabel={this.state.name.length}>
+            <Field cls="short-field" labeltxt="Name" showLabel={this.state.name.length}>
               <input
+                className="short-field"
                 type="text"
                 placeholder='Name'
                 name="name"
@@ -160,8 +165,9 @@ export class Person extends Component {
               />
             </Field>
   
-            <Field labeltxt="Designation" showLabel={this.state.designation.length}>
+            <Field cls="short-field" labeltxt="Designation" showLabel={this.state.designation.length}>
               <input
+                className="short-field"
                 type="text"
                 placeholder='Designation'
                 name="designation"
@@ -170,8 +176,9 @@ export class Person extends Component {
               />
             </Field>
   
-            <Field labeltxt="Department" showLabel={this.state.department.length}>
+            <Field cls="short-field" labeltxt="Department" showLabel={this.state.department.length}>
               <input
+                className="short-field"
                 type="text"
                 placeholder='Department'
                 name="department"
@@ -181,10 +188,10 @@ export class Person extends Component {
             </Field>
   
             {this.state.investigatorType === "CoPI" && (
-              <Field labeltxt="Institute name (if from outside NITAP)" showLabel={this.state.insName.length}>
+              <Field labeltxt="Institute name (outside NITAP)" showLabel={this.state.insName.length}>
                 <input
                   type="text"
-                  placeholder='Institute name (if from outside NITAP)'
+                  placeholder='Institute (if outside NITAP)'
                   name="insName"
                   value={this.state.insName}
                   onChange={this.handleChange}
@@ -219,8 +226,9 @@ export class Person extends Component {
               </select>
             </Field>
   
-            <Field labeltxt="Name" showLabel={this.state.name.length}>
+            <Field cls="short-field" labeltxt="Name" showLabel={this.state.name.length}>
               <input
+                className="short-field"
                 type="text"
                 placeholder='Name'
                 required
@@ -230,8 +238,9 @@ export class Person extends Component {
               />
             </Field>
   
-            <Field labeltxt="Designation" showLabel={this.state.designation.length}>
+            <Field cls="short-field" labeltxt="Designation" showLabel={this.state.designation.length}>
               <input
+                className="short-field"
                 type="text"
                 placeholder='Designation'
                 required
@@ -241,8 +250,9 @@ export class Person extends Component {
               />
             </Field>
   
-            <Field labeltxt="Department" showLabel={this.state.department.length}>
+            <Field cls="short-field" labeltxt="Department" showLabel={this.state.department.length}>
               <input
+                className="short-field"
                 type="text"
                 placeholder='Department'
                 required
@@ -253,10 +263,10 @@ export class Person extends Component {
             </Field>
   
             {this.state.investigatorType === "CoPI" && (
-              <Field labeltxt="Institute name (if from outside NITAP)" showLabel={this.state.insName.length}>
+              <Field labeltxt="Institute name (outside NITAP)" showLabel={this.state.insName.length}>
                 <input
                   type="text"
-                  placeholder='Institute name (if from outside NITAP)'
+                  placeholder='Institute name (outside NITAP)'
                   required
                   name="insName"
                   value={this.state.insName}
