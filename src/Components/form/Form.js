@@ -80,7 +80,11 @@ export class Form extends Component {
 
         {parseInt(this.state.category) !== 0 && (
           <>
-            <CategoryForm handleUpdate={this.fetchCategoryData} categoryId={parseInt(this.state.category)} />
+            <CategoryForm
+              handleUpdate={this.fetchCategoryData}
+              categoryId={parseInt(this.state.category)}
+              key={parseInt(this.state.category)}
+            />
             <input
               type="submit"
               value="Submit" 
