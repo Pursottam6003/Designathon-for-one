@@ -59,22 +59,36 @@ export class CategoryForm extends Component {
     this.setState({
       [name]: value,
       formData: {...this.state.formData, [name]: value}
+    }, () => {
+      // as setState is asynchronous, use the callback function to update to parent form
+      this.props.handleUpdate(this.state.formData)
     })
-    this.props.handleUpdate(this.state.formData)
   }
 
   addPerson = (person) => {
     if (person["type"] === "author") {
       this.setState({
         authors: [...this.state.authors, person]
+      }, () => {
+        this.setState({
+          formData: {...this.state.formData, authors: this.state.authors}
+        }, () => {this.props.handleUpdate(this.state.formData)})
       })
     } else if (person["type"] === "PI") {
       this.setState({
         pi: [...this.state.pi, person]
+      }, () => {
+        this.setState({
+          formData: {...this.state.formData, pi: this.state.pi}
+        }, () => {this.props.handleUpdate(this.state.formData)})
       })
     } else {
       this.setState({
-        copi: [...this.state.copi, person]
+        copi: [...this.state.copi, person],
+      }, () => {
+        this.setState({
+          formData: {...this.state.formData, copi: this.state.copi}
+        }, () => {this.props.handleUpdate(this.state.formData)})
       })
     }
   }
