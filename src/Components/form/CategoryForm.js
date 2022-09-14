@@ -9,7 +9,7 @@ export class CategoryForm extends Component {
     partnerInsName: '',   // 1
     partnerInsAddr: '',   // 1
     theme: '',// 1, 15, 16, 17
-    pursposeAgreement: '',  // 1, 
+    purposeAgreement: '',  // 1, 
     insMembers: '',   // 1
     outMembers: '',   // 1
     otherMembers: '',   // 1
@@ -182,12 +182,12 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Purpose of agreement" showLabel={this.state.pursposeAgreement.length}>
+          <Field labeltxt="Purpose of agreement" showLabel={this.state.purposeAgreement.length}>
             <input type="text"
               className='form-control'
               required
-              name="pursposeAgreement"
-              value={this.state.pursposeAgreement}
+              name="purposeAgreement"
+              value={this.state.purposeAgreement}
               onChange={this.handleChange}
               placeholder="Purpose of agreement"
             />
