@@ -9,10 +9,11 @@ export const List = (props) => {
       heading = "Principal investigators"
       return (
         <tr key={i}>
+          <td className="tr-number">{i+1}</td>
           <td>{item.name}</td>
           <td>{item.designation}</td>
           <td>{item.department}</td>
-          <td>
+          <td className="rm-td">
             <button className="rm" onClick={() => props.removeItem(i, "PI")}>x</button>
           </td>
         </tr>
@@ -21,11 +22,12 @@ export const List = (props) => {
       heading = "Co-principal investigators"
       return (
         <tr key={i}>
+          <td className="tr-number">{i+1}</td>
           <td>{item.name}</td>
           <td>{item.designation}</td>
           <td>{item.department}</td>
           <td>{item.insName}</td>
-          <td>
+          <td className="rm-td">
             <button className="rm" onClick={() => props.removeItem(i, "CoPI")}>x</button>
           </td>
         </tr>
@@ -34,9 +36,10 @@ export const List = (props) => {
       heading = "Authors"
       return (
         <tr key={i}>
+          <td className="tr-number">{i+1}</td>
           <td>{item.lastName}</td>
           <td>{item.firstInitials}</td>
-          <td>
+          <td className="rm-td">
             <button className="rm" onClick={() => props.removeItem(i, "author")}>x</button>
           </td>
         </tr>
