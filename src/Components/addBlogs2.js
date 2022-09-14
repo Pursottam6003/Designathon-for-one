@@ -1,16 +1,6 @@
 import React, { Component } from 'react'
 import {Form} from './form/Form.js'
-import {Previews} from './Previews'
-
-const Preview = (props) => {
-	return (
-		<>
-			<Previews/>
-		</>
-	)
-}
-
-
+import {Preview} from './Preview'
 
 export class AddBlogs2 extends Component {
   initialState = {

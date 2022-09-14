@@ -232,18 +232,6 @@ font-size: 12px;
   transition: 600ms ease;
 }
 
-
-// .products {
-//   width: auto;
-//   height: 200px;
-// }
-
-// /* showblogs */
-
-// .product-img>img {
-//   width: 100%;
-// }
-
 // add blogs
 
 .add-blogs {
@@ -390,28 +378,6 @@ font-size: 12px;
 }
 // form
 
-// .form-field{
-//   position: relative;
-// }
-
-// input {
-//   border: 1px solid gray;
-//   border-radius: 6px;
-//   position: relative;
-//   width: 200px;
-//   margin: 10px;
-//   line-height: 6ex;
-// }
-
-// label {
-//   position: absolute;
-//   top: 0.2ex;
-//   z-index: 1;
-//   left: 2em;
-//   background-color: white;
-//   padding: 0 5px;
-// }
-
 // new form page
 .add-blogs2 {
   background-color: #f5f5f5;
@@ -542,7 +508,7 @@ font-size: 12px;
               font-family: inherit;
               color: rgb(65, 65, 65);
               font-size: 0.9rem;
-              text-align: center;
+              text-align: left;
               border-bottom: 1px solid #dedede;
             }
             td.rm-td {
@@ -554,22 +520,27 @@ font-size: 12px;
           }
 
           .rm {
-            height: 100%;
-            min-width: 4rem;
-            background-color: rgb(192, 74, 74);
-            color: #fff;
-            font-weight: 600;
+            height: 1.8rem;
+            width: 1.8rem;
+            background-color: transparent;
+            color: rgb(65, 65, 65);
+            // font-weight: 600;
             font-family: sans-serif;
             border: none;
-            border-radius: 0.25rem;
+            border-radius: 50%;
             // float: right;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.15s ease, color 0.3s ease;
+
+            img {
+              height: 60%;
+              width: 60%;
+            }
           }
           .rm:hover {
-            background-color: rgb(187, 67, 67);
+            background-color: rgba(95,99,104,0.157);
           }
           .rm:active {
-            background-color: rgb(165, 37, 37);
+            background-color: rgb(247, 164, 164);
           }
         }
       }
@@ -594,7 +565,7 @@ font-size: 12px;
           }
           input[type="button"] {
             height: 100%;
-            width: 2rem;
+            width: 2.5rem;
           }
           select {
             height: 100%;
@@ -603,6 +574,14 @@ font-size: 12px;
           .list-add {
             font-weight: 600;
             font-size: 1.2rem;
+            background-color: transparent;
+            transition: all 0.1s ease-in-out;
+          }
+          .list-add:hover, .list-add:focus {
+            background-color: rgb(240, 240, 253);
+          }
+          .list-add:active {
+            background-color: rgb(179, 179, 230);
           }
         }
         .form-field.short-field {
