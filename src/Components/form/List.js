@@ -15,7 +15,9 @@ export const List = (props) => {
           <td>{item.designation}</td>
           <td>{item.department}</td>
           <td className="rm-td">
-            <button className="rm" onClick={() => props.removeItem(i, "PI")}>x</button>
+            <button className="rm" onClick={() => props.removeItem(i, "PI")}>
+              <img src={removeLogo} alt="Remove" />
+            </button>
           </td>
         </tr>
       )
@@ -29,7 +31,9 @@ export const List = (props) => {
           <td>{item.department}</td>
           <td>{item.insName}</td>
           <td className="rm-td">
-            <button className="rm" onClick={() => props.removeItem(i, "CoPI")}>x</button>
+            <button className="rm" onClick={() => props.removeItem(i, "CoPI")}>
+              <img src={removeLogo} alt="Remove" />
+            </button>
           </td>
         </tr>
       )
