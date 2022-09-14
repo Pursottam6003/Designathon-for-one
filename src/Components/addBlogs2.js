@@ -2,16 +2,6 @@ import React, { Component } from 'react'
 import {Form} from './form/Form.js'
 import {Preview} from './Preview'
 
-// const Preview = (props) => {
-// 	return (
-// 		<>
-// 			<Preview/>
-// 		</>
-// 	)
-// }
-
-
-
 export class AddBlogs2 extends Component {
   initialState = {
     category: 0,

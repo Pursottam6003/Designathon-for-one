@@ -1,4 +1,5 @@
 import React from "react"
+import removeLogo from "../../images/logo/remove.svg"
 
 export const List = (props) => {
   const {items, itemType} = props
@@ -40,7 +41,9 @@ export const List = (props) => {
           <td>{item.lastName}</td>
           <td>{item.firstInitials}</td>
           <td className="rm-td">
-            <button className="rm" onClick={() => props.removeItem(i, "author")}>x</button>
+            <button className="rm" onClick={() => props.removeItem(i, "author")}>
+              <img src={removeLogo} alt="Remove" />
+            </button>
           </td>
         </tr>
       )
