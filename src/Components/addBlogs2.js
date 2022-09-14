@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Form} from './form/Form.js'
-import {Preview} from './Preview1'
+import {Preview} from './Preview'
 
 export class AddBlogs2 extends Component {
   initialState = {
