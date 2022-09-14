@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class Previews extends Component {
+export class Preview extends Component {
   
   render() {
    const selectOptions = [
@@ -22,6 +22,8 @@ export class Previews extends Component {
         'Outreach Activity',
         'Announcement',
     ]
+
+    
     
     var fullstr1=`{this.props.insName} and {this.props.patnerInsName}, singed a {this.props.theme}. {this.porps.purposeAgreement} During the event {this.props.insMembers}, {this.props.outMembers} were present . {this.props.othersMembers} had witnessed the event {this.props.date}  {photo}`;
     var fullstr2=`{this.props.speakerName} delivered a {this.props.lectureType} on "{this.props.title}" in the {this.props.eventName} organised by {this.state.organizer} on {date} {photo}  `
@@ -48,7 +50,6 @@ export class Previews extends Component {
       // mou
       return (
           <>
-
           <div className='preview'>
           <textarea className='textarea' placeholder='Title..'>{selectOptions[0]}</textarea>
         
@@ -62,7 +63,6 @@ export class Previews extends Component {
           </>
       )
     }
-
 
     else if(categoryid ===2)
     {

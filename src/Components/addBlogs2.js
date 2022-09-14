@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import {Form} from './form/Form.js'
-import {Previews} from './Previews'
+import {Preview} from './Preview'
 
-const Preview = (props) => {
-	return (
-		<>
-			<Previews/>
-		</>
-	)
-}
+// const Preview = (props) => {
+// 	return (
+// 		<>
+// 			<Preview/>
+// 		</>
+// 	)
+// }
 
 
 
