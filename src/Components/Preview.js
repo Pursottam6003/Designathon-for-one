@@ -31,7 +31,7 @@ export class Preview extends Component {
     ]
 
     this.setState({
-      output: fullstr1
+      output: templateStr[parseInt(categoryId)]
     })
   }
 
