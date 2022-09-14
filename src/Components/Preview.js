@@ -63,7 +63,7 @@ export class Preview extends Component {
     const {fields, title, categoryId} = this.props
 
     var fullstr1 = `${fields.insName} and ${fields.patnerInsName}, singed a ${fields.theme}. {this.porps.purposeAgreement} During the event {this.props.insMembers}, {this.props.outMembers} were present . {this.props.othersMembers} had witnessed the event {this.props.date}  {photo}`;
-    var fullstr2 = `{this.props.speakerName} delivered a {this.props.lectureType} on "{this.props.title}" in the {this.props.eventName} organised by {this.state.organizer} on {date} {photo}  `
+    var fullstr2 = `${fields.speakerName} delivered a ${fields.lectureType} on "${fields.title}" in the ${fields.eventName} organised by ${fields.organizer} on ${fields.date} {photo}  `
     var fullstr3 = `{this.props.speakerName} ,{this.props.designation} of {this.props.department} visited and delivered a {this.props.lectureType} on "{this.state.title}" organised by {this.props.organizer} on {this.props.date} {photo}`
     var fullstr4 = `{this.props.pi[0]} ,{this.props.designation} of {this.props.department} with {this.props.copi[0]}  {designation} of {department} {insititute name} recieved a {project type/inside/outside} {title}. {funding agency} on {date} {photo}`
     var fullstr5 = `{this.props.job}. Drawing for {this.props.title} along with principle investigator {this.props.facultyName} ,{this.props.designation} of {this.props.department}`;
@@ -82,7 +82,7 @@ export class Preview extends Component {
 
     let categoryid = 1;
 
-    if (categoryid === 1) {
+    if (parseInt(categoryId)=== 1) {
       // mou
       return (
         <>
@@ -102,7 +102,7 @@ export class Preview extends Component {
     }
 
 
-    else if (categoryid === 2) {
+    else if (parseInt(categoryId) === 2) {
       // mou
       return (
         <>
@@ -117,7 +117,7 @@ export class Preview extends Component {
 
 
 
-    else if (categoryid === 3) {
+    else if (parseInt(categoryId) === 3) {
       // mou
       return (
         <>
@@ -130,7 +130,7 @@ export class Preview extends Component {
       )
     }
 
-    else if (categoryid === 4) {
+    else if (parseInt(categoryId) === 4) {
       // mou
       return (
         <>
@@ -143,7 +143,7 @@ export class Preview extends Component {
       )
     }
 
-    else if (categoryid === 5) {
+    else if (parseInt(categoryId)=== 5) {
       // mou
       return (
         <>
@@ -156,7 +156,7 @@ export class Preview extends Component {
       )
     }
 
-    else if (categoryid === 6) {
+    else if (parseInt(categoryId) === 6) {
       // mou
       return (
         <>
@@ -168,7 +168,7 @@ export class Preview extends Component {
         </>
       )
     }
-    else if (categoryid === 7) {
+    else if (parseInt(categoryId) === 7) {
       // mou
       return (
         <>
@@ -180,7 +180,7 @@ export class Preview extends Component {
         </>
       )
     }
-    else if (categoryid === 8) {
+    else if (parseInt(categoryId) === 8) {
       // mou
       return (
         <>
@@ -192,7 +192,7 @@ export class Preview extends Component {
         </>
       )
     }
-    else if (categoryid === 9) {
+    else if (parseInt(categoryId) === 9) {
       // mou
       return (
         <>
@@ -204,7 +204,7 @@ export class Preview extends Component {
         </>
       )
     }
-    else if (categoryid === 10) {
+    else if (parseInt(categoryId) === 10) {
       // mou
       return (
         <>
@@ -216,7 +216,7 @@ export class Preview extends Component {
         </>
       )
     }
-    else if (categoryid === 11) {
+    else if (parseInt(categoryId) === 11) {
       // mou
       return (
         <>
@@ -228,7 +228,7 @@ export class Preview extends Component {
         </>
       )
     }
-    else if (categoryid === 12) {
+    else if (parseInt(categoryId) === 12) {
       // mou
       return (
         <>
@@ -242,7 +242,7 @@ export class Preview extends Component {
     }
 
 
-    else if (categoryid === 13) {
+    else if (parseInt(categoryId)=== 13) {
       // mou
       return (
         <>
@@ -257,7 +257,7 @@ export class Preview extends Component {
 
 
 
-    else if (categoryid === 14) {
+    else if (parseInt(categoryId) === 14) {
       // mou
       return (
         <>
@@ -271,7 +271,7 @@ export class Preview extends Component {
     }
 
 
-    else if (categoryid === 15) {
+    else if (parseInt(categoryId) === 15) {
       // mou
       return (
         <>
@@ -284,7 +284,7 @@ export class Preview extends Component {
       )
     }
 
-    else if (categoryid === 16) {
+    else if (parseInt(categoryId) === 16) {
       // mou
       return (
         <>
@@ -298,7 +298,7 @@ export class Preview extends Component {
     }
 
 
-    else if (categoryid === 17) {
+    else if (parseInt(categoryId) === 17) {
       // mou
       return (
         <>
