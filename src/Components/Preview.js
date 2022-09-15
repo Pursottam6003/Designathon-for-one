@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 
+const updateInFirebase=(e)=>{
+  console.log('i found you')
+}
 export class Preview extends Component {
   initialState = {
     heading: '',
@@ -8,6 +11,8 @@ export class Preview extends Component {
   }
 
   state = this.initialState
+
+  
 
   updatePreview() {
     const { fields, title, categoryId, images } = this.props

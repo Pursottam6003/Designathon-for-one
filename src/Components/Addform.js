@@ -7,8 +7,6 @@ export const Addform = () => {
         name: '',
         designation:'',
         department:'',
-        
-
     };
     
   

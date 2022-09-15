@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import { CategoryForm } from './CategoryForm'
 
+
+const handleAddBlogs=(e)=>{
+  /// how to pass the this state into another component
+  
+}
 export class Form extends Component {
 
   initialState = {
@@ -9,6 +14,8 @@ export class Form extends Component {
     formData: {},
     images: []
   }
+
+
 
   state = this.initialState
 
@@ -27,9 +34,9 @@ export class Form extends Component {
     })
   }
 
-  handleSubmit = () => {
-    console.log("Handle submit: TODO");
-  }
+  
+
+
 
   handleImageUpload = (event) => {
     const { files } = event.target
@@ -128,10 +135,12 @@ export class Form extends Component {
               onChange={this.handleImageUpload}
             />
             
-            <input
+            {/* <input
               type="submit"
               value="Submit" 
-            />
+              className='addblogs'
+              onClick={handleAddBlogs}
+            /> */}
           </>
         )}
 
