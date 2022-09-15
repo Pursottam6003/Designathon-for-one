@@ -7,6 +7,11 @@ export class Preview extends Component {
     images: []
   }
 
+ grow(input) {
+    input.style.height ="5px"
+    input.style.height = 
+    
+  }
   state = this.initialState
 
   updatePreview() {
@@ -114,16 +119,16 @@ export class Preview extends Component {
     }
     return (
       <>
-        <div className='preview'>
+        <div className='preview' >
           <textarea className='textarea' name="heading" placeholder='Title...' value={heading} onChange={this.handleChange} />
-          <textarea className='txtarea' name="output" placeholder='your output will show here' value={output} onChange={this.handleChange} />
+          <textarea className='txtarea' onInput={grow(this)} name="output" placeholder='your output will show here' value={output} onChange={this.handleChange} />
 
           <div className='image-preview'>
             {imgComponentArr}
           </div>
 
-          <button onClick={this.handleSubmit}>Submit</button>
-          <button>Reset</button>
+          <button onClick={this.handleSubmit} className='btn submit'>Submit</button>
+          <button className='btn reset'>Reset</button>
         </div>
       </>
     )
