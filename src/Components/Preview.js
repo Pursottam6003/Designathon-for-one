@@ -87,6 +87,10 @@ export class Preview extends Component {
     }
   }
 
+  resetPreview = () => {
+    this.updatePreview()
+  }
+
   handleChange = (event) => {
     const { name, value } = event.target
     this.setState({
@@ -123,7 +127,7 @@ export class Preview extends Component {
           </div>
 
           <button onClick={this.handleSubmit}>Submit</button>
-          <button>Reset</button>
+          <button onClick={this.resetPreview}>Reset</button>
         </div>
       </>
     )

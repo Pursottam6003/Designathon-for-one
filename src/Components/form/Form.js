@@ -13,10 +13,21 @@ export class Form extends Component {
   state = this.initialState
 
   handleChange = (event) => {
-    const { name, value } = event.target
+    const { name, value, files } = event.target
     console.log(name, value)
+    let setVal = value
+
+    const images = []
+    if (name === "images") {
+      if (files.length > 0) {
+        for (let i = 0, n = files.length; i < n; i++) {
+          images.push(files[i]);
+        }
+      }
+      setVal = images
+    }
     this.setState({
-      [name]: value
+      [name]: setVal
     }, () => {
       this.props.getPreview({
         category: this.state.category,
@@ -31,25 +42,6 @@ export class Form extends Component {
     console.log("Handle submit: TODO");
   }
 
-  handleImageUpload = (event) => {
-    const { files } = event.target
-    if (files.length > 0) {
-      const images = []
-      for (let i = 0, n = files.length; i < n; i++) {
-        images.push(files[i]);
-      }
-      this.setState({
-        images: images
-      }, () => {
-        this.props.getPreview({
-          category: this.state.category,
-          formData: this.state.formData,
-          activityTitle: this.state.activityTitle,
-          images: this.state.images
-        });
-      })
-    }
-  }
 
   fetchCategoryData = (categoryData) => {
     this.setState({
@@ -58,7 +50,8 @@ export class Form extends Component {
       this.props.getPreview({
         category: this.state.category,
         formData: this.state.formData,
-        activityTitle: this.state.activityTitle
+        activityTitle: this.state.activityTitle,
+        images: this.state.images
       });
     });
   }
@@ -122,15 +115,11 @@ export class Form extends Component {
             <p className='sub-label'>Upload images (optional)</p>
             <input 
               type="file"
+              name="images"
               className='form-control'
               accept="image/png, image/webp, image/jpeg"
               multiple
-              onChange={this.handleImageUpload}
-            />
-            
-            <input
-              type="submit"
-              value="Submit" 
+              onChange={this.handleChange}
             />
           </>
         )}

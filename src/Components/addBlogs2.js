@@ -22,7 +22,7 @@ export class AddBlogs2 extends Component {
       category: data.category,
       formData: data.formData,
       activityTitle: data.activityTitle,
-      images: data.images
+      images: data.images ? data.images : []
     })
   }
 	
