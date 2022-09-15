@@ -3,13 +3,14 @@ import React, { Component } from 'react'
 export class Preview extends Component {
   initialState = {
     heading: '',
-    output: ''
+    output: '',
+    images: []
   }
 
   state = this.initialState
 
   updatePreview() {
-    const { fields, title, categoryId } = this.props
+    const { fields, title, categoryId, images } = this.props
     const category = parseInt(categoryId)
 
     const selectOptions = [
@@ -72,6 +73,7 @@ export class Preview extends Component {
 
     this.setState({
       output: outStr,
+      images: images
     })
 
     if (title.length !== 0) {
@@ -99,11 +101,22 @@ export class Preview extends Component {
   }
 
   render() {
+    const { heading, output, images } = this.state
+    let imgComponentArr = []
+    if (images && images.length !== 0) {
+      imgComponentArr = images.map((img, i) => {
+        return <img key={i} src={URL.createObjectURL(img)} />
+      })
+    }
     return (
       <>
         <div className='preview'>
-          <textarea className='textarea' name="heading" placeholder='Title...' value={this.state.heading} onChange={this.handleChange} />
-          <textarea className='txtarea' name="output" placeholder='your output will show here' value={this.state.output} onChange={this.handleChange} />
+          <textarea className='textarea' name="heading" placeholder='Title...' value={heading} onChange={this.handleChange} />
+          <textarea className='txtarea' name="output" placeholder='your output will show here' value={output} onChange={this.handleChange} />
+
+          <div className='image-preview'>
+            {imgComponentArr}
+          </div>
         </div>
       </>
     )
