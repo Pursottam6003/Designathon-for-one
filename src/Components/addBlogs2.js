@@ -7,13 +7,14 @@ export class AddBlogs2 extends Component {
     category: 0,
     formData: {},
     activityTitle: '', 
-    images: []
+    images: [],
+    output: {}
   }
 
   state = this.initialState
 
 	handleSubmit = () => {
-		
+		console.log('addblogs2 handlesubmit TODO')
 	}
 
   getPreview = (data) => {
@@ -39,6 +40,7 @@ export class AddBlogs2 extends Component {
             fields={this.state.formData}
             categoryId={this.state.category}
             images={this.state.images}
+            submit={this.handleSubmit}
           />
 				</div>
 			</div>

@@ -94,6 +94,10 @@ export class Preview extends Component {
     })
   }
 
+  handleSubmit = () => {
+    console.log(this.state)
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.props !== prevProps) {
       this.updatePreview();
@@ -117,6 +121,9 @@ export class Preview extends Component {
           <div className='image-preview'>
             {imgComponentArr}
           </div>
+
+          <button onClick={this.handleSubmit}>Submit</button>
+          <button>Reset</button>
         </div>
       </>
     )
