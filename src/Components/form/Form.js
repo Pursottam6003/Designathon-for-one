@@ -6,7 +6,8 @@ export class Form extends Component {
   initialState = {
     category: 0,
     activityTitle: '',
-    formData: {}
+    formData: {},
+    images: []
   }
 
   state = this.initialState
@@ -20,13 +21,34 @@ export class Form extends Component {
       this.props.getPreview({
         category: this.state.category,
         formData: this.state.formData,
-        activityTitle: this.state.activityTitle
+        activityTitle: this.state.activityTitle,
+        images: this.state.images
       });
     })
   }
 
   handleSubmit = () => {
     console.log("Handle submit: TODO");
+  }
+
+  handleImageUpload = (event) => {
+    const { files } = event.target
+    if (files.length > 0) {
+      const images = []
+      for (let i = 0, n = files.length; i < n; i++) {
+        images.push(files[i]);
+      }
+      this.setState({
+        images: images
+      }, () => {
+        this.props.getPreview({
+          category: this.state.category,
+          formData: this.state.formData,
+          activityTitle: this.state.activityTitle,
+          images: this.state.images
+        });
+      })
+    }
   }
 
   fetchCategoryData = (categoryData) => {
@@ -96,6 +118,16 @@ export class Form extends Component {
               categoryId={parseInt(this.state.category)}
               key={parseInt(this.state.category)}
             />
+
+            <p className='sub-label'>Upload images (optional)</p>
+            <input 
+              type="file"
+              className='form-control'
+              accept="image/png, image/webp, image/jpeg"
+              multiple
+              onChange={this.handleImageUpload}
+            />
+            
             <input
               type="submit"
               value="Submit" 

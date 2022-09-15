@@ -6,7 +6,8 @@ export class AddBlogs2 extends Component {
   initialState = {
     category: 0,
     formData: {},
-    activityTitle: ''
+    activityTitle: '', 
+    images: []
   }
 
   state = this.initialState
@@ -19,7 +20,8 @@ export class AddBlogs2 extends Component {
     this.setState({
       category: data.category,
       formData: data.formData,
-      activityTitle: data.activityTitle
+      activityTitle: data.activityTitle,
+      images: data.images
     })
   }
 	
@@ -32,7 +34,12 @@ export class AddBlogs2 extends Component {
 
 				<div className='activity-form container'>
           <Form getPreview={this.getPreview} />
-					<Preview title={this.state.activityTitle} fields={this.state.formData} categoryId={this.state.category} />
+					<Preview
+            title={this.state.activityTitle}
+            fields={this.state.formData}
+            categoryId={this.state.category}
+            images={this.state.images}
+          />
 				</div>
 			</div>
 		)
