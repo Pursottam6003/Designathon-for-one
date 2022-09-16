@@ -1,5 +1,15 @@
 import React, { Component } from 'react'
 
+const Grow = (props) => {
+  const { content } = props;
+
+  return (
+    <div className='grow-component'>
+      {content}
+    </div>
+  )
+}
+
 export class Preview extends Component {
   initialState = {
     heading: '',
@@ -118,16 +128,19 @@ export class Preview extends Component {
     }
     return (
       <>
-        <div className='preview'>
+        <div className='preview' >
           <textarea className='textarea' name="heading" placeholder='Title...' value={heading} onChange={this.handleChange} />
-          <textarea className='txtarea' name="output" placeholder='your output will show here' value={output} onChange={this.handleChange} />
+          <div className='txtarea-wrapper'>
+            <textarea className='txtarea' name="output" placeholder='your output will show here' value={output} onChange={this.handleChange} />
+            <Grow content={output} />
+          </div>
 
           <div className='image-preview'>
             {imgComponentArr}
           </div>
 
-          <button onClick={this.handleSubmit}>Submit</button>
-          <button onClick={this.resetPreview}>Reset</button>
+          <button onClick={this.handleSubmit} className='btn submit'>Submit</button>
+          <button onClick={this.resetPreview} className='btn reset'>Reset</button>
         </div>
       </>
     )

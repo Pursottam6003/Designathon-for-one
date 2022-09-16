@@ -42,6 +42,20 @@ export class Form extends Component {
     console.log("Handle submit: TODO");
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.category !== prevState.category) {
+      this.setState({
+        images: []
+      }, () => {
+        this.props.getPreview({
+          category: this.state.category,
+          formData: this.state.formData,
+          activityTitle: this.state.activityTitle,
+          images: this.state.images
+        })
+      });
+    }
+  }
 
   fetchCategoryData = (categoryData) => {
     this.setState({
@@ -87,7 +101,6 @@ export class Form extends Component {
           type="text"
           name="activityTitle"
           className='form-control form-title'
-          required
           placeholder="New activity title here..."
           onChange={this.handleChange}
           value={this.state.activityTitle}
@@ -114,6 +127,7 @@ export class Form extends Component {
 
             <p className='sub-label'>Upload images (optional)</p>
             <input 
+              key={`i${this.state.category}`}
               type="file"
               name="images"
               className='form-control'
