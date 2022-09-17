@@ -10,6 +10,8 @@ export class Form extends Component {
     images: []
   }
 
+
+
   state = this.initialState
 
   handleChange = (event) => {
@@ -45,9 +47,9 @@ export class Form extends Component {
     })
   }
 
-  handleSubmit = () => {
-    console.log("Handle submit: TODO");
-  }
+  
+
+
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.category !== prevState.category) {

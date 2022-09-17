@@ -312,7 +312,7 @@ export class Preview extends Component {
   }
 
   handleSubmit = () => {
-    console.log(this.state)
+    this.props.submit(this.state);
   }
 
   componentDidUpdate(prevProps, prevState) {
