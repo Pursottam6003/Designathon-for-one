@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Form} from './form/Form.js'
 import {Preview} from './Preview'
 import {storage,fs} from '../config/config'
+import firebase from 'firebase/compat/app'
 
 export class AddBlogs2 extends Component {
   initialState = {
@@ -39,62 +40,82 @@ export class AddBlogs2 extends Component {
     let category_Id = this.state.category;
     let  heading = out.heading;
     let wholeDescription = out.output;
-    const date = this.state.date;
+    let date = this.state.formData.date;
 
-   const Image_name = out.images[0].name
+    console.log(date);
+
+    if(date === undefined || date ===null)
+    {
+      date='blank'
+    }
+
+   //const Image = out.images[0];
+  
+    let total_size =out.images.length;
     
 
-   
+    let imageLinks=[];
+    for(let i=0;i<total_size;i++)
+    { 
+      const Image = out.images[i];
+      const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
+      
+      uploadTask.on('state_changed', snapshot => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        console.log(progress);
+      },
+        (error) => {
+          console.log(error);
+        },
+      () => {
+          storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
+            imageLinks.push(url);
+          }) 
+        })
+    }
+     
 
-  //   const handleProductImg=(e)=>{
-  //     let selectedFile = e.target.files[0];
-  //     if(selectedFile){
-  //         if(selectedFile&&types.includes(selectedFile.type)){
-  //             setImage(selectedFile);
-  //             setImageError('');
-  //         }
-  //         else{
-  //             setImage(null);
-  //             setImageError('please select a valid image file type (png or jpg)')
-  //         }
-  //     }
-  //     else{
-  //         console.log('please select your file');
-  //     }
-  // }
     
-    const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${Image_name}`).put(Image_name);
-      uploadTask.on('state_changed',snapshot=>{
+    setTimeout(() => {
+      console.log(imageLinks);
+      fs.collection(`Technodaya/Blogs/${category_Id}/`).doc().set({
+        Heading:heading,
+        wholeDescription : wholeDescription,
+        EventDate: date,
+        Urls: firebase.firestore.FieldValue.arrayUnion(...imageLinks)
+        }).then(()=>{
+          console.log("Sucessfully uploaded image");
+      })
+      
+    }, 2000);
+  
+    /*
+    WORKING UPLOAD IMAGES FOR SINGLE ONE
+
+    const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
+    uploadTask.on('state_changed',snapshot=>{
         const progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
         console.log(progress);
-    },error=>console.log(error),()=>{
-        storage.ref(`Images/${this.selectOptions[category_Id]}/${Image_name}`).child(Image_name).getDownloadURL().then(url=>{
-            // fs.collection(this.selectOptions[category_Id]/heading).add({
-            //     heading,
-            //     wholeDescription,
-            //     url
-            // }).then(()=>{
-            //     console.log("sucessfually done");
-            //    this.initialState;
-            // }).catch(error=> console.log(error.message));
-
-            fs.collection(`Magazine/Technodaya/${this.selectOptions[category_Id]}/`).add({
-              heading,
-              wholeDescription,
-              date,
+    },
+    (error) =>{
+      console.log(error);
+    }
+    ,()=>{
+        storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
+              fs.collection(`Technodaya/Blogs/${category_Id}/`).doc().set({
+              Heading:heading,
+              wholeDescription : wholeDescription,
+              EventDate: date,
+              Url:url,
               
             }).then(()=>{
-              console.log("Sucessfully uploaded");
+              console.log("Sucessfully uploaded image");
             })
+
         })
     })
+  */}
 
-
-
-  
-}
-
-    
 
 
   getPreview = (data) => {

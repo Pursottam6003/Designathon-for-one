@@ -3,7 +3,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Times New Roman', Times, serif;
+  // font-family: 'Times New Roman', Times, serif;
 
 }
 
@@ -237,9 +237,10 @@ hr {
    color: #fff;
 }
 .TopNavigation .nav_items:hover {
-  color: aliceblue;
-  transform: scale(1.2);
-  transition: 600ms ease;
+  color: aliceblue; 
+    cursor: pointer;
+  border-bottom: #2fbce6 2px solid;
+  transition: 800ms ease;
 }
 
 // add blogs
