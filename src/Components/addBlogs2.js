@@ -39,63 +39,42 @@ export class AddBlogs2 extends Component {
     let category_Id = this.state.category;
     let  heading = out.heading;
     let wholeDescription = out.output;
-    const date = this.state.date;
+    let date = this.state.formData.date;
 
-   const Image_name = out.images[0].name
-    
+    console.log(date);
 
-   
+    if(date == undefined || date ==null)
+    {
+      date='blank'
+    }
 
-  //   const handleProductImg=(e)=>{
-  //     let selectedFile = e.target.files[0];
-  //     if(selectedFile){
-  //         if(selectedFile&&types.includes(selectedFile.type)){
-  //             setImage(selectedFile);
-  //             setImageError('');
-  //         }
-  //         else{
-  //             setImage(null);
-  //             setImageError('please select a valid image file type (png or jpg)')
-  //         }
-  //     }
-  //     else{
-  //         console.log('please select your file');
-  //     }
-  // }
-    
-    const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${Image_name}`).put(Image_name);
-      uploadTask.on('state_changed',snapshot=>{
+   const Image = out.images[0];
+  
+  
+    const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
+    uploadTask.on('state_changed',snapshot=>{
         const progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
         console.log(progress);
-    },error=>console.log(error),()=>{
-        storage.ref(`Images/${this.selectOptions[category_Id]}/${Image_name}`).child(Image_name).getDownloadURL().then(url=>{
-            // fs.collection(this.selectOptions[category_Id]/heading).add({
-            //     heading,
-            //     wholeDescription,
-            //     url
-            // }).then(()=>{
-            //     console.log("sucessfually done");
-            //    this.initialState;
-            // }).catch(error=> console.log(error.message));
+    },
+    (error) =>{
+      console.log(error);
+    }
+    ,()=>{
+        storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
 
-            fs.collection(`Magazine/Technodaya/${this.selectOptions[category_Id]}/`).add({
-              heading,
-              wholeDescription,
-              date,
+              fs.collection(`Technodaya/${category_Id}/${date}/`).doc().set({
+              Heading:heading,
+              wholeDescription : wholeDescription,
+              EventDate: date,
+              Url:url,
               
             }).then(()=>{
-              console.log("Sucessfully uploaded");
+              console.log("Sucessfully uploaded image");
             })
+
         })
     })
-
-
-
-  
-}
-
-    
-
+    }
 
   getPreview = (data) => {
     this.setState({

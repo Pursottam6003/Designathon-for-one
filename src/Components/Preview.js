@@ -124,7 +124,7 @@ export class Preview extends Component {
     let imgComponentArr = []
     if (images && images.length !== 0) {
       imgComponentArr = images.map((img, i) => {
-        return <img key={i} src={URL.createObjectURL(img)} />
+        return <img key={i} alt="technodaya-magazine" src={URL.createObjectURL(img) } />
       })
     }
     return (
