@@ -33,7 +33,7 @@ export const Navbar = () => {
 
 
       <div className='logoContaint'>
-      Technonodaya Newsletters Web App
+      Technonodaya Newsletters 
       <p className='collegeName'>
         NIT Arunachal Pradesh
       </p>
@@ -42,10 +42,10 @@ export const Navbar = () => {
 
 
     <div className='TopNavigation'>
-      <div  className='nav_items'>Home</div>
-      <div className='nav_items'>About Us</div>
-      <div className='nav_items'>Departments</div>
-      <div className='nav_items'>Sections</div>
+      <div  className='nav_items' >Home</div>
+      <div className='nav_items'>Add New Activity</div>
+      <div className='nav_items'>MEOW</div>
+      
       <div className='nav_items'>Technonodaya Newsletters</div>
     </div>
     
