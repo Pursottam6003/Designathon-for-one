@@ -48,17 +48,23 @@ export class CategoryForm extends Component {
     collaboration: '',  // 14, 15, 16, 17
     coordinatorName: '',  // 15
     eventLink: '',  // 17
-    eventBrochure: '',  // 17
+    eventBrochure: null,  // 17
     formData: {}
   }
 
   state = this.initialState
 
   handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, files } = event.target;
+    console.log(files);
+    console.log(event.target);
+    let setVal = value
+    if (name === "eventBrochure") {
+      setVal = files[0]
+    }
     this.setState({
-      [name]: value,
-      formData: {...this.state.formData, [name]: value}
+      [name]: setVal,
+      formData: {...this.state.formData, [name]: setVal}
     }, () => {
       // as setState is asynchronous, use the callback function to update to parent form
       this.props.handleUpdate(this.state.formData)
@@ -1415,17 +1421,17 @@ export class CategoryForm extends Component {
           />
         </Field>
 
-        <Field showLabel={this.state.eventBrochure.length} labeltxt="TODO: Upload Brochure">
-          <input type="text"
-            className='form-control'
-            required
+
+        <p className='sub-label'>Upload Brochure (pdf/jpg/png)</p>
+        <Field showLabel={0} labeltxt="Upload Brochure">
+          <input type="file"
             name="eventBrochure"
-            value={this.state.eventBrochure}
+            className='form-control'
+            accept='application/pdf, image/png, image/webp, image/jpeg'
+            required
             onChange={this.handleChange}
-            placeholder="TODO: Upload Brochure"
           />
         </Field>
-
       </>)
     }
   }
