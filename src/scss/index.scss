@@ -130,21 +130,30 @@ hr {
   outline: none;
 }
 
-.txtarea{
-  display: block;
-  height: 40px;
- border: none;
-width: 100%;
-font-size: 12px;
-resize: none;
-overflow: hidden;
+.txtarea-wrapper {
+  display: grid;
+  --txt-font-size: 12px;
+
+  .txtarea {
+    display: block;
+    border: none;
+    resize: none;
+    font-size: var(--txt-font-size);
+    grid-area: 1 / 1 / 2 / 2;
+    overflow: hidden;
+  }
+  .txtarea:focus {
+    outline: none;
+  }
+
+  .grow-component {
+    font-size: var(--txt-font-size);
+    visibility: hidden;
+    white-space: pre-wrap;
+    grid-area: 1 / 1 / 2 / 2;
+  }
 }
 
-
-.txtarea:focus{
- 
-  outline: none;
-}
 //end
 .Navbar {
   background-color: #1F406D;
@@ -620,15 +629,11 @@ overflow: hidden;
   }
 
   .activity-form{
-    display: flex;
     .form-group{
       flex: 7 1 0;
-
     }
     .preview{
-
       flex: 3 1 0;
-     
     }
     .submit{
    

@@ -1,4 +1,104 @@
 
+
+
+    let category_Id = this.state.category;
+    // e.preventDefault();
+    // console.log(title, description, price);
+    // console.log(image);
+    // console.log('my name is raam');
+
+   console.log(`${this.selectOptions[category_Id]}`);
+    
+    // console.log(`${this.selectOptions[category_Id]}`);
+    
+    let  heading = out.heading;
+    let wholeDescription = out.output;
+    // let outp = out.output;
+    // let image=out.images[0];
+
+  //   const handleProductImg=(e)=>{
+  //     let selectedFile = e.target.files[0];
+  //     if(selectedFile){
+  //         if(selectedFile&&types.includes(selectedFile.type)){
+  //             setImage(selectedFile);
+  //             setImageError('');
+  //         }
+  //         else{
+  //             setImage(null);
+  //             setImageError('please select a valid image file type (png or jpg)')
+  //         }
+  //     }
+  //     else{
+  //         console.log('please select your file');
+  //     }
+  // }
+    
+    // const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${image}`).put(image);
+    //   uploadTask.on('state_changed',snapshot=>{
+    //     const progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
+    //     console.log(progress);
+    // },error=>console.log(error),()=>{
+    //     storage.ref(`Images/${this.selectOptions[category_Id]}/${image}`).child(image.name).getDownloadURL().then(url=>{
+    //         fs.collection(this.selectOptions[category_Id]/heading).add({
+    //             heading,
+    //             wholeDescription,
+    //             url
+    //         }).then(()=>{
+    //             console.log("sucessfually done");
+    //            this.initialState;
+    //         }).catch(error=> console.log(error.message));
+    //     })
+    // })
+
+
+  
+
+    // fs.collection(`Test/Technodaya/${this.selectOptions[category_Id]}`).add({
+    //   heading,
+    //   wholeDescription
+    // }).then(()=>{
+    //   console.log("Sucessfully uploaded");
+    // })
+  
+    // console.log(this.submit);
+}
+
+    
+	
+
+  
+//   const handleAddProducts=(e)=>{
+//     e.preventDefault();
+//     // console.log(title, description, price);
+//     // console.log(image);
+//     const uploadTask=storage.ref(`product-images/${category}/${image.name}`).put(image);
+//     uploadTask.on('state_changed',snapshot=>{
+//         const progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
+//         console.log(progress);
+//     },error=>setUploadError(error.message),()=>{
+//         storage.ref(`product-images/${category}/`).child(image.name).getDownloadURL().then(url=>{
+//             fs.collection('Products').add({
+//                 title,
+//                 category,
+//                 description,
+//                 price: Number(price),
+//                 url
+//             }).then(()=>{
+//                 setSuccessMsg('Product added successfully');
+//                 setTitle('');
+//                 setDescription('');
+//                 setPrice('');
+//                 document.getElementById('file').value='';
+//                 setImageError('');
+//                 setUploadError('');
+//                 setTimeout(()=>{
+//                     setSuccessMsg('');
+//                 },3000)
+//             }).catch(error=>setUploadError(error.message));
+//         })
+//     })
+// }
+
   categoryFormFields = [
   {   // 1. MoU
     insName: '',

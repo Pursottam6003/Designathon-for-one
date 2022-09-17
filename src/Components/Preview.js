@@ -1,5 +1,15 @@
 import React, { Component } from 'react'
 
+const Grow = (props) => {
+  const { content } = props;
+
+  return (
+    <div className='grow-component'>
+      {content}
+    </div>
+  )
+}
+
 export class Preview extends Component {
   initialState = {
     heading: '',
@@ -7,11 +17,8 @@ export class Preview extends Component {
     images: []
   }
 
- grow = (event) => {
-    const input = event.target;
-    input.style.height ="height:" + "5px";
-  }
   state = this.initialState
+
 
   updatePreview() {
     const { fields, title, categoryId, images } = this.props
@@ -42,17 +49,17 @@ export class Preview extends Component {
     if (category === 1) {
       outStr = `${fields.insName} and ${fields.partnerInsName}, ${fields.partnerInsAddr} signed a ${fields.theme}. ${fields.purposeAgreement} During the event ${fields.insMembers}, ${fields.outMembers} were present . ${fields.otherMembers} had witnessed the event ${fields.date}  {photo}`
     } else if (category === 2) {
-      outStr = `${fields.speakerName} delivered a ${fields.lectureType} on "${fields.title}" in the ${fields.eventName} organised by {this.state.organizer} on {date} {photo}  `
+      outStr = `${fields.speakerName} ${fields.designation} delivered a ${fields.lectureType} on "${fields.title}" in the ${fields.eventName} organised by ${fields.organizer} on ${fields.date} {photo}  `
     } else if (category === 3) {
-      outStr = `${fields.speakerName} ,${fields.designation} of ${fields.department} visited and delivered a ${fields.lectureType} on "{this.state.title}" organised by ${fields.organizer} on ${fields.date} {photo}`
+      outStr = `${fields.speakerName} ,${fields.designation} of ${fields.department} visited and delivered a ${fields.lectureType} on ${fields.title} organised by ${fields.organizer} on ${fields.date} {photo}`
     } else if (category === 4) {
       outStr = `${fields.pi[0]} ,${fields.designation} of ${fields.department} with ${fields.copi[0]}  {designation} of {department} {insititute name} recieved a {project type/inside/outside} {title}. {funding agency} on {date} {photo}`
     } else if (category === 5) {
-      outStr = `${fields.job}. Drawing for ${fields.title} along with principle investigator ${fields.facultyName} ,${fields.designation} of ${fields.department}`
+      outStr = `${fields.fundAgency}  is funding a for project ${fields.title} along with principle investigator ${fields.facultyName} ,${fields.designation} of ${fields.department}`
     } else if (category === 6) {
       outStr = `${fields.invName} ${fields.year}, ${fields.patId}  ${fields.patOffice}`
     } else if (category === 7) {
-      outStr = `${fields.authors[0]} ${fields.year} Article title: ${fields.title} Journal title : ${fields.journalTitle} , Volume ${fields.volNo} ${fields.doiUrl}`
+      outStr = `${fields.authors[0].firstInitials}  ${fields.authors[0].lastName} ${fields.year} Article title: ${fields.title} Journal title : ${fields.journalTitle} , Volume ${fields.volNo} ${fields.doiUrl}`
     } else if (category === 8) {
       outStr = `${fields.authors[0]}, ${fields.year} ${fields.title} published by ${fields.publisher} ${fields.doiUrl}`
     } else if (category === 9) {
@@ -70,9 +77,9 @@ export class Preview extends Component {
     } else if (category === 15) {
       outStr = `${fields.eventName} on ${fields.theme}  by ${fields.coordinatorsName} ${fields.designation} in ${fields.collaboration} ${fields.address} {date} {photo}`
     } else if (category === 16) {
-      outStr = `${fields.eventName}was organised  by ${fields.organizer}  on the {theme} on {date} `
+      outStr = `${fields.eventName} was organised  by ${fields.organizer} ${fields.designation} on the  theme of ${fields.theme} on ${fields.date} `
     } else if (category === 17) {
-      outStr = `${fields.eventName} {theme} will be ${fields.organizer} ${fields.designation} sponsord by ${fields.collaboration} from ${fields.date} ${fields.eventLink}`
+      outStr = `${fields.eventName} ${fields.theme} will be ${fields.organizer} ${fields.designation} sponsord by ${fields.collaboration} from ${fields.date} ${fields.eventLink}`
     }
 
     this.setState({
@@ -91,6 +98,10 @@ export class Preview extends Component {
     }
   }
 
+  resetPreview = () => {
+    this.updatePreview()
+  }
+
   handleChange = (event) => {
     const { name, value } = event.target
     this.setState({
@@ -99,7 +110,7 @@ export class Preview extends Component {
   }
 
   handleSubmit = () => {
-    console.log(this.state)
+    this.props.submit(this.state);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -120,14 +131,17 @@ export class Preview extends Component {
       <>
         <div className='preview' >
           <textarea className='textarea' name="heading" placeholder='Title...' value={heading} onChange={this.handleChange} />
-          <textarea id="outputTxt" className='txtarea' onInput={this.grow} name="output" placeholder='your output will show here' value={output} onChange={this.handleChange} />
+          <div className='txtarea-wrapper'>
+            <textarea className='txtarea' name="output" placeholder='your output will show here' value={output} onChange={this.handleChange} />
+            <Grow content={output} />
+          </div>
 
           <div className='image-preview'>
             {imgComponentArr}
           </div>
 
           <button onClick={this.handleSubmit} className='btn submit'>Submit</button>
-          <button className='btn reset'>Reset</button>
+          <button onClick={this.resetPreview} className='btn reset'>Reset</button>
         </div>
       </>
     )
