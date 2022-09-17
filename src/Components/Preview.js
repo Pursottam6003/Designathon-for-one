@@ -7,10 +7,9 @@ export class Preview extends Component {
     images: []
   }
 
- grow(input) {
-    input.style.height ="5px"
-    input.style.height = 
-    
+ grow = (event) => {
+    const input = event.target;
+    input.style.height ="height:" + "5px";
   }
   state = this.initialState
 
@@ -121,7 +120,7 @@ export class Preview extends Component {
       <>
         <div className='preview' >
           <textarea className='textarea' name="heading" placeholder='Title...' value={heading} onChange={this.handleChange} />
-          <textarea className='txtarea' onInput={grow(this)} name="output" placeholder='your output will show here' value={output} onChange={this.handleChange} />
+          <textarea id="outputTxt" className='txtarea' onInput={this.grow} name="output" placeholder='your output will show here' value={output} onChange={this.handleChange} />
 
           <div className='image-preview'>
             {imgComponentArr}
