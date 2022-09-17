@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Form} from './form/Form.js'
 import {Preview} from './Preview'
 import {storage,fs} from '../config/config'
+import firebase from 'firebase/compat/app'
 
 export class AddBlogs2 extends Component {
   initialState = {
@@ -43,14 +44,54 @@ export class AddBlogs2 extends Component {
 
     console.log(date);
 
-    if(date == undefined || date ==null)
+    if(date === undefined || date ===null)
     {
       date='blank'
     }
 
-   const Image = out.images[0];
+   //const Image = out.images[0];
   
+    let total_size =out.images.length;
+    
+
+    let imageLinks=[];
+    for(let i=0;i<total_size;i++)
+    { 
+      const Image = out.images[i];
+      const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
+      
+      uploadTask.on('state_changed', snapshot => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        console.log(progress);
+      },
+        (error) => {
+          console.log(error);
+        },
+      () => {
+          storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
+            imageLinks.push(url);
+          }) 
+        })
+    }
+     
+
+    
+    setTimeout(() => {
+      console.log(imageLinks);
+      fs.collection(`Technodaya/Blogs/${category_Id}/`).doc().set({
+        Heading:heading,
+        wholeDescription : wholeDescription,
+        EventDate: date,
+        Urls: firebase.firestore.FieldValue.arrayUnion(...imageLinks)
+        }).then(()=>{
+          console.log("Sucessfully uploaded image");
+      })
+      
+    }, 2000);
   
+    /*
+    WORKING UPLOAD IMAGES FOR SINGLE ONE
+
     const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
     uploadTask.on('state_changed',snapshot=>{
         const progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
@@ -61,8 +102,7 @@ export class AddBlogs2 extends Component {
     }
     ,()=>{
         storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
-
-              fs.collection(`Technodaya/${category_Id}/${date}/`).doc().set({
+              fs.collection(`Technodaya/Blogs/${category_Id}/`).doc().set({
               Heading:heading,
               wholeDescription : wholeDescription,
               EventDate: date,
@@ -74,7 +114,9 @@ export class AddBlogs2 extends Component {
 
         })
     })
-    }
+  */}
+
+
 
   getPreview = (data) => {
     this.setState({
