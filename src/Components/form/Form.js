@@ -20,10 +20,21 @@ export class Form extends Component {
   state = this.initialState
 
   handleChange = (event) => {
-    const { name, value } = event.target
+    const { name, value, files } = event.target
     console.log(name, value)
+    let setVal = value
+
+    const images = []
+    if (name === "images") {
+      if (files.length > 0) {
+        for (let i = 0, n = files.length; i < n; i++) {
+          images.push(files[i]);
+        }
+      }
+      setVal = images
+    }
     this.setState({
-      [name]: value
+      [name]: setVal
     }, () => {
       this.props.getPreview({
         category: this.state.category,
@@ -38,23 +49,18 @@ export class Form extends Component {
 
 
 
-  handleImageUpload = (event) => {
-    const { files } = event.target
-    if (files.length > 0) {
-      const images = []
-      for (let i = 0, n = files.length; i < n; i++) {
-        images.push(files[i]);
-      }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.category !== prevState.category) {
       this.setState({
-        images: images
+        images: []
       }, () => {
         this.props.getPreview({
           category: this.state.category,
           formData: this.state.formData,
           activityTitle: this.state.activityTitle,
           images: this.state.images
-        });
-      })
+        })
+      });
     }
   }
 
@@ -65,7 +71,8 @@ export class Form extends Component {
       this.props.getPreview({
         category: this.state.category,
         formData: this.state.formData,
-        activityTitle: this.state.activityTitle
+        activityTitle: this.state.activityTitle,
+        images: this.state.images
       });
     });
   }
@@ -101,7 +108,6 @@ export class Form extends Component {
           type="text"
           name="activityTitle"
           className='form-control form-title'
-          required
           placeholder="New activity title here..."
           onChange={this.handleChange}
           value={this.state.activityTitle}
@@ -128,19 +134,14 @@ export class Form extends Component {
 
             <p className='sub-label'>Upload images (optional)</p>
             <input 
+              key={`i${this.state.category}`}
               type="file"
+              name="images"
               className='form-control'
               accept="image/png, image/webp, image/jpeg"
               multiple
-              onChange={this.handleImageUpload}
+              onChange={this.handleChange}
             />
-            
-            {/* <input
-              type="submit"
-              value="Submit" 
-              className='addblogs'
-              onClick={handleAddBlogs}
-            /> */}
           </>
         )}
 
