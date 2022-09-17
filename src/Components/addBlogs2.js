@@ -121,7 +121,7 @@ export class AddBlogs2 extends Component {
   getPreview = (data) => {
     this.setState({
       category: data.category,
-      formData: data.formData,
+      formData: data.formData ? data.formData : this.state.formData,
       activityTitle: data.activityTitle,
       images: data.images ? data.images : []
     })

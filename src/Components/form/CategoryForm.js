@@ -493,14 +493,14 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Project details</p>
-          <Field showLabel={this.state.title.length} labeltxt="Project Title">
+          <Field showLabel={this.state.title.length} labeltxt="Nature/title of the work/job">
             <input type="text"
               className='form-control'
               required
               name="title"
               value={this.state.title}
               onChange={this.handleChange}
-              placeholder="Project Title"
+              placeholder="Nature/title of the work/job"
             />
           </Field>
 

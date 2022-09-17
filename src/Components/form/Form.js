@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import { CategoryForm } from './CategoryForm'
 
-
-const handleAddBlogs=(e)=>{
-  /// how to pass the this state into another component
-  
-}
 export class Form extends Component {
 
   initialState = {
@@ -21,7 +16,6 @@ export class Form extends Component {
 
   handleChange = (event) => {
     const { name, value, files } = event.target
-    console.log(name, value)
     let setVal = value
 
     const images = []
@@ -36,12 +30,20 @@ export class Form extends Component {
     this.setState({
       [name]: setVal
     }, () => {
-      this.props.getPreview({
-        category: this.state.category,
-        formData: this.state.formData,
-        activityTitle: this.state.activityTitle,
-        images: this.state.images
-      });
+      if (name === "activityTitle") {
+        this.props.getPreview({
+          category: this.state.category,
+          activityTitle: this.state.activityTitle,
+          images: this.state.images  
+        })
+      } else {
+        this.props.getPreview({
+          category: this.state.category,
+          formData: this.state.formData,
+          activityTitle: this.state.activityTitle,
+          images: this.state.images
+        });
+      }
     })
   }
 
@@ -54,6 +56,7 @@ export class Form extends Component {
       this.setState({
         images: []
       }, () => {
+        console.log('category changed hence changing all values')
         this.props.getPreview({
           category: this.state.category,
           formData: this.state.formData,
