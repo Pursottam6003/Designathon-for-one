@@ -129,6 +129,7 @@ export class Form extends Component {
             />
             
             <input
+            className='submit'
               type="submit"
               value="Submit" 
             />
