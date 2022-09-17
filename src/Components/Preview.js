@@ -20,184 +20,84 @@ export class Preview extends Component {
   state = this.initialState
 
   ov(val) {
+    console.log(val)
     const { fields, categoryId } = this.props
     const fieldName = {
-      insName: {
-        1: 'Institute name',
-        3: 'Institute name'
-      },        // 1, 3
-      partnerInsName: {
-        1: 'Partner institute name'
-      },   // 1
-      partnerInsAddr: {
-        1: 'Partner institute address'
-      },   // 1
-      theme: {
-        1: 'Theme',
-        14: 'Theme of the competition',
-        15: 'Title (theme)',
-        16: 'Theme'
-      },// 1, 15, 16, 17
-      purposeAgreement: {
-        1: 'Purpose of agreement'
-      },  // 1, 
-      insMembers: {
-        1: 'Members present from NITAP with their designation'
-      },   // 1
-      outMembers: {
-        1: 'Members present from partner Institute/Organization with their designation'
-      },   // 1
-      otherMembers: {
-        1: 'Other Renowned Members’ names with their designation'
-      },   // 1
-      date: {
-        1: 'Date', 2: 'Date', 3: 'Date', 4: 'Date', 5: 'Date', 9: 'Date YYYY-MM (optional)', 12: 'Date', 13: 'Date', 15: 'Date', 16: 'Date', 17: 'Date'
-      }, // 1, 2, 3, 4, 5, 6, 14, 15, 16, 17 
-      speakerName: {
-        2: 'Speaker name',
-        3: 'Speaker name'
-      }, // 2, 3 
-      designation: {
-        2: 'Designation', 3: 'Designation', 5: 'Designation', 11: 'Designation', 12: 'Designation', 13: 'Designation', 15: 'Designation'
-      },//2, 3, 5 , 11, 12, 13, 15
-      department: {
-        2: 'Department', 5: 'Designation', 11: 'Designation', 12: 'Designation', 13: 'Designation', 15: 'Designation'
-      },//2, 5, 11, 12 , 13, 15
-      lectureType: {
-        2: 'Keynote/special lecture/inagural address etc.',
-        3: 'Keynote/special lecture/inagural address etc.'
-      },  // 2, 3 
-      eventName: {
-        2: 'Event name',
-        9: 'Conference Name',
-        13: 'Name of workshop',
-        14: 'Name of the competition',
-        15: 'Event name',
-        16: 'Name of the event'
-      },// 2, 9, 15, 16, 17 
-      confType: {
-        7: 'national',
-        9: 'national'
-      },   // 9
-      eventType: {
-        11: 'Programme type: workshop/confrence/seminaar/FDP/EDP'
-      },   // 9, 10
-      organizer: {
-        2: 'Organizer with address',
-        3: 'Organizing member/department/section (NITAP)',
-        11: 'Organising institute name and address',
-        13: 'Organising institute name with address',
-        14: 'Organising section/institute name',
-        16: 'Organizer name',
-        17: 'Organizer name'
-      },// 2, 3, 14, 16, 17 
-      pi: {
-        4: 'Principal Investigators'
-      }, // 4
-      copi: {
-        4: 'Co-principal Investigators'
-      }, // 4 
-      title: {
-        2: 'Title of speech',
-        3: 'Title of speech',
-        4: 'Projec title',
-        5: 'Nature/ title of the work/job',
-        7: 'Article title',
-        8: 'Book title, subtitle',
-        9: 'Contribution title',
-        10: 'Title',
-        11: 'Title of the programme'
-      }, // 2, 3, 4, 8, 7, 9, 10
-      editors: {
-        10: "Editors' Name"
-      }, // 10
-      bookTitle: {
-        10: 'Title of book'
-      }, // 10
-      fundAgency: {
-        4: 'Funding Agency',
-        5: 'Sponsored agency'
-      },// 4, 5 
-      facultyName: {
-        5: 'Name of faculty',
-        11: 'Name of the faculty',
-        12: 'Name of the faculty',
-        13: 'Name of the faculty'
-      },// 11, 12, 13
-      invName: {
-        6: 'Name of inventor'
-      }, // 6
-      year: {
-        6: 'Year the patent was issued',
-        7: 'Publication year',
-        8: 'Publication year'
-      }, // 6, 7, 8
-      patId: {
-        6: 'Unique patent identifier (patent number)',
-      },  // 6
-      patOffice: {
-        6: 'Patent office'
-      }, // 6
-      authors: {
-        7: 'Author(s)',
-        8: 'Author(s)',
-        9: 'Author(s)',
-        10: 'Author(s)'
-      },    // 7, 8, 9, 10
-      journalTitle: {
-        7: 'Journal Title',
-        12: 'Journal name'
-      },   // 7
-      volNo: {
-        7: 'Volume no.',
-      },    // 7
-      issueNo: {
-        7: 'Issue No.'
-      },    // 7
-      pageNos: {
-        7: 'Page no.',
-        10: 'Page numbers'
-      },    // 7, 10 
-      doiUrl: {
-        7: 'DOI (if available)',
-        8: 'DOI (if available)',
-        9: 'DOI (if available)',
-        10: 'DOI (if available)'
-      },     // 7, 8, 9
-      publisher: {
-        8: 'Publisher name',
-        10: 'Publisher',
-        12: 'Publishing house'
-      },  // 8, 10
-      place: {
-        9: 'Location of conference',
-        15: 'Place name'
-      },  // 9, 15
-      winner: {
-        14: 'Name with roll no',
-      }, // 14
-      rank: {
-        14: 'first/second/third'
-      },   // 14
-      collaboration: {
-        14: 'Institute Name if any collaboration/association',
-        15: 'If collaboration mention its full address',
-        16: 'collaboration',
-        17: 'Collaborator address (optional)'
-      },  // 14, 15, 16, 17
-      coordinatorName: {
-        15: 'Coordinator Name'
-      },  // 15
-      eventLink: {
-        17: 'Event link'
-      },  // 17
+      insName: {1: 'Institute name',3: 'Institute name'},        // 1, 3
+      partnerInsName: {1: 'Partner institute name'},   // 1
+      partnerInsAddr: {1: 'Partner institute address'},   // 1
+      theme: {1: 'Theme',14: 'Theme of the competition',15: 'Title (theme)',16: 'Theme'},// 1, 15, 16, 17
+      purposeAgreement: {1: 'Purpose of agreement'},  // 1, 
+      insMembers: {1: 'Members present from NITAP with their designation'},   // 1
+      outMembers: {1: 'Members present from partner Institute/Organization with their designation'},   // 1
+      otherMembers: {1: 'Other Renowned Members’ names with their designation'},   // 1
+      date: {1: 'Date', 2: 'Date', 3: 'Date', 4: 'Date', 5: 'Date', 9: 'Date YYYY-MM (optional)', 12: 'Date', 13: 'Date', 15: 'Date', 16: 'Date', 17: 'Date'}, // 1, 2, 3, 4, 5, 6, 14, 15, 16, 17 
+      speakerName: {2: 'Speaker name',3: 'Speaker name'}, // 2, 3 
+      designation: {2: 'Designation', 3: 'Designation', 5: 'Designation', 11: 'Designation', 12: 'Designation', 13: 'Designation', 15: 'Designation'},//2, 3, 5 , 11, 12, 13, 15
+      department: {2: 'Department', 3: 'Department', 5: 'Department', 11: 'Department', 12: 'Department', 13: 'Department', 15: 'Department'},//2, 5, 11, 12 , 13, 15
+      lectureType: {2: 'Keynote/special lecture/inagural address etc.',3: 'Keynote/special lecture/inagural address etc.'},  // 2, 3 
+      eventName: {2: 'Event name',9: 'Conference Name',13: 'Name of workshop',14: 'Name of the competition',15: 'Event name',16: 'Name of the event'},// 2, 9, 15, 16, 17 
+      confType: {7: 'national',9: 'national'},   // 9
+      eventType: {11: 'Programme type: workshop/confrence/seminaar/FDP/EDP'},   // 9, 10
+      organizer: {2: 'Organizer with address',3: 'Organizing member/department/section (NITAP)',11: 'Organising institute name and address',13: 'Organising institute name with address',14: 'Organising section/institute name',16: 'Organizer name',17: 'Organizer name'},// 2, 3, 14, 16, 17 
+      pi: {4: 'Principal Investigators'}, // 4
+      copi: {4: 'Co-principal Investigators'}, // 4 
+      title: {2: 'Title of speech',3: 'Title of speech',4: 'Projec title',5: 'Nature/ title of the work/job',7: 'Article title',8: 'Book title, subtitle',9: 'Contribution title',10: 'Title',11: 'Title of the programme'}, // 2, 3, 4, 8, 7, 9, 10
+      editors: {10: "Editors' Name"}, // 10
+      bookTitle: {10: 'Title of book'}, // 10
+      fundAgency: {4: 'Funding Agency',5: 'Sponsored agency'},// 4, 5 
+      facultyName: {5: 'Name of faculty',11: 'Name of the faculty',12: 'Name of the faculty',13: 'Name of the faculty'},// 11, 12, 13
+      invName: {6: 'Name of inventor'}, // 6
+      year: {6: 'Year the patent was issued',7: 'Publication year',8: 'Publication year'}, // 6, 7, 8
+      patId: {6: 'Unique patent identifier (patent number)'},  // 6
+      patOffice: {6: 'Patent office'}, // 6
+      authors: {7: 'Author(s)',8: 'Author(s)',9: 'Author(s)',10: 'Author(s)'},    // 7, 8, 9, 10
+      journalTitle: {7: 'Journal Title',12: 'Journal name'},   // 7
+      volNo: {7: 'Volume no.',},    // 7
+      issueNo: {7: 'Issue No.'},    // 7
+      pageNos: {7: 'Page no.',10: 'Page numbers'},    // 7, 10 
+      doiUrl: {7: 'DOI (if available)',8: 'DOI (if available)',9: 'DOI (if available)',10: 'DOI (if available)'},     // 7, 8, 9
+      publisher: {8: 'Publisher name',10: 'Publisher',12: 'Publishing house'},  // 8, 10
+      place: {9: 'Location of conference',15: 'Place name'},  // 9, 15
+      winner: {14: 'Name with roll no',}, // 14
+      rank: {14: 'first/second/third'},   // 14
+      collaboration: {14: 'Institute Name if any collaboration/association',15: 'If collaboration mention its full address',16: 'collaboration',17: 'Collaborator address (optional)'},  // 14, 15, 16, 17
+      coordinatorName: {15: 'Coordinator Name'},  // 15
+      eventLink: {17: 'Event link'},  // 17
       eventBrochure: {17: 'Upload brochure'}  // 17
     }
-    if (!fields[val]) {
-      return fieldName[val][parseInt(categoryId)].toUpperCase()
+
+    const peopleLs = ['copi', 'pi', 'author']
+    if (!(peopleLs.includes(val))) {
+      if (!fields[val]) {
+        return fieldName[val][parseInt(categoryId)].toUpperCase()
+      } else {
+        return fields[val]
+      }
+    } else if (fields[val]) {            // for persons
+      if (fields[val].length !== 0) {
+        let outstrArr = []
+        if (val === "pi") {
+          outstrArr = fields[val].map(el => {
+            return `${el.name}, ${el.designation}, ${el.department}`
+          })
+        } else if (val === "copi") {
+          outstrArr = fields[val].map(el => {
+            return `${el.name}, ${el.designation}, ${el.department} ${el.insName ? `, el.insName` : ''}`
+          })
+        } else {
+          outstrArr = fields[val].map(el => {
+            return `${el.lastName}, ${el.firstInitials}`
+          })
+        }
+        return outstrArr.join(', ')
+      } else {
+        return fieldName[val][parseInt(categoryId)].toUpperCase()
+      }
     } else {
-      return fields[val]
+      return fieldName[val][parseInt(categoryId)].toUpperCase()
     }
+    
   }
 
   updatePreview(updateType) {
@@ -231,13 +131,13 @@ export class Preview extends Component {
         outStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
         break;    
       case 2:
-        outStr = `${this.ov('speakerName')} delivered a ${fields.lectureType} on "${fields.title}" in the ${fields.eventName} organised by {this.state.organizer} on {date} {photo}  `
+        outStr = `${this.ov('speakerName')} delivered a ${this.ov('lectureType')} on "${this.ov('title')}" in the ${this.ov('eventName')} organised by ${this.ov('organizer')} on ${this.ov('date')}.`
         break;
       case 3:
         outStr = `${this.ov('speakerName')} ,${this.ov('designation')} of ${this.ov('department')} visited and delivered a ${this.ov('lectureType')} on "${this.ov('title')}" organised by ${this.ov('organizer')} on ${this.ov('date')}`
         break;      
       case 4:
-        outStr = `${fields.pi[0]} ,${this.ov('designation')} of ${this.ov('department')} with ${fields.copi[0]}  {designation} of {department} {insititute name} recieved a {project type/inside/outside} {title}. {funding agency} on {date} {photo}`
+        outStr = `${this.ov('pi')} with ${this.ov('copi')} recieved a {project type/inside/outside} {title}. {funding agency} on {date} {photo}`
         break;
       case 5:
         outStr = `${fields.job}. Drawing for ${fields.title} along with principle investigator ${fields.facultyName} ,${fields.designation} of ${fields.department}`
