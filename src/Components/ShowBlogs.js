@@ -38,14 +38,14 @@ export const ShowBlogs = () => {
                 <div className='all-news'>
                 <div className='highlight'>
 {/* bass abi ke liya dal hu isme img , title , short ,discription  firebase se fetch karke daldena  */}
-     <div> <img src={require("../images/addactivity.jpg")} />  </div> <div className='writing'> 
+     <div> <img className='zoom' src={require("../images/addactivity.jpg")} />  </div> <div className='writing'> 
         <h1>THE CAT THAT SAYS MEOW </h1>
      <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Modi nihil vitae atque? Esse asperiores consequatur sed quo, numquam corrupti commodi officiis hic sint illo recusandae. Voluptates quasi error commodi consequuntur.
 
      </p> </div> 
                 </div>
                 <div className='news-block'>
-                    <h1>LATEST</h1>
+                  
                     
                     <Items myproducts={myproducts}/>
                 </div>
