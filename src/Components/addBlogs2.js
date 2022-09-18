@@ -83,8 +83,8 @@ export class AddBlogs2 extends Component {
         // clear the form
         this.setState({
           clearRev: this.state.clearRev + 1
-        })
-        
+        })        
+        document.getElementById('submitBtn').removeAttribute('disabled')
       })
     }
   }
