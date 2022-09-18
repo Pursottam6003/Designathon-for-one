@@ -750,39 +750,32 @@ hr {
       background-color: #fff;
       border-radius: 0.25rem;
       box-shadow: 0 2px 8px -5px #696969cf,
-        0 -2px 6px -5px #7b7b7b8a;
+      0 -2px 6px -5px #7b7b7b8a;
       max-width: 720px;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
       label, p.sub-label {
         font-family: inherit;
         color: #757575;
         font-size: 0.75rem;
         font-weight: 600;
       }
-
       p.sub-label {
         padding-left: 0.05rem;
         margin: 1.5rem 0 0.4rem;
       }
-
       .form-field {
         font-family: inherit;
         margin: 0.2rem 0 0.4rem;
-
         label {
           font-family: inherit;
           margin-bottom: 0.3rem;
         }
-
         select {
           font-size: 0.85rem;
         }
-
         select:focus {
           box-shadow: none;
         }
-
         input, textarea {
           border: solid 2px transparent;
           font-size: 0.85rem;
@@ -791,7 +784,6 @@ hr {
         input[type=date] {
           outline: none;
         }
-
         input[type="text"],
         input[type="number"],
         input[type="date"],
@@ -799,12 +791,10 @@ hr {
           padding-left: 0;
           padding-right: 0;
         }
-
         .form-title {
           font-size: 2.2rem;
           font-weight: 600;
         }
-
         textarea {
           min-height: 180px;
           width: 100%;
@@ -814,13 +804,11 @@ hr {
           box-shadow: none;
           border-bottom: solid 2px blue;
         }
-
         textarea:focus {
           box-shadow: none;
           border-top: solid 2px blue;
           border-bottom: solid 2px blue;
         }
-
         button.LoginAuthBtn {
           background-color: white;
           color: #333;
@@ -841,7 +829,6 @@ hr {
           color: white;
 
         }
-
         .list-fields {
           font-family: inherit;
           display: flex;
@@ -857,9 +844,6 @@ hr {
     }
   }
 }
-
-
-
 // add activity ends
 
 .Footer {
@@ -1026,129 +1010,141 @@ hr {
 
 
 .bg1 {
-  background: url('../images/bg1.jpg'),
+  background-image: 
+  linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+  url('../images/bg1.jpg');
   // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   
 }
 .bg2 {
-  background: url('../images/bg2.jpg'),
-  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg2.jpg')  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg3 {
-  background: url('../images/bg3.jpg'),
-  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg3.jpg')  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg4 {
-  background: url('../images/bg4.jpg'),
-  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg4.jpg') // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg5 {
-  background: url('../images/bg5.jpg'),
-  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg5.jpg') // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 
 
 .bg6 {
-  background: url('../images/bg6.jpg'),
-  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg6.jpg')  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg7 {
-  background: url('../images/bg7.jpg'),
-  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg7.jpg')  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg8 {
-  background: url('../images/bg8.jpg'),
-  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg8.jpg')  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg9 {
-  background: url('../images/bg9.jpg'),
-  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg9.jpg')  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg10 {
-  background: url('../images/bg10.jpg'),
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg10.jpg')
   // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 
 
 .bg11{
-  background: url('../images/bg11.jpg'),
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg11.jpg')
   // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg12 {
-  background: url('../images/bg12.jpg'),
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg12.jpg')
   // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg13 {
-  background: url('../images/bg13.jpg'),
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg13.jpg')
   // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg14 {
-  background: url('../images/bg14.jpg'),
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg14.jpg')
   // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg15 {
-  background: url('../images/bg15.jpg'),
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg15.jpg')
   // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 
 
 .bg16 {
-  background: url('../images/bg16.jpg'),
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg16.jpg')
   // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg17 {
-  background: url('../images/bg2.jpg'),
-  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg2.jpg'),  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg18 {
-  background: url('../images/bg18.jpg'),
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg18.jpg')
   // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg19 {
-  background: url('../images/bg19.jpg'),
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg19.jpg')
   // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 .bg20 {
-  background: url('../images/bg20.jpg'),
+  background:linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)),
+   url('../images/bg20.jpg')
   // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
   
-  linear-gradient(#fff6f6, #9198e5) ;
+   ;
 }
 
