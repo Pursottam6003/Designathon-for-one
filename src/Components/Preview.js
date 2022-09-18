@@ -128,7 +128,7 @@ export class Preview extends Component {
     let outStr = ''
     switch (category) {
       case 1:
-        outStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
+        outStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purpoveAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
         break;    
       case 2:
         outStr = `${this.ov('speakerName')} delivered a ${this.ov('lectureType')} on "${this.ov('title')}" in the ${this.ov('eventName')} organised by ${this.ov('organizer')} on ${this.ov('date')}.`
@@ -140,43 +140,44 @@ export class Preview extends Component {
         outStr = `${this.ov('pi')} with ${this.ov('copi')} recieved a {project type/inside/outside} {title}. {funding agency} on {date} {photo}`
         break;
       case 5:
-        outStr = `${fields.job}. Drawing for ${fields.title} along with principle investigator ${fields.facultyName} ,${fields.designation} of ${fields.department}`
+        outStr = `${this.ov('facultyName')}. Drawing for ${this.ov('title')} along with principle investigator ${this.ov('facultyName')} ,${this.ov('designation')} of ${this.ov('department')}`
         break;
       case 6:
-        outStr = `${fields.invName} ${fields.year}, ${fields.patId}  ${fields.patOffice}`
+          outStr = `${this.ov('invName')} in  (${this.ov('year')}),  singed a patent ${this.ov('patId')} ${this.ov('patOffice')}`
+          //outStr=' '
         break;
       case 7:
-        outStr = `${fields.authors[0]} ${fields.year} Article title: ${fields.title} Journal title : ${fields.journalTitle} , Volume ${fields.volNo} ${fields.doiUrl}`
+        outStr = `${this.ov('authors[0]')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title : ${this.ov('journalTitle')} , Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
         break;
       case 8:
-        outStr = `${fields.authors[0]}, ${fields.year} ${fields.title} published by ${fields.publisher} ${fields.doiUrl}`
+        outStr = `${this.ov('authors[0]')}, ${this.ov('year')} ${this.ov('title')} published by ${this.ov('publisher')} ${this.ov('doiUrl')}`
         break;
       case 9:
-        outStr = `${fields.authors[0]} , {firstinitial} ${fields.date} ${fields.title} {paper representation} ,${fields.confType} ${fields.location} ${fields.doiUrl}`
+        outStr = `${this.ov('authors[0]')} , {firstinitial} ${this.ov('date')} ${this.ov('title')} {paper representation} ,${this.ov('confType')} ${this.ov('location')} ${this.ov('doiUrl')}`
         break;
       case 10:
-        outStr = `${fields.authors[0]} {first initial} ${fields.year}. ${fields.chapterTitle} ${fields.bookTitle} with ${fields.pageNos} published by ${fields.publisher} {doi}`
+        outStr = `${this.ov('authors[0]')} {first initial} ${this.ov('year')}. ${this.ov('chapterTitle')} ${this.ov('bookTitle')} with  published by ${this.ov('publisher')} {doi}`
         break;
       case 11:
-        outStr = `${fields.facultyName} ${fields.designation} of ${fields.department} on ${fields.programTitle} organised by ${fields.organizingName} ${fields.organizingAddr} ${fields.date} {photo}`
+        outStr = `${this.ov('facultyName')} ${this.ov('designation')} of ${this.ov('department')} on ${this.ov('programTitle')} organised by ${this.ov('organizingName')} ${this.ov('organizingAddr')} ${this.ov('date')} {photo}`
         break;
       case 12:
-        outStr = `${fields.facultyName} ${fields.designation} of ${fields.department}  was reviewer of ${fields.journalName}. ${fields.publishingName} ${fields.date} {photo}`
+        outStr = `${this.ov('facultyName')} ${this.ov('designation')} of ${this.ov('department')}  was reviewer of ${this.ov('journalName')}. ${this.ov('publishingName')} ${this.ov('date')} {photo}`
         break;
       case 13:
-        outStr = `${fields.facultyName} ${fields.designation} of ${fields.department}  was the chairpeson of ${fields.name} organised on ${fields.organizing} {address} {date} {photo}`
+        outStr = `${this.ov('facultyName')} ${this.ov('designation')} of ${this.ov('department')}  was the chairpeson of ${this.ov('name')} organised on ${this.ov('organizing')} {address} {date} {photo}`
         break;
       case 14:
-        outStr = `${fields.winnerName} ${fields.winnerRoll} ${fields.insName} won the ${fields.rank} in the competition on the theme of "${fields.theme} of ${fields.organizer} in association with ${fields.collaboration} on ${fields.date} {photo}"`
+        outStr = `${this.ov('winnerName')} ${this.ov('winnerRoll')} ${this.ov('insName')} won the ${this.ov('rank')} in the competition on the theme of "${this.ov('theme')} of ${this.ov('organizer')} in association with ${this.ov('collaboration')} on ${this.ov('date')} {photo}"`
         break;
       case 15:
-        outStr = `${fields.eventName} on ${fields.theme}  by ${fields.coordinatorsName} ${fields.designation} in ${fields.collaboration} ${fields.address} {date} {photo}`
+        outStr = `${this.ov('eventName')} on ${this.ov('theme')}  by ${this.ov('coordinatorsName')} ${this.ov('designation')} in ${this.ov('collaboration')} ${this.ov('address')} {date} {photo}`
         break;
       case 16:
-        outStr = `${fields.eventName}was organised  by ${fields.organizer}  on the {theme} on {date} `
+        outStr = `${this.ov('eventName')}was organised  by ${this.ov('organizer')}  on the {theme} on {date} `
         break;
       case 17:
-        outStr = `${fields.eventName} {theme} will be ${fields.organizer} ${fields.designation} sponsord by ${fields.collaboration} from ${fields.date} ${fields.eventLink}`
+        outStr = `${this.ov('eventName')} {theme} will be ${this.ov('organizer')} ${this.ov('designation')} sponsord by ${this.ov('collaboration')} from ${this.ov('date')} ${this.ov('eventLink')}`
         break;
       default:
         break;    
