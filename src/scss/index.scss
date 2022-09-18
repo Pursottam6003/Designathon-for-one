@@ -27,28 +27,41 @@
   color: rgb(62, 61, 61);
 }
 .highlight {
+  // background:
+  // linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73));
   position: relative;
   height: 600px;
   width: 60%;
+  overflow: hidden;
   margin-bottom: 3rem;
 
   img {
+  
     height: 600px;
     width: 100%;
+    z-index: -1;
   }
 
 
 }
 
 .writing {
-  padding: 1rem;
+  padding: 6rem .4rem;
   position: absolute;
-  bottom: 12%;
-  background-color: rgba(114, 93, 93, 0.9);
+  bottom: 0%;
+  // background-color: rgba(114, 93, 93, 0.9);
   color: antiquewhite;
-  right: 5%;
+  height: 340px;
+  background-image: linear-gradient(to top,black,rgba(0,0,0,0));
 
 }
+
+
+ .zoom:hover{
+  transform: scale(1.2);
+ }
+
+
 
 
 .writing h1 {
@@ -63,13 +76,14 @@
 
 .date {
   display: flex;
-  gap: 1rem;
-  padding: 16px 0;
+  gap: 0.3rem;
+  padding: 3px 0;
+  
 }
 
 .date img {
-  width: 25px;
-  height: 30px;
+  width: 17px;
+  height: 20px;
 }
 
 .red {
@@ -79,14 +93,32 @@
 .news-block {
   width: 30%;
   margin-bottom: 3rem;
-
+display: flex;
+flex-direction: column;
+gap: 2rem;
 
 }
 .block{
- 
+  display: flex;
+  flex-direction: row;
+ gap: .9rem;
+  .in{
+    display: flex;
+    gap: .2rem;
+    flex-direction: column;
+  
+  }
   h2:hover{
     color: rgb(15, 157, 15);
+    font: 20px;
+
   }
+  .img-sec{
+    width: 30%;
+    border: 1px solid black;
+  
+  }
+
  
 }
 
@@ -117,6 +149,14 @@ hr {
   display: flex;
 }
 
+// show blogs 
+
+
+
+
+
+
+//end of showblogs
 // for news preview 
 
 
@@ -229,12 +269,15 @@ hr {
   background-color: #283858;
   height: 10vh;
   align-items: center;
-
+  a{
+    text-decoration: none;
+   }
 }
 .nav_items{
    text-transform: uppercase;
    font-weight: 600;
    color: #fff;
+  
 }
 .TopNavigation .nav_items:hover {
   color: aliceblue; 
@@ -637,8 +680,29 @@ hr {
       flex: 7 1 0;
     }
     .preview{
+      position: relative;
       flex: 3 1 0;
+      .prevbtn{
+        display: flex;
+        justify-content: space-around;
+      
+      }
+      .image-preview{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+
+         img{
+          width: 70%;
+          border: 1px solid black;
+         }
+      }
     }
+    
     .submit{
    
       background: #8a00cf;
@@ -650,11 +714,12 @@ hr {
     }
     
     .btn{
+
       font-size: smaller;
-      border-radius: 13px;
+   
       color: #fff;
-      padding: .2rem 1rem;
-      margin: 0 10px;
+      padding: .4rem 1.2rem;
+      margin: 1rem 1rem;
     
     }
     .btn:hover{

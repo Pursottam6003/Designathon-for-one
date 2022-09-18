@@ -42,11 +42,10 @@ export const Navbar = () => {
 
 
     <div className='TopNavigation'>
-      <div  className='nav_items' >Home</div>
-      <div className='nav_items'>Add New Activity</div>
-      <div className='nav_items'>MEOW</div>
-      
-      <div className='nav_items'>Technonodaya Newsletters</div>
+    <a href='/'> <div  className='nav_items' >Home</div></a>
+    <a href='/addBlogs2'> <div  className='nav_items' >Add New Activity</div></a>
+     <a href='https://youtu.be/dQw4w9WgXcQ'> <div  className='nav_items' >if you dont have direction</div></a>
+   
     </div>
     
     </>
