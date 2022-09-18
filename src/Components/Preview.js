@@ -14,6 +14,7 @@ export class Preview extends Component {
   initialState = {
     heading: '',
     output: '',
+    category: 0,
     images: []
   }
 
@@ -210,7 +211,10 @@ export class Preview extends Component {
   }
 
   handleSubmit = (event) => {
-    this.props.submit(this.state);
+    if (document.getElementById('activityForm').checkValidity()) {
+      event.preventDefault();
+      this.props.submit(this.state);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -221,6 +225,10 @@ export class Preview extends Component {
       else {
         this.updatePreview('rest');
       }
+
+      this.setState({
+        category: parseInt(this.props.categoryId)
+      })
     }
   }
 
@@ -244,10 +252,12 @@ export class Preview extends Component {
           <div className='image-preview'>
             {imgComponentArr}
           </div>
-<div className='prevbtn'>
-          <button form='activityForm' type='submit' onClick={this.handleSubmit} className='btn submit'>Submit</button>
-          <button onClick={this.resetPreview} className='btn reset'>Reset</button>
-          </div>
+        {this.state.category !== 0 && (
+          <div className='prevbtn'>
+            <button form='activityForm' type='submit' onClick={this.handleSubmit} className='btn submit'>Submit</button>
+            <button onClick={this.resetPreview} className='btn reset'>Reset</button>
+            </div>
+        )}
         </div>
       </>
     )

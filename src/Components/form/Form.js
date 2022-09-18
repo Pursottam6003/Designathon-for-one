@@ -10,8 +10,6 @@ export class Form extends Component {
     images: []
   }
 
-
-
   state = this.initialState
 
   handleChange = (event) => {
