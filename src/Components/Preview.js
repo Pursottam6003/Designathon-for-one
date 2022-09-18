@@ -346,9 +346,10 @@ export class Preview extends Component {
           <div className='image-preview'>
             {imgComponentArr}
           </div>
-
+<div className='prevbtn'>
           <button onClick={this.handleSubmit} className='btn submit'>Submit</button>
           <button onClick={this.resetPreview} className='btn reset'>Reset</button>
+          </div>
         </div>
       </>
     )
