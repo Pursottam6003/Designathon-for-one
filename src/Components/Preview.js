@@ -22,7 +22,7 @@ export class Preview extends Component {
   ov(val) {
     console.log(val)
     const { fields, categoryId } = this.props
-    const fieldName = {
+    const placeholder = {
       insName: {1: 'Institute name',3: 'Institute name'},        // 1, 3
       partnerInsName: {1: 'Partner institute name'},   // 1
       partnerInsAddr: {1: 'Partner institute address'},   // 1
@@ -70,7 +70,7 @@ export class Preview extends Component {
     const peopleLs = ['copi', 'pi', 'author']
     if (!(peopleLs.includes(val))) {
       if (!fields[val]) {
-        return fieldName[val][parseInt(categoryId)].toUpperCase()
+        return placeholder[val][parseInt(categoryId)].toUpperCase()
       } else {
         return fields[val]
       }
@@ -83,7 +83,7 @@ export class Preview extends Component {
           })
         } else if (val === "copi") {
           outstrArr = fields[val].map(el => {
-            return `${el.name}, ${el.designation}, ${el.department} ${el.insName ? `, el.insName` : ''}`
+            return `${el.name}, ${el.designation}, ${el.department}${el.insName ? `, ${el.insName}` : ''}`
           })
         } else {
           outstrArr = fields[val].map(el => {
@@ -92,10 +92,10 @@ export class Preview extends Component {
         }
         return outstrArr.join(', ')
       } else {
-        return fieldName[val][parseInt(categoryId)].toUpperCase()
+        return placeholder[val][parseInt(categoryId)].toUpperCase()
       }
     } else {
-      return fieldName[val][parseInt(categoryId)].toUpperCase()
+      return placeholder[val][parseInt(categoryId)].toUpperCase()
     }
     
   }

@@ -106,6 +106,10 @@ export class CategoryForm extends Component {
         pi: pi.filter((person, i) => {
           return i !== index;
         })
+      }, () => {
+        this.setState({
+          formData: {...this.state.formData, pi: this.state.pi}
+        }, () => {this.props.handleUpdate(this.state.formData)})
       })
     } else if (personType === "CoPI") {
       const { copi } = this.state
@@ -113,6 +117,10 @@ export class CategoryForm extends Component {
         copi: copi.filter((person, i) => {
           return i !== index;
         })
+      }, () => {
+        this.setState({
+          formData: {...this.state.formData, copi: this.state.copi}
+        }, () => {this.props.handleUpdate(this.state.formData)})
       })
     } else {
       const { authors } = this.state
@@ -120,6 +128,10 @@ export class CategoryForm extends Component {
         authors: authors.filter((person, i) => {
           return i !== index;
         })
+      }, () => {
+        this.setState({
+          formData: {...this.state.formData, authors: this.state.authors}
+        }, () => {this.props.handleUpdate(this.state.formData)})
       })
     }
     console.log(index);
