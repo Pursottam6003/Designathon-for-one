@@ -20,14 +20,17 @@ export const IndividualProduct = ({individualProduct}) => {
       
         {/* <img src={individualProduct.url} className="blogimg" alt="product-img"/> */}
        
-         <hr/>
-          <div className='date'> <img src={require("../images/icons8-calendar-week-32.png")} /> <p className='red'>11 sep 2022</p></div>
+         <div className='img-sec'></div>
+       <div className='in'>
         <h2>{individualProduct.title}</h2>
+        <div className='date'> <img src={require("../images/icons8-calendar-week-32.png")} /> <p className='red'>11 sep 2022</p></div>
+        </div>
+
         {/* <p>{individualProduct.brief}</p>  
         
          NOTE SHARE*/}
-        <button className='btn'>Read article </button>
-       
+        {/* <button className='btn'>Read article </button>
+        */}
 
 
    

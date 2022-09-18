@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import {Form} from './form/Form.js'
-import {Preview} from './Preview'
-import {storage,fs} from '../config/config'
+import { Form } from './form/Form.js'
+import { Preview } from './Preview'
+import { storage, fs } from '../config/config'
 import firebase from 'firebase/compat/app'
 
 
@@ -9,9 +9,10 @@ export class AddBlogs2 extends Component {
   initialState = {
     category: 0,
     formData: {},
-    activityTitle: '', 
+    activityTitle: '',
     images: [],
-    output: {}
+    output: {},
+    clearRev: 0
   }
 
   selectOptions = [
@@ -36,27 +37,25 @@ export class AddBlogs2 extends Component {
   ]
   state = this.initialState
 
-	handleSubmit = (out) => {
+  handleSubmit = (out) => {
 
     let category_Id = this.state.category;
-    let  heading = out.heading;
+    let heading = out.heading;
     let wholeDescription = out.output;
     let date = this.state.formData.date;
 
     console.log(date);
 
-    if(date === undefined || date ===null)
-    {
-      date='blank'
+    if (date === undefined || date === null) {
+      date = 'blank'
     }
 
     //const Image = out.images[0];
-    let total_size =out.images.length;
-    const imageLinks=[];
-    for(let i=0;i<total_size;i++)
-    { 
+    let total_size = out.images.length;
+    const imageLinks = [];
+    for (let i = 0; i < total_size; i++) {
       const Image = out.images[i];
-      const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
+      const uploadTask = storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
 
       uploadTask.on('state_changed', (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
@@ -77,18 +76,24 @@ export class AddBlogs2 extends Component {
       })
     }
 
-    const uploadOnFirestore = () => {    
+    const uploadOnFirestore = () => {
       console.log(imageLinks);
       fs.collection(`Technodaya/Blogs/${category_Id}/`).doc().set({
-        Heading:heading,
-        wholeDescription : wholeDescription,
+        Heading: heading,
+        wholeDescription: wholeDescription,
         EventDate: date,
         Urls: firebase.firestore.FieldValue.arrayUnion(...imageLinks)
-        }).then(()=>{
-          console.log("Sucessfully uploaded image", firebase.firestore.FieldValue.arrayUnion(...imageLinks));
+      }).then(() => {
+        console.log("Sucessfully uploaded image");
+        // clear the form
+        this.setState({
+          clearRev: this.state.clearRev + 1
+        })
+        
       })
-    }  
     }
+  }
+
   getPreview = (data) => {
     this.setState({
       category: data.category,
@@ -98,26 +103,25 @@ export class AddBlogs2 extends Component {
     })
   }
 
+  render() {
+    return (
+      <div className='add-blogs2'>
+        <header className='hero'>
+          <h1 className='container'>Add new activities</h1>
+        </header>
 
-	
-	render() {
-		return (
-			<div className='add-blogs2'>
-				<header className='hero'>
-					<h1 className='container'>Add new activities</h1>
-				</header>
-
-				<div className='activity-form container'>
-          <Form getPreview={this.getPreview} />
-					<Preview
+        <div className='activity-form container'>
+          <Form key={this.state.clearRev} getPreview={this.getPreview} clear={this.state.clear}/>
+          <Preview
+            key={`p${this.state.clearRev}`}
             title={this.state.activityTitle}
             fields={this.state.formData}
             categoryId={this.state.category}
             images={this.state.images}
             submit={this.handleSubmit}
           />
-				</div>
-			</div>
-		)
-	}
+        </div>
+      </div>
+    )
+  }
 }

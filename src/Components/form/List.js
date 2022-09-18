@@ -59,7 +59,9 @@ export const List = (props) => {
       <div className="list-component">
         <h4 className="list-heading">{heading}</h4>
         <table className="list-table">
-          {rows}
+          <tbody>
+            {rows}
+          </tbody>
         </table>
       </div>
     )

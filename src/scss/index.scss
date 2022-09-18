@@ -27,28 +27,44 @@
   color: rgb(62, 61, 61);
 }
 .highlight {
+  // background:
+  // linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73));
   position: relative;
   height: 600px;
   width: 60%;
+  overflow: hidden;
   margin-bottom: 3rem;
 
   img {
+  
     height: 600px;
     width: 100%;
+ z-index: 2;
+    transition: 400ms ease-out;
   }
 
 
 }
 
 .writing {
-  padding: 1rem;
+  padding: 6rem .4rem;
   position: absolute;
-  bottom: 12%;
-  background-color: rgba(114, 93, 93, 0.9);
+  bottom: 0%;
+  // background-color: rgba(114, 93, 93, 0.9);
   color: antiquewhite;
-  right: 5%;
+  height: 340px;
+  background-image: linear-gradient(to top,black,rgba(0,0,0,0));
 
 }
+
+
+ .zoom:hover{
+
+  transform: scale(1.1);
+
+ }
+
+
 
 
 .writing h1 {
@@ -63,13 +79,14 @@
 
 .date {
   display: flex;
-  gap: 1rem;
-  padding: 16px 0;
+  gap: 0.3rem;
+  padding: 3px 0;
+  
 }
 
 .date img {
-  width: 25px;
-  height: 30px;
+  width: 17px;
+  height: 20px;
 }
 
 .red {
@@ -79,14 +96,32 @@
 .news-block {
   width: 30%;
   margin-bottom: 3rem;
-
+display: flex;
+flex-direction: column;
+gap: 2rem;
 
 }
 .block{
- 
+  display: flex;
+  flex-direction: row;
+ gap: .9rem;
+  .in{
+    display: flex;
+    gap: .2rem;
+    flex-direction: column;
+  
+  }
   h2:hover{
     color: rgb(15, 157, 15);
+    font: 20px;
+
   }
+  .img-sec{
+    width: 30%;
+    border: 1px solid black;
+  
+  }
+
  
 }
 
@@ -117,6 +152,14 @@ hr {
   display: flex;
 }
 
+// show blogs 
+
+
+
+
+
+
+//end of showblogs
 // for news preview 
 
 
@@ -229,12 +272,15 @@ hr {
   background-color: #283858;
   height: 10vh;
   align-items: center;
-
+  a{
+    text-decoration: none;
+   }
 }
 .nav_items{
    text-transform: uppercase;
    font-weight: 600;
    color: #fff;
+  
 }
 .TopNavigation .nav_items:hover {
   color: aliceblue; 
@@ -452,7 +498,7 @@ hr {
           font-family: inherit;
         }
       }
-      input[type="text"] {
+      input[type="text"], input[type="number"] {
         font-family: 'Times New Roman', Times, serif;
       }
       input[type="text"]:focus, 
@@ -637,8 +683,29 @@ hr {
       flex: 7 1 0;
     }
     .preview{
+      position: relative;
       flex: 3 1 0;
+      .prevbtn{
+        display: flex;
+        justify-content: space-around;
+      
+      }
+      .image-preview{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+
+         img{
+          width: 70%;
+          border: 1px solid black;
+         }
+      }
     }
+    
     .submit{
    
       background: #8a00cf;
@@ -650,11 +717,12 @@ hr {
     }
     
     .btn{
+
       font-size: smaller;
-      border-radius: 13px;
+   
       color: #fff;
-      padding: .2rem 1rem;
-      margin: 0 10px;
+      padding: .4rem 1.2rem;
+      margin: 1rem 1rem;
     
     }
     .btn:hover{
@@ -833,87 +901,56 @@ hr {
   margin-top: 50px;
 }
 
-// .product{
-//   width: 350px;
-//   height: auto; 
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   margin-bottom: 50px;
-//   margin-right: 24px;
-//   transition: all 0.3s ease-in-out;
-//   padding: 12px;
-//   border-radius: 10px; 
-//   position: relative;
-//   margin-bottom: 4rem;
-
-// }
-
-// .product:hover {
-//   box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.1);
-// }
-
-// @media(min-width: 768px){
-//   .product{
-//     width: 300px;
-//   }
-// }
-
-// .product .product-img{
-//   width: 180px;
-//   height: 215px;  
-// }
-
-// .product .product-img img{
-//   width: 100%;
-//   height: 100%;
-// }
-
-// .product .product-text{
-//   margin-bottom: 10px;
-//   font-size: 16px;
-//   text-align: center;  
-// }
-
-// .readMoreBtn
-// {
-//   padding:5px;
-//   background-color: #2694b5;
-//   position: absolute;
-//   top:90%;
-//   left:10%;
-
-// }
-
 
 .Main_box 
 { 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   margin: auto;
+  color: rgb(27, 26, 26);
   display: block;
-  border: 10px solid rgb(99, 113, 204);
-  border-style:solid;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-top: 20px;
-  padding:20px;
-  margin-bottom: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+   box-shadow: 2px 2px  rgb(50, 49, 49);
+   max-width: 1000px;
+  margin-top: 5rem;
+  padding:3rem;
+  margin-bottom: 5rem;
+  position: relative;
   // background-color: white;
   // background-image: url('../images/bg5.jpg');
 
-  background: url('../images/bg5.jpg'),
-
-  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
-  
-  linear-gradient(#fff6f6, #9198e5) ;
+  background-image: linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)) , url('../images/bg5.jpg') ;
   background-repeat: no-repeat;
   background-size: cover;
+  .wrapper{
+    max-width: 950px;
+    margin: auto ;
+    border: 2px solid rgb(20, 54, 95);
+    padding:3rem;
+  }
+  .MAIN{
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .SUBHEAD{
+    font-size: 14px;
+
+  }
+  .PARA{
+    font-size: 12px;
+  }
+  .content{
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   .CollgeLogo
   {
-    width: 80px;
+    width: 100px;
     height: auto;
+    // background: rgba(0, 0, 0, 0.1);
     
   }
  
@@ -923,6 +960,9 @@ hr {
     flex-direction: row;
     align-items: baseline;
     justify-content:space-between;
+    .DATE{
+      border-bottom: 2px solid rgb(164, 164, 177);
+    }
   }
   .images
   { 
@@ -931,12 +971,14 @@ hr {
     display: block;
     border-radius: 20px;
     min-width: 300px;
-    width: 70%;
+    width: 90%;
 
     height: auto;
   }
   .image-title
   {
+    font-style: italic;
+    font-size: 12px;
     text-align: center;
   }
 }
