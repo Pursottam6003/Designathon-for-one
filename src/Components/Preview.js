@@ -33,7 +33,7 @@ export class Preview extends Component {
       otherMembers: {1: 'Other Renowned Members’ names with their designation'},   // 1
       date: {1: 'Date', 2: 'Date', 3: 'Date', 4: 'Date', 5: 'Date', 6: 'Date', 7: 'Date', 8: 'Date', 9: 'Month (optional)', 10: 'Date', 11: 'Date', 12: 'Date', 13: 'Date', 14: 'Date', 15: 'Date', 16: 'Date', 17: 'Date'}, // 1, 2, 3, 4, 5, 6, 14, 15, 16, 17 
       speakerName: {2: 'Speaker name',3: 'Speaker name'}, // 2, 3 
-      designation: {2: 'Designation', 3: 'Designation', 5: 'Designation', 11: 'Designation', 12: 'Designation', 13: 'Designation', 17: 'Designation'},//2, 3, 5 , 11, 12, 13, 15
+      designation: {2: 'Designation', 3: 'Designation', 5: 'Designation', 11: 'Designation', 12: 'Designation', 13: 'Designation', 16: 'Designation', 17: 'Designation'},//2, 3, 5 , 11, 12, 13, 15
       department: {2: 'Department', 3: 'Department', 5: 'Department', 11: 'Department', 12: 'Department', 13: 'Department'},//2, 5, 11, 12 , 13, 15
       lectureType: {2: 'Keynote/special lecture/inagural address etc.',3: 'Keynote/special lecture/inagural address etc.'},  // 2, 3 
       eventName: {2: 'Event name',9: 'Conference Name',13: 'Name of workshop',14: 'Name of the competition',15: 'Event name',16: 'Name of the event', 17: 'Event name'},// 2, 9, 15, 16, 17 
@@ -213,6 +213,10 @@ export class Preview extends Component {
   handleSubmit = (event) => {
     if (document.getElementById('activityForm').checkValidity()) {
       event.preventDefault();
+
+      const btn = event.target
+      btn.setAttribute('disabled', '')
+      btn.innerHTML = 'Please wait...'
       this.props.submit(this.state);
     }
   }
@@ -259,7 +263,7 @@ export class Preview extends Component {
           </div>
         {this.state.category !== 0 && (
           <div className='prevbtn'>
-            <button form='activityForm' type='submit' onClick={this.handleSubmit} className='btn submit'>Submit</button>
+            <button id='submitBtn' form='activityForm' type='submit' onClick={this.handleSubmit} className='btn submit'>Submit</button>
             <button onClick={this.resetPreview} className='btn reset'>Reset</button>
             </div>
         )}

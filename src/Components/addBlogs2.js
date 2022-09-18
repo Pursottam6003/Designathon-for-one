@@ -4,6 +4,7 @@ import { Preview } from './Preview'
 import { storage, fs } from '../config/config'
 import firebase from 'firebase/compat/app'
 
+
 export class AddBlogs2 extends Component {
   initialState = {
     category: 0,
@@ -49,28 +50,6 @@ export class AddBlogs2 extends Component {
       date = 'blank'
     }
 
-    //const Image = out.images[0];
-    let total_size = out.images.length;
-    const imageLinks = [];
-    for (let i = 0; i < total_size; i++) {
-      const Image = out.images[i];
-      const uploadTask = storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
-
-      uploadTask.on('state_changed', (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        console.log(progress);
-      }, (error) => {
-        console.log(error)
-      }, () => {
-        storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url => {
-          imageLinks.push(url);
-          if (i === total_size - 1) {
-            uploadOnFirestore()
-          }
-        })
-      })
-    }
-
     const uploadOnFirestore = () => {
       console.log(imageLinks);
       fs.collection(`Technodaya/Blogs/${category_Id}/`).doc().set({
@@ -86,6 +65,32 @@ export class AddBlogs2 extends Component {
         })
         
       })
+    }
+
+    //const Image = out.images[0];
+    let total_size = out.images.length;
+    const imageLinks = [];
+    for (let i = 0; i < total_size; i++) {
+      const Image = out.images[i];
+      const uploadTask = storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
+
+      uploadTask.on('state_changed', (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        console.log(progress);
+      }, (error) => {
+        console.log(error)
+      }, () => {
+        storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
+
+          imageLinks.push(url);
+          if (i === total_size - 1) {
+            uploadOnFirestore()
+          }
+        }) 
+      })
+    }
+    if (total_size === 0) {
+      uploadOnFirestore()
     }
   }
 
