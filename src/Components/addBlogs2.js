@@ -4,6 +4,7 @@ import {Preview} from './Preview'
 import {storage,fs} from '../config/config'
 import firebase from 'firebase/compat/app'
 
+
 export class AddBlogs2 extends Component {
   initialState = {
     category: 0,
@@ -64,9 +65,13 @@ export class AddBlogs2 extends Component {
         console.log(error)
       }, () => {
         storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
-          imageLinks.push(url);
-          if (i === total_size - 1) {
-            uploadOnFirestore()
+
+          if(url !== undefined || url !== null)
+          {
+            imageLinks.push(url);
+            if (i === total_size - 1) {
+              uploadOnFirestore()
+            }
           }
         }) 
       })
@@ -78,10 +83,9 @@ export class AddBlogs2 extends Component {
         Heading:heading,
         wholeDescription : wholeDescription,
         EventDate: date,
-        // Urls: firebase.firestore.FieldValue.arrayUnion(null,...imageLinks)
         Urls: firebase.firestore.FieldValue.arrayUnion(...imageLinks)
         }).then(()=>{
-          console.log("Sucessfully uploaded image");
+          console.log("Sucessfully uploaded image", firebase.firestore.FieldValue.arrayUnion(...imageLinks));
       })
     }  
     }
@@ -93,6 +97,8 @@ export class AddBlogs2 extends Component {
       images: data.images ? data.images : []
     })
   }
+
+
 	
 	render() {
 		return (
