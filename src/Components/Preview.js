@@ -243,6 +243,11 @@ export class Preview extends Component {
     return (
       <>
         <div className='preview' >
+          <div className='head'>
+
+          <h3 className='previewtell'>  <b>PREVIEW</b></h3>
+          <p>CLICK TO EDIT</p>
+          </div>
           <textarea className='textarea' name="heading" placeholder='Title...' value={heading} onChange={this.handleChange} />
           <div className='txtarea-wrapper'>
             <textarea className='txtarea' name="output" placeholder='your output will show here' value={output} onChange={this.handleChange} />
