@@ -9,6 +9,7 @@ import { Add_blogs } from "./Components/Add_blogs";
 import { Magzine } from "./Components/Magzine";
 import { FetchData } from "./Components/FetchData";
 import { Magzine2 } from "./Components/Magzine2";
+import { Magazine } from "./Components/Magazine";
 
 
 function App() {
@@ -36,6 +37,12 @@ function App() {
       <Route exact path="/addblogs2" element={
         <Layout>
           <AddBlogs2/>
+        </Layout>
+      } />
+
+      <Route exact path="/magazine" element={
+        <Layout>
+          <Magazine/>
         </Layout>
       } />
 
