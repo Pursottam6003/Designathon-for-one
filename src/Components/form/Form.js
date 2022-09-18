@@ -47,16 +47,11 @@ export class Form extends Component {
     })
   }
 
-  
-
-
-
   componentDidUpdate(prevProps, prevState) {
     if (this.state.category !== prevState.category) {
       this.setState({
         images: []
       }, () => {
-        console.log('category changed hence changing all values')
         this.props.getPreview({
           category: this.state.category,
           formData: this.state.formData,
@@ -106,7 +101,7 @@ export class Form extends Component {
  
   render() {
     return (
-      <form autoComplete="off" className='form-group'>
+      <form id='activityForm' autoComplete="off" className='form-group'>
         <input
           type="text"
           name="activityTitle"

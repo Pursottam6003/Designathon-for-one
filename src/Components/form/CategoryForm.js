@@ -56,8 +56,6 @@ export class CategoryForm extends Component {
 
   handleChange = (event) => {
     const { name, value, files } = event.target;
-    console.log(files);
-    console.log(event.target);
     let setVal = value
     if (name === "eventBrochure") {
       setVal = files[0]
@@ -375,6 +373,17 @@ export class CategoryForm extends Component {
             />
           </Field>
 
+          <Field showLabel={this.state.department.length} labeltxt="Department">
+            <input type="text"
+              className='form-control'
+              required
+              name="department"
+              value={this.state.department}
+              onChange={this.handleChange}
+              placeholder="Department"
+            />
+          </Field>
+
           <Field showLabel={this.state.insName.length} labeltxt="Institute name">
             <input type="text"
               className='form-control'
@@ -532,6 +541,16 @@ export class CategoryForm extends Component {
               placeholder="Sponsored agency"
             />
           </Field>
+
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+          </Field>
         </>
       )
     } else if (parseInt(categoryId) === 6) {    // done
@@ -581,6 +600,16 @@ export class CategoryForm extends Component {
               value={this.state.patOffice}
               onChange={this.handleChange}
               placeholder="Patent office name"
+            />
+          </Field>
+
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
             />
           </Field>
         </>
@@ -693,6 +722,16 @@ export class CategoryForm extends Component {
               value={this.state.doiUrl}
               onChange={this.handleChange}
               placeholder="DOI (if available)"
+            />
+          </Field>
+
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
             />
           </Field>
         </>
@@ -843,15 +882,15 @@ export class CategoryForm extends Component {
           <List items={this.state.authors} itemType="author" removeItem={this.removePerson} />
           <Person personType="author" notFirst={this.state.authors.length} handleSubmit={this.addPerson} />
 
-          <p className='sub-label'>Book details</p>
-          <Field showLabel={this.state.title.length} labeltxt="Title">
+          <p className='sub-label'>Publication details</p>
+          <Field showLabel={this.state.title.length} labeltxt="Chapter title">
             <input type="text"
               className='form-control'
               required
               name="title"
               value={this.state.title}
               onChange={this.handleChange}
-              placeholder="Title"
+              placeholder="Chapter title"
             />
           </Field>
           <Field showLabel={this.state.editors.length} labeltxt="Editors' Name">
@@ -873,6 +912,18 @@ export class CategoryForm extends Component {
               name="bookTitle"
               value={this.state.bookTitle}
               onChange={this.handleChange}
+            />
+          </Field>
+
+          <Field showLabel={this.state.year.length} labeltxt="Publication year">
+            <input type="number"
+              className='form-control'
+              required
+              name="year"
+              value={this.state.year}
+              onChange={this.handleChange}
+              min={1950}
+              placeholder="Publication year"
             />
           </Field>
 
@@ -905,6 +956,16 @@ export class CategoryForm extends Component {
               value={this.state.doiUrl}
               onChange={this.handleChange}
               placeholder="DOI (if avialable)"
+            />
+          </Field>
+
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
             />
           </Field>
         </>
@@ -980,6 +1041,16 @@ export class CategoryForm extends Component {
               placeholder="Organising institute name and address"
             />
           </Field>
+
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+          </Field>          
         </>)
     } else if (parseInt(categoryId) === 12) {   // done
       return (
@@ -1041,9 +1112,10 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date YYYY-MM (optional)" showLabel={1}>
+          <Field labeltxt="Month" showLabel={1}>
             <input type="month"
               className='form-control'
+              required
               name="date"
               value={this.state.date}
               onChange={this.handleChange}
@@ -1134,6 +1206,17 @@ export class CategoryForm extends Component {
           />
         </Field>
 
+        <Field labeltxt="Institute name" showLabel={this.state.insName.length}>
+            <input type="text"
+              className='form-control'
+              required
+              name="insName"
+              value={this.state.insName}
+              onChange={this.handleChange}
+              placeholder="Institute name"
+            />
+          </Field>
+
 
         <p className='sub-label'>Competition details</p>
         <Field showLabel={this.state.eventName.length} labeltxt="Name of the competition">
@@ -1192,40 +1275,27 @@ export class CategoryForm extends Component {
           />
         </Field>
 
+        <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+          </Field>
       </>)
     } else if (parseInt(categoryId) === 15) {   // done
       return (<>
         <p className='sub-label'>Coordinator details</p>
-        <Field showLabel={this.state.coordinatorName.length} labeltxt="Coordinator Name">
+        <Field showLabel={this.state.coordinatorName.length} labeltxt="Coordinator(s) Name with designation and department">
           <input type="text"
             className='form-control'
             required
-            placeholder="Coordinator Name"
+            placeholder="Coordinator(s) Name with designation and department"
             onChange={this.handleChange}
             name="coordinatorName"
             value={this.state.coordinatorName}
-          />
-        </Field>
-
-        <Field showLabel={this.state.designation.length} labeltxt="Designation">
-          <input type="text"
-            className='form-control'
-            required
-            placeholder="Designation"
-            onChange={this.handleChange}
-            name="designation"
-            value={this.state.designation}
-          />
-        </Field>
-
-        <Field showLabel={this.state.department.length} labeltxt="Department">
-          <input type="text"
-            className='form-control'
-            name="department"
-            required
-            onChange={this.handleChange}
-            value={this.state.department}
-            placeholder="Department"
           />
         </Field>
 
