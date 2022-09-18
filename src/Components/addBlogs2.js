@@ -36,7 +36,7 @@ export class AddBlogs2 extends Component {
   state = this.initialState
 
 	handleSubmit = (out) => {
-     
+
     let category_Id = this.state.category;
     let  heading = out.heading;
     let wholeDescription = out.output;
@@ -49,75 +49,42 @@ export class AddBlogs2 extends Component {
       date='blank'
     }
 
-   //const Image = out.images[0];
-  
+    //const Image = out.images[0];
     let total_size =out.images.length;
-    
-
-    let imageLinks=[];
+    const imageLinks=[];
     for(let i=0;i<total_size;i++)
     { 
       const Image = out.images[i];
       const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
-      
-      uploadTask.on('state_changed', snapshot => {
+
+      uploadTask.on('state_changed', (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         console.log(progress);
-      },
-        (error) => {
-          console.log(error);
-        },
-      () => {
-          storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
-            imageLinks.push(url);
-          }) 
-        })
+      }, (error) => {
+        console.log(error)
+      }, () => {
+        storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
+          imageLinks.push(url);
+          if (i === total_size - 1) {
+            uploadOnFirestore()
+          }
+        }) 
+      })
     }
-     
 
-    
-    setTimeout(() => {
+    const uploadOnFirestore = () => {    
       console.log(imageLinks);
       fs.collection(`Technodaya/Blogs/${category_Id}/`).doc().set({
         Heading:heading,
         wholeDescription : wholeDescription,
         EventDate: date,
+        // Urls: firebase.firestore.FieldValue.arrayUnion(null,...imageLinks)
         Urls: firebase.firestore.FieldValue.arrayUnion(...imageLinks)
         }).then(()=>{
           console.log("Sucessfully uploaded image");
       })
-      
-    }, 2000);
-  
-    /*
-    WORKING UPLOAD IMAGES FOR SINGLE ONE
-
-    const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
-    uploadTask.on('state_changed',snapshot=>{
-        const progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
-        console.log(progress);
-    },
-    (error) =>{
-      console.log(error);
+    }  
     }
-    ,()=>{
-        storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
-              fs.collection(`Technodaya/Blogs/${category_Id}/`).doc().set({
-              Heading:heading,
-              wholeDescription : wholeDescription,
-              EventDate: date,
-              Url:url,
-              
-            }).then(()=>{
-              console.log("Sucessfully uploaded image");
-            })
-
-        })
-    })
-  */}
-
-
-
   getPreview = (data) => {
     this.setState({
       category: data.category,

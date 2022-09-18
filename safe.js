@@ -1,4 +1,30 @@
 
+/*
+    WORKING UPLOAD IMAGES FOR SINGLE ONE
+
+    const uploadTask=storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
+    uploadTask.on('state_changed',snapshot=>{
+        const progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
+        console.log(progress);
+    },
+    (error) =>{
+      console.log(error);
+    }
+    ,()=>{
+        storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
+              fs.collection(`Technodaya/Blogs/${category_Id}/`).doc().set({
+              Heading:heading,
+              wholeDescription : wholeDescription,
+              EventDate: date,
+              Url:url,
+              
+            }).then(()=>{
+              console.log("Sucessfully uploaded image");
+            })
+
+        })
+    })
+  */}
 
 
     let category_Id = this.state.category;

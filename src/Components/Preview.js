@@ -128,7 +128,7 @@ export class Preview extends Component {
     let outStr = ''
     switch (category) {
       case 1:
-        outStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purpoveAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
+        outStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
         break;    
       case 2:
         outStr = `${this.ov('speakerName')} delivered a ${this.ov('lectureType')} on "${this.ov('title')}" in the ${this.ov('eventName')} organised by ${this.ov('organizer')} on ${this.ov('date')}.`
@@ -147,16 +147,16 @@ export class Preview extends Component {
           //outStr=' '
         break;
       case 7:
-        outStr = `${this.ov('authors[0]')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title : ${this.ov('journalTitle')} , Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
+        outStr = `${this.ov('authors')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title : ${this.ov('journalTitle')} , Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
         break;
       case 8:
-        outStr = `${this.ov('authors[0]')}, ${this.ov('year')} ${this.ov('title')} published by ${this.ov('publisher')} ${this.ov('doiUrl')}`
+        outStr = `${this.ov('authors')}, ${this.ov('year')} ${this.ov('title')} published by ${this.ov('publisher')} ${this.ov('doiUrl')}`
         break;
       case 9:
-        outStr = `${this.ov('authors[0]')} , {firstinitial} ${this.ov('date')} ${this.ov('title')} {paper representation} ,${this.ov('confType')} ${this.ov('location')} ${this.ov('doiUrl')}`
+        outStr = `${this.ov('authors')} , {firstinitial} ${this.ov('date')} ${this.ov('title')} {paper representation} ,${this.ov('confType')} ${this.ov('location')} ${this.ov('doiUrl')}`
         break;
       case 10:
-        outStr = `${this.ov('authors[0]')} {first initial} ${this.ov('year')}. ${this.ov('chapterTitle')} ${this.ov('bookTitle')} with  published by ${this.ov('publisher')} {doi}`
+        outStr = `${this.ov('authors')} {first initial} ${this.ov('year')}. ${this.ov('chapterTitle')} ${this.ov('bookTitle')} with  published by ${this.ov('publisher')} {doi}`
         break;
       case 11:
         outStr = `${this.ov('facultyName')} ${this.ov('designation')} of ${this.ov('department')} on ${this.ov('programTitle')} organised by ${this.ov('organizingName')} ${this.ov('organizingAddr')} ${this.ov('date')} {photo}`
