@@ -145,7 +145,6 @@ export class Person extends Component {
               <select
                 type="text"
                 name="investigatorType"
-                defaultValue={"PI"}
                 onChange={this.handleChange}
                 value={this.state.investigatorType}
               >
@@ -218,7 +217,6 @@ export class Person extends Component {
                 type="text"
                 required
                 name="investigatorType"
-                defaultValue={"PI"}
                 onChange={this.handleChange}
                 value={this.state.investigatorType}
               >
