@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import {fs} from '../config/config'
-import { Magzine2 } from './Magzine2';
+import { Magazine } from './Magazine';
 
 export const FetchData = () => {
     const [blogs, setblogs]=useState([]);
@@ -31,7 +31,7 @@ export const FetchData = () => {
     },[]) 
     return (
     <>
-        <Magzine2 blogsarray={blogs}/>
+        <Magazine blogsarray={blogs}/>
     </>
   )
 }
