@@ -8,6 +8,7 @@ import { ShowBlogs } from "./Components/ShowBlogs";
 import { Add_blogs } from "./Components/Add_blogs";
 import { Magzine } from "./Components/Magzine";
 import { FetchData } from "./Components/FetchData";
+import { Magzine2 } from "./Components/Magzine2";
 
 
 function App() {
@@ -43,7 +44,12 @@ function App() {
           <Magzine/>
         </Layout>
       } />
- 
+      
+      <Route exact path="/magzine2" element={
+        <Layout>
+          <FetchData/>
+        </Layout>
+      } />
       
 
       <Route exact path="/show_blogs" element={

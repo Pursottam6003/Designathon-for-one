@@ -1,6 +1,7 @@
 import React,{forwardRef,useRef} from 'react'
 import jote_img from "../images/image_jote.jpg"
 import bglogo from '../images/logobgrm.png'
+import img from '../images/icons8-calendar-week-32.png'
 import $ from 'jquery';
 import ReactToPrint, { PrintContextConsumer } from "react-to-print";
 
@@ -25,31 +26,40 @@ const ComponentToPrint = forwardRef((props, ref) => {
       <>
     <div ref={ref}>
     <div id="Main_box" className='Main_box'>
+      <div className='wrapper'>
         <div className='titlebox'>
             <div><img className='CollgeLogo' alt='logos' src={bglogo}/></div>
-            <h2>Main Title</h2>
-            <p><img src="https://img.icons8.com/color/30/000000/calendar--v1.png" alt='magazine'/> 11th Sept 2022</p>
+            
+            <p><img src={img} alt='magazine'/> <span className='DATE'>11th Sept 2022</span></p>
         </div>
 
         <div className='content'>
-            lorem hello hasflkf just kidding just kidding just taking easy take me easy easy peasey take it easy easy peasey 
-            lorem hello hasflkf just kidding just kidding just taking easy take me easy easy peasey take it easy easy peasey 
-            lorem hello hasflkf just kidding just kidding just taking easy take me easy easy peasey take it easy easy peasey 
-            lorem hello hasflkf just kidding just kidding just taking easy take me easy easy peasey take it easy easy peasey 
-            lorem hello hasflkf just kidding just kidding just taking easy take me easy easy peasey take it easy easy peasey 
-            lorem hello hasflkf just kidding just kidding just taking easy take me easy easy peasey take it easy easy peasey 
+        <h1 className='MAIN'>MOU SIGNED BETWEEN NATINAL INSTITUTE OF ARUNCHAL AND GSS JOTE</h1>
+          <h2 className='SUBHEAD'>THIS IS SUBHEADING </h2>
+          <p className='PARA'>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+           Similique vero facilis odit nobis, consequatur minus animi veritatis
+            hic quia reiciendis quod illum tempora eligendi commodi distinctio saepe 
+          molestias debitis ullam, voluptate praesentium quasi.
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+           Similique vero facilis odit nobis, consequatur minus animi veritatis
+            hic quia reiciendis quod illum tempora eligendi commodi distinctio saepe 
+          molestias debitis ullam, voluptate praesentium quasi.
+
+          </p>
         </div>
  
         <div className='image-container'>
             <img src={jote_img} className='images' alt="mou"></img>
             <p className='image-title'>Title : leoafoafojiafoi hdaslfafiafljdasf af</p>
         </div>
-
+        
         {/* <button onClick={changebg}> Click</button> */}
         
     </div>
-        
     </div>
+         </div>
+    
       </>
     )
     
