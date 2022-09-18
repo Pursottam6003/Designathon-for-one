@@ -39,7 +39,8 @@
   
     height: 600px;
     width: 100%;
-    z-index: -1;
+ z-index: 2;
+    transition: 400ms ease-out;
   }
 
 
@@ -58,7 +59,9 @@
 
 
  .zoom:hover{
-  transform: scale(1.2);
+
+  transform: scale(1.1);
+
  }
 
 
@@ -895,87 +898,56 @@ hr {
   margin-top: 50px;
 }
 
-// .product{
-//   width: 350px;
-//   height: auto; 
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   margin-bottom: 50px;
-//   margin-right: 24px;
-//   transition: all 0.3s ease-in-out;
-//   padding: 12px;
-//   border-radius: 10px; 
-//   position: relative;
-//   margin-bottom: 4rem;
-
-// }
-
-// .product:hover {
-//   box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.1);
-// }
-
-// @media(min-width: 768px){
-//   .product{
-//     width: 300px;
-//   }
-// }
-
-// .product .product-img{
-//   width: 180px;
-//   height: 215px;  
-// }
-
-// .product .product-img img{
-//   width: 100%;
-//   height: 100%;
-// }
-
-// .product .product-text{
-//   margin-bottom: 10px;
-//   font-size: 16px;
-//   text-align: center;  
-// }
-
-// .readMoreBtn
-// {
-//   padding:5px;
-//   background-color: #2694b5;
-//   position: absolute;
-//   top:90%;
-//   left:10%;
-
-// }
-
 
 .Main_box 
 { 
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
   margin: auto;
+  color: rgb(27, 26, 26);
   display: block;
-  border: 10px solid rgb(99, 113, 204);
-  border-style:solid;
-  margin-left: 20%;
-  margin-right: 20%;
-  margin-top: 20px;
-  padding:20px;
-  margin-bottom: 30px;
+  background-color: rgba(0, 0, 0, 0.3);
+   box-shadow: 2px 2px  rgb(50, 49, 49);
+   max-width: 1000px;
+  margin-top: 5rem;
+  padding:3rem;
+  margin-bottom: 5rem;
+  position: relative;
   // background-color: white;
   // background-image: url('../images/bg5.jpg');
 
-  background: url('../images/bg5.jpg'),
-
-  // linear-gradient(180deg, rgba(202, 58, 58, 0.5) 0%, rgba(143, 38, 38, 0.5) 100%);
-  
-  linear-gradient(#fff6f6, #9198e5) ;
+  background-image: linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)) , url('../images/bg5.jpg') ;
   background-repeat: no-repeat;
   background-size: cover;
+  .wrapper{
+    max-width: 950px;
+    margin: auto ;
+    border: 2px solid rgb(20, 54, 95);
+    padding:3rem;
+  }
+  .MAIN{
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .SUBHEAD{
+    font-size: 14px;
+
+  }
+  .PARA{
+    font-size: 12px;
+  }
+  .content{
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   .CollgeLogo
   {
-    width: 80px;
+    width: 100px;
     height: auto;
+    // background: rgba(0, 0, 0, 0.1);
     
   }
  
@@ -985,6 +957,9 @@ hr {
     flex-direction: row;
     align-items: baseline;
     justify-content:space-between;
+    .DATE{
+      border-bottom: 2px solid rgb(164, 164, 177);
+    }
   }
   .images
   { 
@@ -993,12 +968,14 @@ hr {
     display: block;
     border-radius: 20px;
     min-width: 300px;
-    width: 70%;
+    width: 90%;
 
     height: auto;
   }
   .image-title
   {
+    font-style: italic;
+    font-size: 12px;
     text-align: center;
   }
 }
