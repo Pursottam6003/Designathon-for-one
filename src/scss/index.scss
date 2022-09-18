@@ -1140,3 +1140,15 @@ hr {
   linear-gradient(#fff6f6, #9198e5) ;
 }
 
+@media print {
+  .Navbar, .logoItems, .TopNavigation, .Footer{
+    display: none;
+  }
+  #Main_box  {
+    width:100%!important;
+    padding:0!important;
+    margin:0%!important;
+  }
+}
+
+
