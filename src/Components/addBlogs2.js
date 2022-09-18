@@ -38,35 +38,54 @@ export class AddBlogs2 extends Component {
   state = this.initialState
 
   handleSubmit = (out) => {
-
-    let category_Id = this.state.category;
-    let heading = out.heading;
-    let wholeDescription = out.output;
-    let date = this.state.formData.date;
-
-    console.log(date);
-
-    if (date === undefined || date === null) {
-      date = 'blank'
-    }
-
     const uploadOnFirestore = () => {
       console.log(imageLinks);
       fs.collection(`Technodaya/Blogs/${category_Id}/`).doc().set({
         Heading: heading,
         wholeDescription: wholeDescription,
         EventDate: date,
-        Urls: firebase.firestore.FieldValue.arrayUnion(...imageLinks)
+        Urls: firebase.firestore.FieldValue.arrayUnion(...imageLinks),
+        Brochure: brochureUrl,
       }).then(() => {
         console.log("Sucessfully uploaded image");
         // clear the form
         this.setState({
           clearRev: this.state.clearRev + 1
         })
-        
       })
     }
 
+    let category_Id = this.state.category;
+    let heading = out.heading;
+    let wholeDescription = out.output;
+    let date = this.state.formData.date;
+    let Mybrochure = this.state.formData.eventBrochure;
+    let brochureUrl = '';
+    console.log(Mybrochure);
+
+    if(Mybrochure)
+    {
+      const uploadTask = storage.ref(`Brochure/${this.selectOptions[category_Id]}/${Mybrochure.name.split(/(\\|\/)/g).pop()}/`).put(Mybrochure);
+      uploadTask.on('state_changed',(snapshot)=>{
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        console.log(progress);
+      },
+      (error) =>{
+        console.log(error);
+      },
+      ()=>{
+        storage.ref(`Brochure/${this.selectOptions[category_Id]}/`).child(`${Mybrochure.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
+          brochureUrl = url
+          uploadOnFirestore();
+        })
+      }
+      )
+    }
+    // if (date === undefined || date === null) {
+    //   date = 'blank'
+    // }
+
+    // images
     //const Image = out.images[0];
     let total_size = out.images.length;
     const imageLinks = [];
