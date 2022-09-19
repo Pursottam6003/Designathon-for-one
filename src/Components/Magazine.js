@@ -66,7 +66,9 @@ class MagezineArticle extends Component {
             {images}
 
             {images.length !== 0 && (
-              <p className='img-caption'>{imgCaption}</p>
+              <p className='img-caption'>
+                {imgCaption ? imgCaption : Catagories[parseInt(categoryId)]}
+              </p>
             )}
           </div>
           

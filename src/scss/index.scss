@@ -976,10 +976,12 @@ hr {
       li{
         font-weight: 800;
         font-family: 'Crimson Text', serif;;
-          font-size:1.15rem ;
+        font-size:1.15rem ;
       }
       li::marker{
         padding-right: .2rem;
+        font-size: 1.5rem;
+        color: rgb(119, 119, 119);
       }
     }
 
@@ -989,6 +991,7 @@ hr {
       .img-wrapper {
         margin: 2rem auto 1rem;
         width: 480px;
+        // max-height: 375px;
         border-radius: 0.25rem;
         overflow: hidden;
         box-shadow: 0 1px 10px 0 rgba(28, 28, 29, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.397);
@@ -1027,7 +1030,7 @@ hr {
         font-family: inherit;
         list-style: none;
        
-         border-bottom:.8px solid rgb(75, 75, 75);
+         border-bottom:0.8px solid rgb(215 215 215);
         h6:hover{
           color: green;
           cursor: pointer;
