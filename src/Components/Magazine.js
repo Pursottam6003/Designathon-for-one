@@ -54,9 +54,10 @@ class MagezineArticle extends Component {
         <h2>{Heading}</h2>
         <div className='content'>
           <p>{wholeDescription}</p>
-          <div className='images'>
+          <div className='mag-images'>
             {images}
           </div>
+          
         </div>
       </div>
     )
