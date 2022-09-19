@@ -1,0 +1,82 @@
+.footer  
+.Main_box 
+{ 
+  font-family: 'Times New Roman', Times, serif;
+  margin: auto;
+ color:black;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.3);
+   box-shadow: 1px 2px 3px  rgb(100, 99, 99);
+   max-width: 1000px;
+  margin-top: 5rem;
+  padding:3rem;
+  margin-bottom: 5rem;
+  position: relative;
+  // background-color: white;
+  // background-image: url('../images/bg5.jpg');
+
+  background-image: linear-gradient(  rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)) , url('../images/bg5.jpg') ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  .wrapper{
+    max-width: 950px;
+    margin: auto ;
+    border: 2px solid rgb(255, 3, 95);
+    padding:3rem;
+  }
+  .MAIN{
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .SUBHEAD{
+    font-size: 14px;
+
+  }
+  .PARA{
+    font-size: 12px;
+  }
+  .content{
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .CollgeLogo
+  {
+    width: 100px;
+    height: auto;
+    // background: rgba(0, 0, 0, 0.1);
+    
+  }
+ 
+  .titlebox
+  {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content:space-between;
+    .DATE{
+      border-bottom: 2px solid rgb(55, 169, 13);
+    }
+  }
+  .images
+  { 
+    padding:10px;
+    margin: auto;
+    display: block;
+    border-radius: 6px;
+    min-width: 300px;
+    width: 90%;
+
+    height: auto;
+  }
+  .image-title
+  {
+    font-style: italic;
+    font-size: 12px;
+    text-align: center;
+  }
+}

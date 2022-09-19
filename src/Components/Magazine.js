@@ -60,9 +60,10 @@ class MagezineArticle extends Component {
           {categoryId === 17 && (
             <p>For more details, <a href={Brochure}>download brochure</a> or visit <a href='https://nitap.ac.in/'>NIT Arunachal Pradesh website</a>.</p>
           )}
-          <div className='images'>
+          <div className='mag-images'>
             {images}
           </div>
+          
         </div>
       </div>
     )
