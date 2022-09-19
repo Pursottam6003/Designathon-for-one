@@ -89,7 +89,7 @@ export class Form extends Component {
     { value: 12, name: 'Reviewers' },
     { value: 13, name: 'Session Chairs' },
     { value: 14, name: 'Winners of Competition' },
-    { value: 15, name: 'Workshop/FDP/Conference/seminar/short term course etc.' },
+    { value: 15, name: 'Workshop / FDP / Conference / seminar / short term course etc.' },
     { value: 16, name: 'Outreach Activity' },
     { value: 17, name: 'Announcement' },
   ]

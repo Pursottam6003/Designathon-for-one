@@ -777,12 +777,14 @@ hr {
       color: #fff;
       padding: .6rem 2rem;
       margin: 1rem 1rem;
-      box-shadow: 3px 2px 2px rgb(91, 89, 89);
+      box-shadow: 0 1px 10px 0 rgba(28, 28, 29, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.397);
+
     }
 
     .btn:hover {
+      transition: 900ms ease;
       // box-shadow: 1px 1px 4px -4px black;
-      box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.3)
+      box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1)
     }
 
   }
@@ -915,9 +917,14 @@ hr {
 
 
 .magazine-wrapper {
+  p, li {
+    letter-spacing: -.01rem;
+    line-height: 1.6;
+  }
   // display: flex;
   display: grid;
-  grid-template-columns: minmax(0,1fr) minmax(0,2fr) minmax(0,1fr);
+  gap: 2rem;
+  grid-template-columns: minmax(0,auto) minmax(0,2fr) minmax(0,1fr);
   // gap: 2rem;
   max-width: 1600px;
   margin: auto;
@@ -925,15 +932,27 @@ hr {
   --top-offset: 1.5rem;
 
   .magazine {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Cormorant Garamond', serif;
+    // font-family: 'Crimson Text', serif;
     padding-top: var(--top-offset);
+    ul {
+      padding-left: 0;
+    }
 
+    .magazine-section {
+      h1 {
+        line-height: 1;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: solid 2px rgb(196, 196, 196);
+      }
+    }
 
     .mag-images {
       width: 100%;
 
       .img-wrapper {
-        margin: 2rem auto;
+        margin: 2rem auto 1rem;
         width: 480px;
         border-radius: 0.25rem;
         overflow: hidden;
@@ -944,24 +963,38 @@ hr {
           height: auto;
         }
       }
+
+      .img-caption {
+        text-align: center;
+        font-style: oblique;
+      }
     }
   }
 
   .read-more {
     padding-top: var(--top-offset);
+
     ul{
+      color: rgb(72, 70, 70) ;
       display: flex;
       flex-direction: column;
       gap: .6rem;
+      padding-left: 0.5rem;
       li{
         list-style: none;
         h6:hover{
           color: green;
           cursor: pointer;
-
         }
+        h6 {
+          padding: 0;
+          margin: 0;
+        }
+
         time{
-          color: rgb(237, 101, 124);
+          color: rgb(59, 59, 59);
+          font-size: 0.8rem;
+          font-family: 'Courier New', Courier, monospace;
         }
       }
     }
@@ -973,21 +1006,27 @@ hr {
       top: 0;
       padding-top: var(--top-offset);
      
-      a{
-        text-decoration: none;
-        color: rgb(65, 64, 64);
-        
-      }
+
      
      
       li {
         list-style: none;
         border-left: 2px solid rgb(105, 154, 219);
-        padding: 0 .6rem;
+
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+        margin: 0;
+        color: rgb(75, 80, 86);
+        border-left: solid 2px rgb(195, 202, 209);
+
+        a{
+          text-decoration: none;
+          color: rgb(65, 64, 64);
+        }
       }
       li:hover{
         color: black;
-        border-left: 4px solid rgb(46, 140, 235);
+        border-left: 3px solid rgb(46, 140, 235);
       }
     }
   }

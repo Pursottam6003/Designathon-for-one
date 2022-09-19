@@ -64,6 +64,10 @@ class MagezineArticle extends Component {
           )}
           <div className='mag-images'>
             {images}
+
+            {images.length !== 0 && (
+              <p className='img-caption'>{Heading}</p>
+            )}
           </div>
           
         </div>
@@ -165,19 +169,8 @@ export class Magazine extends Component {
   render() {
     return (
       <div className='magazine-wrapper'>
-        <div className='magazine-toc'>
-          <div className='toc'>
-            <h4>In this article</h4>
-            {this.state.toc}
-          </div>
-        </div>
-        <div className='magazine'>
-          <ul>
-            {this.state.magSecComponents}
-          </ul>
-        </div>
         <div className='read-more'>
-          <h5>Other releases</h5>
+          <h4>Other releases</h4>
           <ul>
             <li>
               <h6>Technodaya (Vol-V iss-3)</h6>
@@ -209,6 +202,18 @@ export class Magazine extends Component {
             </li>
           </ul>
         </div>
+        <div className='magazine'>
+          <ul>
+            {this.state.magSecComponents}
+          </ul>
+        </div>
+        <div className='magazine-toc'>
+          <div className='toc'>
+            <h4>In this article</h4>
+            {this.state.toc}
+          </div>
+        </div>
+        
       </div>
     )
   }
