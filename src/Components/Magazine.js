@@ -44,6 +44,7 @@ const linkCopied = () => {
 class MagezineArticle extends Component {
   render() {
     const { Heading, EventDate, Urls, wholeDescription, Brochure } = this.props.data
+    const { categoryId } = this.props
     const images = Urls.map((url, i) => {
       return (
         <img src={url} key={`i${i}`} />
@@ -51,9 +52,14 @@ class MagezineArticle extends Component {
     })
     return (
       <div className='magazine-article'>
-        <h2>{Heading}</h2>
+        {Heading !== Catagories[parseInt(categoryId)] && (
+          <h2>{Heading}</h2>
+        )}
         <div className='content'>
           <p>{wholeDescription}</p>
+          {categoryId === 17 && (
+            <p>For more details, <a href={Brochure}>download brochure</a> or visit <a href='https://nitap.ac.in/'>NIT Arunachal Pradesh website</a>.</p>
+          )}
           <div className='images'>
             {images}
           </div>
@@ -64,13 +70,11 @@ class MagezineArticle extends Component {
 }
 
 class MagazineSection extends Component {
-
-
   render() {
     const { id, articles } = this.props
     const articleComponent = articles.map((article, i) => {
       return (
-        <MagezineArticle data={article} key={`a${i}`} />
+        <MagezineArticle categoryId={id} data={article} key={`a${i}`} />
       )
     })
     return (
@@ -110,11 +114,7 @@ export class Magazine extends Component {
               [i]: blogsarray
             }
           }, () => {
-            if (i === 17) {
-              console.log('creating the blogs component')
-              console.log(Object.keys(this.state.blogs));
-              this.createComponents()
-            }
+            this.createComponents()
           })
         }
       }
