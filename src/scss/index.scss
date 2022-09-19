@@ -915,19 +915,40 @@ hr {
 
 
 .magazine-wrapper {
-  display: flex;
-  gap: 2rem;
+  // display: flex;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(0,2fr) minmax(0,1fr);
+  // gap: 2rem;
   max-width: 1600px;
   margin: auto;
   padding: 2rem;
+  --top-offset: 1.5rem;
 
   .magazine {
-    max-width: 50%;
+    font-family: 'Times New Roman', Times, serif;
+    padding-top: var(--top-offset);
 
+
+    .mag-images {
+      width: 100%;
+
+      .img-wrapper {
+        margin: 2rem auto;
+        width: 480px;
+        border-radius: 0.25rem;
+        overflow: hidden;
+        box-shadow: 0 1px 10px 0 rgba(28, 28, 29, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.397);
+
+        img{
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
   }
 
   .read-more {
-    max-width: 40%;
+    padding-top: var(--top-offset);
     ul{
       display: flex;
       flex-direction: column;
@@ -947,13 +968,14 @@ hr {
   }
 
   .magazine-toc {
-    max-width: 20%;
-
     .toc {
+      position: sticky;
+      top: 0;
+      padding-top: var(--top-offset);
      
       a{
         text-decoration: none;
-        color: black;
+        color: rgb(65, 64, 64);
         
       }
      
@@ -964,7 +986,7 @@ hr {
         padding: 0 .6rem;
       }
       li:hover{
-        color: #2694b5;
+        color: black;
         border-left: 4px solid rgb(46, 140, 235);
       }
     }
@@ -972,11 +994,6 @@ hr {
 
 }
 
-.mag-images {
-  img{
-    width: 90%;
-  }
-}
 
 
 // ends here

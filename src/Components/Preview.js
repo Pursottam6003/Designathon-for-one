@@ -119,7 +119,7 @@ export class Preview extends Component {
       'Reviewers',
       'Session Chairs',
       'Winners of Competition',
-      'Workshop/FDP/Conference/seminar/short term course etc.',
+      'Workshop / FDP / Conference / seminar / short term course etc.',
       'Outreach Activity',
       'Announcement',
     ]

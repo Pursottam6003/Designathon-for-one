@@ -21,7 +21,7 @@ const Catagories = [
   'Reviewers',
   'Session Chairs',
   'Winners of Competition',
-  'Workshop/FDP/Conference/seminar/short term course etc.',
+  'Workshop / FDP / Conference / seminar / short term course etc.',
   'Outreach Activity',
   'Announcement',
 ]
@@ -47,7 +47,9 @@ class MagezineArticle extends Component {
     const { categoryId } = this.props
     const images = Urls.map((url, i) => {
       return (
-        <img src={url} key={`i${i}`} />
+        <div className='img-wrapper'>
+          <img src={url} key={`i${i}`} />
+        </div>
       )
     })
     return (
@@ -81,7 +83,7 @@ class MagazineSection extends Component {
     return (
       <div className='magazine-section'>
         <header className='category-header'>
-          <h1>{Catagories[id]}</h1>
+          <h1 id={`category${id}`}>{Catagories[id]}</h1>
         </header>
         {articleComponent}
       </div>
@@ -131,7 +133,7 @@ export class Magazine extends Component {
         <MagazineSection id={id} key={`s${key}`} articles={this.state.blogs[id]} />
       ))
       tocln.push((
-        <li><a href="">{Catagories[id]}</a></li>
+        <li><a href={`#category${id}`}>{Catagories[id]}</a></li>
       ))
     })
     console.log(sections)
