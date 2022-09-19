@@ -6,6 +6,10 @@
 
 }
 
+html {
+  scroll-padding-top: 1.5rem;
+}
+
 .txt {
   max-width: 1200px;
   margin: auto;
@@ -721,6 +725,7 @@ hr {
     }
 
     .preview {
+      font-family: 'Times New Roman', Times, serif;
       position: relative;
       flex: 3 1 0;
 
@@ -743,6 +748,14 @@ hr {
           width: 70%;
           border: 1px solid black;
         }
+      }
+
+
+      .img-caption-preview {
+        text-align: center;
+        font-size: 0.8rem;
+        font-style: italic;
+        margin: 0.5rem 0;
       }
     }
 
@@ -917,9 +930,17 @@ hr {
 
 
 .magazine-wrapper {
+  scroll-padding-top: 1rem;
   p, li {
     letter-spacing: -.01rem;
     line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: rgb(75, 75, 75);
+
+    font-family: 'Cormorant Garamond', serif;
+    // font-family: 'Crimson Text', serif;;
   }
   // display: flex;
   display: grid;
@@ -932,8 +953,6 @@ hr {
   --top-offset: 1.5rem;
 
   .magazine {
-    font-family: 'Cormorant Garamond', serif;
-    // font-family: 'Crimson Text', serif;
     padding-top: var(--top-offset);
     ul {
       padding-left: 0;
@@ -945,6 +964,22 @@ hr {
         margin-bottom: 1rem;
         padding-bottom: 0.5rem;
         border-bottom: solid 2px rgb(196, 196, 196);
+        font-weight: 700;
+      }
+      p {
+        font-family: 'Crimson Text', serif;
+        font-size: 1.05rem;
+        font-weight: 400;
+        color: rgb(44, 43, 43);
+        line-height: 1.5;
+      }
+      li{
+        font-weight: 800;
+        font-family: 'Crimson Text', serif;;
+          font-size:1.15rem ;
+      }
+      li::marker{
+        padding-right: .2rem;
       }
     }
 
@@ -967,6 +1002,8 @@ hr {
       .img-caption {
         text-align: center;
         font-style: oblique;
+        font-size: 1rem;
+        font-weight: 500;
       }
     }
   }
@@ -974,27 +1011,42 @@ hr {
   .read-more {
     padding-top: var(--top-offset);
 
+    h4 {
+      font-weight: 700;
+    }
+    
+
     ul{
       color: rgb(72, 70, 70) ;
       display: flex;
       flex-direction: column;
       gap: .6rem;
       padding-left: 0.5rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       li{
+        font-family: inherit;
         list-style: none;
+       
+         border-bottom:.8px solid rgb(75, 75, 75);
         h6:hover{
           color: green;
           cursor: pointer;
         }
         h6 {
+          // font-family: inherit;
+          font-weight: 700;
+          font-size: 1.1rem;
           padding: 0;
           margin: 0;
         }
-
+      
         time{
           color: rgb(59, 59, 59);
           font-size: 0.8rem;
           font-family: 'Courier New', Courier, monospace;
+          .daate{
+            width: 10px;
+          }
         }
       }
     }
@@ -1006,7 +1058,9 @@ hr {
       top: 0;
       padding-top: var(--top-offset);
      
-
+      h4 {
+        font-weight: 700;
+      }
      
      
       li {

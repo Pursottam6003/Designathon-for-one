@@ -15,7 +15,8 @@ export class Preview extends Component {
     heading: '',
     output: '',
     category: 0,
-    images: []
+    images: [],
+    imgCaption: ''
   }
 
   state = this.initialState
@@ -64,7 +65,8 @@ export class Preview extends Component {
       collaboration: {14: 'Institute Name if any collaboration/association',15: 'If collaboration mention its full address',16: 'collaboration',17: 'Collaborator address (optional)'},  // 14, 15, 16, 17
       coordinatorName: {15: 'Coordinator Name'},  // 15
       eventLink: {17: 'Event link'},  // 17
-      eventBrochure: {17: 'Upload brochure'}  // 17
+      eventBrochure: {17: 'Upload brochure'},  // 17,
+      imgCaption: {5: 'Image caption'}    // 5
     }
 
     const peopleLs = ['copi', 'pi', 'authors']
@@ -231,7 +233,8 @@ export class Preview extends Component {
       }
 
       this.setState({
-        category: parseInt(this.props.categoryId)
+        category: parseInt(this.props.categoryId),
+        imgCaption: this.props.imgCaption
       })
     }
   }
@@ -249,8 +252,8 @@ export class Preview extends Component {
         <div className='preview' >
           <div className='head'>
 
-          <h3 className='previewtell'>  <b>PREVIEW</b></h3>
-          <p>CLICK TO EDIT</p>
+            <h3 className='previewtell'>  <b>PREVIEW</b></h3>
+            <p>CLICK TO EDIT</p>
           </div>
           <textarea className='textarea' name="heading" placeholder='Title...' value={heading} onChange={this.handleChange} />
           <div className='txtarea-wrapper'>
@@ -261,12 +264,15 @@ export class Preview extends Component {
           <div className='image-preview'>
             {imgComponentArr}
           </div>
-        {this.state.category !== 0 && (
-          <div className='prevbtn'>
-            <button id='submitBtn' form='activityForm' type='submit' onClick={this.handleSubmit} className='btn submit'>Submit</button>
-            <button onClick={this.resetPreview} className='btn reset'>Reset</button>
+          {imgComponentArr.length !== 0 && (this.state.category !== 1 || this.state.category !== 3)  && (
+            <p className='img-caption-preview'>{this.state.imgCaption}</p>
+          )}
+          {this.state.category !== 0 && (
+            <div className='prevbtn'>
+              <button id='submitBtn' form='activityForm' type='submit' onClick={this.handleSubmit} className='btn submit'>Submit</button>
+              <button onClick={this.resetPreview} className='btn reset'>Reset</button>
             </div>
-        )}
+          )}
         </div>
       </>
     )
