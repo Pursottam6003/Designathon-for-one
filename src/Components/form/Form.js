@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+ import React, { Component } from 'react'
 import { CategoryForm } from './CategoryForm'
 
 export class Form extends Component {
@@ -102,7 +102,7 @@ export class Form extends Component {
  
   render() {
     return (
-      <form id='activityForm' autoComplete="off" className='form-group'>
+      <form id='activityForm' autoComplete="off" className='form-group' style={{display: this.props.display}}>
         <input
           type="text"
           name="activityTitle"

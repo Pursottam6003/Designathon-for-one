@@ -5,9 +5,10 @@ import { storage, fs } from '../config/config'
 import firebase from 'firebase/compat/app'
 
 
-export class AddBlogs2 extends Component {
+export class AddBlogs extends Component {
   initialState = {
     category: 0,
+    edit: true,
     formData: {},
     activityTitle: '',
     images: [],
@@ -71,27 +72,23 @@ export class AddBlogs2 extends Component {
     }
     console.log(Mybrochure);
 
-    if(Mybrochure)
-    {
+    if (Mybrochure) {
       const uploadTask = storage.ref(`Brochure/${this.selectOptions[category_Id]}/${Mybrochure.name.split(/(\\|\/)/g).pop()}/`).put(Mybrochure);
-      uploadTask.on('state_changed',(snapshot)=>{
+      uploadTask.on('state_changed', (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         console.log(progress);
       },
-      (error) =>{
-        console.log(error);
-      },
-      ()=>{
-        storage.ref(`Brochure/${this.selectOptions[category_Id]}/`).child(`${Mybrochure.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
-          brochureUrl = url
-          uploadOnFirestore();
-        })
-      }
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          storage.ref(`Brochure/${this.selectOptions[category_Id]}/`).child(`${Mybrochure.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url => {
+            brochureUrl = url
+            uploadOnFirestore();
+          })
+        }
       )
     }
-    // if (date === undefined || date === null) {
-    //   date = 'blank'
-    // }
 
     // images
     //const Image = out.images[0];
@@ -107,13 +104,13 @@ export class AddBlogs2 extends Component {
       }, (error) => {
         console.log(error)
       }, () => {
-        storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url=>{
+        storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url => {
 
           imageLinks.push(url);
           if (i === total_size - 1) {
             uploadOnFirestore()
           }
-        }) 
+        })
       })
     }
     if (total_size === 0) {
@@ -131,24 +128,43 @@ export class AddBlogs2 extends Component {
     })
   }
 
+  switchView = (event) => {
+    const btn = event.target
+
+    if (btn.innerText === "Form") {
+      this.setState({edit: true})
+    } else {
+      this.setState({edit: false})
+    }
+  }
+
   render() {
     return (
-      <div className='add-blogs2'>
-        <header className='hero'>
-          <h1 className='container'>Add new activities</h1>
-        </header>
+      <div className='add-blogs'>
+        <div className='activity-form'>
+          <div id='tabList' className='tablist'>
+            <button onClick={this.switchView} className={`tab ${this.state.edit && 'active'}`} role="tab">Form</button>
+            <button onClick={this.switchView} className={`tab ${!this.state.edit && 'active'}`} role="tab">Preview</button>
+          </div>
 
-        <div className='activity-form container'>
-          <Form key={this.state.clearRev} getPreview={this.getPreview} clear={this.state.clear}/>
-          <Preview
-            key={`p${this.state.clearRev}`}
-            title={this.state.activityTitle}
-            fields={this.state.formData}
-            categoryId={this.state.category}
-            images={this.state.images}
-            imgCaption={this.state.imgCaption}
-            submit={this.handleSubmit}
-          />
+          <div className='form-wrapper'>
+            <Form
+              key={this.state.clearRev}
+              getPreview={this.getPreview}
+              clear={this.state.clear}
+              display={this.state.edit ? 'block' : 'none'}
+            />
+            <Preview
+              key={`p${this.state.clearRev}`}
+              title={this.state.activityTitle}
+              fields={this.state.formData}
+              categoryId={this.state.category}
+              images={this.state.images}
+              imgCaption={this.state.imgCaption}
+              submit={this.handleSubmit}
+              display={this.state.edit ? 'none' : 'block'}
+            />
+          </div>
         </div>
       </div>
     )

@@ -249,7 +249,7 @@ export class Preview extends Component {
     }
     return (
       <>
-        <div className='preview' >
+        <div className='preview' style={{display: this.props.display}} >
           <div className='head'>
 
             <h3 className='previewtell'>  <b>PREVIEW</b></h3>
