@@ -10,6 +10,8 @@ import { Magzine } from "./Components/Magzine";
 import { FetchData } from "./Components/FetchData";
 import { Magzine2 } from "./Components/Magzine2";
 import { Magazine } from "./Components/Magazine";
+import { Signup } from "./Components/SignUp";
+import { Login } from "./Components/Login";
 
 
 function App() {
@@ -71,7 +73,20 @@ function App() {
         </Layout>
       } />
  
+      <Route exact path="/signup" element={
+              <Layout>
+                <Signup/>
+              </Layout>
+        } />
+
+         
+      <Route exact path="/login" element={
+              <Layout>
+                <Login/>
+              </Layout>
+        } />
       
+            
     </Routes>
   </BrowserRouter> 
   )
