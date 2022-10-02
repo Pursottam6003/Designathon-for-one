@@ -43,7 +43,7 @@ const linkCopied = () => {
 
 class MagezineArticle extends Component {
   render() {
-    const { Heading, EventDate, Urls, wholeDescription, Brochure } = this.props.data
+    const { Heading, EventDate, Urls, wholeDescription, Brochure, imgCaption } = this.props.data
     const { categoryId } = this.props
     const images = Urls.map((url, i) => {
       return (
@@ -53,7 +53,7 @@ class MagezineArticle extends Component {
       )
     })
     return (
-      <div className='magazine-article'>
+      <li className='magazine-article'>
         {Heading !== Catagories[parseInt(categoryId)] && (
           <h2>{Heading}</h2>
         )}
@@ -66,12 +66,14 @@ class MagezineArticle extends Component {
             {images}
 
             {images.length !== 0 && (
-              <p className='img-caption'>{Heading}</p>
+              <p className='img-caption'>
+                {imgCaption ? imgCaption : Catagories[parseInt(categoryId)]}
+              </p>
             )}
           </div>
           
         </div>
-      </div>
+      </li>
     )
   }
 }
@@ -89,7 +91,9 @@ class MagazineSection extends Component {
         <header className='category-header'>
           <h1 id={`category${id}`}>{Catagories[id]}</h1>
         </header>
-        {articleComponent}
+        <ol>
+          {articleComponent}
+        </ol>
       </div>
     )
   }
@@ -174,11 +178,11 @@ export class Magazine extends Component {
           <ul>
             <li>
               <h6>Technodaya (Vol-V iss-3)</h6>
-              <time>Jul 23, 2022</time>
+              <time> Jul 23, 2022</time>
             </li>
             <li>
               <h6>Technodaya (Vol-V iss-2)</h6>
-              <time>May 28, 2022</time>
+              <time>  May 28, 2022</time>
             </li>
             <li>
               <h6>Technodaya (Vol-V iss-1)</h6>
@@ -186,19 +190,19 @@ export class Magazine extends Component {
             </li>
             <li>
               <h6>Technodaya (Vol-IV iss-6)</h6>
-              <time>Jan 24, 2022</time>
+              <time> Jan 24, 2022</time>
             </li>
             <li>
               <h6>Technodaya (Vol-IV iss-5)</h6>
-              <time>Nov 17, 2021</time>
+              <time> Nov 17, 2021</time>
             </li>
             <li>
               <h6>Technodaya (Vol-IV iss-4)</h6>
-              <time>Sep 20, 2021</time>
+              <time> Sep 20, 2021</time>
             </li>
             <li>
               <h6>Technodaya (Vol-IV iss-3)</h6>
-              <time>Jul 13, 2021</time>
+              <time> Jul 13, 2021</time>
             </li>
           </ul>
         </div>

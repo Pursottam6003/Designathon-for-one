@@ -7,7 +7,8 @@ export class Form extends Component {
     category: 0,
     activityTitle: '',
     formData: {},
-    images: []
+    images: [],
+    imgCaption: ''
   }
 
   state = this.initialState
@@ -32,14 +33,16 @@ export class Form extends Component {
         this.props.getPreview({
           category: this.state.category,
           activityTitle: this.state.activityTitle,
-          images: this.state.images  
+          images: this.state.images,
+          imgCaption: this.state.imgCaption
         })
       } else {
         this.props.getPreview({
           category: this.state.category,
           formData: this.state.formData,
           activityTitle: this.state.activityTitle,
-          images: this.state.images
+          images: this.state.images,
+          imgCaption: this.state.imgCaption
         });
       }
     })
@@ -138,6 +141,16 @@ export class Form extends Component {
               multiple
               onChange={this.handleChange}
             />
+
+            {this.state.images.length !== 0 && (
+              <input type="text"
+              className='form-control'
+              name="imgCaption"
+              value={this.state.insName}
+              onChange={this.handleChange}
+              placeholder="Image caption"
+            />
+            )}
           </>
         )}
 

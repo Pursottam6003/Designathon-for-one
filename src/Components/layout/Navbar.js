@@ -44,7 +44,7 @@ export const Navbar = () => {
     <div className='TopNavigation'>
     <a href='/'> <div  className='nav_items' >Home</div></a>
     <a href='/addBlogs2'> <div  className='nav_items' >Add New Activity</div></a>
-    <a href='/magzine'> <div  className='nav_items' >Magzine</div></a>
+    <a href='/magazine'> <div  className='nav_items' >Magazines</div></a>
      <a href='https://youtu.be/dQw4w9WgXcQ'> <div  className='nav_items' >if you dont have direction</div></a>
    
     </div>

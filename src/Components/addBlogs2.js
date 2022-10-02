@@ -11,6 +11,7 @@ export class AddBlogs2 extends Component {
     formData: {},
     activityTitle: '',
     images: [],
+    imgCaption: '',
     output: {},
     clearRev: 0
   }
@@ -46,6 +47,7 @@ export class AddBlogs2 extends Component {
         EventDate: date,
         Urls: firebase.firestore.FieldValue.arrayUnion(...imageLinks),
         Brochure: brochureUrl,
+        imgCaption: imgCaption
       }).then(() => {
         console.log("Sucessfully uploaded image");
         // clear the form
@@ -61,6 +63,12 @@ export class AddBlogs2 extends Component {
     let date = this.state.formData.date;
     let Mybrochure = this.state.formData.eventBrochure;
     let brochureUrl = '';
+    let imgCaption = this.state.imgCaption
+    if (category_Id === 1) {
+      imgCaption = `MoU between ${this.state.formData.insName} and ${this.state.formData.partnerInsName}`
+    } else if (category_Id === 3) {
+      imgCaption = `${this.state.formData.lectureType} by ${this.state.formData.speakerName}`
+    }
     console.log(Mybrochure);
 
     if(Mybrochure)
@@ -118,7 +126,8 @@ export class AddBlogs2 extends Component {
       category: data.category,
       formData: data.formData ? data.formData : this.state.formData,
       activityTitle: data.activityTitle,
-      images: data.images ? data.images : []
+      images: data.images ? data.images : [],
+      imgCaption: data.imgCaption ? data.imgCaption : this.selectOptions[parseInt(this.state.category)]
     })
   }
 
@@ -137,6 +146,7 @@ export class AddBlogs2 extends Component {
             fields={this.state.formData}
             categoryId={this.state.category}
             images={this.state.images}
+            imgCaption={this.state.imgCaption}
             submit={this.handleSubmit}
           />
         </div>
