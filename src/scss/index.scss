@@ -213,99 +213,149 @@ hr {
 }
 
 //end
-.Navbar {
-  background-color: #1F406D;
-  color: white;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-}
 
-.innertext {
-  align-self: center;
-}
+// navigation bar
 
-.inner {
-  display: flex;
-  align-items: center;
-}
+.navbar-component {
+  // font-family: 'Cormorant Garamond', serif;
+  font-family: 'Crimson Text', serif;
+  box-shadow: 0 -2px 8px rgb(0 0 0 / 32%);
+  padding: 1px 0;
+
+  position: sticky;
+  top: -168px;
+  z-index: 10;
 
 
-.logoItems {
-  margin-top: 5px;
-  display: flex;
-  flex-direction: row;
-  align-self: center;
-  justify-content: center;
-  gap: 20px;
-}
+  .banner {
+    margin: 1.6rem 0 1.2rem;
+    .logos {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      height: 7.5rem;
+      gap: 1.6rem;
 
-.homeButton {
-  background-color: #5BC0DE;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 5px;
-}
+      .sep {
+        width: 2px;
+        height: 65%;
+        background-color: #747474;
+      }
 
-.homeButton :hover {
-  background-color: #2fbce6;
-}
+      .college-name {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        gap: 0.6rem;
 
-.homeButton ::after {
-  background-color: #2694b5;
-}
+        .nitap {
+          font-weight: bold;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+      }
 
-#logo {
-  height: 80px;
-  width: auto;
-  margin-top: 15px;
-}
-
-.logoContaint {
-  color: #337AB7;
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-.collegeName {
-  font-size: medium;
-  color: black;
-}
-
-.TopNavigation {
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  justify-content: center;
-  padding: 1rem;
-  background-color: #283858;
-  height: 10vh;
-  align-items: center;
-
-  a {
-    text-decoration: none;
+      img {
+        max-height: 100%;
+      }
+    }
   }
+
+  .nav-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1rem;
+    background-color: white;
+    height: 2rem;
+    align-items: center;
+
+    a.nav-item {
+      text-decoration: none;
+  
+      div {
+        text-transform: uppercase;
+        font-size: 0.95rem;
+        // font-weight: 600;
+        color: rgb(78, 78, 78);
+        border-right: solid 1px transparent;
+        border-left: solid 1px transparent;
+        padding: 0.2rem 1rem;
+      }
+      
+      div:hover {
+        // color: aliceblue;
+        cursor: pointer;
+        border-left: #2fbce6 1px solid;
+        border-right: #2fbce6 1px solid;
+        background-color: #fafafa;
+        color: black;
+        transition: 500ms ease;
+      }
+    }
+  }
+
+  // .Navbar {
+  //   background-color: #1F406D;
+  //   color: white;
+  //   padding-top: 8px;
+  //   padding-bottom: 8px;
+  //   display: flex;
+  //   flex-direction: row;
+  //   align-items: center;
+  //   justify-content: center;
+  //   gap: 30px;
+  // }
+
+
+  // .logoItems {
+  //   margin-top: 5px;
+  //   display: flex;
+  //   flex-direction: row;
+  //   align-self: center;
+  //   justify-content: center;
+  //   gap: 20px;
+  // }
+
+  // .homeButton {
+  //   background-color: #5BC0DE;
+  //   color: white;
+  //   border: none;
+  //   border-radius: 10px;
+  //   padding: 5px;
+  // }
+
+  // .homeButton :hover {
+  //   background-color: #2fbce6;
+  // }
+
+  // .homeButton ::after {
+  //   background-color: #2694b5;
+  // }
+
+  // #logo {
+  //   height: 80px;
+  //   width: auto;
+  //   margin-top: 15px;
+  // }
+
+  // .logoContaint {
+  //   color: #337AB7;
+  //   font-size: 30px;
+  //   font-weight: bold;
+  //   margin-top: 20px;
+  // }
+
+  // .collegeName {
+  //   font-size: medium;
+  //   color: black;
+  // }
+
+
+
 }
 
-.nav_items {
-  text-transform: uppercase;
-  font-weight: 600;
-  color: #fff;
-
-}
-
-.TopNavigation .nav_items:hover {
-  color: aliceblue;
-  cursor: pointer;
-  border-bottom: #2fbce6 2px solid;
-  transition: 800ms ease;
-}
 
 // add blogs
 
@@ -316,6 +366,8 @@ hr {
   background-position: center center;
   background-attachment: fixed;
   padding: 1px 0;
+
+  --top-offset: 54px;
 
   .activity-form {
     display: flex;
@@ -343,6 +395,7 @@ hr {
         padding: 0.8rem;
         cursor: pointer;
       }
+
       .tab:not(.active):hover {
         background-color: rgba(255, 255, 255, 0.25);
       }
@@ -363,211 +416,212 @@ hr {
       overflow-y: auto;
 
       .form-group {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      width: 100%;
-      min-width: 550px;
-
-
-      .form-control {
-        box-shadow: none;
-        outline: none;
-        margin: 0.3rem 0 0.5rem;
-        padding: 0.5rem 0.8rem;
-      }
-
-
-      input {
-        border: solid 2px transparent;
-        border-radius: 0;
-      }
-
-      .radio-inputs {
-        padding: 0.8rem 0.8rem 0.4rem;
-        display: flex;
-        flex-direction: row;
-        gap: 1.2rem;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        width: 100%;
+        min-width: 550px;
 
-        .radio-btn {
-          font-family: inherit;
-        }
-      }
 
-      input[type="text"],
-      input[type="number"] {
-        font-family: 'Times New Roman', Times, serif;
-      }
-
-      input[type="text"]:focus,
-      input[type="number"]:focus,
-      input[type="date"]:focus, select:focus {
-        border: solid 2px rgb(57, 57, 160);
-      }
-
-      input[type="text"].form-title {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 2.2rem;
-        font-weight: 600;
-      }
-
-      p.sub-label {
-        color: #444749;
-        font-weight: 600;
-        font-size: 0.8rem;
-        font-family: inherit;
-        margin: 1.2rem 0 0.6rem;
-      }
-
-      .form-field {
-        position: relative;
-        display: block;
-        margin: 0.8rem 0;
-
-        .field-label {
-          position: absolute;
-          top: -0.2rem;
-          font-size: 0.7rem;
-          line-height: 1;
-          margin-bottom: 0;
-          padding: 0 0.3rem 0.1rem;
-          left: 1rem;
-          font-family: sans-serif;
-          color: rgb(57, 57, 160);
-          background-color: #fff;
+        .form-control {
+          box-shadow: none;
+          outline: none;
+          margin: 0.3rem 0 0.5rem;
+          padding: 0.5rem 0.8rem;
         }
 
-      }
 
-      .list-component {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-        h4.list-heading {
-          font-size: 1rem;
-          font-family: inherit;
-          font-weight: 500;
-          color: rgb(51, 72, 110);
-          margin: 1rem 0 0.3rem;
+        input {
+          border: solid 2px transparent;
+          border-radius: 0;
         }
 
-        table.list-table {
-          border-collapse: collapse;
-          border-spacing: 0;
-          width: 100%;
-          max-width: 100%;
-          margin-bottom: 1rem;
+        .radio-inputs {
+          padding: 0.8rem 0.8rem 0.4rem;
+          display: flex;
+          flex-direction: row;
+          gap: 1.2rem;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-          tr {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.8;
-
-            td {
-              padding: 0.5rem;
-              font-family: inherit;
-              color: rgb(65, 65, 65);
-              font-size: 0.9rem;
-              text-align: left;
-              border-bottom: 1px solid #dedede;
-            }
-
-            td.rm-td {
-              text-align: right;
-            }
-          }
-
-          td.tr-number {
-            font-weight: 600;
-          }
-
-          .rm {
-            height: 1.8rem;
-            width: 1.8rem;
-            background-color: transparent;
-            color: rgb(65, 65, 65);
-            // font-weight: 600;
-            font-family: sans-serif;
-            border: none;
-            border-radius: 50%;
-            // float: right;
-            transition: background-color 0.15s ease, color 0.3s ease;
-
-            img {
-              height: 60%;
-              width: 60%;
-            }
-          }
-
-          .rm:hover {
-            background-color: rgba(95, 99, 104, 0.157);
-          }
-
-          .rm:active {
-            background-color: rgb(247, 164, 164);
-          }
-        }
-      }
-
-      .person-form {
-        display: flex;
-        flex-direction: row;
-        border: solid 1px #ced4da;
-        margin: 0.3rem 0;
-
-        .form-field {
-          margin: 0;
-
-          input,
-          select {
-            border: solid 2px transparent;
-            border-radius: 0;
-            outline: none;
-          }
-
-          input[type="text"] {
-            padding: 0.5rem 0.8rem;
-            width: 100%;
-          }
-
-          input[type="button"] {
-            height: 100%;
-            width: 2.5rem;
-          }
-
-          select {
-            height: 100%;
-          }
-
-          .list-add {
-            font-weight: 600;
-            font-size: 1.2rem;
-            background-color: transparent;
-            transition: all 0.1s ease-in-out;
-          }
-
-          .list-add:hover,
-          .list-add:focus {
-            background-color: rgb(240, 240, 253);
-          }
-
-          .list-add:active {
-            background-color: rgb(179, 179, 230);
+          .radio-btn {
+            font-family: inherit;
           }
         }
 
-        .form-field.short-field {
-          flex: 1 1 6.4rem;
+        input[type="text"],
+        input[type="number"] {
+          font-family: 'Times New Roman', Times, serif;
         }
 
         input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
         select:focus {
           border: solid 2px rgb(57, 57, 160);
         }
+
+        input[type="text"].form-title {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          font-size: 2.2rem;
+          font-weight: 600;
+        }
+
+        p.sub-label {
+          color: #444749;
+          font-weight: 600;
+          font-size: 0.8rem;
+          font-family: inherit;
+          margin: 1.2rem 0 0.6rem;
+        }
+
+        .form-field {
+          position: relative;
+          display: block;
+          margin: 0.8rem 0;
+
+          .field-label {
+            position: absolute;
+            top: -0.2rem;
+            font-size: 0.7rem;
+            line-height: 1;
+            margin-bottom: 0;
+            padding: 0 0.3rem 0.1rem;
+            left: 1rem;
+            font-family: sans-serif;
+            color: rgb(57, 57, 160);
+            background-color: #fff;
+          }
+
+        }
+
+        .list-component {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+          h4.list-heading {
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 500;
+            color: rgb(51, 72, 110);
+            margin: 1rem 0 0.3rem;
+          }
+
+          table.list-table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            max-width: 100%;
+            margin-bottom: 1rem;
+
+            tr {
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              line-height: 1.8;
+
+              td {
+                padding: 0.5rem;
+                font-family: inherit;
+                color: rgb(65, 65, 65);
+                font-size: 0.9rem;
+                text-align: left;
+                border-bottom: 1px solid #dedede;
+              }
+
+              td.rm-td {
+                text-align: right;
+              }
+            }
+
+            td.tr-number {
+              font-weight: 600;
+            }
+
+            .rm {
+              height: 1.8rem;
+              width: 1.8rem;
+              background-color: transparent;
+              color: rgb(65, 65, 65);
+              // font-weight: 600;
+              font-family: sans-serif;
+              border: none;
+              border-radius: 50%;
+              // float: right;
+              transition: background-color 0.15s ease, color 0.3s ease;
+
+              img {
+                height: 60%;
+                width: 60%;
+              }
+            }
+
+            .rm:hover {
+              background-color: rgba(95, 99, 104, 0.157);
+            }
+
+            .rm:active {
+              background-color: rgb(247, 164, 164);
+            }
+          }
+        }
+
+        .person-form {
+          display: flex;
+          flex-direction: row;
+          border: solid 1px #ced4da;
+          margin: 0.3rem 0;
+
+          .form-field {
+            margin: 0;
+
+            input,
+            select {
+              border: solid 2px transparent;
+              border-radius: 0;
+              outline: none;
+            }
+
+            input[type="text"] {
+              padding: 0.5rem 0.8rem;
+              width: 100%;
+            }
+
+            input[type="button"] {
+              height: 100%;
+              width: 2.5rem;
+            }
+
+            select {
+              height: 100%;
+            }
+
+            .list-add {
+              font-weight: 600;
+              font-size: 1.2rem;
+              background-color: transparent;
+              transition: all 0.1s ease-in-out;
+            }
+
+            .list-add:hover,
+            .list-add:focus {
+              background-color: rgb(240, 240, 253);
+            }
+
+            .list-add:active {
+              background-color: rgb(179, 179, 230);
+            }
+          }
+
+          .form-field.short-field {
+            flex: 1 1 6.4rem;
+          }
+
+          input[type="text"]:focus,
+          select:focus {
+            border: solid 2px rgb(57, 57, 160);
+          }
+        }
       }
-    }
 
+    }
   }
-    }
 
-    
+
 
   .activity-form {
     .form-group {
@@ -782,21 +836,29 @@ hr {
 
 .magazine-wrapper {
   scroll-padding-top: 1rem;
-  p, li {
+
+  p,
+  li {
     letter-spacing: -.01rem;
     line-height: 1.6;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: rgb(75, 75, 75);
 
     font-family: 'Cormorant Garamond', serif;
     // font-family: 'Crimson Text', serif;;
   }
+
   // display: flex;
   display: grid;
   gap: 2rem;
-  grid-template-columns: minmax(0,auto) minmax(0,2fr) minmax(0,1fr);
+  grid-template-columns: minmax(0, auto) minmax(0, 2fr) minmax(0, 1fr);
   // gap: 2rem;
   max-width: 1600px;
   margin: auto;
@@ -805,6 +867,7 @@ hr {
 
   .magazine {
     padding-top: var(--top-offset);
+
     ul {
       padding-left: 0;
     }
@@ -817,6 +880,7 @@ hr {
         border-bottom: solid 2px rgb(196, 196, 196);
         font-weight: 700;
       }
+
       p {
         font-family: 'Crimson Text', serif;
         font-size: 1.05rem;
@@ -824,12 +888,15 @@ hr {
         color: rgb(44, 43, 43);
         line-height: 1.5;
       }
-      li{
+
+      li {
         font-weight: 800;
-        font-family: 'Crimson Text', serif;;
-        font-size:1.15rem ;
+        font-family: 'Crimson Text', serif;
+        ;
+        font-size: 1.15rem;
       }
-      li::marker{
+
+      li::marker {
         padding-right: .2rem;
         font-size: 1.5rem;
         color: rgb(119, 119, 119);
@@ -847,7 +914,7 @@ hr {
         overflow: hidden;
         box-shadow: 0 1px 10px 0 rgba(28, 28, 29, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.397);
 
-        img{
+        img {
           width: 100%;
           height: auto;
         }
@@ -868,24 +935,27 @@ hr {
     h4 {
       font-weight: 700;
     }
-    
 
-    ul{
-      color: rgb(72, 70, 70) ;
+
+    ul {
+      color: rgb(72, 70, 70);
       display: flex;
       flex-direction: column;
       gap: .6rem;
       padding-left: 0.5rem;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      li{
+
+      li {
         font-family: inherit;
         list-style: none;
-       
-         border-bottom:0.8px solid rgb(215 215 215);
-        h6:hover{
+
+        border-bottom: 0.8px solid rgb(215 215 215);
+
+        h6:hover {
           color: green;
           cursor: pointer;
         }
+
         h6 {
           // font-family: inherit;
           font-weight: 700;
@@ -893,12 +963,13 @@ hr {
           padding: 0;
           margin: 0;
         }
-      
-        time{
+
+        time {
           color: rgb(59, 59, 59);
           font-size: 0.8rem;
           font-family: 'Courier New', Courier, monospace;
-          .daate{
+
+          .daate {
             width: 10px;
           }
         }
@@ -911,12 +982,12 @@ hr {
       position: sticky;
       top: 0;
       padding-top: var(--top-offset);
-     
+
       h4 {
         font-weight: 700;
       }
-     
-     
+
+
       li {
         list-style: none;
         border-left: 2px solid rgb(105, 154, 219);
@@ -927,12 +998,13 @@ hr {
         color: rgb(75, 80, 86);
         border-left: solid 2px rgb(195, 202, 209);
 
-        a{
+        a {
           text-decoration: none;
           color: rgb(65, 64, 64);
         }
       }
-      li:hover{
+
+      li:hover {
         color: black;
         border-left: 3px solid rgb(46, 140, 235);
       }
@@ -1256,24 +1328,22 @@ hr {
   ;
 }
 
-.SignUpBtn
-{
+.SignUpBtn {
   margin-top: 10px;
-  padding:10px;
+  padding: 10px;
   background-color: #1F406D;
   color: white;
   margin-bottom: 10px;
   border-radius: 4px;
-  border:none;
+  border: none;
 }
 
-.LoginBtn
-{
+.LoginBtn {
   margin-top: 10px;
-  padding:10px;
+  padding: 10px;
   background-color: #1F406D;
   color: white;
   margin-bottom: 10px;
   border-radius: 4px;
-  border:none;
+  border: none;
 }

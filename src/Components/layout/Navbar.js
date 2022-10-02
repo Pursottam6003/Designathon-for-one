@@ -1,11 +1,13 @@
 import React from 'react'
 
 import logo from "../../images/logo.png"
+import nitapLogo from "../../images/logo/nitap-logo.png"
+import technodayaLogo from "../../images/logo/technodaya-logo1.png"
 
 export const Navbar = () => {
   return (
-    <>
-      <div className='Navbar'>
+    <div className='navbar-component'>
+      {/* <div className='Navbar'>
           
           <div className='inner'>
        
@@ -22,10 +24,21 @@ export const Navbar = () => {
           <div>
             <button className='homeButton'>NIT HOME</button>
           </div>
-      </div>
+      </div> */}
+
+      <header className='banner'>
+        <div className='logos'>
+          <img src={nitapLogo} alt="NIT Arunachal Pradesh Logo"  />
+          <div className='sep' />
+          <div className='college-name'>
+            <img src={technodayaLogo} alt="Technodaya Logo" height="64"/>
+            <p className='nitap'>National Institute of Technology,<br/> Arunachal Pradesh</p>
+          </div>
+        </div>
+      </header>
 
 
-      <div className='logoItems'>
+      {/* <div className='logoItems'>
       
       <div className='logo'>
         <img id='logo' src={logo} alt='logo'></img>
@@ -38,17 +51,17 @@ export const Navbar = () => {
         NIT Arunachal Pradesh
       </p>
       </div>
-      </div>
+      </div> */}
 
 
-    <div className='TopNavigation'>
-    <a href='/'> <div  className='nav_items' >Home</div></a>
-    <a href='/addBlogs'> <div  className='nav_items' >Add New Activity</div></a>
-    <a href='/magazine'> <div  className='nav_items' >Magazines</div></a>
-     <a href='https://youtu.be/dQw4w9WgXcQ'> <div  className='nav_items' >if you dont have direction</div></a>
+    <div className='nav-items'>
+    <a className='nav-item' href='/'> <div>Home</div></a>
+    <a className='nav-item' href='/addBlogs'> <div>Add New Activity</div></a>
+    <a className='nav-item' href='/magazine'> <div>Magazines</div></a>
+    <a className='nav-item' href='https://youtu.be/dQw4w9WgXcQ'> <div>if you dont have direction</div></a>
    
     </div>
     
-    </>
+    </div>
   )
 }
