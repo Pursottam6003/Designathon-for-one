@@ -251,9 +251,7 @@ export class Preview extends Component {
       <>
         <div className='preview' style={{display: this.props.display}} >
           <div className='head'>
-
-            <h3 className='previewtell'>  <b>PREVIEW</b></h3>
-            <p>CLICK TO EDIT</p>
+            <h3 className='previewtell'>Click to edit</h3>
           </div>
           <textarea className='textarea' name="heading" placeholder='Title...' value={heading} onChange={this.handleChange} />
           <div className='txtarea-wrapper'>

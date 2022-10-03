@@ -142,9 +142,11 @@ export class AddBlogs extends Component {
     return (
       <div className='add-blogs'>
         <div className='activity-form'>
-          <div id='tabList' className='tablist'>
-            <button onClick={this.switchView} className={`tab ${this.state.edit && 'active'}`} role="tab">Form</button>
-            <button onClick={this.switchView} className={`tab ${!this.state.edit && 'active'}`} role="tab">Preview</button>
+          <div className='tablist-wrapper'>
+            <div id='tabList' className='tablist'>
+              <button onClick={this.switchView} className={`tab ${this.state.edit && 'active'}`} role="tab">Form</button>
+              <button onClick={this.switchView} className={`tab ${!this.state.edit && 'active'}`} role="tab">Preview</button>
+            </div>
           </div>
 
           <div className='form-wrapper'>

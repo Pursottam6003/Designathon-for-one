@@ -6,6 +6,11 @@
 
 }
 
+:root {
+  --nav-h: 2rem;
+
+}
+
 html {
   scroll-padding-top: 1.5rem;
 }
@@ -167,11 +172,6 @@ hr {
 
 // show blogs 
 
-
-
-
-
-
 //end of showblogs
 // for news preview 
 
@@ -223,12 +223,13 @@ hr {
   padding: 1px 0;
 
   position: sticky;
-  top: -168px;
+  top: -166px;
   z-index: 10;
 
 
   .banner {
     margin: 1.6rem 0 1.2rem;
+
     .logos {
       display: flex;
       flex-direction: row;
@@ -240,7 +241,7 @@ hr {
       .sep {
         width: 2px;
         height: 65%;
-        background-color: #747474;
+        background-color: #747474c0;
       }
 
       .college-name {
@@ -262,105 +263,55 @@ hr {
     }
   }
 
+
+
   .nav-items {
     display: flex;
     flex-direction: row;
+    gap: 1.6rem;
     justify-content: center;
-    padding: 1rem;
     background-color: white;
     height: 2rem;
     align-items: center;
 
     a.nav-item {
       text-decoration: none;
-  
+
       div {
         text-transform: uppercase;
         font-size: 0.95rem;
         // font-weight: 600;
         color: rgb(78, 78, 78);
-        border-right: solid 1px transparent;
-        border-left: solid 1px transparent;
-        padding: 0.2rem 1rem;
+        border-top: solid 2px transparent;
+        border-bottom: solid 2px transparent;
+        padding: 0.2rem 0.3rem;
       }
-      
+
       div:hover {
         // color: aliceblue;
         cursor: pointer;
-        border-left: #2fbce6 1px solid;
-        border-right: #2fbce6 1px solid;
+        // border-top: #2fbce6 2px solid;
+        border-bottom: #2fbce6 2px solid;
         background-color: #fafafa;
         color: black;
         transition: 500ms ease;
       }
+
+    }
+
+    div.sep {
+      height: 75%;
+      width: 1px;
+      background-color: #cccccc;
     }
   }
-
-  // .Navbar {
-  //   background-color: #1F406D;
-  //   color: white;
-  //   padding-top: 8px;
-  //   padding-bottom: 8px;
-  //   display: flex;
-  //   flex-direction: row;
-  //   align-items: center;
-  //   justify-content: center;
-  //   gap: 30px;
-  // }
-
-
-  // .logoItems {
-  //   margin-top: 5px;
-  //   display: flex;
-  //   flex-direction: row;
-  //   align-self: center;
-  //   justify-content: center;
-  //   gap: 20px;
-  // }
-
-  // .homeButton {
-  //   background-color: #5BC0DE;
-  //   color: white;
-  //   border: none;
-  //   border-radius: 10px;
-  //   padding: 5px;
-  // }
-
-  // .homeButton :hover {
-  //   background-color: #2fbce6;
-  // }
-
-  // .homeButton ::after {
-  //   background-color: #2694b5;
-  // }
-
-  // #logo {
-  //   height: 80px;
-  //   width: auto;
-  //   margin-top: 15px;
-  // }
-
-  // .logoContaint {
-  //   color: #337AB7;
-  //   font-size: 30px;
-  //   font-weight: bold;
-  //   margin-top: 20px;
-  // }
-
-  // .collegeName {
-  //   font-size: medium;
-  //   color: black;
-  // }
-
-
-
 }
-
 
 // add blogs
 
 .add-blogs {
-  background-image: url('../images/form-bg.jpg');
+  --bg-img-url: url('../images/form-bg.jpg');
+  background-image: var(--bg-img-url);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -372,48 +323,74 @@ hr {
   .activity-form {
     display: flex;
     flex-direction: column;
-    margin: 2rem auto;
+    margin: 0 auto;
     width: 850px;
     padding: 0;
     gap: 0;
-    box-shadow: 0 0 11px rgb(0 0 0 / 12%);
-    border-radius: 0.25rem;
-    overflow: hidden;
     background-color: transparent;
 
-    .tablist {
-      display: flex;
-      background-color: rgba(255, 255, 255, 0.5);
+    .tablist-wrapper {
+      box-sizing: content-box;
+      --active-border-h: 5px;
+      --tablist-h: 2.375rem;
+      padding-top: 2rem;
+      height: calc(var(--active-border-h) + var(--tablist-h));
+      position: sticky;
+      top: var(--nav-h);
+      background-image: var(--bg-img-url);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      overflow: hidden;
+      z-index: 1;
 
-      .tab {
-        background-color: transparent;
-        color: rgb(74, 74, 74);
-        border: none;
-        display: block;
-        font-size: 1rem;
+      .tablist {
+        display: flex;
+        background-color: rgba(255, 255, 255, 0.5);
+        height: var(--tablist-h);
+        align-items: flex-end;
+        overflow: visible;
+        position: absolute;
+        bottom: 0;
         width: 100%;
-        padding: 0.8rem;
-        cursor: pointer;
-      }
+        border-radius: 0.25rem 0.25rem 0 0;
 
-      .tab:not(.active):hover {
-        background-color: rgba(255, 255, 255, 0.25);
-      }
+        .tab {
+          background-color: transparent;
+          color: rgb(74, 74, 74);
+          border: none;
+          display: block;
+          font-size: 1rem;
+          width: 100%;
+          padding: 0.6rem;
+          cursor: pointer;
+        }
 
-      .active {
-        background-color: white;
-        border-top: solid 5px rgb(148, 97, 55);
-        border-bottom: solid 5px transparent;
-        color: rgb(148, 97, 55);
-        font-weight: 600;
+        .tab:not(.active):hover {
+          background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .active {
+          background-color: white;
+          border-top: solid var(--active-border-h) rgb(148, 97, 55);
+          color: rgb(148, 97, 55);
+          font-weight: 600;
+          border-radius: 0.25rem 0.25rem 0 0;
+          box-shadow: 0 0 11px rgb(0 0 0 / 12%);
+        }
       }
     }
 
-    .form-wrapper {
 
+    .form-wrapper {
+      margin-bottom: 2rem;
       background-color: white;
       padding: 3rem 2rem;
+      border-radius: 0 0 0.25rem 0.25rem;
       overflow-y: auto;
+      box-shadow: 0 5px 11px 0px rgb(0 0 0 / 12%);
+      z-index: 0;
 
       .form-group {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -432,6 +409,10 @@ hr {
         input {
           border: solid 2px transparent;
           border-radius: 0;
+        }
+
+        input.form-control[type="text"], select.form-control {
+          width: 100%;
         }
 
         .radio-inputs {
