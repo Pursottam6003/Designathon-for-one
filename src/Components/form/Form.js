@@ -1,6 +1,8 @@
  import React, { Component } from 'react'
 import { CategoryForm } from './CategoryForm'
 
+// const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+// console.log(timestamp)
 export class Form extends Component {
 
   initialState = {

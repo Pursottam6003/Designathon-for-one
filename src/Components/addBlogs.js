@@ -5,6 +5,8 @@ import { storage, fs } from '../config/config'
 import firebase from 'firebase/compat/app'
 
 
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString("en-US", { month: "long" });
 export class AddBlogs extends Component {
   initialState = {
     category: 0,
@@ -39,15 +41,18 @@ export class AddBlogs extends Component {
   ]
   state = this.initialState
 
+ 
+
   handleSubmit = (out) => {
     const uploadOnFirestore = () => {
       console.log(imageLinks);
-      fs.collection(`Technodaya/Blogs/${category_Id}/`).doc().set({
+      fs.collection(`${year}/${month}/${category_Id}/`).doc().set({
         Heading: heading,
         wholeDescription: wholeDescription,
         EventDate: date,
         Urls: firebase.firestore.FieldValue.arrayUnion(...imageLinks),
         Brochure: brochureUrl,
+        CreatedAt:month,
         imgCaption: imgCaption
       }).then(() => {
         console.log("Sucessfully uploaded image");
@@ -57,7 +62,7 @@ export class AddBlogs extends Component {
         })
       })
     }
-
+ 
     let category_Id = this.state.category;
     let heading = out.heading;
     let wholeDescription = out.output;
