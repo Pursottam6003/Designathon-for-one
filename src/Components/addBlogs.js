@@ -141,6 +141,7 @@ export class AddBlogs extends Component {
   render() {
     return (
       <div className='add-blogs'>
+        <div className='mobile-bg' />
         <div className='activity-form'>
           <div className='tablist-wrapper'>
             <div id='tabList' className='tablist'>

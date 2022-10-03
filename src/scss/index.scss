@@ -5,8 +5,11 @@
 }
 
 :root {
-  --nav-h: 2rem;
+  --nav-height: 2rem;
 
+  @media screen and (max-width: 548px) {
+    --nav-height: 4rem;
+  }
 }
 
 html {
@@ -217,12 +220,12 @@ hr {
 
 // navigation bar
 .navbar-component {
+  --nav-sticky-top: -166px;
   font-family: 'Crimson Text', serif;
   box-shadow: 0 -2px 8px rgb(0 0 0 / 32%);
   padding: 1px 0;
-
   position: sticky;
-  top: -166px;
+  top: var(--nav-sticky-top);
   z-index: 10;
 
 
@@ -238,12 +241,6 @@ hr {
       justify-content: center;
       height: 7.5rem;
       gap: 1.6rem;
-
-      #nitapLogo {
-        width: 100%;
-        max-width: 120px;
-        aspect-ratio: 116 / 120;
-      }
 
       .sep {
         width: 2px;
@@ -262,56 +259,110 @@ hr {
           font-weight: 600;
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+      }
+    }
 
-        #technodayaLogo {
-          aspect-ratio: 821 / 100;
-          max-height: 64px;
-          width: 100%;
+    #nitapLogo {
+      width: 100%;
+      max-width: 120px;
+      aspect-ratio: 116 / 120;
+      min-width: 0;
+    }
+
+    #technodayaLogo {
+      aspect-ratio: 821 / 100;
+      max-height: 64px;
+      width: 100%;
+    }
+
+  }
+
+
+  .nav-items-wrapper {
+    height: var(--nav-height);
+
+    .nav-items {
+      display: flex;
+      flex-direction: row;
+      gap: 0 1.6rem;
+      justify-content: center;
+      height: fit-content;
+      background-color: white;
+      align-items: center;
+
+      a.nav-item {
+        text-decoration: none;
+        display: block;
+
+        div.nav-item-txt {
+          text-transform: uppercase;
+          font-size: 0.95rem;
+          height: 2rem;
+          line-height: 2rem;
+          vertical-align: middle;
+          color: rgb(78, 78, 78);
+          border-top: solid 2px transparent;
+          border-bottom: solid 2px transparent;
+          padding: 0 0.3rem;
         }
+
+        div.nav-item-txt:hover {
+          cursor: pointer;
+          border-bottom: #2fbce6 2px solid;
+          color: black;
+          transition: 500ms ease;
+        }
+
+      }
+
+      div.sep {
+        height: calc(0.75 * 2rem);
+        width: 1px;
+        background-color: #64646452;
       }
     }
   }
 
 
-
-  .nav-items {
-    display: flex;
-    flex-direction: row;
-    gap: 1.6rem;
-    justify-content: center;
-    background-color: white;
-    height: 2rem;
-    align-items: center;
-
-    a.nav-item {
-      text-decoration: none;
-
-      div {
-        text-transform: uppercase;
-        font-size: 0.95rem;
-        // font-weight: 600;
-        color: rgb(78, 78, 78);
-        border-top: solid 2px transparent;
-        border-bottom: solid 2px transparent;
-        padding: 0.2rem 0.3rem;
-      }
-
-      div:hover {
-        // color: aliceblue;
-        cursor: pointer;
-        // border-top: #2fbce6 2px solid;
-        border-bottom: #2fbce6 2px solid;
-        background-color: #fafafa;
-        color: black;
-        transition: 500ms ease;
-      }
-
+  @media screen and (max-width: 720px) {
+    .banner #nitapLogo {
+      max-width: 96px;
     }
 
-    div.sep {
-      height: 75%;
-      width: 1px;
-      background-color: #cccccc;
+    .nav-items-wrapper {
+      .nav-items {
+        gap: 0 0.8rem;
+        flex-wrap: wrap;
+
+        div.sep {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 548px) {
+    --nav-sticky-top: -91px;
+
+    .banner {
+      margin: 0.8rem 0;
+
+      #technodayaLogo {
+        max-height: 40px;
+      }
+
+      #nitapLogo {
+        max-width: 50px;
+      }
+
+      .logos {
+        gap: 0.75rem;
+        height: 4rem;
+
+        .college-name .nitap {
+          display: none;
+        }
+      }
     }
   }
 }
@@ -328,6 +379,10 @@ hr {
   padding: 1px 0;
 
   --top-offset: 54px;
+
+  .mobile-bg {
+    display: none;
+  }
 
   .activity-form {
     display: flex;
@@ -346,7 +401,7 @@ hr {
       padding: 2rem 1rem 0;
       height: var(--tablist-h);
       position: sticky;
-      top: var(--nav-h);
+      top: var(--nav-height);
       background-image: var(--bg-img-url);
       background-repeat: no-repeat;
       background-size: cover;
@@ -361,7 +416,7 @@ hr {
         height: var(--tablist-h);
         align-items: flex-end;
         overflow: visible;
-        
+
         border-radius: 0.25rem 0.25rem 0 0;
 
         .tab {
@@ -391,7 +446,6 @@ hr {
       }
     }
 
-
     .form-wrapper {
       margin: 0 1rem 2rem;
       background-color: white;
@@ -400,12 +454,10 @@ hr {
       overflow-y: auto;
       box-shadow: 0 5px 11px 0px rgb(0 0 0 / 12%);
       z-index: 0;
-      // min-width: 550px;
 
       .form-group {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         width: 100%;
-
 
         .form-control {
           box-shadow: none;
@@ -413,7 +465,6 @@ hr {
           margin: 0.3rem 0 0.5rem;
           padding: 0.5rem 0.8rem;
         }
-
 
         input {
           border: solid 2px transparent;
@@ -612,8 +663,6 @@ hr {
     }
   }
 
-
-
   .activity-form {
     .preview {
       font-family: 'Times New Roman', Times, serif;
@@ -623,7 +672,6 @@ hr {
       .prevbtn {
         display: flex;
         justify-content: space-around;
-
       }
 
       .image-preview {
@@ -689,6 +737,53 @@ hr {
       box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1)
     }
 
+  }
+
+  @media screen and (max-width: 548px) {
+    background-image: none;
+
+    .mobile-bg {
+      display: block;
+      background-image: var(--bg-img-url);
+      background-size: cover;
+      width: 100%;
+      height: 96px;
+    }
+
+    .activity-form {
+      flex-direction: column-reverse;
+
+      .form-wrapper {
+        margin: 0;
+        border-radius: 0;
+      }
+
+      .tablist-wrapper {
+        position: sticky;
+        bottom: 0;
+        padding: 0;
+        box-shadow: rgb(0 0 0 / 10%) 0px -3px 6px 0px;
+        height: fit-content;
+        background-image: none;
+        
+        .tablist {
+          height: fit-content;
+          background-color: #f8f8f8;
+          .tab {
+            padding: 1rem;
+            font-size: 1.05rem;
+            color: #616161;
+          }
+          .tab.active {
+            background-color: initial;
+            color: #007e7c;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+          }
+        }
+      }
+    }
   }
 
   .container.form-ctnr {
