@@ -5,6 +5,8 @@ import React, { Component } from 'react'
 import { fs } from '../config/config'
 import $ from 'jquery';
 
+const year = new Date().getFullYear();
+const month = new Date().toLocaleString("en-US", { month: "long" });
 const Catagories = [
   '',
   'Memorandum of Understanding (MoU)',
@@ -112,7 +114,7 @@ export class Magazine extends Component {
     // section component array
     for (let i = 1; i <= 17; i++) {
       const blogsarray = []
-      const blogsFirebase = await fs.collection(`/Technodaya/Blogs/${i}`).get();
+      const blogsFirebase = await fs.collection(`/${year}/${month}/${i}`).get();
       // getting its snapshort 
       for (var snap of blogsFirebase.docs) {
         var data = snap.data();

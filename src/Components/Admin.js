@@ -2,9 +2,14 @@ import React from 'react'
 
 export const Admin = () => {
   return (
-    <div>
+     <>
+        <div  className='SideBar'>
+            
+        </div>
 
-        Welcome to admin panel
-    </div>
+        <div className='ViewContent'>
+
+        </div>
+     </>
   )
 }

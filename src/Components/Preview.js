@@ -10,6 +10,9 @@ const Grow = (props) => {
   )
 }
 
+function Word({ word, isItalic }) {
+  return <span>{isItalic ? <i>{word}</i> : word}</span>;
+}
 export class Preview extends Component {
   initialState = {
     heading: '',
@@ -24,49 +27,49 @@ export class Preview extends Component {
   ov(val) {
     const { fields, categoryId } = this.props
     const placeholder = {
-      insName: {1: 'Institute name',3: 'Institute name', 14: 'Institute name'},        // 1, 3
-      partnerInsName: {1: 'Partner institute name'},   // 1
-      partnerInsAddr: {1: 'Partner institute address'},   // 1
-      theme: {1: 'Theme',14: 'Theme of the competition',15: 'Title (theme)',16: 'Theme', 17: 'Theme'},// 1, 15, 16, 17
-      purposeAgreement: {1: 'Purpose of agreement'},  // 1, 
-      insMembers: {1: 'Members present from NITAP with their designation'},   // 1
-      outMembers: {1: 'Members present from partner Institute/Organization with their designation'},   // 1
-      otherMembers: {1: 'Other Renowned Members’ names with their designation'},   // 1
-      date: {1: 'Date', 2: 'Date', 3: 'Date', 4: 'Date', 5: 'Date', 6: 'Date', 7: 'Date', 8: 'Date', 9: 'Month (optional)', 10: 'Date', 11: 'Date', 12: 'Date', 13: 'Date', 14: 'Date', 15: 'Date', 16: 'Date', 17: 'Date'}, // 1, 2, 3, 4, 5, 6, 14, 15, 16, 17 
-      speakerName: {2: 'Speaker name',3: 'Speaker name'}, // 2, 3 
-      designation: {2: 'Designation', 3: 'Designation', 5: 'Designation', 11: 'Designation', 12: 'Designation', 13: 'Designation', 16: 'Designation', 17: 'Designation'},//2, 3, 5 , 11, 12, 13, 15
-      department: {2: 'Department', 3: 'Department', 5: 'Department', 11: 'Department', 12: 'Department', 13: 'Department'},//2, 5, 11, 12 , 13, 15
-      lectureType: {2: 'Keynote/special lecture/inagural address etc.',3: 'Keynote/special lecture/inagural address etc.'},  // 2, 3 
-      eventName: {2: 'Event name',9: 'Conference Name',13: 'Name of workshop',14: 'Name of the competition',15: 'Event name',16: 'Name of the event', 17: 'Event name'},// 2, 9, 15, 16, 17 
-      confType: {7: 'national',9: 'national'},   // 9
-      eventType: {11: 'Programme type: workshop/confrence/seminaar/FDP/EDP'},   // 9, 10
-      organizer: {2: 'Organizer with address',3: 'Organizing member/department/section (NITAP)',11: 'Organising institute name and address',13: 'Organising institute name with address',14: 'Organising section/institute name',16: 'Organizer name',17: 'Organizer name'},// 2, 3, 14, 16, 17 
-      pi: {4: 'Principal Investigators'}, // 4
-      copi: {4: 'Co-principal Investigators'}, // 4 
-      title: {2: 'Title of speech',3: 'Title of speech',4: 'Projec title',5: 'Nature/ title of the work/job',7: 'Article title',8: 'Book title, subtitle',9: 'Contribution title',10: 'Title',11: 'Title of the programme'}, // 2, 3, 4, 8, 7, 9, 10
-      editors: {10: "Editors' Name"}, // 10
-      bookTitle: {10: 'Title of book'}, // 10
-      fundAgency: {4: 'Funding Agency',5: 'Sponsored agency'},// 4, 5 
-      facultyName: {5: 'Name of faculty',11: 'Name of the faculty',12: 'Name of the faculty',13: 'Name of the faculty'},// 11, 12, 13
-      invName: {6: 'Name of inventor'}, // 6
-      year: {6: 'Year the patent was issued',7: 'Publication year',8: 'Publication year', 10: 'Publication year'}, // 6, 7, 8
-      patId: {6: 'Unique patent identifier (patent number)'},  // 6
-      patOffice: {6: 'Patent office'}, // 6
-      authors: {7: 'Author(s)',8: 'Author(s)',9: 'Author(s)',10: 'Author(s)'},    // 7, 8, 9, 10
-      journalTitle: {7: 'Journal Title',12: 'Journal name'},   // 7
-      volNo: {7: 'Volume no.',},    // 7
-      issueNo: {7: 'Issue No.'},    // 7
-      pageNos: {7: 'Page no.',10: 'Page numbers'},    // 7, 10 
-      doiUrl: {7: '',8: '',9: '',10: ''},     // 7, 8, 9
-      publisher: {8: 'Publisher name',10: 'Publisher',12: 'Publishing house'},  // 8, 10
-      place: {9: 'Location of conference',15: 'Place name'},  // 9, 15
-      winner: {14: 'Name with roll no',}, // 14
-      rank: {14: 'first/second/third'},   // 14
-      collaboration: {14: 'Institute Name if any collaboration/association',15: 'If collaboration mention its full address',16: 'collaboration',17: 'Collaborator address (optional)'},  // 14, 15, 16, 17
-      coordinatorName: {15: 'Coordinator Name'},  // 15
-      eventLink: {17: 'Event link'},  // 17
-      eventBrochure: {17: 'Upload brochure'},  // 17,
-      imgCaption: {5: 'Image caption'}    // 5
+      insName: { 1: 'Institute name', 3: 'Institute name', 14: 'Institute name' },        // 1, 3
+      partnerInsName: { 1: 'Partner institute name' },   // 1
+      partnerInsAddr: { 1: 'Partner institute address' },   // 1
+      theme: { 1: 'Theme', 14: 'Theme of the competition', 15: 'Title (theme)', 16: 'Theme', 17: 'Theme' },// 1, 15, 16, 17
+      purposeAgreement: { 1: 'Purpose of agreement' },  // 1, 
+      insMembers: { 1: 'Members present from NITAP with their designation' },   // 1
+      outMembers: { 1: 'Members present from partner Institute/Organization with their designation' },   // 1
+      otherMembers: { 1: 'Other Renowned Members’ names with their designation' },   // 1
+      date: { 1: 'Date', 2: 'Date', 3: 'Date', 4: 'Date', 5: 'Date', 6: 'Date', 7: 'Date', 8: 'Date', 9: 'Month (optional)', 10: 'Date', 11: 'Date', 12: 'Date', 13: 'Date', 14: 'Date', 15: 'Date', 16: 'Date', 17: 'Date' }, // 1, 2, 3, 4, 5, 6, 14, 15, 16, 17 
+      speakerName: { 2: 'Speaker name', 3: 'Speaker name' }, // 2, 3 
+      designation: { 2: 'Designation', 3: 'Designation', 5: 'Designation', 11: 'Designation', 12: 'Designation', 13: 'Designation', 16: 'Designation', 17: 'Designation' },//2, 3, 5 , 11, 12, 13, 15
+      department: { 2: 'Department', 3: 'Department', 5: 'Department', 11: 'Department', 12: 'Department', 13: 'Department' },//2, 5, 11, 12 , 13, 15
+      lectureType: { 2: 'Keynote/special lecture/inagural address etc.', 3: 'Keynote/special lecture/inagural address etc.' },  // 2, 3 
+      eventName: { 2: 'Event name', 9: 'Conference Name', 13: 'Name of workshop', 14: 'Name of the competition', 15: 'Event name', 16: 'Name of the event', 17: 'Event name' },// 2, 9, 15, 16, 17 
+      confType: { 7: 'national', 9: 'national' },   // 9
+      eventType: { 11: 'Programme type: workshop/confrence/seminaar/FDP/EDP' },   // 9, 10
+      organizer: { 2: 'Organizer with address', 3: 'Organizing member/department/section (NITAP)', 11: 'Organising institute name and address', 13: 'Organising institute name with address', 14: 'Organising section/institute name', 16: 'Organizer name', 17: 'Organizer name' },// 2, 3, 14, 16, 17 
+      pi: { 4: 'Principal Investigators' }, // 4
+      copi: { 4: 'Co-principal Investigators' }, // 4 
+      title: { 2: 'Title of speech', 3: 'Title of speech', 4: 'Projec title', 5: 'Nature/ title of the work/job', 7: 'Article title', 8: 'Book title, subtitle', 9: 'Contribution title', 10: 'Title', 11: 'Title of the programme' }, // 2, 3, 4, 8, 7, 9, 10
+      editors: { 10: "Editors' Name" }, // 10
+      bookTitle: { 10: 'Title of book' }, // 10
+      fundAgency: { 4: 'Funding Agency', 5: 'Sponsored agency' },// 4, 5 
+      facultyName: { 5: 'Name of faculty', 11: 'Name of the faculty', 12: 'Name of the faculty', 13: 'Name of the faculty' },// 11, 12, 13
+      invName: { 6: 'Name of inventor' }, // 6
+      year: { 6: 'Year the patent was issued', 7: 'Publication year', 8: 'Publication year', 10: 'Publication year' }, // 6, 7, 8
+      patId: { 6: 'Unique patent identifier (patent number)' },  // 6
+      patOffice: { 6: 'Patent office' }, // 6
+      authors: { 7: 'Author(s)', 8: 'Author(s)', 9: 'Author(s)', 10: 'Author(s)' },    // 7, 8, 9, 10
+      journalTitle: { 7: 'Journal Title', 12: 'Journal name' },   // 7
+      volNo: { 7: 'Volume no.', },    // 7
+      issueNo: { 7: 'Issue No.' },    // 7
+      pageNos: { 7: 'Page no.', 10: 'Page numbers' },    // 7, 10 
+      doiUrl: { 7: '', 8: '', 9: '', 10: '' },     // 7, 8, 9
+      publisher: { 8: 'Publisher name', 10: 'Publisher', 12: 'Publishing house' },  // 8, 10
+      place: { 9: 'Location of conference', 15: 'Place name' },  // 9, 15
+      winner: { 14: 'Name with roll no', }, // 14
+      rank: { 14: 'first/second/third' },   // 14
+      collaboration: { 14: 'Institute Name if any collaboration/association', 15: 'If collaboration mention its full address', 16: 'collaboration', 17: 'Collaborator address (optional)' },  // 14, 15, 16, 17
+      coordinatorName: { 15: 'Coordinator Name' },  // 15
+      eventLink: { 17: 'Event link' },  // 17
+      eventBrochure: { 17: 'Upload brochure' },  // 17,
+      imgCaption: { 5: 'Image caption' }    // 5
     }
 
     const peopleLs = ['copi', 'pi', 'authors']
@@ -93,12 +96,23 @@ export class Preview extends Component {
             return `${el.lastName}, ${el.firstInitials}`
           })
         }
-        return outstrArr.join(', ')
+        let outstr = outstrArr[0];
+        let n = outstrArr.length
+        outstrArr.forEach((element, i) => {
+          if (i !== 0) {
+            if (i === n - 1) {
+              outstr += ` & ${element}`;
+            } else {
+              outstr += `, ${element}`;
+            }
+          }
+        });
+        return outstr
       }
       return placeholder[val][parseInt(categoryId)].toUpperCase()   // for empty lists
     }
     return placeholder[val][parseInt(categoryId)].toUpperCase()   // for undefined
-    
+
   }
 
   updatePreview(updateType) {
@@ -129,6 +143,7 @@ export class Preview extends Component {
     let outStr = ''
     switch (category) {
       case 1:
+        // <Word sItalic={'hello'} />
         outStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
         break;
       case 2:
@@ -136,7 +151,7 @@ export class Preview extends Component {
         break;
       case 3:
         outStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, ${this.ov('insName')} visited and delivered a ${this.ov('lectureType')} on "${this.ov('title')}" organised by ${this.ov('organizer')} on ${this.ov('date')}`
-        break;      
+        break;
       case 4:
         outStr = `${this.ov('pi')} ${fields.pi ? (fields.pi.length === 1 ? 'as a Principal Investigator' : 'as Principal Investigators') : ''} with ${this.ov('copi')} ${fields.copi ? (fields.copi.length === 1 ? 'as a Co-Principal Investigator' : 'as Co-Principal Investigators') : ''} recieved an external project titled "${this.ov('title')}". Funding agency: ${this.ov('fundAgency')}, ${this.ov('date')}`
         break;
@@ -147,7 +162,7 @@ export class Preview extends Component {
         outStr = `${this.ov('invName')} (${this.ov('year')}), ${this.ov('patId')} ${this.ov('patOffice')}`
         break;
       case 7:
-        outStr = `${this.ov('authors')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title : ${this.ov('journalTitle')} , Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
+        outStr = `${this.ov('authors')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title :`+ <em> `Hello` </em>+ `Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
         break;
       case 8:
         outStr = `${this.ov('authors')}, ${this.ov('year')} ${this.ov('title')} published by ${this.ov('publisher')} ${this.ov('doiUrl')}`
@@ -156,10 +171,10 @@ export class Preview extends Component {
         outStr = `${this.ov('authors')}, ${this.ov('date')} ${this.ov('title')} {paper representation} ,${this.ov('confType')} ${this.ov('place')} ${this.ov('doiUrl')}`
         break;
       case 10:
-        outStr = `${this.ov('authors')} (${this.ov('year')}). ${this.ov('title')} ${this.ov('bookTitle')} (pp ${this.ov('pageNos')}). Published by ${this.ov('publisher')}, ${this.ov('doiUrl')}`
+        outStr = `${this.ov('authors')} (${this.ov('year')}).Title of chapter: ${this.ov('title')}.Edited by ${this.ov('editors')} of book "${this.ov('bookTitle')}"  (pp ${this.ov('pageNos')}). Published by ${this.ov('publisher')}, ${this.ov('doiUrl')}`
         break;
       case 11:
-        outStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on ${this.ov('title')}, organised by ${this.ov('organizer')}. ${this.ov('date')}`
+        outStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on "${this.ov('title')}", organised by ${this.ov('organizer')}. ${this.ov('date')}`
         break;
       case 12:
         outStr = `${this.ov('facultyName')} ${this.ov('designation')} of ${this.ov('department')}  was Reviewer of "${this.ov('journalTitle')}". ${this.ov('publisher')} ${this.ov('date')}`
@@ -177,10 +192,10 @@ export class Preview extends Component {
         outStr = `${this.ov('eventName')} was organised  by ${this.ov('organizer')}, ${this.ov('designation')} on the mark of ${this.ov('theme')}, on ${this.ov('date')}.`
         break;
       case 17:
-        outStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('designation')}, NITAP, sponsored by ${this.ov('collaboration')}, ${this.ov('date')}. More details, visit ${this.ov('eventLink')} or NITAP official website.`
+        outStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('designation')}, NITAP, sponsored by ${this.ov('collaboration')}, ${this.ov('date')}. More details, visit  NITAP official website : www.nitap.ac.in or link of event ${this.ov('eventLink')} or`
         break;
       default:
-        break;    
+        break;
     }
 
     if (updateType === "title") {
@@ -244,12 +259,12 @@ export class Preview extends Component {
     let imgComponentArr = []
     if (images && images.length !== 0) {
       imgComponentArr = images.map((img, i) => {
-        return <img key={i} alt="technodaya-magazine" src={URL.createObjectURL(img) } />
+        return <img key={i} alt="technodaya-magazine" src={URL.createObjectURL(img)} />
       })
     }
     return (
       <>
-        <div className='preview' style={{display: this.props.display}} >
+        <div className='preview' style={{ display: this.props.display }} >
           <div className='head'>
             <h3 className='previewtell'>Click to edit</h3>
           </div>
@@ -262,7 +277,7 @@ export class Preview extends Component {
           <div className='image-preview'>
             {imgComponentArr}
           </div>
-          {imgComponentArr.length !== 0 && (this.state.category !== 1 || this.state.category !== 3)  && (
+          {imgComponentArr.length !== 0 && (this.state.category !== 1 || this.state.category !== 3) && (
             <p className='img-caption-preview'>{this.state.imgCaption}</p>
           )}
           {this.state.category !== 0 && (
