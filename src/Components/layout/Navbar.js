@@ -9,10 +9,10 @@ export const Navbar = () => {
     <div className='navbar-component'>
       <header className='banner'>
         <div className='logos'>
-          <img src={nitapLogo} alt="NIT Arunachal Pradesh Logo" />
+          <img id='nitapLogo' src={nitapLogo} alt="NIT Arunachal Pradesh Logo" />
           <div className='sep' />
           <div className='college-name'>
-            <img src={technodayaLogo} alt="Technodaya Logo" height="64" />
+            <img id='technodayaLogo' src={technodayaLogo} alt="Technodaya Logo" />
             <p className='nitap'>National Institute of Technology,<br /> Arunachal Pradesh</p>
           </div>
         </div>
@@ -20,12 +20,12 @@ export const Navbar = () => {
 
         <div className='nav-items'>
           <a className='nav-item' href='/'> <div>Home</div></a>
-          <a className='nav-item' href='/magazine'> <div>Magazines</div></a>
+          <a className='nav-item' href='/magazine'> <div>Read</div></a>
+          <a className='nav-item' href='/about'> <div>About us</div></a>
           <a className='nav-item' href='https://nitap.ac.in'> <div>NITAP Home</div></a>
-          <a className='nav-item' href='https://youtu.be/dQw4w9WgXcQ'> <div>if you dont have direction</div></a>
           <div className='sep' />
-          <a className='nav-item' href='/addBlogs'> <div>Add New Activity</div></a>
-          <a className='nav-item' href='https://youtu.be/dQw4w9WgXcQ'> <div>Admin login</div></a>
+          <a className='nav-item' href='/addBlogs'> <div>Submission</div></a>
+          <a className='nav-item' href='/login'> <div>Admin login</div></a>
         </div>
 
     </div>
