@@ -162,7 +162,7 @@ export class Preview extends Component {
         outStr = `${this.ov('invName')} (${this.ov('year')}), ${this.ov('patId')} ${this.ov('patOffice')}`
         break;
       case 7:
-        outStr = `${this.ov('authors')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title :`+ <em> `Hello` </em>+ `Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
+        outStr = `${this.ov('authors')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title :`+ <em> {this.ov('journalTitle')}</em> +`Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
         break;
       case 8:
         outStr = `${this.ov('authors')}, ${this.ov('year')} ${this.ov('title')} published by ${this.ov('publisher')} ${this.ov('doiUrl')}`
@@ -174,25 +174,25 @@ export class Preview extends Component {
         outStr = `${this.ov('authors')} (${this.ov('year')}).Title of chapter: ${this.ov('title')}.Edited by ${this.ov('editors')} of book "${this.ov('bookTitle')}"  (pp ${this.ov('pageNos')}). Published by ${this.ov('publisher')}, ${this.ov('doiUrl')}`
         break;
       case 11:
-        outStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on "${this.ov('title')}", organised by ${this.ov('organizer')}. ${this.ov('date')}`
+        outStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on "${this.ov('title')}", organised by ${this.ov('organizer')} on  ${this.ov('date')}`
         break;
       case 12:
-        outStr = `${this.ov('facultyName')} ${this.ov('designation')} of ${this.ov('department')}  was Reviewer of "${this.ov('journalTitle')}". ${this.ov('publisher')} ${this.ov('date')}`
+        outStr = `${this.ov('facultyName')} ${this.ov('designation')} of ${this.ov('department')}  was Reviewer of "${this.ov('journalTitle')}". ${this.ov('publisher')}  on ${this.ov('date')}`
         break;
       case 13:
-        outStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} was The Chair of Panel Session at ${this.ov('eventName')}, organised by ${this.ov('organizer')}. ${this.ov('date')}`
+        outStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} was The Chair of Panel Session at ${this.ov('eventName')}, organised by ${this.ov('organizer')} on ${this.ov('date')}`
         break;
       case 14:
-        outStr = `${this.ov('winner')}, ${this.ov('insName')} won the ${this.ov('rank')} in the competition on the theme of "${this.ov('theme')}" organized by ${this.ov('organizer')} in Association with ${this.ov('collaboration')} on ${this.ov('date')}`
+        outStr = `${this.ov('winner')}, ${this.ov('insName')} won the ${this.ov('rank')} in the competition on the theme of "${this.ov('theme')}" organized by ${this.ov('organizer')}  ${fields.collaboration ?`in association with ${this.ov('collaboration')},`:''} on ${this.ov('date')}`
         break;
       case 15:
-        outStr = `${this.ov('eventName')} on "${this.ov('theme')}" was organized by ${this.ov('coordinatorName')}, ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} at ${this.ov('place')}. ${this.ov('date')}.`
+        outStr = `${this.ov('eventName')} on "${this.ov('theme')}" was organized by ${this.ov('coordinatorName')}, ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} at ${this.ov('place')} on ${this.ov('date')}.`
         break;
       case 16:
-        outStr = `${this.ov('eventName')} was organised  by ${this.ov('organizer')}, ${this.ov('designation')} on the mark of ${this.ov('theme')}, on ${this.ov('date')}.`
+        outStr = `${this.ov('eventName')} was organised  by ${this.ov('organizer')}, ${this.ov('designation')}  ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} on the mark/occassion of ${this.ov('theme')}, on ${this.ov('date')}.`
         break;
       case 17:
-        outStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('designation')}, NITAP, sponsored by ${this.ov('collaboration')}, ${this.ov('date')}. More details, visit  NITAP official website : www.nitap.ac.in or link of event ${this.ov('eventLink')} or`
+        outStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('designation')}, NITAP, ${fields.collaboration ? `sponsored by ${this.ov('collaboration')},`:'' } , ${this.ov('date')}. More details, visit  NITAP official website : www.nitap.ac.in or link of event: ${this.ov('eventLink')}`
         break;
       default:
         break;
@@ -265,6 +265,9 @@ export class Preview extends Component {
     return (
       <>
         <div className='preview' style={{ display: this.props.display }} >
+          <div>
+            
+          </div>
           <div className='head'>
             <h3 className='previewtell'>Click to edit</h3>
           </div>
