@@ -6,7 +6,26 @@ import firebase from 'firebase/compat/app'
 
 
 const year = new Date().getFullYear();
-const month = new Date().toLocaleString("en-US", { month: "long" });
+let MonthName;
+const month = new Date().getMonth();
+
+
+const BiMonthlyNames = [
+    '',
+    'JanFeb',
+    'MarApril',
+    'MayJune',
+    'JulyAug',
+    'SeptOct',
+    'NovDec',
+  ]
+
+if(month ===1 || month ===2) MonthName=BiMonthlyNames[1];
+else if(month===3 || month ===4) MonthName=BiMonthlyNames[2];
+else if(month===5 || month ===6) MonthName=BiMonthlyNames[3];
+else if(month===7 || month ===8) MonthName=BiMonthlyNames[4];
+else if(month===9 || month ===10) MonthName=BiMonthlyNames[5];
+else if(month===11 || month ===12) MonthName=BiMonthlyNames[6];
 export class AddBlogs extends Component {
   initialState = {
     category: 0,
@@ -39,14 +58,15 @@ export class AddBlogs extends Component {
     'Outreach Activity',
     'Announcement',
   ]
-  state = this.initialState
 
- 
 
+  state = this.initialState;
+
+  
   handleSubmit = (out) => {
     const uploadOnFirestore = () => {
       console.log(imageLinks);
-      fs.collection(`${year}/${month}/${category_Id}/`).doc().set({
+      fs.collection(`${year}/${MonthName}/${category_Id}/`).doc().set({
         Heading: heading,
         wholeDescription: wholeDescription,
         EventDate: date,
