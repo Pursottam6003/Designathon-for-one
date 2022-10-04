@@ -55,7 +55,7 @@ export class Preview extends Component {
       year: { 6: 'Year the patent was issued', 7: 'Publication year', 8: 'Publication year', 10: 'Publication year' }, // 6, 7, 8
       patId: { 6: 'Unique patent identifier (patent number)' },  // 6
       patOffice: { 6: 'Patent office' }, // 6
-      authors: { 7: 'Author(s)', 8: 'Author(s)', 9: 'Author(s)', 10: 'Author(s)' },    // 7, 8, 9, 10
+      author: { 7: 'Author(s)', 8: 'Author(s)', 9: 'Author(s)', 10: 'Author(s)' },    // 7, 8, 9, 10
       journalTitle: { 7: 'Journal Title', 12: 'Journal name' },   // 7
       volNo: { 7: 'Volume no.', },    // 7
       issueNo: { 7: 'Issue No.' },    // 7
@@ -72,7 +72,7 @@ export class Preview extends Component {
       imgCaption: { 5: 'Image caption' }    // 5
     }
 
-    const peopleLs = ['copi', 'pi', 'authors']
+    const peopleLs = ['copi', 'pi', 'author']
     if (!(peopleLs.includes(val))) {    // when not adding lists
       if (!fields[val]) {
         return placeholder[val][parseInt(categoryId)].toUpperCase()
@@ -91,7 +91,7 @@ export class Preview extends Component {
           outstrArr = fields[val].map(el => {
             return `${el.name}, ${el.designation}, ${el.department}${el.insName ? `, ${el.insName}` : ''}`
           })
-        } else if (val === "authors") {
+        } else if (val === "author") {
           outstrArr = fields[val].map(el => {
             return `${el.lastName}, ${el.firstInitials}`
           })
@@ -143,7 +143,6 @@ export class Preview extends Component {
     let outStr = ''
     switch (category) {
       case 1:
-        // <Word sItalic={'hello'} />
         outStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
         break;
       case 2:
@@ -162,16 +161,16 @@ export class Preview extends Component {
         outStr = `${this.ov('invName')} (${this.ov('year')}), ${this.ov('patId')} ${this.ov('patOffice')}`
         break;
       case 7:
-        outStr = `${this.ov('authors')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title :`+ <em> `Hello` </em>+ `Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
+        outStr = `${this.ov('author')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title :`+ <em> `Hello` </em>+ `Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
         break;
       case 8:
-        outStr = `${this.ov('authors')}, ${this.ov('year')} ${this.ov('title')} published by ${this.ov('publisher')} ${this.ov('doiUrl')}`
+        outStr = `${this.ov('author')}, ${this.ov('year')} ${this.ov('title')} published by ${this.ov('publisher')} ${this.ov('doiUrl')}`
         break;
       case 9:
-        outStr = `${this.ov('authors')}, ${this.ov('date')} ${this.ov('title')} {paper representation} ,${this.ov('confType')} ${this.ov('place')} ${this.ov('doiUrl')}`
+        outStr = `${this.ov('author')}, ${this.ov('date')} ${this.ov('title')} {paper representation} ,${this.ov('confType')} ${this.ov('place')} ${this.ov('doiUrl')}`
         break;
       case 10:
-        outStr = `${this.ov('authors')} (${this.ov('year')}).Title of chapter: ${this.ov('title')}.Edited by ${this.ov('editors')} of book "${this.ov('bookTitle')}"  (pp ${this.ov('pageNos')}). Published by ${this.ov('publisher')}, ${this.ov('doiUrl')}`
+        outStr = `${this.ov('author')} (${this.ov('year')}).Title of chapter: ${this.ov('title')}.Edited by ${this.ov('editors')} of book "${this.ov('bookTitle')}"  (pp ${this.ov('pageNos')}). Published by ${this.ov('publisher')}, ${this.ov('doiUrl')}`
         break;
       case 11:
         outStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on "${this.ov('title')}", organised by ${this.ov('organizer')}. ${this.ov('date')}`

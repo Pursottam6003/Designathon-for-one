@@ -14,6 +14,7 @@ export class CategoryForm extends Component {
     outMembers: '',   // 1
     otherMembers: '',   // 1
     date: '', // 1, 2, 3, 4, 5, 6, 14, 15, 16, 17 
+    toDate: '', // announcement, outreach, 
     speakerName: '', // 2, 3 
     designation: '',//2, 3, 5 , 11, 12, 13, 14, 15, 16, 17
     department: '',//2, 3, 5, 11, 12 , 13, 14 
@@ -35,7 +36,7 @@ export class CategoryForm extends Component {
     patId: '',  // 6
     patOffice: '', // 6
     journalType: '', // 7
-    authors: [],    // 7, 8, 9, 10
+    author: [],    // 7, 8, 9, 10
     journalTitle: '',   // 7
     volNo: '',    // 7
     issueNo: '',    // 7
@@ -62,85 +63,41 @@ export class CategoryForm extends Component {
     }
     this.setState({
       [name]: setVal,
-      formData: {...this.state.formData, [name]: setVal}
-    }, () => {
-      // as setState is asynchronous, use the callback function to update to parent form
-      this.props.handleUpdate(this.state.formData)
-    })
+      formData: { ...this.state.formData, [name]: setVal }
+    }, () => {this.props.handleUpdate(this.state.formData)})
   }
 
   addPerson = (person) => {
-    if (person["type"] === "author") {
+    const personType = person["type"].toLowerCase();
+    this.setState({
+      [personType]: [...this.state[personType], person]
+    }, () => {
       this.setState({
-        authors: [...this.state.authors, person]
-      }, () => {
-        this.setState({
-          formData: {...this.state.formData, authors: this.state.authors}
-        }, () => {this.props.handleUpdate(this.state.formData)})
-      })
-    } else if (person["type"] === "PI") {
-      this.setState({
-        pi: [...this.state.pi, person]
-      }, () => {
-        this.setState({
-          formData: {...this.state.formData, pi: this.state.pi}
-        }, () => {this.props.handleUpdate(this.state.formData)})
-      })
-    } else {
-      this.setState({
-        copi: [...this.state.copi, person],
-      }, () => {
-        this.setState({
-          formData: {...this.state.formData, copi: this.state.copi}
-        }, () => {this.props.handleUpdate(this.state.formData)})
-      })
-    }
+        formData: { ...this.state.formData, [personType]: this.state[personType] }
+      }, () => { this.props.handleUpdate(this.state.formData) })
+    })
   }
 
   removePerson = (index, personType) => {
-    if (personType === "PI") {
-      const { pi } = this.state
-      this.setState({
-        pi: pi.filter((person, i) => {
-          return i !== index;
-        })
-      }, () => {
-        this.setState({
-          formData: {...this.state.formData, pi: this.state.pi}
-        }, () => {this.props.handleUpdate(this.state.formData)})
+    const personTypeSm = personType.toLowerCase()
+    const { [personTypeSm]: people } = this.state
+    this.setState({
+      [personTypeSm]: people.filter((person, i) => {
+        return i !== index;
       })
-    } else if (personType === "CoPI") {
-      const { copi } = this.state
+    }, () => {
       this.setState({
-        copi: copi.filter((person, i) => {
-          return i !== index;
-        })
-      }, () => {
-        this.setState({
-          formData: {...this.state.formData, copi: this.state.copi}
-        }, () => {this.props.handleUpdate(this.state.formData)})
-      })
-    } else {
-      const { authors } = this.state
-      this.setState({
-        authors: authors.filter((person, i) => {
-          return i !== index;
-        })
-      }, () => {
-        this.setState({
-          formData: {...this.state.formData, authors: this.state.authors}
-        }, () => {this.props.handleUpdate(this.state.formData)})
-      })
-    }
-    console.log(index);
+        formData: { ...this.state.formData, [personTypeSm]: this.state[personTypeSm] }
+      }, () => { this.props.handleUpdate(this.state.formData) })
+    })
   }
 
   componentDidMount() {
     this.setState(this.initialState, () => {
       if ((this.props.categoryId === 7) || (this.props.categoryId === 9)) {
         this.setState({
-          formData: {...this.state.formData, confType: "national"}
-        }, () => {this.props.handleUpdate(this.state.formData)})
+          formData: { ...this.state.formData, confType: "national" }
+        }, () => { this.props.handleUpdate(this.state.formData) })
       }
       this.props.handleUpdate(this.state.formData)
     });
@@ -643,8 +600,8 @@ export class CategoryForm extends Component {
           </Field>
 
           <p className='sub-label'>Author details</p>
-          <List items={this.state.authors} itemType="author" removeItem={this.removePerson} />
-          <Person personType="author" notFirst={this.state.authors.length} handleSubmit={this.addPerson} />
+          <List items={this.state.author} itemType="author" removeItem={this.removePerson} />
+          <Person personType="author" notFirst={this.state.author.length} handleSubmit={this.addPerson} />
 
           <p className='sub-label'>Research details</p>
           <Field showLabel={this.state.year.length} labeltxt="Publication year">
@@ -740,8 +697,8 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Author details</p>
-          <List items={this.state.authors} itemType="author" removeItem={this.removePerson} />
-          <Person personType="author" notFirst={this.state.authors.length} handleSubmit={this.addPerson} />
+          <List items={this.state.author} itemType="author" removeItem={this.removePerson} />
+          <Person personType="author" notFirst={this.state.author.length} handleSubmit={this.addPerson} />
 
           <p className='sub-label'>Book details</p>
           <Field showLabel={this.state.year.length} labeltxt="Publication year">
@@ -792,8 +749,8 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Author details</p>
-          <List items={this.state.authors} itemType="author" removeItem={this.removePerson} />
-          <Person personType="author" notFirst={this.state.authors.length} handleSubmit={this.addPerson} />
+          <List items={this.state.author} itemType="author" removeItem={this.removePerson} />
+          <Person personType="author" notFirst={this.state.author.length} handleSubmit={this.addPerson} />
 
           <p className='sub-label'>Conference details </p>
           <Field showLabel={1} labeltxt="Conference type">
@@ -879,8 +836,8 @@ export class CategoryForm extends Component {
 
         <>
           <p className='sub-label'>Author details</p>
-          <List items={this.state.authors} itemType="author" removeItem={this.removePerson} />
-          <Person personType="author" notFirst={this.state.authors.length} handleSubmit={this.addPerson} />
+          <List items={this.state.author} itemType="author" removeItem={this.removePerson} />
+          <Person personType="author" notFirst={this.state.author.length} handleSubmit={this.addPerson} />
 
           <p className='sub-label'>Publication details</p>
           <Field showLabel={this.state.title.length} labeltxt="Chapter title">
@@ -1050,7 +1007,7 @@ export class CategoryForm extends Component {
               value={this.state.date}
               onChange={this.handleChange}
             />
-          </Field>          
+          </Field>
         </>)
     } else if (parseInt(categoryId) === 12) {   // done
       return (
@@ -1207,15 +1164,15 @@ export class CategoryForm extends Component {
         </Field>
 
         <Field labeltxt="Institute name" showLabel={this.state.insName.length}>
-            <input type="text"
-              className='form-control'
-              required
-              name="insName"
-              value={this.state.insName}
-              onChange={this.handleChange}
-              placeholder="Institute name"
-            />
-          </Field>
+          <input type="text"
+            className='form-control'
+            required
+            name="insName"
+            value={this.state.insName}
+            onChange={this.handleChange}
+            placeholder="Institute name"
+          />
+        </Field>
 
 
         <p className='sub-label'>Competition details</p>
@@ -1276,14 +1233,14 @@ export class CategoryForm extends Component {
         </Field>
 
         <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <input type="date"
+            className='form-control'
+            required
+            name="date"
+            value={this.state.date}
+            onChange={this.handleChange}
+          />
+        </Field>
       </>)
     } else if (parseInt(categoryId) === 15) {   // done
       return (<>
