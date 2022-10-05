@@ -108,7 +108,7 @@ export class Form extends Component {
         <input
           type="text"
           name="activityTitle"
-          className='form-control form-title'
+          className='form-control form-title top-bg'
           placeholder="New activity title here..."
           onChange={this.handleChange}
           value={this.state.activityTitle}
@@ -117,7 +117,7 @@ export class Form extends Component {
         <select
           type="number"
           name="category"
-          className='form-control'
+          className='form-control top-bg'
           required
           onChange={this.handleChange}
           value={this.state.category}

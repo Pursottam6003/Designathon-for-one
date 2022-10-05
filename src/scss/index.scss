@@ -280,6 +280,11 @@ hr {
 
   .nav-items-wrapper {
     height: var(--nav-height);
+    margin: .5rem;
+
+   
+    // gap: 1rem;
+
 
     .nav-items {
       display: flex;
@@ -293,6 +298,7 @@ hr {
       a.nav-item {
         text-decoration: none;
         display: block;
+        // padding: 1.2rem;
 
         div.nav-item-txt {
           text-transform: uppercase;
@@ -328,11 +334,17 @@ hr {
     .banner #nitapLogo {
       max-width: 96px;
     }
-
+    
     .nav-items-wrapper {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      
+      
       .nav-items {
         gap: 0 0.8rem;
         flex-wrap: wrap;
+      
 
         div.sep {
           display: none;
@@ -341,9 +353,48 @@ hr {
     }
   }
 
+
   @media screen and (max-width: 548px) {
     --nav-sticky-top: -91px;
+    .hamburgur{
+      display: block;
 
+    }
+    .nav-items-wrapper {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      
+      
+    .nav-items{
+      flex-direction: column;
+      // display: none;
+      transition: all 0.2s ease-out;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      overflow-x: hidden;
+      height: 100vh;
+      color: white;
+      font-size: 30px;
+      z-index: 1;
+      gap: .7rem;
+      background-color: rgba(0, 0, 0, 0.99);
+      .hideNavMenu{
+        display: block;
+        position: absolute;
+        top:7%;
+        left: 5%;
+      }
+       a.nav-item{
+        div.nav-item-txt{
+        font-size: 30px;
+        color: white;
+        }
+       }
+    }
+  }
     .banner {
       margin: 0.8rem 0;
 
@@ -460,7 +511,9 @@ hr {
       .form-group {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         width: 100%;
-
+        //  .top-bg{
+        //   background-color: #2fbce6;
+        //  }
         .form-control {
           box-shadow: none;
           outline: none;
@@ -1433,4 +1486,27 @@ hr {
   margin-bottom: 10px;
   border-radius: 4px;
   border: none;
+}
+
+//ham
+
+.hamburgur{
+  width: 30px;
+  margin-right: 1.3rem;
+  display: none;
+  .line{
+    background-color: #181818;
+    height: 4px;
+   margin: 4px;
+  }
+  
+  .first{
+    width: 30px;
+  }
+  .second{
+    width: 30px;
+  }
+  .third{
+    width: 30px;
+  }
 }
