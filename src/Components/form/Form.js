@@ -118,7 +118,7 @@ export class Form extends Component {
           <select
             type="number"
             name="category"
-            className='form-control'
+            className='category-select form-control'
             required
             onChange={this.handleChange}
             value={this.state.category}
