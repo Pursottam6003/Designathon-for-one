@@ -1426,3 +1426,18 @@ hr {
   border-radius: 4px;
   border: none;
 }
+
+// to print 
+@media print {
+  header, footer, aside, form, .navbar-component{
+      display: none;
+  }
+  .read-more
+  {
+    display: none;
+  }
+  .magazine-toc
+  {
+    display: none;
+  }
+}
