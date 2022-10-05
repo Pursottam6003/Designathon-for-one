@@ -24,11 +24,9 @@ export class Person extends Component {
   addPerson = () => {
     const validPerson = (person) => {
       if (person["type"] === "author") {
-        if (person["lastName"] && person["firstInitials"]) { return true; }
+        return person["lastName"] && person["firstInitials"]
       } else if ((person["type"] === "PI") || (person["type"] === "CoPI")) {
-        if (person["name"] && person["designation"] && person["department"]) {
-          return true;
-        }
+        return person["name"] && person["designation"] && person["department"]
       }
       return false;
     }
@@ -75,7 +73,7 @@ export class Person extends Component {
                 onChange={this.handleChange}
               />
             </Field>
-  
+
             <Field cls="short-field" labeltxt="First initials (second initials)" showLabel={this.state.firstInitials.length}>
               <input
                 className="short-field"
@@ -86,7 +84,7 @@ export class Person extends Component {
                 onChange={this.handleChange}
               />
             </Field>
-  
+
             <Field labeltxt="" showLabel={0}>
               <input
                 type="button"
@@ -112,7 +110,7 @@ export class Person extends Component {
                 onChange={this.handleChange}
               />
             </Field>
-  
+
             <Field cls="short-field" labeltxt="First initials (second initials)" showLabel={this.state.firstInitials.length}>
               <input
                 className="short-field"
@@ -124,7 +122,7 @@ export class Person extends Component {
                 onChange={this.handleChange}
               />
             </Field>
-  
+
             <Field labeltxt="" showLabel={0}>
               <input
                 type="button"
@@ -135,8 +133,8 @@ export class Person extends Component {
             </Field>
           </div>
         )
-        }
-      
+      }
+
     } else {
       if (notFirst) {
         return (
@@ -152,7 +150,7 @@ export class Person extends Component {
                 <option value="CoPI">CoPI</option>
               </select>
             </Field>
-  
+
             <Field cls="short-field" labeltxt="Name" showLabel={this.state.name.length}>
               <input
                 className="short-field"
@@ -163,7 +161,7 @@ export class Person extends Component {
                 onChange={this.handleChange}
               />
             </Field>
-  
+
             <Field cls="short-field" labeltxt="Designation" showLabel={this.state.designation.length}>
               <input
                 className="short-field"
@@ -174,7 +172,7 @@ export class Person extends Component {
                 onChange={this.handleChange}
               />
             </Field>
-  
+
             <Field cls="short-field" labeltxt="Department" showLabel={this.state.department.length}>
               <input
                 className="short-field"
@@ -185,7 +183,7 @@ export class Person extends Component {
                 onChange={this.handleChange}
               />
             </Field>
-  
+
             {this.state.investigatorType === "CoPI" && (
               <Field labeltxt="Institute name (outside NITAP)" showLabel={this.state.insName.length}>
                 <input
@@ -197,7 +195,7 @@ export class Person extends Component {
                 />
               </Field>
             )}
-  
+
             <Field labeltxt="" showLabel={0}>
               <input
                 type="button"
@@ -208,7 +206,7 @@ export class Person extends Component {
             </Field>
           </div>
         )
-          
+
       } else {
         return (
           <div className='person-form'>
@@ -223,7 +221,7 @@ export class Person extends Component {
                 <option value="PI">PI</option>
               </select>
             </Field>
-  
+
             <Field cls="short-field" labeltxt="Name" showLabel={this.state.name.length}>
               <input
                 className="short-field"
@@ -235,7 +233,7 @@ export class Person extends Component {
                 onChange={this.handleChange}
               />
             </Field>
-  
+
             <Field cls="short-field" labeltxt="Designation" showLabel={this.state.designation.length}>
               <input
                 className="short-field"
@@ -247,7 +245,7 @@ export class Person extends Component {
                 onChange={this.handleChange}
               />
             </Field>
-  
+
             <Field cls="short-field" labeltxt="Department" showLabel={this.state.department.length}>
               <input
                 className="short-field"
@@ -259,7 +257,7 @@ export class Person extends Component {
                 onChange={this.handleChange}
               />
             </Field>
-  
+
             {this.state.investigatorType === "CoPI" && (
               <Field labeltxt="Institute name (outside NITAP)" showLabel={this.state.insName.length}>
                 <input
@@ -272,7 +270,7 @@ export class Person extends Component {
                 />
               </Field>
             )}
-  
+
             <Field labeltxt="" showLabel={0}>
               <input
                 type="button"

@@ -370,7 +370,8 @@ hr {
 // add blogs
 
 .add-blogs {
-  --bg-img-url: url('../images/form-bg.jpg');
+  --bg-img-url: url('../images/form-bg2.png');
+  --bg-color: rgba(255, 255, 255, 0.97);
   background-image: var(--bg-img-url);
   background-repeat: no-repeat;
   background-size: cover;
@@ -388,7 +389,7 @@ hr {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    max-width: 850px;
+    max-width: 882px;
     width: 100%;
     padding: 0;
     gap: 0;
@@ -397,6 +398,7 @@ hr {
     .tablist-wrapper {
       box-sizing: content-box;
       --active-border-h: 5px;
+      --active-color: rgb(117, 104, 84);
       --tablist-h: 2.375rem;
       padding: 2rem 1rem 0;
       height: var(--tablist-h);
@@ -411,16 +413,16 @@ hr {
       z-index: 1;
 
       .tablist {
+        background-color: transparent;
         display: flex;
-        background-color: rgba(255, 255, 255, 0.5);
         height: var(--tablist-h);
         align-items: flex-end;
         overflow: visible;
-
+        
         border-radius: 0.25rem 0.25rem 0 0;
-
+        
         .tab {
-          background-color: transparent;
+          background-color: rgba(255, 255, 255, 0.5);
           color: rgb(74, 74, 74);
           border: none;
           display: block;
@@ -432,13 +434,13 @@ hr {
         }
 
         .tab:not(.active):hover {
-          background-color: rgba(255, 255, 255, 0.25);
+          background-color: rgba(255, 255, 255, 0.6);
         }
 
         .active {
-          background-color: white;
-          border-top: solid var(--active-border-h) rgb(148, 97, 55);
-          color: rgb(148, 97, 55);
+          background-color: var(--bg-color);
+          border-top: solid var(--active-border-h) var(--active-color);
+          color: var(--active-color);
           font-weight: 600;
           border-radius: 0.25rem 0.25rem 0 0;
           box-shadow: 0 0 11px rgb(0 0 0 / 12%);
@@ -448,7 +450,7 @@ hr {
 
     .form-wrapper {
       margin: 0 1rem 2rem;
-      background-color: white;
+      background-color: var(--bg-color);
       padding: 3rem 2rem;
       border-radius: 0 0 0.25rem 0.25rem;
       overflow-y: auto;
@@ -466,12 +468,17 @@ hr {
           padding: 0.5rem 0.8rem;
         }
 
+        select, input {
+          background-color: transparent;
+        }
+
         input {
           border: solid 2px transparent;
           border-radius: 0;
         }
 
         input.form-control[type="text"],
+        input.form-control[type="number"],
         select.form-control {
           width: 100%;
         }
@@ -575,20 +582,21 @@ hr {
             }
 
             .rm {
+              position: relative;
               height: 1.8rem;
               width: 1.8rem;
               background-color: transparent;
               color: rgb(65, 65, 65);
-              // font-weight: 600;
               font-family: sans-serif;
               border: none;
               border-radius: 50%;
-              // float: right;
               transition: background-color 0.15s ease, color 0.3s ease;
 
               img {
                 height: 60%;
                 width: 60%;
+                position: absolute;
+                transform: translate(-50%, -50%);
               }
             }
 
