@@ -13,6 +13,8 @@ import { FetchData } from "./Components/FetchData";
 import { Signup } from "./Components/SignUp";
 import { Login } from "./Components/Login";
 import { About } from "./Components/about";
+import { AdminLogin } from "./Components/AdminLogin";
+import { FacultyLogin } from "./Components/FacultyLogin";
 
 
 function App() {
@@ -77,6 +79,18 @@ function App() {
         } />
 
 
+      <Route exact path="/adminLog" element={
+          <Layout>
+            <AdminLogin />
+          </Layout>
+        } />
+    
+
+      <Route exact path="/facultylogin" element={
+          <Layout>
+            <FacultyLogin />
+          </Layout>
+        } />
       </Routes>
     </BrowserRouter>
   )
