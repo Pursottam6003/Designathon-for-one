@@ -1,4 +1,4 @@
- import React, { Component } from 'react'
+import React, { Component } from 'react'
 import { CategoryForm } from './CategoryForm'
 
 // const timestamp = firebase.firestore.FieldValue.serverTimestamp;
@@ -101,29 +101,31 @@ export class Form extends Component {
   categoriesSelect = this.selectOptions.map((opt, i) => {
     return <option key={i} value={opt.value}>{opt.name}</option>
   })
- 
+
   render() {
     return (
-      <form id='activityForm' autoComplete="off" className='form-group' style={{display: this.props.display}}>
-        <input
-          type="text"
-          name="activityTitle"
-          className='form-control form-title'
-          placeholder="New activity title here..."
-          onChange={this.handleChange}
-          value={this.state.activityTitle}
-        />
+      <form id='activityForm' autoComplete="off" className='form-group' style={{ display: this.props.display }}>
+        <div className='initial-form'>
+          <input
+            type="text"
+            name="activityTitle"
+            className='form-control form-title'
+            placeholder="New activity title here..."
+            onChange={this.handleChange}
+            value={this.state.activityTitle}
+          />
 
-        <select
-          type="number"
-          name="category"
-          className='form-control'
-          required
-          onChange={this.handleChange}
-          value={this.state.category}
-        >
-          {this.categoriesSelect}
-        </select>
+          <select
+            type="number"
+            name="category"
+            className='form-control'
+            required
+            onChange={this.handleChange}
+            value={this.state.category}
+          >
+            {this.categoriesSelect}
+          </select>
+        </div>
 
         {parseInt(this.state.category) !== 0 && (
           <>
@@ -134,7 +136,7 @@ export class Form extends Component {
             />
 
             <p className='sub-label'>Upload images (optional)</p>
-            <input 
+            <input
               key={`i${this.state.category}`}
               type="file"
               name="images"
@@ -146,12 +148,12 @@ export class Form extends Component {
 
             {this.state.images.length !== 0 && (
               <input type="text"
-              className='form-control'
-              name="imgCaption"
-              value={this.state.insName}
-              onChange={this.handleChange}
-              placeholder="Image caption"
-            />
+                className='form-control'
+                name="imgCaption"
+                value={this.state.insName}
+                onChange={this.handleChange}
+                placeholder="Image caption"
+              />
             )}
           </>
         )}

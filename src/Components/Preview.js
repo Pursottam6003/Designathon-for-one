@@ -343,10 +343,10 @@ export class Preview extends Component {
     return (
       <>
         <div className='preview' style={{ display: this.props.display }} >
-          <div className='head'>
+          {/* <div className='head'>
             <h3 className='previewtell'>Click to edit</h3>
           </div>
-
+ */}
 
           <div className='formatted-preview-wrapper'>
             <button id='showChanges' className='hidden' onClick={(e) => { this.toggleEdit(e, 'showChanges') }}>
@@ -356,7 +356,7 @@ export class Preview extends Component {
             </button>
 
             <PreviewedInput inpName='heading' placeholder='Title...' handleChange={this.handleChange} output={heading}>
-              <h1>{heading}</h1>
+              <h2>{heading}</h2>
             </PreviewedInput>
 
             <PreviewedInput inpName='output' placeholder='your output will show here' handleChange={this.handleChange} output={output}>
