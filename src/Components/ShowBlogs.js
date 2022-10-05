@@ -27,10 +27,11 @@ else if(month===11 || month ===12) MonthName=BiMonthlyNames[6];
 export const ShowBlogs = () => {
     const [blogs, setblogs]=useState([]);
     const getTechnodayaBlogs = async ()=>{
-        const blogsArray = [];
-    for(let i=1;i<17;i++)
+    const blogsArray = [];
+    for(let i=1;i<=17;i++)
     {
         const blogs = await fs.collection(`${year}/${MonthName}/${i}`).get();
+        console.log(i,blogs.docs.length)
        
         // getting its snapshort 
         for (var snap of blogs.docs){
@@ -43,10 +44,8 @@ export const ShowBlogs = () => {
             if(blogsArray.length === blogs.docs.length){
               //setting the products
                 setblogs(blogsArray);
-              
             }
         }
-
     }
     console.log(blogsArray)
 
@@ -74,7 +73,7 @@ export const ShowBlogs = () => {
                   <div className='news-block'>
                     
                       
-                      <Items blog={blogs}/>
+                      <Items blogsArray={blogs}/>
                   </div>
               </div>
           </div>
