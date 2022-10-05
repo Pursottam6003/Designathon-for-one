@@ -1,25 +1,76 @@
 import React, { Component } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 const Grow = (props) => {
-  const { content } = props;
-
   return (
     <div className='grow-component'>
-      {content}
+      {props.content}`
+      .`
     </div>
   )
 }
 
-function Word({ word, isItalic }) {
-  return <span>{isItalic ? <i>{word}</i> : word}</span>;
+class PreviewedInput extends Component {
+  initialState = {
+    output: ''
+  }
+  state = this.initialState
+
+  handleChange = (event) => {
+    const { name, value } = event.target
+    this.setState({
+      output: value
+    })
+    this.props.handleChange(name, value)
+  }
+
+  toggleEdit = (e) => {
+    const fInput = document.getElementById(`${this.props.inpName}FInput`);
+    const fPreview = document.getElementById(`${this.props.inpName}FPreview`);
+    if (fInput && fPreview) {
+      fInput.classList.toggle('hidden')
+      fPreview.classList.toggle('hidden')
+    }
+    else {
+      console.log('id:', `${this.props.inpName}FInput`, fInput)
+      console.log('id:', `${this.props.inpName}FPreview`, fPreview)
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.output !== prevProps.output) {
+      this.setState({
+        output: this.props.output
+      })
+    }
+  }
+
+  render() {
+    const { children, inpName, placeholder } = this.props
+    const { output } = this.state
+    return (
+      <div className='previewed-input'>
+        <div id={`${inpName}FInput`} className='growable-txtarea hidden'>
+          <textarea className='txtarea' name={inpName} placeholder={placeholder} value={output} onBlur={(e) => { this.toggleEdit(e) }} onChange={this.handleChange} />
+          <Grow content={output} />
+        </div>
+        <div onClick={(e) => { this.toggleEdit(e) }} id={`${inpName}FPreview`} className='formatted-preview'>
+          {children}
+        </div>
+      </div>
+    )
+  }
 }
+
 export class Preview extends Component {
   initialState = {
     heading: '',
     output: '',
     category: 0,
     images: [],
-    imgCaption: ''
+    imgCaption: '',
+    refreshDiv: 0
   }
 
   state = this.initialState
@@ -140,58 +191,58 @@ export class Preview extends Component {
       'Announcement',
     ]
 
-    let outStr = ''
+    let outMdStr = '';
     switch (category) {
       case 1:
-        outStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
+        outMdStr = `**${this.ov('insName')}** and _${this.ov('partnerInsName')}_, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
         break;
       case 2:
-        outStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, NITAP delivered a ${this.ov('lectureType')} on "${this.ov('title')}" in the ${this.ov('eventName')} organised by ${this.ov('organizer')} on ${this.ov('date')}.`
+        outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, **${this.ov('department')}**, NITAP delivered a ${this.ov('lectureType')} on "${this.ov('title')}" in the ${this.ov('eventName')} organised by ${this.ov('organizer')} on ${this.ov('date')}.`
         break;
       case 3:
-        outStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, ${this.ov('insName')} visited and delivered a ${this.ov('lectureType')} on "${this.ov('title')}" organised by ${this.ov('organizer')} on ${this.ov('date')}`
+        outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, ${this.ov('insName')} visited and delivered a ${this.ov('lectureType')} on "${this.ov('title')}" organised by ${this.ov('organizer')} on ${this.ov('date')}`
         break;
       case 4:
-        outStr = `${this.ov('pi')} ${fields.pi ? (fields.pi.length === 1 ? 'as a Principal Investigator' : 'as Principal Investigators') : ''} with ${this.ov('copi')} ${fields.copi ? (fields.copi.length === 1 ? 'as a Co-Principal Investigator' : 'as Co-Principal Investigators') : ''} recieved an external project titled "${this.ov('title')}". Funding agency: ${this.ov('fundAgency')}, ${this.ov('date')}`
+        outMdStr = `${this.ov('pi')} ${fields.pi ? (fields.pi.length === 1 ? 'as a Principal Investigator' : 'as Principal Investigators') : ''} with ${this.ov('copi')} ${fields.copi ? (fields.copi.length === 1 ? 'as a Co-Principal Investigator' : 'as Co-Principal Investigators') : ''} recieved an external project titled "${this.ov('title')}". Funding agency: ${this.ov('fundAgency')}, ${this.ov('date')}`
         break;
       case 5:
-        outStr = `Name of the job: ${this.ov('title')}\nName of the Client: ${this.ov('fundAgency')}\nPrincipal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')}`
+        outMdStr = `Name of the job: ${this.ov('title')}\nName of the Client: ${this.ov('fundAgency')}\nPrincipal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')}`
         break;
       case 6:
-        outStr = `${this.ov('invName')} (${this.ov('year')}), ${this.ov('patId')} ${this.ov('patOffice')}`
+        outMdStr = `${this.ov('invName')} (${this.ov('year')}), ${this.ov('patId')} ${this.ov('patOffice')}`
         break;
       case 7:
-        outStr = `${this.ov('author')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title :`+ <em>{this.ov('journalTitle')}</em> +`Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
+        outMdStr = `${this.ov('author')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title :` + <em>{this.ov('journalTitle')}</em> + `Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
         break;
       case 8:
-        outStr = `${this.ov('author')}, ${this.ov('year')} ${this.ov('title')} published by ${this.ov('publisher')} ${this.ov('doiUrl')}`
+        outMdStr = `${this.ov('author')}, ${this.ov('year')} ${this.ov('title')} published by ${this.ov('publisher')} ${this.ov('doiUrl')}`
         break;
       case 9:
-        outStr = `${this.ov('author')}, ${this.ov('date')} ${this.ov('title')} {paper representation} ,${this.ov('confType')} ${this.ov('place')} ${this.ov('doiUrl')}`
+        outMdStr = `${this.ov('author')}, ${this.ov('date')} ${this.ov('title')} {paper representation} ,${this.ov('confType')} ${this.ov('place')} ${this.ov('doiUrl')}`
         break;
       case 10:
-        outStr = `${this.ov('author')} (${this.ov('year')}).Title of chapter: ${this.ov('title')}.Edited by ${this.ov('editors')} of book "${this.ov('bookTitle')}"  (pp ${this.ov('pageNos')}). Published by ${this.ov('publisher')}, ${this.ov('doiUrl')}`
+        outMdStr = `${this.ov('author')} (${this.ov('year')}).Title of chapter: ${this.ov('title')}.Edited by ${this.ov('editors')} of book "${this.ov('bookTitle')}"  (pp ${this.ov('pageNos')}). Published by ${this.ov('publisher')}, ${this.ov('doiUrl')}`
         break;
       case 11:
-        outStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on "${this.ov('title')}", organised by ${this.ov('organizer')} on  ${this.ov('date')}`
+        outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on "${this.ov('title')}", organised by ${this.ov('organizer')} on  ${this.ov('date')}`
         break;
       case 12:
-        outStr = `${this.ov('facultyName')} ${this.ov('designation')} of ${this.ov('department')}  was Reviewer of "${this.ov('journalTitle')}". ${this.ov('publisher')}  on ${this.ov('date')}`
+        outMdStr = `${this.ov('facultyName')} ${this.ov('designation')} of ${this.ov('department')}  was Reviewer of "${this.ov('journalTitle')}". ${this.ov('publisher')}  on ${this.ov('date')}`
         break;
       case 13:
-        outStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} was The Chair of Panel Session at ${this.ov('eventName')}, organised by ${this.ov('organizer')} on ${this.ov('date')}`
+        outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} was The Chair of Panel Session at ${this.ov('eventName')}, organised by ${this.ov('organizer')} on ${this.ov('date')}`
         break;
       case 14:
-        outStr = `${this.ov('winner')}, ${this.ov('insName')} won the ${this.ov('rank')} in the competition on the theme of "${this.ov('theme')}" organized by ${this.ov('organizer')}  ${fields.collaboration ?`in association with ${this.ov('collaboration')},`:''} on ${this.ov('date')}`
+        outMdStr = `${this.ov('winner')}, ${this.ov('insName')} won the ${this.ov('rank')} in the competition on the theme of "${this.ov('theme')}" organized by ${this.ov('organizer')}  ${fields.collaboration ? `in association with ${this.ov('collaboration')},` : ''} on ${this.ov('date')}`
         break;
       case 15:
-        outStr = `${this.ov('eventName')} on "${this.ov('theme')}" was organized by ${this.ov('coordinatorName')}, ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} at ${this.ov('place')} on ${this.ov('date')}.`
+        outMdStr = `${this.ov('eventName')} on "${this.ov('theme')}" was organized by ${this.ov('coordinatorName')}, ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} at ${this.ov('place')} on ${this.ov('date')}.`
         break;
       case 16:
-        outStr = `${this.ov('eventName')} was organised  by ${this.ov('organizer')}, ${this.ov('designation')}  ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} on the mark/occassion of ${this.ov('theme')}, on ${this.ov('date')}.`
+        outMdStr = `${this.ov('eventName')} was organised  by ${this.ov('organizer')}, ${this.ov('designation')}  ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} on the mark/occassion of ${this.ov('theme')}, on ${this.ov('date')}.`
         break;
       case 17:
-        outStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('designation')}, NITAP, ${fields.collaboration ? `sponsored by ${this.ov('collaboration')},`:'' } , ${this.ov('date')}. More details, visit  NITAP official website : www.nitap.ac.in or link of event: ${this.ov('eventLink')}`
+        outMdStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('designation')}, NITAP, ${fields.collaboration ? `sponsored by ${this.ov('collaboration')},` : ''} , ${this.ov('date')}. More details, visit  NITAP official website : www.nitap.ac.in or link of event: ${this.ov('eventLink')}`
         break;
       default:
         break;
@@ -209,8 +260,8 @@ export class Preview extends Component {
       }
     } else {
       this.setState({
-        output: outStr,
         images: images,
+        output: outMdStr
       })
     }
   }
@@ -219,8 +270,15 @@ export class Preview extends Component {
     this.updatePreview()
   }
 
-  handleChange = (event) => {
-    const { name, value } = event.target
+  // handleChange = (event) => {
+  //   const { name, value } = event.target
+  //   this.setState({
+  //     [name]: value
+  //   })
+  // }
+
+  // new handleChange
+  handleChange = (name, value) => {
     this.setState({
       [name]: value
     })
@@ -233,7 +291,28 @@ export class Preview extends Component {
       const btn = event.target
       btn.setAttribute('disabled', '')
       btn.innerHTML = 'Please wait...'
-      this.props.submit(this.state);
+    }
+  }
+
+  toggleEdit = (event, type) => {
+    const fPreview = document.getElementById('fPreview');
+    const fInput = document.getElementById('fInput');
+    const showChanges = document.getElementById('showChanges');
+    let fPreviewWrapper = document.getElementsByClassName('formatted-preview-wrapper')
+    fPreviewWrapper = fPreviewWrapper[0]
+
+    fPreview.classList.toggle('hidden');
+    fInput.classList.toggle('hidden');
+    showChanges.classList.toggle('hidden');
+
+    if (event.type === 'click') {
+      if (type === 'showChanges') {
+        fPreviewWrapper.classList.remove('active');
+      } else {
+        fPreviewWrapper.classList.add('active');
+      }
+    } else {
+      fPreviewWrapper.classList.remove('active');
     }
   }
 
@@ -264,16 +343,25 @@ export class Preview extends Component {
     return (
       <>
         <div className='preview' style={{ display: this.props.display }} >
-          <div>
-            
-          </div>
           <div className='head'>
             <h3 className='previewtell'>Click to edit</h3>
           </div>
-          <textarea className='textarea' name="heading" placeholder='Title...' value={heading} onChange={this.handleChange} />
-          <div className='txtarea-wrapper'>
-            <textarea className='txtarea' name="output" placeholder='your output will show here' value={output} onChange={this.handleChange} />
-            <Grow content={output} />
+
+
+          <div className='formatted-preview-wrapper'>
+            <button id='showChanges' className='hidden' onClick={(e) => { this.toggleEdit(e, 'showChanges') }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.701 2.57141L10.0197 17.9516L2.93363 12.1665L1.71429 13.6608L10.4153 20.7644L22.2857 3.67144L20.701 2.57141Z" fill="white" stroke="white" stroke-width="1.5" />
+              </svg>
+            </button>
+
+            <PreviewedInput inpName='heading' placeholder='Title...' handleChange={this.handleChange} output={heading}>
+              <h1>{heading}</h1>
+            </PreviewedInput>
+
+            <PreviewedInput inpName='output' placeholder='your output will show here' handleChange={this.handleChange} output={output}>
+              <ReactMarkdown children={output} remarkPlugins={[remarkGfm]} />
+            </PreviewedInput>
           </div>
 
           <div className='image-preview'>
