@@ -24,7 +24,7 @@ export const Navbar = () => {
           <img id='nitapLogo' src={nitapLogo} alt="NIT Arunachal Pradesh Logo" />
           <div className='sep' />
           <div className='college-name'>
-            <img id='technodayaLogo' src={technodayaLogo} alt="Technodaya Logo" />
+            <img id='technodayaLogo' src={technodayaLogo} alt="Technodaya" />
             <p className='nitap'>National Institute of Technology,<br /> Arunachal Pradesh</p>
           </div>
         </div>
@@ -53,6 +53,9 @@ export const Navbar = () => {
           <a className='nav-item' href='/login'> <div className='nav-item-txt'>Admin login</div></a>
         </div>
 
+        <div className='logo-mobile'>
+          <img src={technodayaLogo} alt="Technodaya" />
+        </div>
         <div id='hamburgerMenu' className='hamburgur' onClick={toggleHamburger}>
           <div className='line first'></div>
           <div className='line second'></div>
