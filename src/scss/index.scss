@@ -174,12 +174,6 @@ hr {
   display: flex;
 }
 
-// show blogs 
-
-//end of showblogs
-// for news preview 
-
-
 .textarea {
   width: 100%;
   height: auto;
@@ -194,7 +188,7 @@ hr {
 .txtarea-wrapper {
   display: grid;
   --txt-font-size: 12px;
-  --txt-font-family: 'Times New Roman', Times, serif;
+  --txt-font-family: 'Courier New', Courier, monospace;
 
   .txtarea {
     display: block;
@@ -573,7 +567,10 @@ hr {
           font-weight: 600;
           margin: 0 0 1.6rem;
           padding-left: 0;
+          padding-right: 0;
+          padding-bottom: 0.08rem;
           border: none;
+          border-bottom: solid 2px transparent;
         }
         input[type="text"].form-title:focus {
           border-bottom: solid 2px rgb(57, 57, 160);
@@ -750,12 +747,41 @@ hr {
       --txt-font-family: 'Times New Roman', Times, serif;
       --txt-area-padding: 0.325rem 0.625rem 0.55rem;
       --txt-area-margin-bottom: 1.2rem;
+
+      
+      .no-content {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #212121;
+        h2, p {
+          font-family: inherit;
+          text-align: center;
+          color: inherit;
+        }
+
+        .illustration {
+          width: fit-content;
+          margin: 0 auto 2.5rem;
+        }
+
+        .no-content-heading {
+          font-size: 1.0625rem;
+          font-weight: 400;
+          margin-bottom: 1.25rem;
+        }
+        .no-content-desc {
+          font-size: 0.8rem;
+        }
+
+        .illustration > svg {
+          width: 140px;
+          height: 140px;
+        }
+      }
       
       textarea {
         padding: var(--txt-area-padding);
         background-color: transparent;
         border-bottom: solid 2px transparent;
-        margin-bottom: var(--txt-area-margin-bottom);
       }
       textarea:hover {
         outline: none;
@@ -770,9 +796,15 @@ hr {
       .formatted-preview-wrapper {
         position: relative;
         padding: var(--txt-field-padding);
+        transition: 0.3s background-color ease;
 
-        .previewed-input:nth-child(n+1) {
-          margin: 1.2rem 0 0;
+        .previewed-input {
+          margin: 0 0 0.8rem;
+
+          .formatted-preview {
+          margin: 0 0 1.2rem;
+
+          }
         }
 
         #showChanges {
@@ -828,10 +860,8 @@ hr {
             font-family: var(--txt-font-family);
             padding: var(--txt-area-padding);
             border-bottom: solid 2px transparent;
-            margin-bottom: var(--txt-area-margin-bottom);
             overflow-x: auto;
           }
-
         }
 
         .formatted-preview {
@@ -846,13 +876,11 @@ hr {
 
       .formatted-preview-wrapper:hover {
         background-color: #ededed;
+        transition: 0.15s background-color ease;
       }
 
-      .active {
+      .formatted-preview-wrapper.active {
         background-color: #ededed;
-        textarea:hover {
-          background-color: #f8f8f8;
-        }
       }
 
       .prevbtn {
