@@ -1579,14 +1579,17 @@ color: #fff;
 
     .chutiyas {
       display: flex;
-      gap: 1.2rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
     }
 
     .team-member-card {
       margin-top: 10rem;
       margin-bottom: 2rem;
       padding-top: 6rem;
-      max-width: 22rem;
+      max-width: 18rem;
       border-radius: 2px;
       display: flex;
       background-color: #0d212f;
@@ -1599,8 +1602,8 @@ color: #fff;
       .member-image {
         display: flex;
         position: absolute;
-        width: 12rem;
-        height: 12rem;
+        width: 11rem;
+        height: 11rem;
         border-radius: 50%;
         top: -30%;
         background-color: #fff;
@@ -1609,8 +1612,8 @@ color: #fff;
 
         img {
           border-radius: 50%;
-          width: 11rem;
-          height: 11rem;
+          width: 10rem;
+          height: 10rem;
         }
       }
 
