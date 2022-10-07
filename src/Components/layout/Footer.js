@@ -33,7 +33,9 @@ export const Footer = () => {
           content loading....
         </div>
       </div>
-      <div className='copyright'>&#169; 2022 all rights are preserved , Technodaya , NIT arunchal pradesh </div>
+      </div>
+      <div className='copyright '>
+      <div className='container'>&#169; 2022 all rights are preserved , Technodaya , NIT arunchal pradesh </div>
       </div>
     </div>
   )
