@@ -6,6 +6,7 @@
 
 :root {
   --nav-height: 4rem;
+  --footer-height: 229px;
 
   @media screen and (max-width: 548px) {
     --nav-height: 4rem;
@@ -32,6 +33,9 @@ html {
   max-width: 1000px;
   padding: 0 2rem;
   margin: auto;
+}
+.route {
+  min-height: calc(100vh - var(--nav-height) - var(--footer-height));
 }
 
 //for news display 
