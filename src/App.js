@@ -15,6 +15,7 @@ import { Login } from "./Components/Login";
 import { About } from "./Components/about";
 import { AdminLogin } from "./Components/AdminLogin";
 import { FacultyLogin } from "./Components/FacultyLogin";
+import { Upload_Cover } from "./Components/Upload_Cover";
 
 
 function App() {
@@ -89,6 +90,12 @@ function App() {
       <Route exact path="/facultylogin" element={
           <Layout>
             <FacultyLogin />
+          </Layout>
+        } />
+
+      <Route exact path="/uploadcover" element={
+          <Layout>
+            <Upload_Cover/>
           </Layout>
         } />
       </Routes>

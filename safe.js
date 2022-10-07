@@ -1,4 +1,161 @@
+/**
+ * 
+ *  
+
+import React,{useState} from 'react'
+import {storage,fs} from '../config/config'
+import {Navbar} from './Navbar'
+import AddImages from '../images/assets/add_images.jpg'
+import {Footer} from './Footer'
+
+export const AddProducts = () => {
+
+    const [title, setTitle]=useState('');
+    const [description, setDescription]=useState('');
+    const [price, setPrice]=useState('');
+    const [image, setImage]=useState(null);
+    const [category,setProductCategory] = useState('')
+    const [imageError, setImageError]=useState(null);
+    
+    const [successMsg, setSuccessMsg]=useState('');
+    const [uploadError, setUploadError]=useState('');
+
+    const types =['image/jpg','image/jpeg','image/png','image/PNG','image/webp','image/svg'];
+    const handleProductImg=(e)=>{
+        let selectedFile = e.target.files[0];
+        if(selectedFile){
+            if(selectedFile&&types.includes(selectedFile.type)){
+                setImage(selectedFile);
+                setImageError('');
+            }
+            else{
+                setImage(null);
+                setImageError('please select a valid image file type (png or jpg)')
+            }
+        }
+        else{
+            console.log('please select your file');
+        }
+    }
+
+    const handleAddProducts=(e)=>{
+        e.preventDefault();
+        // console.log(title, description, price);
+        // console.log(image);
+        const uploadTask=storage.ref(`product-images/${category}/${image.name}`).put(image);
+        uploadTask.on('state_changed',snapshot=>{
+            const progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
+            console.log(progress);
+        },error=>setUploadError(error.message),()=>{
+            storage.ref(`product-images/${category}/`).child(image.name).getDownloadURL().then(url=>{
+                fs.collection('Products').add({
+                    title,
+                    category,
+                    description,
+                    price: Number(price),
+                    url
+                }).then(()=>{
+                    setSuccessMsg('Product added successfully');
+                    setTitle('');
+                    setDescription('');
+                    setPrice('');
+                    document.getElementById('file').value='';
+                    setImageError('');
+                    setUploadError('');
+                    setTimeout(()=>{
+                        setSuccessMsg('');
+                    },3000)
+                }).catch(error=>setUploadError(error.message));
+            })
+        })
+    }
+  
+    return (
+        <>
+        <Navbar/>
+
+        <div  className='img-fluid' style={{maxWidth:'100%', height:'auto'}}>
+            <img src={AddImages} className='container img-fluid' style={{maxWidth:'100%', height:'auto'}}  alt='add_images of cake'></img>
+        </div>
+        <div className='container'>
+            <br></br>
+            <br></br>
+            <h1>Add Products</h1>
+            <hr></hr>        
+            {successMsg&&<>
+                <div className='success-msg'>{successMsg}</div>
+                <br></br>
+            </>} 
+            <form autoComplete="off" className='form-group' onSubmit={handleAddProducts}>
+                <label>Product Title</label>
+                <input type="text" className='form-control' required
+                onChange={(e)=>setTitle(e.target.value)} value={title}></input>
+                <br></br>
+
+                <label>Product category</label>
+                <select type="number" className='form-control' required
+            
+                onChange={(e)=>setProductCategory(e.target.value)} value={category}>
+                    <option  value={'Birthday'}>Birthday</option>
+                    <option  value={'Wedding'}>Wedding</option>
+                    <option  value={'Graduation'}>Graduation</option>
+                    <option  value={'Anniversary'}>Anniversary</option>
+                    <option  value={'Valentines'}>Valentines</option>
+                    <option  value={'Christmas'}>Christmas</option>
+                    <option  value={'Holi'}>Holi</option>
+                    <option  value={'Diwali'}>Diwali</option>
+                    <option  value={'Mothers Day'}>Mothers Day</option>
+                    <option  value={'Innugration'}>Innugration</option>
+                    <option  value={'Misc'}>Misc</option>
+
+                </select>
+
+                <br></br>
+                <label>Product Description</label>
+                <input type="text" className='form-control' required
+                onChange={(e)=>setDescription(e.target.value)} value={description}></input>
+                <br></br>
+                <label>Product Price</label>
+                <input type="number" className='form-control' required
+                onChange={(e)=>setPrice(e.target.value)} value={price}></input>
+                <br></br>
+                <label>Upload Product Image</label>
+                <input type="file" id="file" className='form-control' required
+                onChange={handleProductImg}></input>
+                
+                {imageError&&<>
+                    <br></br>
+                    <div className='error-msg'>{imageError}</div>
+                   
+                </>}
+                <br></br>           
+                <div style={{display:'flex', justifyContent:'flex-end'}}>
+                    <button type="submit" className='LoginAuthBtn'>
+                        SUBMIT
+                    </button>
+                </div>
+            </form>
+            {uploadError&&<>
+                    <br></br>
+                    <div className='error-msg'>{uploadError}</div>
+                    
+                </>}
+
+        </div>
+
+        <br></br>
+
+        <Footer/>
+
+        </>
+    )
+}
+ */
+
 /**Fretching problem
+ * 
+ * 
+ * 
  * 
  * 
  * import React,{useState, useEffect} from 'react'
