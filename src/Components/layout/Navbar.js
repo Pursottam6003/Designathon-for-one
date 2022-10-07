@@ -31,7 +31,7 @@ export const Navbar = () => {
             <li><NavLink onClick={close} className='nav-item' to='/magazine'> <div className='nav-item-txt'>Read</div></NavLink></li>
             <li><NavLink onClick={close} className='nav-item' to='/about'> <div className='nav-item-txt'>About us</div></NavLink></li>
             <li><NavLink onClick={close} className='nav-item' to='/addBlogs'> <div className='nav-item-txt'>Submit</div></NavLink></li>
-            <li><NavLink onClick={close} className='nav-item' to='/login'> <div className='nav-item-txt'>Admin login</div></NavLink></li>
+            <li><NavLink onClick={close} className='nav-item' to='/admin'> <div className='nav-item-txt'>Admin</div></NavLink></li>
           </ul>
 
           <ul className='nav-items desktop'>
@@ -39,7 +39,7 @@ export const Navbar = () => {
             <li><NavLink className='nav-item' to="/magazine"> <span className='nav-item-txt'>Read</span></NavLink></li>
             <li><NavLink className='nav-item' to="/about"> <span className='nav-item-txt'>About us</span></NavLink></li>
             <li><NavLink className='nav-item' to="/addBlogs"> <span className='nav-item-txt'>Submit</span></NavLink></li>
-            <li><NavLink className='nav-item' to="/login"> <span className='nav-item-txt'>Admin login</span></NavLink></li>
+            <li><NavLink className='nav-item' to="/admin"> <span className='nav-item-txt'>Admin</span></NavLink></li>
           </ul>
 
           <div id='hamburgerMenu' className='hamburgur' onClick={toggleHamburger}>

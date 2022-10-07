@@ -30,6 +30,17 @@ class Card extends Component {
 }
 
 export class Read extends Component {
+  release = {
+    imgsrc: {Cover},
+    title: 'Technodaya Vol IV, Issue-2',
+    vol: 'IV',
+    iss: '2',
+    month: 'Mar-Apr',
+    year: '2021',
+    link: 'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice=',
+    pdfLink: 'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'
+  }
+  state = this.initialState
   render() {
     return (
       <div className="read-component route">

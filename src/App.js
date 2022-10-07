@@ -17,6 +17,7 @@ import { About } from "./Components/about";
 import { AdminLogin } from "./Components/AdminLogin";
 import { FacultyLogin } from "./Components/FacultyLogin";
 import { Upload_Cover } from "./Components/Upload_Cover";
+import { AdminPortal } from "./Components/adminPortal";
 
 
 function App() {
@@ -26,18 +27,19 @@ function App() {
       <Layout>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/about" element={<About />} />
-          <Route exact path="/addblogs" element={<AddBlogs/>} />
-          <Route exact path="/magazine" element={<Read/>} />
-          <Route exact path="/magazine_old" element={<Magazine/>} />
-          <Route exact path="/magzine" element={<Magzine/>} />
-          <Route exact path="/magzine2" element={<FetchData/>} />
-          <Route exact path="/show_blogs" element={<ShowBlogs/>} />
-          <Route exact path="/signup" element={<Signup/>} />
-          <Route exact path="/login" element={<Login/>} />
-          <Route exact path="/adminLog" element={<AdminLogin/>} />
-          <Route exact path="/facultylogin" element={<FacultyLogin/>} />
-          <Route exact path ="uploadcover" element ={<Upload_Cover/>} />
+          <Route path="/about" element={<About />} />
+          <Route path="/addblogs" element={<AddBlogs/>} />
+          <Route path="/magazine" element={<Read/>} />
+          <Route path="/magazine_old" element={<Magazine/>} />
+          <Route path="/magzine" element={<Magzine/>} />
+          <Route path="/magzine2" element={<FetchData/>} />
+          <Route path="/show_blogs" element={<ShowBlogs/>} />
+          <Route path="/signup" element={<Signup/>} />
+          <Route path="/login" element={<Login/>} />
+          <Route path="/admin" element={<AdminPortal />} />
+          <Route path="/adminLog" element={<AdminLogin/>} />
+          <Route path="/facultylogin" element={<FacultyLogin/>} />
+          <Route path ="/uploadcover" element ={<Upload_Cover/>} />
         </Routes>
       </Layout>
     </BrowserRouter>
