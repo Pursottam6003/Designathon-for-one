@@ -3,13 +3,18 @@ import loginImg from '../images/faculty.png'
 import lock from '../images/lock2.png'
 import envelop from '../images/envelop.png'
 
+const data =[{
+    usename:'',
+    password:''
+}]
+
 
 export const FacultyLogin= () => {
   return (
     <>
         <div className='LoginPage'>
             <div className='LoginImage'>
-                <img src={loginImg}></img>
+                <img src={loginImg} id='loginPic'></img>
             </div>
             <div className='FormBox'>
                 <div className='GreetBox'>

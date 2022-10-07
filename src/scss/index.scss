@@ -2,10 +2,28 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+
 }
 
 :root {
+  --gray-0: rgb(248, 249, 250);
+  --gray-05: rgb(243, 246, 249);
+  --gray-1: rgb(241, 243, 245);
+  --gray-2: rgb(233, 236, 239);
+  --gray-25: rgb(229, 234, 240);
+  --gray-3: rgb(222, 226, 230);
+  --gray-4: rgb(207, 212, 217);
+  --gray-45: rgb(195, 202, 209);
+  --gray-5: rgb(173, 181, 189);
+  --gray-6: rgb(134, 142, 150);
+  --gray-65: rgb(90, 100, 108);
+  --gray-7: rgb(75, 80, 86);
+  --gray-8: rgb(49, 54, 59);
+  --gray-9: rgb(33, 37, 41);
+  --gray-10: rgb(22, 25, 28);
+
   --nav-height: 4rem;
+  --footer-height: 229px;
 
   @media screen and (max-width: 548px) {
     --nav-height: 4rem;
@@ -32,6 +50,161 @@ html {
   max-width: 1000px;
   padding: 0 2rem;
   margin: auto;
+}
+
+.route {
+  min-height: calc(100vh - var(--nav-height) - var(--footer-height));
+}
+
+// page headings
+.page-header {
+  margin-bottom: 2.2rem;
+  padding: 2rem 0;
+  border-bottom: solid 1px rgb(219, 219, 219);
+
+  .heading {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--gray-9);
+    line-height: 1;
+  }
+}
+
+// Read 
+.read-component {
+  .grid-gallery {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.8rem 2.2rem;
+    padding: 0 0 3rem;
+
+    .magazine-card {
+      width: 100%;
+      background-color: rgb(229, 247, 229);
+      transition: all 0.3s ease;
+
+      .cover-img {
+        width: 100%;
+
+
+        img {
+          width: 100%;
+          aspect-ratio: 1 / 1.1;
+          object-fit: cover;
+          object-position: center center;
+        }
+      }
+
+      .desc {
+        position: relative;
+        padding: 1.6rem 1.6rem 4rem;
+
+        .date {
+          display: flex;
+          justify-content: space-between;
+          flex-direction: row;
+          font-size: 0.7rem;
+          font-family: monospace;
+          padding: .8rem 0;
+
+          time {
+            font-size: inherit;
+          }
+
+          .issue {
+            font-size: inherit;
+
+          }
+        }
+
+        .title {
+          text-decoration: none;
+          font-family: 'Open Sans', sans-serif;
+
+          p {
+            text-transform: uppercase;
+            color: var(--gray-8);
+            font-size: 1.2rem;
+            line-height: 1.1;
+            font-weight: 600;
+            letter-spacing: 0.05;
+            transition: all 0.15s;
+          }
+
+          p:hover {
+            color: rgb(27, 27, 122);
+          }
+        }
+
+        .actions {
+          position: absolute;
+          margin: 1.6rem 0;
+          bottom: 0;
+          font-family: 'Open Sans', sans-serif;
+
+          .action-btn {
+            font-family: inherit;
+            text-decoration: none;
+            color: var(--gray-7);
+            background-color: transparent;
+            padding: 0.4rem 0.6rem;
+            border: solid 2px var(--gray-5);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-right: 1rem;
+            transition: all 0.2s;
+          }
+
+          .action-btn:hover {
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.349);
+            color: var(--grey-9);
+            border: solid 2px var(--gray-6);
+          }
+
+          .action-btn:active {
+            background-color: rgba(194, 194, 194, 0.3);
+          }
+        }
+      }
+    }
+
+    .magazine-card:hover {
+      box-shadow: 0px 3px 13px -8px #000000cc;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .grid-gallery {
+      grid-template-columns: repeat(2, 1fr);
+
+    }
+  }
+
+  @media screen and (max-width: 720px) {
+    .grid-gallery {
+      gap: 2.2rem 1.6rem;
+    }
+  }
+
+  @media screen and (max-width: 548px) {
+    .grid-gallery {
+      grid-template-columns: repeat(1, 1fr);
+
+      .magazine-card {
+        .cover-img {
+          img {
+            aspect-ratio: 1 / 0.5;
+            object-position: top center;
+          }
+        }
+      }
+    }
+  }
 }
 
 //for news display 
@@ -228,6 +401,7 @@ hr {
   background-color: white;
 
   box-shadow: 0 -2px 8px rgb(0 0 0 / 32%);
+
   .nav-content-wrapper {
     display: flex;
     justify-content: space-between;
@@ -235,10 +409,11 @@ hr {
     height: 100%;
     margin: auto;
     padding: 1px 1.6rem;
-  
-  
-    .banner {  
+
+
+    .banner {
       height: fit-content;
+
       #technodayaLogo {
         height: 1.8rem;
       }
@@ -249,27 +424,27 @@ hr {
       display: flex;
       flex-direction: row;
       align-items: center;
-  
+
       // nav list items 
       .nav-items {
         list-style-type: none;
         display: flex;
-  
+
         .nav-item {
           text-decoration: none;
           display: block;
-  
+
           .nav-item-txt {
             border-top: solid 2px transparent;
             border-bottom: solid 2px transparent;
           }
-  
+
           .nav-item-txt:hover {
             cursor: pointer;
           }
         }
       }
-  
+
       .nav-items.desktop {
         flex-direction: row;
         gap: 0 1rem;
@@ -277,7 +452,7 @@ hr {
         height: fit-content;
         align-items: center;
         padding: 0.5rem 0;
-  
+
         .nav-item {
           .nav-item-txt {
             height: 1.8rem;
@@ -293,7 +468,7 @@ hr {
             font-weight: 400;
           }
         }
-  
+
         .nav-item:hover>.nav-item-txt {
           color: black;
           transition: 500ms ease;
@@ -308,7 +483,7 @@ hr {
           }
         }
       }
-  
+
       .nav-items.mobile {
         position: fixed;
         top: 0;
@@ -324,18 +499,20 @@ hr {
         transition: all 0.3s ease-out;
         z-index: 1;
         font-size: 2rem;
-  
+
         .nav-item {
           position: relative;
           padding: 0 2rem;
+
           .nav-item-txt {
             color: rgb(211, 211, 211);
             font-size: 3rem;
             font-weight: 500;
             white-space: nowrap;
           }
-          
+
         }
+
         .nav-item:after {
           content: "";
           width: 0;
@@ -346,9 +523,11 @@ hr {
           background-color: white;
           transition: 0.2s width ease;
         }
+
         .nav-item.active:after {
           width: calc(100% - 2.5rem);
         }
+
         .nav-item.active {
           .nav-item-txt {
             color: #fff;
@@ -358,14 +537,7 @@ hr {
         .nav-item:hover:after {
           width: calc(100% - 2.5rem);
         }
-  
-        // .nav-item:hover>.nav-item-txt {
-        //   color: white;
-        //   transition: .1s ease;
-        //   color: #3E8CFA;
-        //   border-bottom: 2px solid #3E8CFA;
-        // }
-    
+
         .hideNavMenu {
           font-size: inherit;
           color: white;
@@ -375,8 +547,9 @@ hr {
           cursor: pointer;
         }
       }
-  
-      .logo-mobile, .mobile {
+
+      .logo-mobile,
+      .mobile {
         display: none;
       }
     }
@@ -389,6 +562,7 @@ hr {
         }
       }
     }
+
     @media screen and (max-width: 720px) {
       .hamburgur {
         display: block;
@@ -397,17 +571,18 @@ hr {
       .nav-items.desktop {
         display: none;
       }
+
       .nav-items.mobile {
         display: flex;
+
         .hideNavMenu {
           display: block;
         }
       }
     }
-  
-  
-    @media screen and (max-width: 548px) { 
-    }
+
+
+    @media screen and (max-width: 548px) {}
   }
 
 
@@ -1196,44 +1371,47 @@ hr {
 // ends here
 
 //end
-.Footer{
-  background:  linear-gradient(rgba(21, 21, 21, 0.8), rgba(5, 5, 5, 0.8)),url(../images/banner.jpg);
+.Footer {
+  background: linear-gradient(rgba(21, 21, 21, 0.8), rgba(5, 5, 5, 0.8)), url(../images/banner.jpg);
   background-size: cover;
 
-.info-Footer {
+  .info-Footer {
 
-  color: white;
-  display: flex;
-  // flex-direction: column;
-  flex-wrap: wrap;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-  gap: 20px;
-  justify-content: space-between;
-  padding: 1.5rem 0;
- 
- 
-  
-  .rights{
+    color: white;
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    #technodayaLogo-white{
-      width: 200px;
+    // flex-direction: column;
+    flex-wrap: wrap;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
+    gap: 20px;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+
+
+
+    .rights {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      #technodayaLogo-white {
+        width: 200px;
+
+      }
+    }
+
+    .left {
+      width: 300px;
     }
   }
-      .left{
-        width: 300px;
-      }
-}
- .copyright{
-  background-color: #0d0d13;
-  color: white;
-  font-family: 'Courier New', Courier, monospace;
-  text-align: center;
-  padding: .4rem 3rem;
- }
+
+  .copyright {
+    background-color: #0d0d13;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    padding: .4rem 3rem;
+  }
 }
 
 
@@ -1708,4 +1886,22 @@ hr {
     margin-top: -20px;
 
   }
+
+}
+
+@media (max-width:500px)
+{   
+  .LoginPage
+  {
+    flex-direction: column;
+    justify-content: center;
+    gap:20px;
+  }
+
+  #loginPic
+  {
+    width: 100px;
+    height: auto;
+  }
+  
 }

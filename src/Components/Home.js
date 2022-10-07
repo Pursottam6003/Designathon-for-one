@@ -65,9 +65,9 @@ export const Home = () => {
         </div>
 
       </div> */}
-
+      <div className='route'>
       <ShowBlogs/>
-
+      </div>
       
     </>
   )
