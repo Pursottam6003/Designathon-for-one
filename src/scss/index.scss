@@ -56,19 +56,25 @@ html {
   min-height: calc(100vh - var(--nav-height) - var(--footer-height));
 }
 
+// page headings
+.page-header {
+  margin-bottom: 2.2rem;
+  padding: 2rem 0;
+  border-bottom: solid 1px rgb(219, 219, 219);
+
+  .heading {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--gray-9);
+    line-height: 1;
+  }
+}
+
 // Read 
 .read-component {
-  .page-header {
-    margin: 3rem 0;
-
-    .heading {
-      font-weight: 400;
-      text-align: center;
-      font-size: 2.2rem;
-      color: var(--gray-8);
-    }
-  }
-
   .grid-gallery {
     display: grid;
     width: 100%;
@@ -89,12 +95,13 @@ html {
           width: 100%;
           aspect-ratio: 1 / 1.1;
           object-fit: cover;
+          object-position: center center;
         }
       }
 
       .desc {
         position: relative;
-        padding: 1.2rem 1.2rem 4rem;
+        padding: 1.6rem 1.6rem 4rem;
 
         .date {
           display: flex;
@@ -102,7 +109,7 @@ html {
           flex-direction: row;
           font-size: 0.7rem;
           font-family: monospace;
-          padding: .8rem 0 .4rem;
+          padding: .8rem 0;
 
           time {
             font-size: inherit;
@@ -119,20 +126,25 @@ html {
           font-family: 'Open Sans', sans-serif;
 
           p {
+            text-transform: uppercase;
             color: var(--gray-8);
             font-size: 1.2rem;
+            line-height: 1.1;
+            font-weight: 600;
+            letter-spacing: 0.05;
+            transition: all 0.15s;
           }
 
           p:hover {
-            text-decoration: underline;
+            color: rgb(27, 27, 122);
           }
         }
 
         .actions {
           position: absolute;
-          margin: 1.2rem 0;
+          margin: 1.6rem 0;
           bottom: 0;
-          font-family: inherit;
+          font-family: 'Open Sans', sans-serif;
 
           .action-btn {
             font-family: inherit;
@@ -146,12 +158,14 @@ html {
             margin-right: 1rem;
             transition: all 0.2s;
           }
+
           .action-btn:hover {
             cursor: pointer;
             background-color: rgba(255, 255, 255, 0.349);
             color: var(--grey-9);
             border: solid 2px var(--gray-6);
           }
+
           .action-btn:active {
             background-color: rgba(194, 194, 194, 0.3);
           }
@@ -170,14 +184,17 @@ html {
 
     }
   }
+
   @media screen and (max-width: 720px) {
     .grid-gallery {
       gap: 2.2rem 1.6rem;
     }
   }
+
   @media screen and (max-width: 548px) {
     .grid-gallery {
       grid-template-columns: repeat(1, 1fr);
+
       .magazine-card {
         .cover-img {
           img {
