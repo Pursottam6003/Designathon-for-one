@@ -1924,4 +1924,22 @@ hr {
     margin-top: -20px;
 
   }
+
+}
+
+@media (max-width:500px)
+{   
+  .LoginPage
+  {
+    flex-direction: column;
+    justify-content: center;
+    gap:20px;
+  }
+
+  #loginPic
+  {
+    width: 100px;
+    height: auto;
+  }
+  
 }

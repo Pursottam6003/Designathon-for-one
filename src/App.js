@@ -16,6 +16,7 @@ import { Login } from "./Components/Login";
 import { About } from "./Components/about";
 import { AdminLogin } from "./Components/AdminLogin";
 import { FacultyLogin } from "./Components/FacultyLogin";
+import { Upload_Cover } from "./Components/Upload_Cover";
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/adminLog" element={<AdminLogin/>} />
           <Route exact path="/facultylogin" element={<FacultyLogin/>} />
+          <Route exact path ="uploadcover" element ={<Upload_Cover/>} />
         </Routes>
       </Layout>
     </BrowserRouter>
