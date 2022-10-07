@@ -1480,15 +1480,18 @@ hr {
     height: auto;
     // background: rgba(0, 0, 0, 0.1);
   }
+
   .titlebox {
     display: flex;
     flex-direction: row;
     align-items: baseline;
     justify-content: space-between;
+
     .DATE {
       border-bottom: 2px solid rgb(55, 169, 13);
     }
   }
+
   .images {
     padding: 10px;
     margin: auto;
@@ -1498,12 +1501,14 @@ hr {
     width: 90%;
     height: auto;
   }
+
   .image-title {
     font-style: italic;
     font-size: 12px;
     text-align: center;
   }
 }
+
 .Toprint {
   background-color: rgb(226, 212, 14);
   padding: 7px;
@@ -1515,9 +1520,11 @@ hr {
   margin-bottom: 30px;
   font-weight: bold;
 }
+
 .Toprint :hover {
   background: rgb(255, 67, 67);
 }
+
 .share {
   background-color: rgb(67, 194, 67);
   color: white;
@@ -1527,84 +1534,106 @@ hr {
   text-align: center;
   margin: auto;
 }
-// about section 
-.about-component{
-   font-family: 'Courier New', Courier, monospace;
 
-  .about-technodaya{
+// about section 
+.about-component {
+  font-family: 'open sans';
+
+  .about-technodaya {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     max-width: 700px;
-    margin: 3rem auto ;
-    h1{
-      font-size: 50px;
+    margin: 3rem auto;
 
+    h1 {
+      font-size: 50px;
     }
-    p{
+
+    p {
       padding: .4rem 1.2rem;
       font-size: 20px;
       line-height: 1.6rem;
     }
   }
-  .about-team{
- display: flex;
- justify-content: center;
- flex-direction: column;
- align-items:center ;
 
-    .team-heading{
-      padding: 1.2rem .4rem ;
-     
+  .about-team {
+    padding-top: 3rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(254, 253, 253);
+    border-bottom: solid 1px rgb(219, 219, 219);
+    border-top: solid 1px rgb(219, 219, 219);
+
+    .team-heading {
+      padding: 1.2rem .4rem;
+ width: 100%;
+ text-align: center;
+//  background-color: #161721;
+background-color: #0d212f;
+color: #fff;
     }
-    .chutiyas{
+
+    .chutiyas {
       display: flex;
       gap: 1.2rem;
     }
-    .team-member-card{
-      margin-top: 10rem ;
-      margin-bottom: 2rem;
-      padding-top: 6rem ;
-      max-width: 22rem;
-      border-radius: 6px;
-      display: flex;
-      background-color: #151717;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
-     position: relative;
-     color: white;
 
-      .member-image{
+    .team-member-card {
+      margin-top: 10rem;
+      margin-bottom: 2rem;
+      padding-top: 6rem;
+      max-width: 22rem;
+      border-radius: 2px;
+      display: flex;
+      background-color: #0d212f;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: white;
+
+      .member-image {
         display: flex;
-       position: absolute;
-       width: 12rem;
-       height: 12rem;
-       border-radius: 50%;
-       top: -30%;
-       background-color: #fff;
-       justify-content: center;
-       align-items: center;
-        img{
+        position: absolute;
+        width: 12rem;
+        height: 12rem;
+        border-radius: 50%;
+        top: -30%;
+        background-color: #fff;
+        justify-content: center;
+        align-items: center;
+
+        img {
           border-radius: 50%;
           width: 11rem;
           height: 11rem;
         }
       }
-      .member-info{
-       
+
+      .member-info {
+
         padding: .6rem 1rem;
-        h3{
+
+        h3 {
+          font-size: 1rem;
           padding: .6rem .3rem;
         }
-        p{
+
+         
+          p {
+            font-size: .8rem;
           padding: .6rem .2rem;
         }
-        ul{
+
+        ul {
           display: flex;
           justify-content: space-around;
-          li{
+          font-size: .8rem;
+          li {
             list-style: none;
           }
         }
@@ -1889,19 +1918,16 @@ hr {
 
 }
 
-@media (max-width:500px)
-{   
-  .LoginPage
-  {
+@media (max-width:500px) {
+  .LoginPage {
     flex-direction: column;
     justify-content: center;
-    gap:20px;
+    gap: 20px;
   }
 
-  #loginPic
-  {
+  #loginPic {
     width: 100px;
     height: auto;
   }
-  
+
 }

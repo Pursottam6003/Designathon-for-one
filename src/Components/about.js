@@ -1,5 +1,8 @@
 import React, { Component } from "react"
 import Profile from "../../src/images/logo/sir.jpeg"
+import Daknya from "../../src/images/daknya.jpeg"
+import Chandrashaker from "../../src/images/tripathi.jpeg"
+import puru from "../../src/images/shah.jpeg"
 
 
 export class About extends Component {
@@ -7,14 +10,14 @@ export class About extends Component {
         return (
             <div className="about-component route">
                 <div className="container">
+                    <header className="page-header">
+                        <h1 className="heading">About us</h1>
+                    </header>
                     <div className="about-technodaya">
-                        <h1> ABOUT </h1>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, dignissimos a? Quaerat dignissimos corporis quia possimus, totam nulla perspiciatis reiciendis. Eos, optio odit!</p></div>
+                        <p> Technodaya is bimonthly magazine. This magazine contains all the activities held in the institute (i.e national institute of technology , jote , Arunchal Pradesh) Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta, dignissimos a? Quaerat dignissimos corporis quia possimus, totam nulla perspiciatis reiciendis. Eos, optio odit!</p></div>
                     <div className="about-team">
-                        <div className="team-heading"> <h1>EDITORAIL TEAM</h1></div>
+                        <div className="team-heading"> <h1>EDITORIAL TEAM</h1></div>
                         <div className="team-member-card">
-
-
                             <div className="member-image"> <img src={Profile}></img></div>
                             <div className="member-info"><h3> vijay bhaiya</h3>
                                 <p><i> editor in cheap</i></p>
@@ -23,7 +26,6 @@ export class About extends Component {
                                     <li>linkdin</li>
                                     <li>facebook</li>
                                     <li>instagram</li>
-
                                 </ul>
                             </div>
                         </div>
@@ -31,9 +33,9 @@ export class About extends Component {
                             <div className="team-member-card">
 
 
-                                <div className="member-image"> <img src={Profile}></img></div>
-                                <div className="member-info"><h3> vijay bhaiya</h3>
-                                    <p><i> editor in cheap</i></p>
+                                <div className="member-image"> <img src={Chandrashaker}></img></div>
+                                <div className="member-info"><h3> Chandrashaker Tripathi</h3>
+                                    <p><i> manager </i></p>
                                     <p> he is a human  sit amet consectetur adipisicing elit. Dicta, dignissimos a? Quaerat dignissimos corporis quia possimus, totam nulla</p>
                                     <ul>
                                         <li>linkdin</li>
@@ -46,9 +48,9 @@ export class About extends Component {
                             <div className="team-member-card">
 
 
-                                <div className="member-image"> <img src={Profile}></img></div>
-                                <div className="member-info"><h3> vijay bhaiya</h3>
-                                    <p><i> editor in cheap</i></p>
+                                <div className="member-image"> <img src={puru}></img></div>
+                                <div className="member-info"><h3> Purushotam shah</h3>
+                                    <p><i>manashawi </i></p>
                                     <p> he is a human  sit amet consectetur adipisicing elit. Dicta, dignissimos a? Quaerat dignissimos corporis quia possimus, totam nulla</p>
                                     <ul>
                                         <li>linkdin</li>
@@ -61,9 +63,9 @@ export class About extends Component {
                             <div className="team-member-card">
 
 
-                                <div className="member-image"> <img src={Profile}></img></div>
-                                <div className="member-info"><h3> vijay bhaiya</h3>
-                                    <p><i> editor in cheap</i></p>
+                                <div className="member-image"> <img src={Daknya}></img></div>
+                                <div className="member-info"><h3> Daknya bam</h3>
+                                    <p><i> cute</i></p>
                                     <p> he is a human  sit amet consectetur adipisicing elit. Dicta, dignissimos a? Quaerat dignissimos corporis quia possimus, totam nulla</p>
                                     <ul>
                                         <li>linkdin</li>
