@@ -21,77 +21,57 @@ function App() {
   return (
 
     <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={
-          <Layout>
+      <Layout>
+        <Routes>
+          <Route exact path="/" element={
             <Home />
-          </Layout>
-        } />
+          } />
 
-        <Route exact path="/about" element={
-          <Layout>
+          <Route exact path="/about" element={
             <About />
-          </Layout>
-        } />
+          } />
 
-        <Route exact path="/addblogs" element={
-          <Layout>
+          <Route exact path="/addblogs" element={
             <AddBlogs />
-          </Layout>
-        } />
+          } />
 
-        <Route exact path="/magazine" element={
-          <Layout>
+          <Route exact path="/magazine" element={
             <Magazine />
-          </Layout>
-        } />
+          } />
 
-        <Route exact path="/magzine" element={
-          <Layout>
+          <Route exact path="/magzine" element={
             <Magzine />
-          </Layout>
-        } />
+          } />
 
-        <Route exact path="/magzine2" element={
-          <Layout>
+          <Route exact path="/magzine2" element={
             <FetchData />
-          </Layout>
-        } />
+          } />
 
 
-        <Route exact path="/show_blogs" element={
-          <Layout>
+          <Route exact path="/show_blogs" element={
             <ShowBlogs />
-          </Layout>
-        } />
+          } />
 
-        <Route exact path="/signup" element={
-          <Layout>
+          <Route exact path="/signup" element={
             <Signup />
-          </Layout>
-        } />
+          } />
 
 
-        <Route exact path="/login" element={
-          <Layout>
+          <Route exact path="/login" element={
             <Login />
-          </Layout>
-        } />
+          } />
 
 
-      <Route exact path="/adminLog" element={
-          <Layout>
+          <Route exact path="/adminLog" element={
             <AdminLogin />
-          </Layout>
-        } />
-    
+          } />
 
-      <Route exact path="/facultylogin" element={
-          <Layout>
+
+          <Route exact path="/facultylogin" element={
             <FacultyLogin />
-          </Layout>
-        } />
-      </Routes>
+          } />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   )
 }

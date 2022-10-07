@@ -1,4 +1,5 @@
 import React from 'react'
+import Navlink, { NavLink } from 'react-router-dom'
 
 import logo from "../../images/logo.png"
 import nitapLogo from "../../images/logo/nitap-logo.png"
@@ -31,27 +32,22 @@ export const Navbar = () => {
       </header>
 
       <div className='nav-items-wrapper'>
-        <div className=' mobile'>
-          <a className='hideNavMenu' onClick={close}>X</a>
-          <a className='mob-nav-item' onClick={close}  href='/'> <div className='nav-item-txt'>Home</div></a>
-          <a className='mob-nav-item' onClick={close} href='/magazine'> <div className='nav-item-txt'>Read</div></a>
-          <a className='mob-nav-item' onClick={close} href='/about'> <div className='nav-item-txt'>About us</div></a>
-          <a className='mob-nav-item' onClick={close} href='https://nitap.ac.in'> <div className='nav-item-txt'>NITAP Home</div></a>
-         
-          <a className='mob-nav-item' onClick={close} href='/addBlogs'> <div className='nav-item-txt'>Submission</div></a>
-          <a className='mob-nav-item' onClick={close} href='/login'> <div className='nav-item-txt'>Admin login</div></a>
-        </div>
+        <ul className='nav-items mobile'>
+          <li><a className='hideNavMenu' onClick={close}>X</a></li>
+          <li><NavLink onClick={close} className='nav-item' exact to='/'> <div className='nav-item-txt'>Home</div></NavLink></li>
+          <li><NavLink onClick={close} className='nav-item' to='/magazine'> <div className='nav-item-txt'>Read</div></NavLink></li>
+          <li><NavLink onClick={close} className='nav-item' to='/about'> <div className='nav-item-txt'>About us</div></NavLink></li>
+          <li><NavLink onClick={close} className='nav-item' to='/addBlogs'> <div className='nav-item-txt'>Submit</div></NavLink></li>
+          <li><NavLink onClick={close} className='nav-item' to='/login'> <div className='nav-item-txt'>Admin login</div></NavLink></li>
+        </ul>
 
-        <div className='nav-items desktop'>
-          
-          <a className='nav-item'   href='/'> <div className='nav-item-txt'>Home</div></a>
-          <a className='nav-item'  href='/magazine'> <div className='nav-item-txt'>Read</div></a>
-          <a className='nav-item'  href='/about'> <div className='nav-item-txt'>About us</div></a>
-          <a className='nav-item' href='https://nitap.ac.in'> <div className='nav-item-txt'>NITAP Home</div></a>
-          <div className='sep' />
-          <a className='nav-item'  href='/addBlogs'> <div className='nav-item-txt'>Submission</div></a>
-          <a className='nav-item' href='/login'> <div className='nav-item-txt'>Admin login</div></a>
-        </div>
+        <ul className='nav-items desktop'>
+          <li><NavLink className='nav-item' exact to="/"> <div className='nav-item-txt'>Home</div></NavLink></li>
+          <li><NavLink className='nav-item' to="/magazine"> <div className='nav-item-txt'>Read</div></NavLink></li>
+          <li><NavLink className='nav-item' to="/about"> <div className='nav-item-txt'>About us</div></NavLink></li>
+          <li><NavLink className='nav-item' to="/addBlogs"> <div className='nav-item-txt'>Submit</div></NavLink></li>
+          <li><NavLink className='nav-item' to="/login"> <div className='nav-item-txt'>Admin login</div></NavLink></li>
+        </ul>
 
         <div className='logo-mobile'>
           <img src={technodayaLogo} alt="Technodaya" />

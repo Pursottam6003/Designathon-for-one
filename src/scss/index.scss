@@ -220,6 +220,7 @@ hr {
 .navbar-component {
   --nav-sticky-top: -156px;
   font-family: 'Crimson Text', serif;
+  
   box-shadow: 0 -2px 8px rgb(0 0 0 / 32%);
   padding: 1px 0;
   position: sticky;
@@ -280,19 +281,27 @@ hr {
     height: var(--nav-height);
     background-color: white;
 
-    .hideNavMenu {
-      display: none;
-    }
-
-    .logo-mobile {
-      display: none;
-    }
-    .mobile {
-      display: none;
-    }
-
+    // nav list items 
     .nav-items {
+      list-style-type: none;
       display: flex;
+
+      .nav-item {
+        text-decoration: none;
+        display: block;
+
+        .nav-item-txt {
+          border-top: solid 2px transparent;
+          border-bottom: solid 2px transparent;
+        }
+
+        .nav-item-txt:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .nav-items.desktop {
       flex-direction: row;
       gap: 0 1.6rem;
       justify-content: center;
@@ -300,37 +309,74 @@ hr {
       align-items: center;
       padding: 0.5rem 0;
 
-      a.nav-item {
-        text-decoration: none;
-        display: block;
-        // padding: 1.2rem;
-
-        div.nav-item-txt {
-          text-transform: uppercase;
-          font-size: 0.95rem;
+      .nav-item {
+        .nav-item-txt {
           height: 2rem;
           line-height: 2rem;
-          vertical-align: middle;
-          color: rgb(78, 78, 78);
-          border-top: solid 2px transparent;
-          border-bottom: solid 2px transparent;
           padding: 0 0.3rem;
+          color: rgb(78, 78, 78);
+          text-transform: uppercase;
+          font-size: 0.95rem;
+          font-weight: 400;
         }
-
-        div.nav-item-txt:hover {
-          cursor: pointer;
-          border-bottom: #2fbce6 2px solid;
-          color: black;
-          transition: 500ms ease;
-        }
-
       }
 
-      div.sep {
-        height: calc(0.75 * 2rem);
-        width: 1px;
-        background-color: #64646452;
+      .nav-item:hover>.nav-item-txt {
+        color: black;
+        transition: 500ms ease;
+        border-bottom: #2fbce6 2px solid;
       }
+    }
+
+    .nav-items.mobile {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 100vh;
+      flex-direction: column;
+      gap: 1rem;
+      justify-content: center;
+      align-items: flex-start;
+      background-color: black;
+      overflow-x: hidden;
+      transition: all 0.2s ease-out;
+      z-index: 1;
+      font-size: 2rem;
+
+      .nav-item {
+        padding: 0 2rem;
+        .nav-item-txt {
+          color: rgb(211, 211, 211);
+          font-weight: 300;
+        }
+      }
+      .nav-item.active {
+        .nav-item-txt {
+          color: #fff;
+        }
+      }
+
+      .nav-item:hover>.nav-item-txt {
+        color: white;
+        transition: .1s ease;
+        color: #3E8CFA;
+        border-bottom: 2px solid #3E8CFA;
+      }
+  
+      .hideNavMenu {
+        font-size: inherit;
+        display: none;
+        color: white;
+        position: absolute;
+        top: 7%;
+        left: 5%;
+        cursor: pointer;
+      }
+    }
+
+    .logo-mobile, .mobile {
+      display: none;
     }
   }
 
@@ -365,7 +411,6 @@ hr {
       display: block;
     }
 
-
     .nav-items-wrapper {
       display: flex;
       justify-content: space-between;
@@ -375,6 +420,7 @@ hr {
         display: block;
         height: fit-content;
         padding: 0 1rem;
+
         img {
           height: 1.8rem;
           width: auto;
@@ -384,58 +430,10 @@ hr {
       .desktop {
         display: none;
       }
-
-      .mobile {
-        display: block;
-      }
-
       .mobile {
         display: flex;
-        flex-direction: column;
-        transition: all 0.2s ease-out;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 0;
-        overflow-x: hidden;
-        height: 100vh;
-        color: white;
-        font-size: 30px;
-        z-index: 1;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        background-color: rgb(21, 10, 10);
-
-        a.mob-nav-item {
-          text-decoration: none;
-          font-size: 30px;
-          color: white;
-
-
-        }
-
-        a.mob-nav-item:hover {
-          transition: .1s ease;
-          color: #3E8CFA;
-          border-bottom: 1px solid #3E8CFA;
-          font-size: 29px;
-        }
-
         .hideNavMenu {
           display: block;
-          position: absolute;
-          top: 7%;
-          left: 5%;
-          cursor: pointer;
-
-        }
-
-        a.nav-item {
-          div.nav-item-txt {
-            font-size: 30px;
-            color: white;
-          }
         }
       }
     }
@@ -557,19 +555,16 @@ hr {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         width: 100%;
 
-        //  .top-bg{
-        //   background-color: #2fbce6;
-        //  }
         .form-control {
           box-shadow: none;
           outline: none;
-          // margin: 0.3rem 0 0.5rem;
           padding: 0.5rem 0.8rem;
           border: solid 1px #ced4da;
           font-family: inherit;
           font-size: 14px;
           line-height: 1.4;
           font-family: inherit;
+          transition: 0.2s border ease;
         }
 
         select,
