@@ -163,6 +163,31 @@ html {
       box-shadow: 0px 3px 13px -8px #000000cc;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    .grid-gallery {
+      grid-template-columns: repeat(2, 1fr);
+
+    }
+  }
+  @media screen and (max-width: 720px) {
+    .grid-gallery {
+      gap: 2.2rem 1.6rem;
+    }
+  }
+  @media screen and (max-width: 548px) {
+    .grid-gallery {
+      grid-template-columns: repeat(1, 1fr);
+      .magazine-card {
+        .cover-img {
+          img {
+            aspect-ratio: 1 / 0.5;
+            object-position: top center;
+          }
+        }
+      }
+    }
+  }
 }
 
 //for news display 
