@@ -3,7 +3,7 @@ import technodayaLogo from "../../images/logo/technodaya-logo-white.png"
 
 export const Footer = () => {
   return (
-    <div className='Footer'>
+    <div className='footer'>
 
       <div className='container'>
       <div className='info-Footer'>

@@ -5,7 +5,7 @@ import envelop from '../images/envelop.png'
 
 export const AdminLogin = () => {
     return (
-        <div className='LoginPage route'>
+        <div className='login-page route'>
             <div className='container'>
                 <div className='login-container'>
                     <div className='login-image'>
