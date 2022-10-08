@@ -1,5 +1,8 @@
 import React, { Component } from "react"
 import Cover from '../images/technodaya-cover.png'
+import {useState, useEffect } from 'react'
+import {fs} from '../config/config'
+
 
 class Card extends Component {
   render() {
@@ -29,7 +32,33 @@ class Card extends Component {
   }
 }
 
+
+const [blogs, setblogs]=useState([]);
+const getTechnodayaBlogs = async ()=>{
+    const blogsarray = []
+    const blogsFirebase = await fs.collection(`PastPublications`).get();
+        // getting its snapshort 
+    for (var snap of blogsFirebase.docs){
+      var data = snap.data();
+      data.ID = snap.id;
+      blogsarray.push({
+          ...data
+      })
+      // console.log(blogs)
+      if(blogsarray.length === blogsFirebase.docs.length){
+        //setting the products
+          setblogs(blogsarray);
+          
+      }
+    }  
+    console.log(blogsarray)
+}
+
+useEffect(()=>{
+    getTechnodayaBlogs();
+},[]) 
 export class Read extends Component {
+
   release = {
     imgsrc: {Cover},
     title: 'Technodaya Vol IV, Issue-2',
@@ -41,6 +70,11 @@ export class Read extends Component {
     pdfLink: 'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'
   }
   state = this.initialState
+
+
+
+
+
   render() {
     return (
       <div className="read-component route">
