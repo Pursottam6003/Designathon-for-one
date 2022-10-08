@@ -1467,28 +1467,98 @@ h3 {
 .hamburgur {
   width: 30px;
   display: none;
-
   .line {
     background-color: #181818;
     height: 4px;
     margin: 4px;
-  }
-
-  .first {
-    width: 30px;
-  }
-
-  .second {
-    width: 30px;
-  }
-
-  .third {
     width: 30px;
   }
 }
 
+// home section
 
-// to print 
+.home-component {
+  font-family: 'Courier New', Courier, monospace;
+  .hero {
+    background: linear-gradient(rgba(38, 37, 37, 0.5), rgba(33, 32, 32, 0.5)), url(../images/AddBlogs.jpeg);
+    height: 30rem;
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+    .content {
+      font-family: 'Courier New', Courier, monospace;
+      color: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: auto;
+      padding-top: 7rem;
+      .read-button {
+        padding: .4rem 2rem;
+        border-radius: 4rem;
+        border: 2px solid rgba(184, 181, 181, 0.815);
+      }
+    }
+  }
+
+  .issues {
+    .release-list {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      align-items: center;
+      .issues-preview {
+        width: 15rem;
+        height: fit-content;
+        .image {
+          width: 15rem;
+          height: 15rem;
+        }
+        .overview {
+          max-width: 13rem;
+          margin: 1.2rem auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 1rem;
+          .read-magazine {
+            padding: .4rem 2rem;
+            border-radius: 4rem;
+            border: 2px solid rgba(184, 181, 181, 0.815);
+          }
+        }
+      }
+    }
+
+  }
+  .publication-count{
+    background:linear-gradient(rgba(59, 59, 59, 0.5), rgba(51, 51, 51, 0.5)), url(../images/form-bg.jpg);
+    height: 20rem;
+    background-position:center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+
+    .publication{
+       width: 10rem;
+       height: 5rem;
+       background: #0d212f;
+    }
+  } 
+  .subscription-cont{
+    display: flex;
+    margin: 3rem 0;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
 .bg1 {
   background-image: linear-gradient(rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)), url('../images/bg1.jpg');
