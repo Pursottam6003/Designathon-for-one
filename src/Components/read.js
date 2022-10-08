@@ -33,30 +33,30 @@ class Card extends Component {
 }
 
 
-const [blogs, setblogs]=useState([]);
-const getTechnodayaBlogs = async ()=>{
-    const blogsarray = []
-    const blogsFirebase = await fs.collection(`PastPublications`).get();
-        // getting its snapshort 
-    for (var snap of blogsFirebase.docs){
-      var data = snap.data();
-      data.ID = snap.id;
-      blogsarray.push({
-          ...data
-      })
-      // console.log(blogs)
-      if(blogsarray.length === blogsFirebase.docs.length){
-        //setting the products
-          setblogs(blogsarray);
+// const [blogs, setblogs]=useState([]);
+// const getTechnodayaBlogs = async ()=>{
+//     const blogsarray = []
+//     const blogsFirebase = await fs.collection(`PastPublications`).get();
+//         // getting its snapshort 
+//     for (var snap of blogsFirebase.docs){
+//       var data = snap.data();
+//       data.ID = snap.id;
+//       blogsarray.push({
+//           ...data
+//       })
+//       // console.log(blogs)
+//       if(blogsarray.length === blogsFirebase.docs.length){
+//         //setting the products
+//           setblogs(blogsarray);
           
-      }
-    }  
-    console.log(blogsarray)
-}
+//       }
+//     }  
+//     console.log(blogsarray)
+// }
 
-useEffect(()=>{
-    getTechnodayaBlogs();
-},[]) 
+// useEffect(()=>{
+//     getTechnodayaBlogs();
+// },[]) 
 export class Read extends Component {
 
   release = {
