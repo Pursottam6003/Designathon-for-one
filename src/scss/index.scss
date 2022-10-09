@@ -613,6 +613,7 @@ h3 {
           }
         }
 
+        
       }
     }
   }
@@ -857,15 +858,17 @@ h3 {
                 height: 1.8rem;
                 width: 1.8rem;
                 background-color: transparent;
-                color: rgb(65, 65, 65);
-                font-family: sans-serif;
                 border: none;
                 border-radius: 50%;
                 transition: background-color 0.15s ease, color 0.3s ease;
 
-                img {
+                svg {
+                  fill: black;
                   height: 60%;
                   width: 60%;
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
                   position: absolute;
                   transform: translate(-50%, -50%);
                 }
