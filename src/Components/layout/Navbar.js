@@ -1,9 +1,8 @@
 import React from 'react'
-import Navlink, { NavLink } from 'react-router-dom'
-
-import logo from "../../images/logo.png"
-import nitapLogo from "../../images/logo/nitap-logo.png"
+import { NavLink } from 'react-router-dom'
 import technodayaLogo from "../../images/logo/technodaya-logo1.png"
+import technodayaLogoLight from "../../images/logo/technodaya-logo-white.png"
+import { ReactComponent as CloseIcon } from '../../images/logo/remove.svg'
 
 const toggleHamburger = () => {
   let navbar = document.getElementsByClassName("mobile")[0];
@@ -16,38 +15,95 @@ const close = () => {
 
 }
 
+const NavLis = (props) => {
+  const { links } = props
 
-export const Navbar = () => {
+  const mobile = links.map((li, i) => {
+    const { link, name } = li
+    if (link === '/') {
+      return (
+        <li>
+          <NavLink key={`m${i}`} onClick={close} className='nav-item' exact to={link}>
+            <div className='nav-item-txt'>{name}</div>
+          </NavLink>
+        </li>
+      )
+    }
+    return (
+      <li>
+        <NavLink key={`m${i}`} onClick={close} className='nav-item' to={link}>
+          <div className='nav-item-txt'>{name}</div>
+        </NavLink>
+      </li>
+    )
+  })
+
+  const desktop = links.map((li, i) => {
+    const { link, name } = li
+    if (link === '/') {
+      return (
+        <li>
+          <NavLink key={`d${i}`} className='nav-item' exact to={link}>
+            <div className='nav-item-txt'>{name}</div>
+          </NavLink>
+        </li>
+      )
+    }
+    return (
+      <li>
+        <NavLink key={`d${i}`} className='nav-item' to={link}>
+          <div className='nav-item-txt'>{name}</div>
+        </NavLink>
+      </li>
+    )
+  })
+
   return (
-    <div className='navbar-component'>
+    <div className='nav-items-wrapper'>
+      <ul className='nav-items mobile'>
+        <li>
+          <button className='hide-nav-menu' onClick={close}>
+            <CloseIcon />  
+          </button>
+        </li>
+        {mobile}
+      </ul>
+
+      <ul className='nav-items desktop'>
+        {desktop}
+      </ul>
+
+      <div id='hamburgerMenu' className='hamburgur' onClick={toggleHamburger}>
+        <div className='line first'></div>
+        <div className='line second'></div>
+        <div className='line third'></div>
+      </div>
+    </div>
+  )
+}
+
+
+export const Navbar = (props) => {
+  return (
+    <div className={`navbar-component${props.admin ? ' admin' : ''}`}>
       <div className='nav-content-wrapper container'>
         <header className='banner'>
-          <img id='technodayaLogo' src={technodayaLogo} alt="Technodaya" />
+          <NavLink exact to='/'><img id='technodayaLogo' src={props.admin ? technodayaLogoLight : technodayaLogo} alt="Technodaya" /></NavLink>
         </header>
-        <div className='nav-items-wrapper'>
-          <ul className='nav-items mobile'>
-            <li><a className='hideNavMenu' onClick={close}>X</a></li>
-            <li><NavLink onClick={close} className='nav-item' exact to='/'> <div className='nav-item-txt'>Home</div></NavLink></li>
-            <li><NavLink onClick={close} className='nav-item' to='/magazine'> <div className='nav-item-txt'>Read</div></NavLink></li>
-            <li><NavLink onClick={close} className='nav-item' to='/about'> <div className='nav-item-txt'>About us</div></NavLink></li>
-            <li><NavLink onClick={close} className='nav-item' to='/addBlogs'> <div className='nav-item-txt'>Submit</div></NavLink></li>
-            <li><NavLink onClick={close} className='nav-item' to='/admin'> <div className='nav-item-txt'>Admin</div></NavLink></li>
-          </ul>
+        {props.admin ? (
+          <NavLis links={[
+            { link: '/', name: 'Logout' }
+          ]} />
+        ) : (
+          <NavLis links={[
+            { link: '/', name: 'Home' },
+            { link: '/magazine', name: 'Read' },
+            { link: '/about', name: 'About us' },
+            { link: '/addBlogs', name: 'Submit' },
+            { link: '/admin', name: 'Admin' }
+          ]} />
+        )}
 
-          <ul className='nav-items desktop'>
-            <li><NavLink className='nav-item' exact to="/"> <span className='nav-item-txt'>Home</span></NavLink></li>
-            <li><NavLink className='nav-item' to="/magazine"> <span className='nav-item-txt'>Read</span></NavLink></li>
-            <li><NavLink className='nav-item' to="/about"> <span className='nav-item-txt'>About us</span></NavLink></li>
-            <li><NavLink className='nav-item' to="/addBlogs"> <span className='nav-item-txt'>Submit</span></NavLink></li>
-            <li><NavLink className='nav-item' to="/admin"> <span className='nav-item-txt'>Admin</span></NavLink></li>
-          </ul>
-
-          <div id='hamburgerMenu' className='hamburgur' onClick={toggleHamburger}>
-            <div className='line first'></div>
-            <div className='line second'></div>
-            <div className='line third'></div>
-          </div>
-        </div>
       </div>
 
     </div>

@@ -11,21 +11,21 @@ const month = new Date().getMonth();
 
 
 const BiMonthlyNames = [
-    '',
-    'JanFeb',
-    'MarApril',
-    'MayJune',
-    'JulyAug',
-    'SeptOct',
-    'NovDec',
-  ]
+  '',
+  'JanFeb',
+  'MarApril',
+  'MayJune',
+  'JulyAug',
+  'SeptOct',
+  'NovDec',
+]
 
-if(month ===1 || month ===2) MonthName=BiMonthlyNames[1];
-else if(month===3 || month ===4) MonthName=BiMonthlyNames[2];
-else if(month===5 || month ===6) MonthName=BiMonthlyNames[3];
-else if(month===7 || month ===8) MonthName=BiMonthlyNames[4];
-else if(month===9 || month ===10) MonthName=BiMonthlyNames[5];
-else if(month===11 || month ===12) MonthName=BiMonthlyNames[6];
+if (month === 1 || month === 2) MonthName = BiMonthlyNames[1];
+else if (month === 3 || month === 4) MonthName = BiMonthlyNames[2];
+else if (month === 5 || month === 6) MonthName = BiMonthlyNames[3];
+else if (month === 7 || month === 8) MonthName = BiMonthlyNames[4];
+else if (month === 9 || month === 10) MonthName = BiMonthlyNames[5];
+else if (month === 11 || month === 12) MonthName = BiMonthlyNames[6];
 export class AddBlogs extends Component {
   initialState = {
     category: 0,
@@ -44,10 +44,10 @@ export class AddBlogs extends Component {
     'Invited/Expert Lectures given by NIT AP members',
     'Visits and Invited/Expert Lectures to NITAP from other insitutes',
     'External Funded Projects',
-    'Patent (APA 7th edition format)',
     'Consultancy Projects',
-    'Books',
+    'Patent (APA 7th edition format)',
     'Research Papers',
+    'Books',
     'Conference Paper',
     'Book Chapters',
     'Faculty Empowerment Programmes',
@@ -62,7 +62,7 @@ export class AddBlogs extends Component {
 
   state = this.initialState;
 
-  
+
   handleSubmit = (out) => {
     const uploadOnFirestore = () => {
       console.log(imageLinks);
@@ -72,7 +72,7 @@ export class AddBlogs extends Component {
         EventDate: date,
         Urls: firebase.firestore.FieldValue.arrayUnion(...imageLinks),
         Brochure: brochureUrl,
-        CreatedAt:month,
+        CreatedAt: month,
         imgCaption: imgCaption
       }).then(() => {
         console.log("Sucessfully uploaded image");
@@ -82,7 +82,7 @@ export class AddBlogs extends Component {
         })
       })
     }
- 
+
     let category_Id = this.state.category;
     let heading = out.heading;
     let wholeDescription = out.output;
@@ -157,9 +157,9 @@ export class AddBlogs extends Component {
     const btn = event.target
 
     if (btn.innerText === "Form") {
-      this.setState({edit: true})
+      this.setState({ edit: true })
     } else {
-      this.setState({edit: false})
+      this.setState({ edit: false })
     }
   }
 

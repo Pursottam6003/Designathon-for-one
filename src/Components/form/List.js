@@ -58,11 +58,13 @@ export const List = (props) => {
     return (
       <div className="list-component">
         <h4 className="list-heading">{heading}</h4>
-        <table className="list-table">
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
+        <div className="table-wrapper">
+          <table className="list-table">
+            <tbody>
+              {rows}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   } else {
