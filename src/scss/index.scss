@@ -613,7 +613,7 @@ h3 {
           }
         }
 
-        
+
       }
     }
   }
@@ -742,15 +742,26 @@ h3 {
           width: 100%;
         }
 
-        .radio-inputs {
-          padding: 0.8rem 0.8rem 0.4rem;
+        .count-fields {
           display: flex;
           flex-direction: row;
-          gap: 1.2rem;
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          margin: 1.2rem 0 2rem;
 
-          .radio-btn {
-            font-family: inherit;
+          .form-field {
+            flex: 1 1 0;
+            margin: 0;
+          }
+        }
+
+        .date-wrapper {
+          display: flex;
+          flex-direction: row;
+          margin: 1.2rem 0 2rem;
+          align-items: center;
+          gap: 1.6rem;
+
+          .form-field {
+            margin: 0;
           }
         }
 
@@ -1146,13 +1157,16 @@ h3 {
         .btn.submit {
           --color: rgb(117, 104, 84);
         }
+
         .btn.submit:active {
           --color: rgb(105, 94, 78);
           box-shadow: 0 3px 8px -4px #222222b0;
         }
+
         .btn.reset {
           --color: #cb5c5c;
         }
+
         .btn.reset:active {
           --color: #b34f4f;
           box-shadow: 0 3px 8px -4px #222222b0;
