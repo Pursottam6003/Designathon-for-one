@@ -20,7 +20,8 @@ export class CategoryForm extends Component {
     department: '',//2, 3, 5, 11, 12 , 13, 14 
     lectureType: '',  // 2, 3 
     eventName: '',// 2, 9, 15, 16, 17 
-    confType: 'national',   // 9
+    nationalCount: '',   // 7, 9
+    internationalCount: '',   // 7, 9
     eventType: '',   // 9, 10
     organizer: '',// 2, 3, 14, 16, 17 
     pi: [], // 4
@@ -64,7 +65,7 @@ export class CategoryForm extends Component {
     this.setState({
       [name]: setVal,
       formData: { ...this.state.formData, [name]: setVal }
-    }, () => {this.props.handleUpdate(this.state.formData)})
+    }, () => { this.props.handleUpdate(this.state.formData) })
   }
 
   addPerson = (person) => {
@@ -200,15 +201,18 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <p className='sub-label'>Date</p>
+          <div className='date-wrapper'>
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>
       )
     } else if (parseInt(categoryId) === 2) {    // done
@@ -293,15 +297,18 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <p className='sub-label'>Date</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>
       )
     } else if (parseInt(categoryId) === 3) {    // done
@@ -386,15 +393,18 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <p className='sub-label'>Date</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>
       )
     } else if (parseInt(categoryId) === 4) {    // done
@@ -428,15 +438,18 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <p className='sub-label'>Date</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>
       )
     } else if (parseInt(categoryId) === 5) {    // done
@@ -499,15 +512,18 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <p className='sub-label'>Date</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>
       )
     } else if (parseInt(categoryId) === 6) {    // done
@@ -560,44 +576,50 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <p className='sub-label'>Date</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>
       )
     } else if (parseInt(categoryId) === 7) {    // done
       return (
         <>
           <p className='sub-label'>Research Papers</p>
-          <Field showLabel={1} labeltxt="Journal type">
-            <div className='radio-inputs'>
 
-              <div className='radio-btn'>
-                <input type="radio"
-                  value="national"
-                  required
-                  defaultChecked
-                  onChange={this.handleChange}
-                  name="confType"
-                /> National
-              </div>
+          <div className='count-fields'>
+            <Field showLabel={this.state.nationalCount.length} labeltxt="No. of National journals">
+              <input type="number"
+                className='form-control'
+                required
+                name="nationalCount"
+                value={this.state.nationalCount}
+                onChange={this.handleChange}
+                min={0}
+                placeholder="No. of National journals"
+              />
+            </Field>
 
-              <div className='radio-btn'>
-                <input type="radio"
-                  value="international"
-                  name="confType"
-                  onChange={this.handleChange}
-                /> International
-              </div>
-            </div>
-
-          </Field>
+            <Field showLabel={this.state.internationalCount.length} labeltxt="No. of International journals">
+              <input type="number"
+                className='form-control'
+                required
+                name="internationalCount"
+                value={this.state.internationalCount}
+                onChange={this.handleChange}
+                min={0}
+                placeholder="No. of International journals"
+              />
+            </Field>
+          </div>
 
           <p className='sub-label'>Author details</p>
           <List items={this.state.author} itemType="author" removeItem={this.removePerson} />
@@ -682,15 +704,18 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <p className='sub-label'>Date</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>
       )
     } else if (parseInt(categoryId) === 8) {    // done
@@ -752,30 +777,32 @@ export class CategoryForm extends Component {
           <List items={this.state.author} itemType="author" removeItem={this.removePerson} />
           <Person personType="author" notFirst={this.state.author.length} handleSubmit={this.addPerson} />
 
-          <p className='sub-label'>Conference details </p>
-          <Field showLabel={1} labeltxt="Conference type">
-            <div className='radio-inputs'>
+          <p className='sub-label'>Research details </p>
+          <div className='count-fields'>
+            <Field showLabel={this.state.nationalCount.length} labeltxt="No. of National journals">
+              <input type="number"
+                className='form-control'
+                required
+                name="nationalCount"
+                value={this.state.nationalCount}
+                onChange={this.handleChange}
+                min={0}
+                placeholder="No. of National papers"
+              />
+            </Field>
 
-              <div className='radio-btn'>
-                <input type="radio"
-                  value="national"
-                  required
-                  defaultChecked
-                  onChange={this.handleChange}
-                  name="confType"
-                /> National
-              </div>
-
-              <div className='radio-btn'>
-                <input type="radio"
-                  value="international"
-                  name="confType"
-                  onChange={this.handleChange}
-                /> International
-              </div>
-            </div>
-
-          </Field>
+            <Field showLabel={this.state.internationalCount.length} labeltxt="No. of International journals">
+              <input type="number"
+                className='form-control'
+                required
+                name="internationalCount"
+                value={this.state.internationalCount}
+                onChange={this.handleChange}
+                min={0}
+                placeholder="No. of International papers"
+              />
+            </Field>
+          </div>
 
           <Field showLabel={this.state.title.length} labeltxt="Contribution title">
             <input type="text"
@@ -820,15 +847,18 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <p className='sub-label'>Date</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>
       )
     } else if (parseInt(categoryId) === 10) {   // done
@@ -916,15 +946,18 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <p className='sub-label'>Date</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>
       )
 
@@ -999,15 +1032,28 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <p className='sub-label'>Date</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+            <span>to</span>
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="toDate"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>)
     } else if (parseInt(categoryId) === 12) {   // done
       return (
@@ -1069,15 +1115,19 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Month" showLabel={1}>
-            <input type="month"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+
+          <p className='sub-label'>Date</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>)
     } else if (parseInt(categoryId) === 13) {   // done
       return (
@@ -1139,15 +1189,28 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <Field labeltxt="Date" showLabel={0}>
-            <input type="date"
-              className='form-control'
-              required
-              name="date"
-              value={this.state.date}
-              onChange={this.handleChange}
-            />
-          </Field>
+          <p className='sub-label'>Date</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+            <span>to</span>
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="toDate"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
         </>)
     } else if (parseInt(categoryId) === 14) {   // done
       return (<>
@@ -1232,15 +1295,18 @@ export class CategoryForm extends Component {
           />
         </Field>
 
-        <Field labeltxt="Date" showLabel={0}>
-          <input type="date"
-            className='form-control'
-            required
-            name="date"
-            value={this.state.date}
-            onChange={this.handleChange}
-          />
-        </Field>
+        <p className='sub-label'>Date</p>
+        <div className="date-wrapper">
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+          </Field>
+        </div>
       </>)
     } else if (parseInt(categoryId) === 15) {   // done
       return (<>
@@ -1300,15 +1366,28 @@ export class CategoryForm extends Component {
           />
         </Field>
 
-        <Field labeltxt="Date" showLabel={0}>
-          <input type="date"
-            className='form-control'
-            required
-            name="date"
-            value={this.state.date}
-            onChange={this.handleChange}
-          />
-        </Field>
+        <p className='sub-label'>Date</p>
+        <div className="date-wrapper">
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+          </Field>
+          <span>to</span>
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="toDate"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+          </Field>
+        </div>
       </>)
     } else if (parseInt(categoryId) === 16) {   // done
       return (<>
@@ -1369,15 +1448,28 @@ export class CategoryForm extends Component {
           />
         </Field>
 
-        <Field labeltxt="Date" showLabel={0}>
-          <input type="date"
-            className='form-control'
-            required
-            name="date"
-            value={this.state.date}
-            onChange={this.handleChange}
-          />
-        </Field>
+        <p className='sub-label'>Date</p>
+        <div className="date-wrapper">
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+          </Field>
+          <span>to</span>
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="toDate"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+          </Field>
+        </div>
       </>)
     } else if (parseInt(categoryId) === 17) {   // done
       return (<>
@@ -1450,15 +1542,28 @@ export class CategoryForm extends Component {
           />
         </Field>
 
-        <Field labeltxt="Date" showLabel={0}>
-          <input type="date"
-            className='form-control'
-            required
-            name="date"
-            value={this.state.date}
-            onChange={this.handleChange}
-          />
-        </Field>
+        <p className='sub-label'>Date</p>
+        <div className="date-wrapper">
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="date"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+          </Field>
+          <span>to</span>
+          <Field labeltxt="Date" showLabel={0}>
+            <input type="date"
+              className='form-control'
+              required
+              name="toDate"
+              value={this.state.date}
+              onChange={this.handleChange}
+            />
+          </Field>
+        </div>
 
 
         <p className='sub-label'>Upload Brochure (pdf/jpg/png)</p>

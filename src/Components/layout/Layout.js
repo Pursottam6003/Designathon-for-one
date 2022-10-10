@@ -3,12 +3,15 @@ import { Navbar } from "./Navbar"
 import { Footer } from "./Footer"
 
 export const Layout = (props) => {
-    const { children }= props
+    const { children, admin }= props
     return (
         <>
-            <Navbar />
+            <Navbar admin={admin} />
                 {children}
-            <Footer />
+
+            {!admin && (
+                <Footer />
+            )}
         </>
     )
 }

@@ -1,5 +1,5 @@
 import React from "react"
-import removeLogo from "../../images/logo/remove.svg"
+import { ReactComponent as RemoveIcon } from "../../images/logo/remove.svg"
 
 export const List = (props) => {
   const {items, itemType} = props
@@ -16,7 +16,7 @@ export const List = (props) => {
           <td>{item.department}</td>
           <td className="rm-td">
             <button className="rm" onClick={(e) => {e.preventDefault(); props.removeItem(i, "PI")}}>
-              <img src={removeLogo} alt="Remove" />
+              <RemoveIcon />
             </button>
           </td>
         </tr>
@@ -32,7 +32,7 @@ export const List = (props) => {
           <td>{item.insName}</td>
           <td className="rm-td">
             <button className="rm" onClick={(e) => {e.preventDefault(); props.removeItem(i, "CoPI")}}>
-              <img src={removeLogo} alt="Remove" />
+              <RemoveIcon />
             </button>
           </td>
         </tr>
@@ -46,7 +46,7 @@ export const List = (props) => {
           <td>{item.firstInitials}</td>
           <td className="rm-td">
             <button className="rm" onClick={(e) => {e.preventDefault(); props.removeItem(i, "author")}}>
-              <img src={removeLogo} alt="Remove" />
+              <RemoveIcon />
             </button>
           </td>
         </tr>
@@ -58,11 +58,13 @@ export const List = (props) => {
     return (
       <div className="list-component">
         <h4 className="list-heading">{heading}</h4>
-        <table className="list-table">
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
+        <div className="table-wrapper">
+          <table className="list-table">
+            <tbody>
+              {rows}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   } else {
