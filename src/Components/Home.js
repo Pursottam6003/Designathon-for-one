@@ -1,7 +1,6 @@
 import React from 'react'
 // import AddBlogs from '../images/AddBlogs.jpeg'
 import Ph from '../images/technodaya-cover.png'
-import { ShowBlogs } from './ShowBlogs'
 export const Home = () => {
   return (
     <>

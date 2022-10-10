@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {storage,fs} from '../config/config'
 
-export const Upload_Cover = () => {
+export const UploadCover = () => {
 
     const [title, setTitle]=useState('');
     const [image, setImage]=useState(null);
