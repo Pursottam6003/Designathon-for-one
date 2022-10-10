@@ -32,8 +32,6 @@ export const Login = () => {
 
     return (
         <>
-         
-
         <div className='container-sm route'>
             <br></br>
             <br></br>
