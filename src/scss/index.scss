@@ -1134,7 +1134,7 @@ h3 {
           background-color: transparent;
           color: var(--color);
           user-select: none;
-          transition: 200ms ease;
+          transition: all 200ms ease;
         }
 
         .btn:hover {
@@ -1150,14 +1150,23 @@ h3 {
           --color: rgb(105, 94, 78);
           box-shadow: 0 3px 8px -4px #222222b0;
         }
-
+        
         .btn.reset {
           --color: #cb5c5c;
         }
-
+        
         .btn.reset:active {
           --color: #b34f4f;
           box-shadow: 0 3px 8px -4px #222222b0;
+        }
+
+        .btn.submit[disabled] {
+          --color: rgb(117, 104, 84);
+          cursor: wait;
+        }
+        .btn.submit[disabled]:hover {
+          background-color: transparent;
+          color: var(--color);
         }
       }
 
