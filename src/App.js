@@ -19,7 +19,6 @@ import { Magazine } from "./Components/Magazine";     // published magazine
 import { Magzine } from "./Components/Magzine";
 
 import { FetchData } from "./Components/FetchData";
-// import { Magzine2 } from "./Components/Magzine2";
 import { Signup } from "./Components/SignUp";
 
 

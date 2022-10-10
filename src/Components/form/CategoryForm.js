@@ -1049,7 +1049,7 @@ export class CategoryForm extends Component {
                 className='form-control'
                 required
                 name="toDate"
-                value={this.state.date}
+                value={this.state.toDate}
                 onChange={this.handleChange}
               />
             </Field>
@@ -1206,7 +1206,7 @@ export class CategoryForm extends Component {
                 className='form-control'
                 required
                 name="toDate"
-                value={this.state.date}
+                value={this.state.toDate}
                 onChange={this.handleChange}
               />
             </Field>
@@ -1383,7 +1383,7 @@ export class CategoryForm extends Component {
               className='form-control'
               required
               name="toDate"
-              value={this.state.date}
+              value={this.state.toDate}
               onChange={this.handleChange}
             />
           </Field>
@@ -1465,7 +1465,7 @@ export class CategoryForm extends Component {
               className='form-control'
               required
               name="toDate"
-              value={this.state.date}
+              value={this.state.toDate}
               onChange={this.handleChange}
             />
           </Field>
@@ -1559,7 +1559,7 @@ export class CategoryForm extends Component {
               className='form-control'
               required
               name="toDate"
-              value={this.state.date}
+              value={this.state.toDate}
               onChange={this.handleChange}
             />
           </Field>

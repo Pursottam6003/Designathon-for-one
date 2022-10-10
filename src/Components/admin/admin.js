@@ -6,6 +6,28 @@ import { Dashboard } from "./dashboard"
 import { Draft } from "./draft"
 import { Submissions } from "./submissions"
 
+let MonthName;
+const month = new Date().getMonth();
+
+
+const BiMonthlyNames = [
+  '',
+  'JanFeb',
+  'MarApril',
+  'MayJune',
+  'JulyAug',
+  'SeptOct',
+  'NovDec',
+]
+
+if (month === 1 || month === 2) MonthName = BiMonthlyNames[1];
+else if (month === 3 || month === 4) MonthName = BiMonthlyNames[2];
+else if (month === 5 || month === 6) MonthName = BiMonthlyNames[3];
+else if (month === 7 || month === 8) MonthName = BiMonthlyNames[4];
+else if (month === 9 || month === 10) MonthName = BiMonthlyNames[5];
+else if (month === 11 || month === 12) MonthName = BiMonthlyNames[6];
+
+
 export class AdminConsole extends Component {
   render() {
     return (
