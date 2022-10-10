@@ -1,6 +1,43 @@
 import React, { Component } from "react"
+import {fs} from '../../config/config'
+
+const getTechnodayaBlogs = async ()=>{
+	const blogsarray = []
+	  const blogsFirebase = await fs.collection(`pendings`).get();
+	  // getting its snapshort 
+	  for (var snap of blogsFirebase.docs){
+		  var data = snap.data();
+		  data.ID = snap.id;
+		  blogsarray.push({
+			  ...data
+		  })
+		  // console.log(blogs)
+		  if(blogsarray.length === blogsFirebase.docs.length){
+			//setting the products
+				console.log(blogsarray)
+			  return blogsarray
+		  }
+	  }  
+	  return blogsarray
+  }
 
 export class Submissions extends Component {
+	initialState = {
+		pending: [],
+		approved: [],
+	}
+
+	state = this.initialState
+	
+
+	componentDidMount() {
+		this.setState({
+			pending: getTechnodayaBlogs()
+			
+		})
+		console.log(this.state.pending)
+	}
+
 	submissions = [
 		{
 			approved: false,
