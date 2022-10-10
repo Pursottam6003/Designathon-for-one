@@ -15,16 +15,16 @@ export class Submissions extends Component {
     const pendingsFirebase = await fs.collection(`pendings`).get();
     const approvedFirebase = await fs.collection(`approved`).get();
 
-    for (var snap of pendingsFirebase.docs) {
-      var data = snap.data();
+    for (let snap of pendingsFirebase.docs) {
+      let data = snap.data();
       data.ID = snap.id;
       pending.push(data)
       if (pending.length === pendingsFirebase.docs.length) {
         this.setState({ pending: pending })
       }
     }
-    for (var snap of approvedFirebase.docs) {
-      var data = snap.data();
+    for (let snap of approvedFirebase.docs) {
+      let data = snap.data();
       data.ID = snap.id;
       approved.push(data)
       if (approved.length === approvedFirebase.docs.length) {

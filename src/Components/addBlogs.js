@@ -24,7 +24,8 @@ export class AddBlogs extends Component {
   handleSubmit = (out) => {
     const { heading, output: wholeDescription } = out
     const { date, eventBrochure: Mybrochure } = this.state.formData
-    const { category: category_Id, imgCaption } = this.state
+    const { category: category_Id } = this.state
+    let imgCaption = this.state.imgCaption
     let brochureUrl = ''
 
     const uploadOnFirestore = () => {
