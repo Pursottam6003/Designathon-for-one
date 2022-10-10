@@ -355,6 +355,7 @@ export class Preview extends Component {
       const btn = event.target
       btn.setAttribute('disabled', '')
       btn.innerHTML = 'Please wait...'
+      this.props.submit(this.state);
     }
   }
 
