@@ -123,6 +123,11 @@ export class Preview extends Component {
       imgCaption: { 5: 'Image caption' }    // 5
     }
 
+    const toCapital = (s) => {
+      const len = s.length
+      return s.slice(0,1).toUpperCase() + s.slice(1, len).toLowerCase()
+    }
+
     const peopleLs = ['copi', 'pi', 'author']
     if (!(peopleLs.includes(val))) {    // when not adding lists
       if (!fields[val]) {
@@ -194,7 +199,7 @@ export class Preview extends Component {
     let outMdStr = '';
     switch (category) {
       case 1:
-        outMdStr = `**${this.ov('insName')}** and _${this.ov('partnerInsName')}_, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
+        outMdStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
         break;
       case 2:
         outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, **${this.ov('department')}**, NITAP delivered a ${this.ov('lectureType')} on "${this.ov('title')}" in the ${this.ov('eventName')} organised by ${this.ov('organizer')} on ${this.ov('date')}.`
