@@ -45,8 +45,7 @@ export const AdminLogin = () => {
        .catch(error =>setErrorMsg(error.message));
     }
     return (
-        <>
-        <div className='LoginPage route'>
+        <div className='login-page route'>
             <div className='container'>
                 <div className='login-container'>
                     <div className='login-image'>
@@ -71,6 +70,5 @@ export const AdminLogin = () => {
                 </div>
             </div>
         </div>
-        </>
     )
 }
