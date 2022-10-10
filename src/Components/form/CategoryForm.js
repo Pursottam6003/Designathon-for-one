@@ -20,11 +20,8 @@ export class CategoryForm extends Component {
     department: '',//2, 3, 5, 11, 12 , 13, 14 
     lectureType: '',  // 2, 3 
     eventName: '',// 2, 9, 15, 16, 17 
-    confType: 'national',   // 7, 9
-
     nationalCount: '',   // 7, 9
     internationalCount: '',   // 7, 9
-
     eventType: '',   // 9, 10
     organizer: '',// 2, 3, 14, 16, 17 
     pi: [], // 4

@@ -289,6 +289,9 @@ export class Preview extends Component {
       const btn = event.target
       btn.setAttribute('disabled', '')
       btn.innerHTML = 'Please wait...'
+      this.props.submit(this.state);
+    } else {
+      this.props.switchForm(true);
     }
   }
 
@@ -348,12 +351,9 @@ export class Preview extends Component {
                 <footer className='markdown-support'>
                   <p>
                     Click to edit
-                    <a className='text-link' target='_blank' href='https://guides.github.com/features/mastering-markdown/'>
-
+                    <a className='text-link' target='_blank' rel='noreferrer' href='https://guides.github.com/features/mastering-markdown/'>
                       <MarkdownIcon className='markdown-icon' />
-                      <span>
-                        Styling with Markdown is supported
-                      </span>
+                      <span>Styling with Markdown is supported</span>
                     </a>
                   </p>
                 </footer>
