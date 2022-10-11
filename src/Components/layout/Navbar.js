@@ -42,16 +42,16 @@ const NavLis = (props) => {
     const { link, name } = li
     if (link === '/') {
       return (
-        <li>
-          <NavLink key={`m${i}`} onClick={close} className='nav-item' exact to={link}>
+        <li key={`m${i}`}>
+          <NavLink onClick={close} className='nav-item' exact to={link}>
             <div className='nav-item-txt'>{name}</div>
           </NavLink>
         </li>
       )
     }
     return (
-      <li>
-        <NavLink key={`m${i}`} onClick={close} className='nav-item' to={link}>
+      <li key={`m${i}`}>
+        <NavLink onClick={close} className='nav-item' to={link}>
           <div className='nav-item-txt'>{name}</div>
         </NavLink>
       </li>
@@ -62,16 +62,16 @@ const NavLis = (props) => {
     const { link, name } = li
     if (link === '/') {
       return (
-        <li>
-          <NavLink key={`d${i}`} className='nav-item' exact to={link}>
+        <li key={`d${i}`}>
+          <NavLink className='nav-item' exact to={link}>
             <div className='nav-item-txt'>{name}</div>
           </NavLink>
         </li>
       )
     }
     return (
-      <li>
-        <NavLink key={`d${i}`} className='nav-item' to={link}>
+      <li key={`d${i}`}>
+        <NavLink className='nav-item' to={link}>
           <div className='nav-item-txt'>{name}</div>
         </NavLink>
       </li>
@@ -153,7 +153,7 @@ export const Navbar = (props) => {
             { link: '/magazine', name: 'Read' },
             { link: '/about', name: 'About us' },
             { link: '/addBlogs', name: 'Submit' },
-            { link: '/admin', name: 'Admin' }
+            { link: '/admin/', name: 'Admin' }
           ]} />
         )}
 

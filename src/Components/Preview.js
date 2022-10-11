@@ -3,6 +3,7 @@ import { ReactComponent as EmptyLetterBoxSvg } from '../images/emptyletterbox.sv
 import { ReactComponent as MarkdownIcon } from '../images/icons/markdownIcon.svg'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { Categories, toCapital } from '../helpers'
 
 const NoPreview = () => {
   return (
@@ -170,31 +171,10 @@ export class Preview extends Component {
     const { fields, title, categoryId, images } = this.props
     const category = parseInt(categoryId)
 
-    const selectOptions = [
-      '',
-      'Memorandum of Understanding (MoU)',
-      'Invited/Expert Lectures given by NIT AP members',
-      'Visits and Invited/Expert Lectures to NITAP from other insitutes',
-      'External Funded Projects',
-      'Consultancy Projects',
-      'Patent (APA 7th edition format)',
-      'Research Papers',
-      'Books',
-      'Conference Paper',
-      'Book Chapters',
-      'Faculty Empowerment Programmes',
-      'Reviewers',
-      'Session Chairs',
-      'Winners of Competition',
-      'Workshop / FDP / Conference / seminar / short term course etc.',
-      'Outreach Activity',
-      'Announcement',
-    ]
-
     let outMdStr = '';
     switch (category) {
       case 1:
-        outMdStr = `**${this.ov('insName')}** and _${this.ov('partnerInsName')}_, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
+        outMdStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
         break;
       case 2:
         outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, **${this.ov('department')}**, NITAP delivered a ${this.ov('lectureType')} on "${this.ov('title')}" in the ${this.ov('eventName')} organised by ${this.ov('organizer')} on ${this.ov('date')}.`
@@ -255,7 +235,7 @@ export class Preview extends Component {
         })
       } else {
         this.setState({
-          heading: selectOptions[category]
+          heading: Categories[category]
         })
       }
     } else {

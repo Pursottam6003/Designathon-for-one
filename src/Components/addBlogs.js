@@ -3,6 +3,7 @@ import { Form } from './form/Form.js'
 import { Preview } from './Preview'
 import { storage, fs } from '../config/config'
 import firebase from 'firebase/compat/app'
+import { Categories } from '../helpers'
 
 export class AddBlogs extends Component {
   initialState = {
@@ -16,33 +17,15 @@ export class AddBlogs extends Component {
     clearRev: 0
   }
 
-  selectOptions = [
-    '',
-    'Memorandum of Understanding (MoU)',
-    'Invited/Expert Lectures given by NIT AP members',
-    'Visits and Invited/Expert Lectures to NITAP from other insitutes',
-    'External Funded Projects',
-    'Consultancy Projects',
-    'Patent (APA 7th edition format)',
-    'Research Papers',
-    'Books',
-    'Conference Paper',
-    'Book Chapters',
-    'Faculty Empowerment Programmes',
-    'Reviewers',
-    'Session Chairs',
-    'Winners of Competition',
-    'Workshop / FDP / Conference / seminar / short term course etc.',
-    'Outreach Activity',
-    'Announcement',
-  ]
+  selectOptions = Categories
 
   state = this.initialState;
 
   handleSubmit = (out) => {
     const { heading, output: wholeDescription } = out
     const { date, eventBrochure: Mybrochure } = this.state.formData
-    const { category: category_Id, imgCaption } = this.state
+    const { category: category_Id } = this.state
+    let imgCaption = this.state.imgCaption
     let brochureUrl = ''
 
     const uploadOnFirestore = () => {
@@ -73,7 +56,7 @@ export class AddBlogs extends Component {
     }
 
     if (Mybrochure) {
-      const uploadTask = storage.ref(`Brochure/${this.selectOptions[category_Id]}/${Mybrochure.name.split(/(\\|\/)/g).pop()}/`).put(Mybrochure);
+      const uploadTask = storage.ref(`Brochure/${Categories[category_Id]}/${Mybrochure.name.split(/(\\|\/)/g).pop()}/`).put(Mybrochure);
       uploadTask.on('state_changed', (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         console.log(progress);
@@ -82,7 +65,7 @@ export class AddBlogs extends Component {
           console.log(error);
         },
         () => {
-          storage.ref(`Brochure/${this.selectOptions[category_Id]}/`).child(`${Mybrochure.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url => {
+          storage.ref(`Brochure/${Categories[category_Id]}/`).child(`${Mybrochure.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url => {
             brochureUrl = url
             uploadOnFirestore();
           })
@@ -95,7 +78,7 @@ export class AddBlogs extends Component {
     const imageLinks = [];
     for (let i = 0; i < total_size; i++) {
       const Image = out.images[i];
-      const uploadTask = storage.ref(`Images/${this.selectOptions[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
+      const uploadTask = storage.ref(`Images/${Categories[category_Id]}/${Image.name.split(/(\\|\/)/g).pop()}/`).put(Image);
 
       uploadTask.on('state_changed', (snapshot) => {
         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
@@ -103,7 +86,7 @@ export class AddBlogs extends Component {
       }, (error) => {
         console.log(error)
       }, () => {
-        storage.ref(`Images/${this.selectOptions[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url => {
+        storage.ref(`Images/${Categories[category_Id]}/`).child(`${Image.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url => {
 
           imageLinks.push(url);
           if (i === total_size - 1) {
@@ -124,7 +107,7 @@ export class AddBlogs extends Component {
       formData: data.formData ? data.formData : this.state.formData,
       activityTitle: data.activityTitle,
       images: data.images ? data.images : [],
-      imgCaption: data.imgCaption ? data.imgCaption : this.selectOptions[parseInt(this.state.category)]
+      imgCaption: data.imgCaption ? data.imgCaption : Categories[parseInt(this.state.category)]
     })
   }
 

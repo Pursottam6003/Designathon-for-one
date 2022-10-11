@@ -51,26 +51,26 @@ export const Home = () => {
             </section>
               </div>
             </div>
-
+            
           <div className='publication-count'>
               <div className='journels publication'> 123</div>
               <div className='research-papers publication'> 123</div>
               <div className='book chapters publication'> 123</div>
-
             </div>
            <div className='container'> 
             <div className='subscription-cont'>
-           
           <h1>subscribe to our newsletter</h1>     
           <h3>get updated when new vol is published</h3>     
             <form>
-            <input placeholder='first name'></input>
-            <input placeholder='last name'></input>
-              <input placeholder='email'></input>
-            
+              <div>
+            <input type="text" placeholder='first-name'></input>
+            <input type="text" placeholder='last-name'></input>
+              <input type="text" placeholder='email'></input>
+            </div>
+            <div>
+            <button type="submit" className='submit'>  <div className='circle'> <p> > </p>  </div><h3> subscribe</h3>  </button>
+            </div>
             </form>
-
-
               <div>
               </div>
           </div> 
