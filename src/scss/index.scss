@@ -2008,6 +2008,7 @@ h3 {
 
   .subscription-cont {
     display: flex;
+  font-family: 'Open Sans', sans-serif;
     margin: 3rem 0;
     justify-content: center;
     flex-direction: column;
@@ -2021,9 +2022,9 @@ h3 {
       justify-content: center;
       align-items: center;
       gap: 1.2rem;
-
-      input {
-        padding: .4rem 1.2rem;
+     
+      input{
+        padding: .8rem 2rem;
         margin: 0 .4rem;
       }
 
@@ -2057,9 +2058,8 @@ h3 {
         }
 
       }
-
-      .submit:hover>.circle {
-        width: 15rem;
+      .submit:hover > .circle{
+        width: 13.4rem;
         display: block;
       }
 
