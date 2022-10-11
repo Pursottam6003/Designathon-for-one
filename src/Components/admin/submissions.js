@@ -1,24 +1,6 @@
 import React, { Component } from "react"
 import { fs } from '../../config/config'
 
-let MonthName;
-const month = new Date().getMonth();
-const year = new Date().getFullYear();
-const BiMonthlyNames = [
-  '',
-  'JanFeb',
-  'MarApril',
-  'MayJune',
-  'JulyAug',
-  'SeptOct',
-  'NovDec',
-]
-if (month === 1 || month === 2) MonthName = BiMonthlyNames[1];
-else if (month === 3 || month === 4) MonthName = BiMonthlyNames[2];
-else if (month === 5 || month === 6) MonthName = BiMonthlyNames[3];
-else if (month === 7 || month === 8) MonthName = BiMonthlyNames[4];
-else if (month === 9 || month === 10) MonthName = BiMonthlyNames[5];
-else if (month === 11 || month === 12) MonthName = BiMonthlyNames[6];
 
 export class Submissions extends Component {
   initialState = {
@@ -52,40 +34,79 @@ export class Submissions extends Component {
     }
   }
 
-   commitChanges = () => {
+  commitChanges = async () => {
     console.log('TESTING: Update DB');
     const { pending, approved } = this.state
+    approved.forEach(sub => {
+      const id = sub.ID
+      fs.collection(`pendings`).doc(`${id}`).delete().then(console.log(`Deleted ${id}`));
+    })
+    pending.forEach(sub => {
+      const id = sub.ID
+      fs.collection(`approved`).doc(`${id}`).delete().then(console.log(`Deleted ${id}`));
+    })
 
-    approved.forEach(obj => {
-        const ids=obj.ID;
-        
-        pending.forEach(obj2 =>{
-          const id2 = obj2.ID
-          if(ids === id2)
-          {
-            fs.collection('pendings').doc(ids).delete().then(console.log(`All deleted the document of id ${ids} sucessfully`))
+    if (approved.length) {
+      approved.forEach(obj => {
+        fs.collection(`approved`).doc(obj.ID).get().then(val => {
+          if (!val.exists) {
+            const uploadObj = {
+              created: obj.created,
+              author: 'TODO',
+              categoryId: obj.categoryId,
+              title: obj.title,
+              desc: obj.desc,
+              eventDate: obj.eventDate,
+              imgUrl: obj.imgUrl,
+              brochureUrl: obj.brochureUrl,
+              imgCaption: obj.imgCaption,
+            }
+            fs.collection(`approved`).doc().set(uploadObj).then(() => {
+              console.log("Sucessfully uploaded to approved");
+            })
+          } else {
+            console.log('Already exists')
           }
         })
-    });
-
-    approved.forEach(obj => {
-      const uploadObj = {
-        created: obj.created,
-        author: 'TODO',
-        categoryId: obj.categoryId,
-        title: obj.title,
-        desc: obj.desc,
-        eventDate: obj.eventDate,
-        imgUrl: obj.imgUrl,
-        brochureUrl: obj.brochureUrl,
-        imgCaption: obj.imgCaption,
+      });
+    } else {
+      const approvedFs = await fs.collection(`approved`).get();
+      for (let snap of approvedFs.docs) {
+        fs.collection(`pendings`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
       }
+    }
 
-      fs.collection(`${year}/${MonthName}/${obj.categoryId}`).doc().set(uploadObj).then(() => {
-        console.log("Sucessfully uploaded");
-      })
-    });
-    
+    if (pending.length) {
+      pending.forEach(obj => {
+        fs.collection(`pending`).doc(obj.ID).get().then(val => {
+          if (!val.exists) {
+            const uploadObj = {
+              created: obj.created,
+              author: 'TODO',
+              categoryId: obj.categoryId,
+              title: obj.title,
+              desc: obj.desc,
+              eventDate: obj.eventDate,
+              imgUrl: obj.imgUrl,
+              brochureUrl: obj.brochureUrl,
+              imgCaption: obj.imgCaption,
+            }
+            fs.collection(`pending`).doc().set(uploadObj).then(() => {
+              console.log("Sucessfully uploaded to pending");
+            })
+          } else {
+            console.log('Already exists')
+          }
+        })
+      });
+    } else {
+      const approvedFs = await fs.collection(`approved`).get();
+      for (let snap of approvedFs.docs) {
+        fs.collection(`pendings`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
+      }
+    }
+
+    this.fetchSubmissions();
   }
 
   approveSubmission = (id) => {
@@ -112,7 +133,7 @@ export class Submissions extends Component {
           return sub.ID !== id
         })
       })
-      
+
     } else {
       this.setState({
         approved: approved.filter((sub, i) => {
