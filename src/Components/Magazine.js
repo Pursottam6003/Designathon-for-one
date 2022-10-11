@@ -10,21 +10,21 @@ let MonthName;
 const month = new Date().getMonth();
 
 const BiMonthlyNames = [
-    '',
-    'JanFeb',
-    'MarApril',
-    'MayJune',
-    'JulyAug',
-    'SeptOct',
-    'NovDec',
-  ]
+  '',
+  'JanFeb',
+  'MarApril',
+  'MayJune',
+  'JulyAug',
+  'SeptOct',
+  'NovDec',
+]
 
-if(month ===1 || month ===2) MonthName=BiMonthlyNames[1];
-else if(month===3 || month ===4) MonthName=BiMonthlyNames[2];
-else if(month===5 || month ===6) MonthName=BiMonthlyNames[3];
-else if(month===7 || month ===8) MonthName=BiMonthlyNames[4];
-else if(month===9 || month ===10) MonthName=BiMonthlyNames[5];
-else if(month===11 || month ===12) MonthName=BiMonthlyNames[6];
+if (month === 1 || month === 2) MonthName = BiMonthlyNames[1];
+else if (month === 3 || month === 4) MonthName = BiMonthlyNames[2];
+else if (month === 5 || month === 6) MonthName = BiMonthlyNames[3];
+else if (month === 7 || month === 8) MonthName = BiMonthlyNames[4];
+else if (month === 9 || month === 10) MonthName = BiMonthlyNames[5];
+else if (month === 11 || month === 12) MonthName = BiMonthlyNames[6];
 const Catagories = [
   '',
   'Memorandum of Understanding (MoU)',
@@ -91,7 +91,7 @@ class MagezineArticle extends Component {
               </p>
             )}
           </div>
-          
+
         </div>
       </li>
     )
@@ -192,52 +192,25 @@ export class Magazine extends Component {
 
   render() {
     return (
-      <div className='magazine-wrapper'>
-        <div className='read-more'>
-          <h4>Other releases</h4>
-          <ul>
-            <li>
-              <h6>Technodaya (Vol-V iss-3)</h6>
-              <time> Jul 23, 2022</time>
-            </li>
-            <li>
-              <h6>Technodaya (Vol-V iss-2)</h6>
-              <time>  May 28, 2022</time>
-            </li>
-            <li>
-              <h6>Technodaya (Vol-V iss-1)</h6>
-              <time>Mar 24, 2022</time>
-            </li>
-            <li>
-              <h6>Technodaya (Vol-IV iss-6)</h6>
-              <time> Jan 24, 2022</time>
-            </li>
-            <li>
-              <h6>Technodaya (Vol-IV iss-5)</h6>
-              <time> Nov 17, 2021</time>
-            </li>
-            <li>
-              <h6>Technodaya (Vol-IV iss-4)</h6>
-              <time> Sep 20, 2021</time>
-            </li>
-            <li>
-              <h6>Technodaya (Vol-IV iss-3)</h6>
-              <time> Jul 13, 2021</time>
-            </li>
-          </ul>
-        </div>
-        <div className='magazine'>
-          <ul>
-            {this.state.magSecComponents}
-          </ul>
-        </div>
-        <div className='magazine-toc'>
-          <div className='toc'>
-            <h4>In this article</h4>
-            {this.state.toc}
+      <div className='route'>
+        <div className='container'>
+          <div className='page-header'><h1 className='heading'>Technodaya vol-3 iss-4</h1></div>
+          <div className='magazine-wrapper'>
+           
+            <div className='magazine'>
+              <ul>
+                {this.state.magSecComponents}
+              </ul>
+            </div>
+            <div className='magazine-toc'>
+              <div className='toc'>
+                <h4>In this article</h4>
+                {this.state.toc}
+              </div>
+            </div>
+
           </div>
         </div>
-        
       </div>
     )
   }
