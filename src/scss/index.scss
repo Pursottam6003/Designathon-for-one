@@ -262,6 +262,7 @@ h3 {
         display: flex;
 
         .nav-item {
+          background-color: transparent;
           text-decoration: none;
           display: block;
 
@@ -353,7 +354,6 @@ h3 {
             font-weight: 500;
             white-space: nowrap;
           }
-
         }
 
         .nav-item:after {

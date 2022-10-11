@@ -3,6 +3,11 @@ import { NavLink } from 'react-router-dom'
 import technodayaLogo from "../../images/logo/technodaya-logo1.png"
 import technodayaLogoLight from "../../images/logo/technodaya-logo-white.png"
 import { ReactComponent as CloseIcon } from '../../images/logo/remove.svg'
+import { type } from '@testing-library/user-event/dist/type'
+import {useNavigate } from 'react-router-dom'
+import {auth} from '../../config/config'
+import {env} from '../admin/.env'
+
 
 const toggleHamburger = () => {
   let navbar = document.getElementsByClassName("mobile")[0];
@@ -12,8 +17,20 @@ const toggleHamburger = () => {
 const close = () => {
   let navbar = document.getElementsByClassName("mobile")[0];
   navbar.style.width = "0";
-
 }
+
+// function getadmin() =>{
+//   auth.onAuthStateChanged( user=>{
+//     if(user.uid == USER_UID)
+//     {
+//       return "admin";
+//     }
+//     return  null;
+//   })
+// }
+
+// const user = getadmin();
+
 
 const NavLis = (props) => {
   const { links } = props
@@ -63,7 +80,7 @@ const NavLis = (props) => {
       <ul className='nav-items mobile'>
         <li>
           <button className='hide-nav-menu' onClick={close}>
-            <CloseIcon />  
+            <CloseIcon />
           </button>
         </li>
         {mobile}
@@ -82,8 +99,16 @@ const NavLis = (props) => {
   )
 }
 
+let user = auth
 
 export const Navbar = (props) => {
+  const history = useNavigate()
+  const handleLogout = () => {
+    close();
+    auth.signOut().then(() => {
+      history('/')
+    })
+  }
   return (
     <div className={`navbar-component${props.admin ? ' admin' : ''}`}>
       <div className='nav-content-wrapper container'>
@@ -91,9 +116,34 @@ export const Navbar = (props) => {
           <NavLink exact to='/'><img id='technodayaLogo' src={props.admin ? technodayaLogoLight : technodayaLogo} alt="Technodaya" /></NavLink>
         </header>
         {props.admin ? (
-          <NavLis links={[
-            { link: '/', name: 'Logout' }
-          ]} />
+          <div className='nav-items-wrapper'>
+            <ul className='nav-items mobile'>
+              <li>
+                <button className='hide-nav-menu' onClick={close}>
+                  <CloseIcon />
+                </button>
+              </li>
+              <li>
+                <button type="button" onClick={handleLogout} className='nav-item'>
+                  <div className='nav-item-txt'>Logout</div>
+                </button>
+              </li>
+            </ul>
+
+            <ul className='nav-items desktop'>
+              <li>
+                <button type="button" onClick={handleLogout} className='nav-item'>
+                  <div className='nav-item-txt'>Logout</div>
+                </button>
+              </li>
+            </ul>
+
+            <div id='hamburgerMenu' className='hamburgur' onClick={toggleHamburger}>
+              <div className='line first'></div>
+              <div className='line second'></div>
+              <div className='line third'></div>
+            </div>
+          </div>
         ) : (
           <NavLis links={[
             { link: '/', name: 'Home' },
