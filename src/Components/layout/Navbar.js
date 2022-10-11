@@ -6,7 +6,7 @@ import { ReactComponent as CloseIcon } from '../../images/logo/remove.svg'
 import { type } from '@testing-library/user-event/dist/type'
 import {useNavigate } from 'react-router-dom'
 import {auth} from '../../config/config'
-import {env} from '../admin/.env'
+
 
 
 const toggleHamburger = () => {
@@ -18,18 +18,21 @@ const close = () => {
   let navbar = document.getElementsByClassName("mobile")[0];
   navbar.style.width = "0";
 }
+const getadmin=()=>{
+  const user = auth.currentUser;
+  if(user.uid === process.env.USER_UID)
+  {
+    console.log('Welcome Admin')
+    return 'admin'
+  }
 
-// function getadmin() =>{
-//   auth.onAuthStateChanged( user=>{
-//     if(user.uid == USER_UID)
-//     {
-//       return "admin";
-//     }
-//     return  null;
-//   })
-// }
-
-// const user = getadmin();
+  else 
+  {
+    console.log('Welcome user')
+    return null;
+  }
+}
+const users = getadmin();
 
 
 const NavLis = (props) => {
