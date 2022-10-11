@@ -34,7 +34,7 @@ export class Submissions extends Component {
     }
   }
 
-   commitChanges = () => {
+  commitChanges = async () => {
     console.log('TESTING: Update DB');
     const { pending, approved } = this.state
     approved.forEach(sub => {
@@ -46,24 +46,67 @@ export class Submissions extends Component {
       fs.collection(`approved`).doc(`${id}`).delete().then(console.log(`Deleted ${id}`));
     })
 
-    approved.forEach(obj => {
-      const uploadObj = {
-        created: obj.created,
-        author: 'TODO',
-        categoryId: obj.categoryId,
-        title: obj.title,
-        desc: obj.desc,
-        eventDate: obj.eventDate,
-        imgUrl: obj.imgUrl,
-        brochureUrl: obj.brochureUrl,
-        imgCaption: obj.imgCaption,
+    if (approved.length) {
+      approved.forEach(obj => {
+        fs.collection(`approved`).doc(obj.ID).get().then(val => {
+          if (!val.exists) {
+            const uploadObj = {
+              created: obj.created,
+              author: 'TODO',
+              categoryId: obj.categoryId,
+              title: obj.title,
+              desc: obj.desc,
+              eventDate: obj.eventDate,
+              imgUrl: obj.imgUrl,
+              brochureUrl: obj.brochureUrl,
+              imgCaption: obj.imgCaption,
+            }
+            fs.collection(`approved`).doc().set(uploadObj).then(() => {
+              console.log("Sucessfully uploaded to approved");
+            })
+          } else {
+            console.log('Already exists')
+          }
+        })
+      });
+    } else {
+      const approvedFs = await fs.collection(`approved`).get();
+      for (let snap of approvedFs.docs) {
+        fs.collection(`pendings`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
       }
+    }
 
-      fs.collection(`approved`).doc().set(uploadObj).then(() => {
-        console.log("Sucessfully uploaded");
-      })
-    });
-    
+    if (pending.length) {
+      pending.forEach(obj => {
+        fs.collection(`pending`).doc(obj.ID).get().then(val => {
+          if (!val.exists) {
+            const uploadObj = {
+              created: obj.created,
+              author: 'TODO',
+              categoryId: obj.categoryId,
+              title: obj.title,
+              desc: obj.desc,
+              eventDate: obj.eventDate,
+              imgUrl: obj.imgUrl,
+              brochureUrl: obj.brochureUrl,
+              imgCaption: obj.imgCaption,
+            }
+            fs.collection(`pending`).doc().set(uploadObj).then(() => {
+              console.log("Sucessfully uploaded to pending");
+            })
+          } else {
+            console.log('Already exists')
+          }
+        })
+      });
+    } else {
+      const approvedFs = await fs.collection(`approved`).get();
+      for (let snap of approvedFs.docs) {
+        fs.collection(`pendings`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
+      }
+    }
+
+    this.fetchSubmissions();
   }
 
   approveSubmission = (id) => {
@@ -90,7 +133,7 @@ export class Submissions extends Component {
           return sub.ID !== id
         })
       })
-      
+
     } else {
       this.setState({
         approved: approved.filter((sub, i) => {
