@@ -35,7 +35,7 @@ export class AddBlogs extends Component {
         categoryId: category_Id,
         title: heading,
         desc: wholeDescription,
-        eventDate: date,
+        eventDate: date ? date : '',
         imgUrl: firebase.firestore.FieldValue.arrayUnion(...imageLinks),
         brochureUrl: brochureUrl,
         imgCaption: imgCaption,

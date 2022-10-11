@@ -20,7 +20,7 @@ export class About extends Component {
                         <div className="team-member-card">
                             <div className="member-image"> <img src={Profile}></img></div>
                             <div className="member-info"><h3> vijay bhaiya</h3>
-                                <p><i> editor in cheap</i></p>
+                                <p><i> editor in chif</i></p>
                                 <p> he is a human  sit amet consectetur adipisicing elit. Dicta, dignissimos a? Quaerat dignissimos corporis quia possimus, totam nulla</p>
                                 <ul>
                                     <li>linkdin</li>
@@ -35,7 +35,7 @@ export class About extends Component {
 
                                 <div className="member-image"> <img src={Chandrashaker}></img></div>
                                 <div className="member-info"><h3> Chandrashaker Tripathi</h3>
-                                    <p><i> manager </i></p>
+                                    <p><i> full stack</i></p>
                                     <p> he is a human  sit amet consectetur adipisicing elit. Dicta, dignissimos a? Quaerat dignissimos corporis quia possimus, totam nulla</p>
                                     <ul>
                                         <li>linkdin</li>
@@ -50,7 +50,7 @@ export class About extends Component {
 
                                 <div className="member-image"> <img src={puru}></img></div>
                                 <div className="member-info"><h3> Purushotam shah</h3>
-                                    <p><i>manashawi </i></p>
+                                    <p><i>database  </i></p>
                                     <p> he is a human  sit amet consectetur adipisicing elit. Dicta, dignissimos a? Quaerat dignissimos corporis quia possimus, totam nulla</p>
                                     <ul>
                                         <li>linkdin</li>
@@ -65,7 +65,7 @@ export class About extends Component {
 
                                 <div className="member-image"> <img src={Daknya}></img></div>
                                 <div className="member-info"><h3> Daknya bam</h3>
-                                    <p><i> cute</i></p>
+                                    <p><i>font-end</i></p>
                                     <p> he is a human  sit amet consectetur adipisicing elit. Dicta, dignissimos a? Quaerat dignissimos corporis quia possimus, totam nulla</p>
                                     <ul>
                                         <li>linkdin</li>
