@@ -1,26 +1,13 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {auth} from '../config/config'
 import loginImg from '../images/LoginPageImg.jpg'
 import lock from '../images/lock2.png'
 import envelop from '../images/envelop.png'
-import { useState,useNavigate } from 'react'
-import { Login } from './Login'
-
-
-const LoginAuth= ()=>{
-   
-    console.log('hello')
-
-    
-
-
-
-}
-
+import {useNavigate } from 'react-router-dom'
 
 export const AdminLogin = () => {
 
-    
+    const history = useNavigate()
     const [email, setEmail]=useState('');
     const [password, setPassword]=useState('');
 
@@ -31,7 +18,6 @@ export const AdminLogin = () => {
     const handleLogin=(e)=>{
         e.preventDefault();
        // console.log(email, password);
-       console.log('hello bro')
        auth.signInWithEmailAndPassword(email,password).then(() =>{
         setSuccessMsg('Login sucessfully you will now automatically get redirected to homepage')
             setEmail('');
@@ -39,7 +25,7 @@ export const AdminLogin = () => {
             setErrorMsg('');
             setTimeout(()=>{
                 setSuccessMsg('');
-                console.log('logged in sucessfully')
+                history('/admin/');
             },3000)
        })
        .catch(error =>setErrorMsg(error.message));
@@ -51,11 +37,14 @@ export const AdminLogin = () => {
                     <div className='login-image'>
                         <img src={loginImg}></img>
                     </div>
+                    {successMsg && <>
+                    <div className='success-msg'>{successMsg}</div>
+                    </>}
                     <div className='form-box'>
                         <div className='greet-box'>
                             <h2 className='heading'>Admin Login</h2>
                         </div>
-                        <form className='login-form'>
+                        <form className='login-form' onSubmit={handleLogin}>
                             <div className='login-field email'>
                                 <img src={envelop} className='icon'></img>
                                 <input type='email' required placeholder='Email' onChange={(e)=>setEmail(e.target.value)} value={email} ></input>
@@ -64,8 +53,11 @@ export const AdminLogin = () => {
                                 <img src={lock} className='icon' />
                                 <input type='text'   onChange={(e)=>setPassword(e.target.value)} value={password}  required placeholder='Password'></input>
                             </div>
-                            <button className='login-btn' onClick={handleLogin}>Login</button>
+                            <button className='login-btn' type="submit">Login</button>
                         </form>
+                        {errorMsg && <>
+                        <div className='error-msg'>{errorMsg}</div>
+                        </>}
                     </div>
                 </div>
             </div>

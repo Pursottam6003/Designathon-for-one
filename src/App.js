@@ -14,7 +14,6 @@ import { FacultyLogin } from "./Components/FacultyLogin";
 import { UploadCover } from "./Components/uploadCover";
 
 import { Magazine } from "./Components/Magazine";     // published magazine
-
 // below imports are not in use
 import { Magzine } from "./Components/Magzine";
 
@@ -73,8 +72,7 @@ function App() {
             <UploadCover />
           </Layout>
         )} />
-
-
+        
         <Route path="/magazine_old" element={(
           <Layout admin={false}>
             <Magazine />
