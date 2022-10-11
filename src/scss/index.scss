@@ -853,27 +853,6 @@ h3 {
 
 }
 
-.admin-portal .admin-view .main-body>.draft {
-  .workspace {
-    .draft-form {
-      max-width: 548px;
-    }
-
-    .submissions-dnd {
-      margin: 1rem 0;
-      overflow-x: auto;
-    }
-
-    .submissions-dnd>div[data-rbd-droppable-id="droppable"] {
-      display: flex;
-      flex-direction: row;
-    }
-
-    .submissions-dnd>div[data-rbd-droppable-id="droppable"]>div {
-      margin: 0 0.5rem;
-    }
-  }
-}
 
 // add blogs
 

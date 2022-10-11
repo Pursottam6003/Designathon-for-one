@@ -75,7 +75,7 @@ class DndSubmissions extends Component {
     categories: [
       {
         id: 'q101',
-        name: 'Category 1',
+        name: 'MoU',
         items: [
           { id: 'abc', name: 'First' },
           { id: 'def', name: 'Second' },
@@ -83,10 +83,18 @@ class DndSubmissions extends Component {
       },
       {
         id: 'wkqx',
-        name: 'Category 2',
+        name: 'Announcements',
         items: [
           { id: 'ghi', name: 'Third' },
           { id: 'jkl', name: 'Fourth' },
+        ],
+      },
+      {
+        id: 'qwer',
+        name: 'Patents',
+        items: [
+          { id: 'bnm', name: 'Fifth' },
+          { id: 'ghj', name: 'Sixth' },
         ],
       },
     ]
@@ -150,6 +158,10 @@ class DndSubmissions extends Component {
     }
   }
 
+  handleDragStart = () => {
+
+  }
+
   render() {
     const { categories } = this.state
     return (
@@ -158,14 +170,14 @@ class DndSubmissions extends Component {
           <Drop id="droppable" type="droppable-category" droppableDir="horizontal">
             {categories.map((category, categoryIndex) => {
               return (
-                <Drag key={category.id} id={category.id} index={categoryIndex}>
-                  <div>
+                <Drag outer={true} key={category.id} id={category.id} index={categoryIndex}>
+                  <div className="category">
                     <h2>{category.name}</h2>
 
-                    <Drop key={category.id} id={category.id} type="droppable-item" droppableDir="vertical">
+                    <Drop key={category.id} id={category.id} type="droppable-item" outer={false} droppableDir="vertical">
                       {category.items.map((item, index) => {
                         return (
-                          <Drag key={item.id} id={item.id} index={index}>
+                          <Drag outer={false} key={item.id} id={item.id} index={index}>
                             <div>{item.name}</div>
                           </Drag>
                         )
@@ -189,7 +201,7 @@ export class Draft extends Component {
     iss: '',
     month: '',
     year: '',
-    formView: true
+    formView: false
   }
   state = this.initialState
 

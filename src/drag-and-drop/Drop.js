@@ -1,6 +1,6 @@
 import { Droppable } from "react-beautiful-dnd";
 
-export const Drop = ({ id, type, droppableDir, ...props }) => {
+export const Drop = ({ id, type, droppableDir, outer, ...props }) => {
   return (
     <Droppable droppableId={id} type={type} direction={droppableDir}>
       {(provided) => {
