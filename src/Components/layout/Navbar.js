@@ -17,23 +17,6 @@ const close = () => {
   let navbar = document.getElementsByClassName("mobile")[0];
   navbar.style.width = "0";
 }
-const getadmin=()=>{
-  // const user = auth.currentUser;
-  // if(user.uid === process.env.USER_UID)
-  // {
-  //   console.log('Welcome Admin')
-  //   return 'admin'
-  // }
-
-  // else 
-  // {
-  //   console.log('Welcome user')
-  //   return null;
-  // }
-  console.log('toDO')
-}
-const users = getadmin();
-
 
 const NavLis = (props) => {
   const { links } = props
