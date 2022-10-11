@@ -880,7 +880,8 @@ h3 {
 .add-blogs {
   --bg-img-url: url('../images/form-bg2.png');
   --bg-color: rgba(255, 255, 255, 0.97);
-  background-image: var(--bg-img-url);
+  // background-image: linear-gradient(rgba(38, 37, 37, 0.5), rgba(33, 32, 32, 0.5)), var(--bg-img-url);
+  background-image: linear-gradient(rgb(145 144 144 / 50%), rgba(33, 32, 32, 0.5)), var(--bg-img-url);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -912,7 +913,7 @@ h3 {
       height: var(--tablist-h);
       position: sticky;
       top: var(--nav-height);
-      background-image: var(--bg-img-url);
+      background-image: linear-gradient(rgb(145 144 144 / 50%), rgba(33, 32, 32, 0.5)), var(--bg-img-url);
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;

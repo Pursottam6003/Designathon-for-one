@@ -68,7 +68,7 @@ export const Home = () => {
               <input type="text" placeholder='email'></input>
             </div>
             <div>
-            <button type="submit" className='submit'>  <div className='circle'> <p> -> </p>  </div><h3> subscribe</h3>  </button>
+            <button type="submit" className='submit'>  <div className='circle'> <p> > </p>  </div><h3> subscribe</h3>  </button>
             </div>
             </form>
               <div>
