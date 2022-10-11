@@ -1,6 +1,25 @@
 import React, { Component } from "react"
 import { fs } from '../../config/config'
 
+let MonthName;
+const month = new Date().getMonth();
+const year = new Date().getFullYear();
+const BiMonthlyNames = [
+  '',
+  'JanFeb',
+  'MarApril',
+  'MayJune',
+  'JulyAug',
+  'SeptOct',
+  'NovDec',
+]
+if (month === 1 || month === 2) MonthName = BiMonthlyNames[1];
+else if (month === 3 || month === 4) MonthName = BiMonthlyNames[2];
+else if (month === 5 || month === 6) MonthName = BiMonthlyNames[3];
+else if (month === 7 || month === 8) MonthName = BiMonthlyNames[4];
+else if (month === 9 || month === 10) MonthName = BiMonthlyNames[5];
+else if (month === 11 || month === 12) MonthName = BiMonthlyNames[6];
+
 export class Submissions extends Component {
   initialState = {
     pending: [],
@@ -33,13 +52,44 @@ export class Submissions extends Component {
     }
   }
 
-  commitChanges = () => {
-    console.log('TODO: Update DB');
+   commitChanges = () => {
+    console.log('TESTING: Update DB');
+    const { pending, approved } = this.state
+
+    approved.forEach(obj => {
+        const ids=obj.ID;
+        
+        pending.forEach(obj2 =>{
+          const id2 = obj2.ID
+          if(ids === id2)
+          {
+            fs.collection('pendings').doc(ids).delete().then(console.log(`All deleted the document of id ${ids} sucessfully`))
+          }
+        })
+    });
+
+    approved.forEach(obj => {
+      const uploadObj = {
+        created: obj.created,
+        author: 'TODO',
+        categoryId: obj.categoryId,
+        title: obj.title,
+        desc: obj.desc,
+        eventDate: obj.eventDate,
+        imgUrl: obj.imgUrl,
+        brochureUrl: obj.brochureUrl,
+        imgCaption: obj.imgCaption,
+      }
+
+      fs.collection(`${year}/${MonthName}/${obj.categoryId}`).doc().set(uploadObj).then(() => {
+        console.log("Sucessfully uploaded");
+      })
+    });
+    
   }
 
   approveSubmission = (id) => {
     const { pending, approved } = this.state
-
     this.setState({
       pending: pending.filter((sub, i) => {
         if (sub.ID === id) {
@@ -51,6 +101,8 @@ export class Submissions extends Component {
       })
     })
   }
+
+  // const allBlogsTokenId=[] // containing all tokens of blogsID
 
   rejectSubmission = (id, type) => {
     const { pending, approved } = this.state

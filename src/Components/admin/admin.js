@@ -26,6 +26,8 @@ else if (month === 7 || month === 8) MonthName = BiMonthlyNames[4];
 else if (month === 9 || month === 10) MonthName = BiMonthlyNames[5];
 else if (month === 11 || month === 12) MonthName = BiMonthlyNames[6];
 
+
+
 // const getTechnodayaBlogs = async ()=>{
 //   const blogsarray = []
 //     const blogsFirebase = await fs.collection(`pendings`).get();
