@@ -5,12 +5,7 @@ export const Drag = ({ id, index, ...props }) => {
     <Draggable draggableId={id} index={index}>
       {(provided, snapshot) => {
         return (
-          <div
-            ref={provided.innerRef}
-            className={snapshot.isDragging ? "draggable dragging" : "draggable"}
-            {...provided.draggableProps}
-            {...props}
-          >
+          <div ref={provided.innerRef} {...provided.draggableProps} {...props}>
             <div className="drag-handle" {...provided.dragHandleProps}>
               Drag
             </div>

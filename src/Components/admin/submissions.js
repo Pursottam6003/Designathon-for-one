@@ -1,132 +1,181 @@
 import React, { Component } from "react"
-import {fs} from '../../config/config'
-
-const getTechnodayaBlogs = async ()=>{
-	const blogsarray = []
-	  const blogsFirebase = await fs.collection(`pendings`).get();
-	  // getting its snapshort 
-	  for (var snap of blogsFirebase.docs){
-		  var data = snap.data();
-		  data.ID = snap.id;
-		  blogsarray.push({
-			  ...data
-		  })
-		  // console.log(blogs)
-		  if(blogsarray.length === blogsFirebase.docs.length){
-			//setting the products
-				console.log(blogsarray)
-			  return blogsarray
-		  }
-	  }  
-	  return blogsarray
-  }
+import { fs } from '../../config/config'
 
 export class Submissions extends Component {
-	initialState = {
-		pending: [],
-		approved: [],
-	}
+  initialState = {
+    pending: [],
+    approved: [],
+  }
 
-	state = this.initialState
-	
+  state = this.initialState
 
-	componentDidMount() {
-		this.setState({
-			pending: getTechnodayaBlogs()
-			
-		})
-		console.log(this.state.pending)
-	}
+  fetchSubmissions = async () => {
+    const pending = []
+    const approved = []
+    const pendingsFirebase = await fs.collection(`pendings`).get();
+    const approvedFirebase = await fs.collection(`approved`).get();
 
-	submissions = [
-		{
-			approved: false,
-			category: 1,
-			title: 'Birthday party organized at canteen',
-			desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi, asperiores!',
-			author: 'Pursottam Sah',
-			date: '11-10-2022'
-		},
-		{
-			approved: false,
-			category: 1,
-			title: 'Up all night for netflix and chill',
-			desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi, asperiores!',
-			author: 'Chandrashekhar Tripathi',
-			date: '30-09-2022'
-		},
-		{
-			approved: false,
-			category: 1,
-			title: 'Guitar session by our pro guitarist Daknya',
-			desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi, asperiores!',
-			author: 'Pursottam Sah',
-			date: '11-10-2022'
-		},
-		{
-			approved: true,
-			category: 1,
-			title: 'Restrict time in washrooms to 10 seconds during exam hours',
-			desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi, asperiores!',
-			author: 'Subhasish Banerjee',
-			date: '27-10-2022'
-		},
-		{
-			approved: true,
-			category: 1,
-			title: 'Force to use only one message by director on Technodaya Newsletter',
-			desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi, asperiores!',
-			author: 'Pi Mahanta',
-			date: '15-09-2022'
-		},
-	]
+    for (let snap of pendingsFirebase.docs) {
+      let data = snap.data();
+      data.ID = snap.id;
+      pending.push(data)
+      if (pending.length === pendingsFirebase.docs.length) {
+        this.setState({ pending: pending })
+      }
+    }
+    for (let snap of approvedFirebase.docs) {
+      let data = snap.data();
+      data.ID = snap.id;
+      approved.push(data)
+      if (approved.length === approvedFirebase.docs.length) {
+        this.setState({ approved: approved })
+      }
+    }
+  }
 
-	initialState = {
-		submissions: this.submissions,
-		total: this.submissions.length,
-		pending: this.submissions.filter((sub) => {
-			return !sub.approved
-		}).length
-	}
+  commitChanges = () => {
+    console.log('TODO: Update DB');
+  }
 
-	state = this.initialState
+  approveSubmission = (id) => {
+    const { pending, approved } = this.state
 
-	render() {
-		const { submissions, pending, total } = this.state
-		return (
-			<div className="submissions">
-				<div className="container">
-					<header className="page-header">
-						<h1 className="heading">Submissions</h1>
-						<div className="summary">
-							<h2>{pending.toString()} out of {total.toString()}</h2>
-							<p>submissions pending</p>
-						</div>
-					</header>
-					<main className="workspace">
-						<h3>Approve pending submissions</h3>
-						<div className="submissions-wrapper">
-							<div className="submission pending">
-								<table>
-									<thead>
-										<tr>
-											<th>Approve</th>
-											<th>Title</th>
-											<th>Author</th>
-											<th>Date</th>
-											<th>Reject</th>
-										</tr>
-									</thead>
-									<tbody>
+    this.setState({
+      pending: pending.filter((sub, i) => {
+        if (sub.ID === id) {
+          this.setState({
+            approved: [...approved, sub]
+          })
+        }
+        return sub.ID !== id
+      })
+    })
+  }
 
-									</tbody>
-								</table>
-							</div>
-							<div className="submission approved"></div>
-						</div>
-					</main>
-				</div>
-			</div>
-		)
-	}
+  rejectSubmission = (id, type) => {
+    const { pending, approved } = this.state
+    if (type === 'reject') {
+      this.setState({
+        pending: pending.filter((sub, i) => {
+          return sub.ID !== id
+        })
+      })
+      
+    } else {
+      this.setState({
+        approved: approved.filter((sub, i) => {
+          if (sub.ID === id) {
+            this.setState({
+              pending: [...pending, sub]
+            })
+          }
+          return sub.ID !== id
+        })
+      })
+    }
+  }
+
+  removeBlogFromFirestore = (id) => {
+    var done = 0;
+    fs.collection('pendings').doc(id).delete().then(() => {
+      console.log('Removed Sucessfully');
+      done = 1
+    })
+    if (done === 0) {
+      console.log('Unable to remove the element form blog')
+    }
+  }
+
+  componentDidMount() {
+    this.fetchSubmissions();
+  }
+
+  render() {
+    const { pending, approved } = this.state
+    return (
+      <div className="submissions">
+        <div className="container">
+          <header className="page-header">
+            <h1 className="heading">Submissions</h1>
+          </header>
+          <main className="workspace">
+            <div className="submissions-wrapper">
+              <div className="submission pending">
+                <Submission approve={this.approveSubmission} reject={this.rejectSubmission} type="pending" ls={pending} />
+              </div>
+              <div className="submission approved">
+                <Submission approve={this.approveSubmission} reject={this.rejectSubmission} type="approved" ls={approved} />
+              </div>
+            </div>
+            <button onClick={this.commitChanges}>
+              Save changes
+            </button>
+          </main>
+        </div>
+      </div>
+    )
+  }
+}
+
+const Submission = (props) => {
+  const { type, ls, approve, reject } = props
+
+  return (
+    <>
+      <h3 className="sub-summary">{ls.length} {type} submissions</h3>
+      {ls.length !== 0 && (
+        <table>
+          <thead>
+            {type === 'pending' ? (
+              <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Date added</th>
+                <th>Reject</th>
+                <th>Approve</th>
+              </tr>
+            ) : (
+              <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Date added</th>
+                <th>Move to pending</th>
+              </tr>
+            )}
+          </thead>
+          <tbody>
+            {ls.map((sub) => {
+              return (<tr key={sub.ID}>
+                <td>{sub.author}</td>
+                <td>{sub.title}</td>
+                <td>{sub.created}</td>
+                {type === 'pending' ? (
+                  <>
+                    <td>
+                      <button type="button" onClick={(e) => { reject(sub.ID, 'reject') }}>
+                        Reject
+                      </button>
+                    </td>
+                    <td>
+                      <button type="button" onClick={(e) => { approve(sub.ID) }}>
+                        Approve
+                      </button>
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td>
+                      <button type="button" onClick={() => { reject(sub.ID, 'remove') }}>
+                        Remove
+                      </button>
+                    </td>
+                  </>
+                )}
+              </tr>)
+            })}
+          </tbody>
+        </table>
+      )}
+    </>
+  )
 }

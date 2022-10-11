@@ -1,0 +1,36 @@
+.draggable {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.draggable-category {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin: 1rem;
+}
+
+h2 {
+    margin: 0;
+}
+
+.drag-handle {
+    border: 2px solid blue;
+    background: cornflowerblue;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.category-container {
+    width: 90%;
+}
+
+.item {
+    border: 2px solid gray;
+    border-radius: 4px;
+    padding: 1rem;
+    width: 100%;
+    background: lightgray;
+}
