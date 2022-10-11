@@ -1,3 +1,49 @@
+.admin-portal .admin-view .main-body>.draft {
+    .workspace {
+        .draft-form {
+            max-width: 548px;
+        }
+
+        .submissions-dnd {
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .submissions-dnd>div[data-rbd-droppable-id="droppable"] {   // category wrapper (droppable)
+            display: flex;
+            flex-direction: row;
+        }
+
+        .submissions-dnd>div[data-rbd-droppable-id="droppable"]>div {   // category card
+            text-align: center;
+            flex: 1 1 0;
+            max-width: 280px;
+            min-width: 220px;
+            margin: 0 0.5rem;
+            padding: 0.1rem 0.5 1rem;
+            background-color: rgba(255, 255, 255, 0.658);
+            border: solid 1px grey;
+
+            .category {
+                h2 {        // category title
+                    padding: 0.4rem;
+                    margin: 0 0 0.8rem;
+                }
+            }
+
+            .category > div {
+                min-height: 150px;
+            }
+
+            .category > div > div {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+    }
+}
+
+
 .draggable {
     display: flex;
     align-items: center;
@@ -12,17 +58,17 @@
     margin: 1rem;
 }
 
-h2 {
-    margin: 0;
-}
+
 
 .drag-handle {
-    border: 2px solid blue;
-    padding: 1rem;
+    // border: 2px solid blue;
+    // padding: 1rem;
     border-radius: 4px;
 
     svg {
-        fill: grey;
+        fill: rgb(165, 164, 164);
+        width: 1.5rem;
+        height: 1.5rem;
     }
 }
 

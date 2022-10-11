@@ -1,7 +1,9 @@
 import React, { Component } from "react"
 import { Field } from "../form/Field"
 import { Drag, Drop, DragAndDrop, reorder } from "../../drag-and-drop"
+import { fs } from '../../config/config'
 import "../../scss/dnd.scss"
+import { Categories } from "../../helpers"
 
 class DraftForm extends Component {
   handleChange = (e) => {
@@ -74,22 +76,65 @@ class DndSubmissions extends Component {
   initialState = {
     categories: [
       {
-        id: 'q101',
-        name: 'Category 1',
+        id: '1',
+        name: 'MoU',
         items: [
           { id: 'abc', name: 'First' },
           { id: 'def', name: 'Second' },
         ],
       },
       {
-        id: 'wkqx',
-        name: 'Category 2',
+        id: '2',
+        name: 'Announcements',
         items: [
           { id: 'ghi', name: 'Third' },
           { id: 'jkl', name: 'Fourth' },
         ],
       },
-    ]
+      {
+        id: '3',
+        name: 'Patents',
+        items: [
+          { id: 'bnm', name: 'Fifth' },
+          { id: 'ghj', name: 'Sixth' },
+        ],
+      },
+    ],
+  }
+
+  fetchData = async () => {
+    const data = await fs.collection(`approved`).get();
+    const categoriesFs = {}
+    const categoryIds = []
+    for (let snap of data.docs) {
+      const sub = snap.data()
+      const subObj = {
+        id: snap.id,
+        author: sub.author,
+        created: sub.created,
+        eventDate: sub.eventDate,
+        desc: sub.desc
+      }
+
+      let existingItems = []
+      if (categoriesFs[sub.categoryId]) {
+        existingItems = categoriesFs[sub.categoryId].items
+      }
+
+      categoriesFs[sub.categoryId] = {
+        id: sub.categoryId,
+        name: Categories[sub.categoryId],
+        items: [...existingItems, subObj]
+      }
+      categoryIds.push(sub.categoryId)
+    }
+
+    const categoriesFsArr = []
+    categoryIds.map(id => {
+      categoriesFsArr.push(categoriesFs[id])
+    })
+
+    this.setState({categories: categoriesFsArr})
   }
 
   state = this.initialState
@@ -150,6 +195,10 @@ class DndSubmissions extends Component {
     }
   }
 
+  componentDidMount() {
+    this.fetchData()
+  }
+
   render() {
     const { categories } = this.state
     return (
@@ -158,15 +207,15 @@ class DndSubmissions extends Component {
           <Drop id="droppable" type="droppable-category" droppableDir="horizontal">
             {categories.map((category, categoryIndex) => {
               return (
-                <Drag key={category.id} id={category.id} index={categoryIndex}>
-                  <div>
+                <Drag outer={true} key={category.id} id={category.id} index={categoryIndex}>
+                  <div className="category">
                     <h2>{category.name}</h2>
 
-                    <Drop key={category.id} id={category.id} type="droppable-item" droppableDir="vertical">
+                    <Drop key={category.id} id={category.id} type="droppable-item" outer={false} droppableDir="vertical">
                       {category.items.map((item, index) => {
                         return (
-                          <Drag key={item.id} id={item.id} index={index}>
-                            <div>{item.name}</div>
+                          <Drag outer={false} key={item.id} id={item.id} index={index}>
+                            <div>{item.desc}</div>
                           </Drag>
                         )
                       })}
@@ -189,7 +238,7 @@ export class Draft extends Component {
     iss: '',
     month: '',
     year: '',
-    formView: true
+    formView: false
   }
   state = this.initialState
 
