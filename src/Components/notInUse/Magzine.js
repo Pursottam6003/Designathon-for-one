@@ -1,7 +1,7 @@
 import React,{forwardRef,useRef} from 'react'
-import jote_img from "../images/image_jote.jpg"
-import bglogo from '../images/logobgrm.png'
-import img from '../images/icons8-calendar-week-32.png'
+import jote_img from "../../images/image_jote.jpg"
+import bglogo from '../../images/logobgrm.png'
+import img from '../../images/icons8-calendar-week-32.png'
 import $ from 'jquery';
 import ReactToPrint, { PrintContextConsumer } from "react-to-print";
 
