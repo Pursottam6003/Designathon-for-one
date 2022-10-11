@@ -1,24 +1,6 @@
 import React, { Component } from "react"
 import { fs } from '../../config/config'
 
-let MonthName;
-const month = new Date().getMonth();
-const year = new Date().getFullYear();
-const BiMonthlyNames = [
-  '',
-  'JanFeb',
-  'MarApril',
-  'MayJune',
-  'JulyAug',
-  'SeptOct',
-  'NovDec',
-]
-if (month === 1 || month === 2) MonthName = BiMonthlyNames[1];
-else if (month === 3 || month === 4) MonthName = BiMonthlyNames[2];
-else if (month === 5 || month === 6) MonthName = BiMonthlyNames[3];
-else if (month === 7 || month === 8) MonthName = BiMonthlyNames[4];
-else if (month === 9 || month === 10) MonthName = BiMonthlyNames[5];
-else if (month === 11 || month === 12) MonthName = BiMonthlyNames[6];
 
 export class Submissions extends Component {
   initialState = {
@@ -55,18 +37,14 @@ export class Submissions extends Component {
    commitChanges = () => {
     console.log('TESTING: Update DB');
     const { pending, approved } = this.state
-
-    approved.forEach(obj => {
-        const ids=obj.ID;
-        
-        pending.forEach(obj2 =>{
-          const id2 = obj2.ID
-          if(ids === id2)
-          {
-            fs.collection('pendings').doc(ids).delete().then(console.log(`All deleted the document of id ${ids} sucessfully`))
-          }
-        })
-    });
+    approved.forEach(sub => {
+      const id = sub.ID
+      fs.collection(`pendings`).doc(`${id}`).delete().then(console.log(`Deleted ${id}`));
+    })
+    pending.forEach(sub => {
+      const id = sub.ID
+      fs.collection(`approved`).doc(`${id}`).delete().then(console.log(`Deleted ${id}`));
+    })
 
     approved.forEach(obj => {
       const uploadObj = {
@@ -81,7 +59,7 @@ export class Submissions extends Component {
         imgCaption: obj.imgCaption,
       }
 
-      fs.collection(`${year}/${MonthName}/${obj.categoryId}`).doc().set(uploadObj).then(() => {
+      fs.collection(`approved`).doc().set(uploadObj).then(() => {
         console.log("Sucessfully uploaded");
       })
     });
