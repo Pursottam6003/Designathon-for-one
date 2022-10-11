@@ -18,9 +18,12 @@ h2 {
 
 .drag-handle {
     border: 2px solid blue;
-    background: cornflowerblue;
     padding: 1rem;
     border-radius: 4px;
+
+    svg {
+        fill: grey;
+    }
 }
 
 .category-container {

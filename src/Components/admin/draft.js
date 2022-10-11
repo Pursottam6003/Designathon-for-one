@@ -95,7 +95,6 @@ class DndSubmissions extends Component {
   state = this.initialState
 
   handleOnDragEnd = (result) => {
-    console.log(result);
     const { type, source, destination } = result;
     const { categories } = this.state
 

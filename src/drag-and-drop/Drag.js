@@ -1,4 +1,5 @@
 import { Draggable } from "react-beautiful-dnd";
+import { ReactComponent as DragIcon } from "../images/icons/drag.svg"
 
 export const Drag = ({ id, index, ...props }) => {
   return (
@@ -7,7 +8,7 @@ export const Drag = ({ id, index, ...props }) => {
         return (
           <div ref={provided.innerRef} {...provided.draggableProps} {...props}>
             <div className="drag-handle" {...provided.dragHandleProps}>
-              Drag
+              <DragIcon />
             </div>
             {props.children}
           </div>

@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import technodayaLogo from "../../images/logo/technodaya-logo1.png"
 import technodayaLogoLight from "../../images/logo/technodaya-logo-white.png"
 import { ReactComponent as CloseIcon } from '../../images/logo/remove.svg'
-import { type } from '@testing-library/user-event/dist/type'
 import {useNavigate } from 'react-router-dom'
 import {auth} from '../../config/config'
 
@@ -19,18 +18,19 @@ const close = () => {
   navbar.style.width = "0";
 }
 const getadmin=()=>{
-  const user = auth.currentUser;
-  if(user.uid === process.env.USER_UID)
-  {
-    console.log('Welcome Admin')
-    return 'admin'
-  }
+  // const user = auth.currentUser;
+  // if(user.uid === process.env.USER_UID)
+  // {
+  //   console.log('Welcome Admin')
+  //   return 'admin'
+  // }
 
-  else 
-  {
-    console.log('Welcome user')
-    return null;
-  }
+  // else 
+  // {
+  //   console.log('Welcome user')
+  //   return null;
+  // }
+  console.log('toDO')
 }
 const users = getadmin();
 
@@ -102,12 +102,11 @@ const NavLis = (props) => {
   )
 }
 
-let user = auth
-
 export const Navbar = (props) => {
   const history = useNavigate()
   const handleLogout = () => {
     close();
+    sessionStorage.removeItem('UID');
     auth.signOut().then(() => {
       history('/')
     })
@@ -152,7 +151,7 @@ export const Navbar = (props) => {
             { link: '/', name: 'Home' },
             { link: '/magazine', name: 'Read' },
             { link: '/about', name: 'About us' },
-            { link: '/addBlogs', name: 'Submit' },
+            { link: '/submit', name: 'Submit' },
             { link: '/admin/', name: 'Admin' }
           ]} />
         )}
