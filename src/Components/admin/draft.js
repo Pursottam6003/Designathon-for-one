@@ -1,7 +1,9 @@
 import React, { Component } from "react"
 import { Field } from "../form/Field"
 import { Drag, Drop, DragAndDrop, reorder } from "../../drag-and-drop"
+import { fs } from '../../config/config'
 import "../../scss/dnd.scss"
+import { Categories } from "../../helpers"
 
 class DraftForm extends Component {
   handleChange = (e) => {
@@ -74,7 +76,7 @@ class DndSubmissions extends Component {
   initialState = {
     categories: [
       {
-        id: 'q101',
+        id: '1',
         name: 'MoU',
         items: [
           { id: 'abc', name: 'First' },
@@ -82,7 +84,7 @@ class DndSubmissions extends Component {
         ],
       },
       {
-        id: 'wkqx',
+        id: '2',
         name: 'Announcements',
         items: [
           { id: 'ghi', name: 'Third' },
@@ -90,14 +92,49 @@ class DndSubmissions extends Component {
         ],
       },
       {
-        id: 'qwer',
+        id: '3',
         name: 'Patents',
         items: [
           { id: 'bnm', name: 'Fifth' },
           { id: 'ghj', name: 'Sixth' },
         ],
       },
-    ]
+    ],
+  }
+
+  fetchData = async () => {
+    const data = await fs.collection(`approved`).get();
+    const categoriesFs = {}
+    const categoryIds = []
+    for (let snap of data.docs) {
+      const sub = snap.data()
+      const subObj = {
+        id: snap.id,
+        author: sub.author,
+        created: sub.created,
+        eventDate: sub.eventDate,
+        desc: sub.desc
+      }
+
+      let existingItems = []
+      if (categoriesFs[sub.categoryId]) {
+        existingItems = categoriesFs[sub.categoryId].items
+      }
+
+      categoriesFs[sub.categoryId] = {
+        id: sub.categoryId,
+        name: Categories[sub.categoryId],
+        items: [...existingItems, subObj]
+      }
+      categoryIds.push(sub.categoryId)
+    }
+
+    const categoriesFsArr = []
+    categoryIds.map(id => {
+      categoriesFsArr.push(categoriesFs[id])
+    })
+
+    this.setState({categories: categoriesFsArr})
   }
 
   state = this.initialState
@@ -158,8 +195,8 @@ class DndSubmissions extends Component {
     }
   }
 
-  handleDragStart = () => {
-
+  componentDidMount() {
+    this.fetchData()
   }
 
   render() {
@@ -178,7 +215,7 @@ class DndSubmissions extends Component {
                       {category.items.map((item, index) => {
                         return (
                           <Drag outer={false} key={item.id} id={item.id} index={index}>
-                            <div>{item.name}</div>
+                            <div>{item.desc}</div>
                           </Drag>
                         )
                       })}

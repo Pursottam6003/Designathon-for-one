@@ -17,7 +17,8 @@
         .submissions-dnd>div[data-rbd-droppable-id="droppable"]>div {   // category card
             text-align: center;
             flex: 1 1 0;
-            max-width: 250px;
+            max-width: 280px;
+            min-width: 220px;
             margin: 0 0.5rem;
             padding: 0.1rem 0.5 1rem;
             background-color: rgba(255, 255, 255, 0.658);
@@ -31,13 +32,12 @@
             }
 
             .category > div {
-                min-height: 150px;;
+                min-height: 150px;
             }
 
             .category > div > div {
                 display: flex;
                 flex-direction: row;
-
             }
         }
     }

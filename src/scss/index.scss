@@ -835,6 +835,7 @@ h3 {
     }
 
     .main-body {
+      min-width: 0;
       flex-grow: 1;
 
       .container {
