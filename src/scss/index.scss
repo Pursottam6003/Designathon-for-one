@@ -326,6 +326,74 @@ h3 {
   }
 }
 
+// buttons
+
+.btn {
+  border-radius: 2rem;
+  cursor: pointer;
+  font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  height: 2rem;
+  min-width: 5rem;
+  outline: transparent;
+  padding: 0px 1rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid rgb(3, 120, 124);
+  color: rgb(3, 120, 124);
+  user-select: none;
+  transition: all 200ms ease;
+}
+
+.btns-group {
+  display: flex;
+  justify-content: space-around;
+  --color: rgb(117, 104, 84);
+  margin: 1rem 0;
+  max-width: 548px;
+
+  .btn {
+    border: 1px solid var(--color);
+    color: var(--color);
+  }
+
+  .btn:hover {
+    background-color: var(--color);
+    color: #fff;
+  }
+
+  .btn.submit {
+    --color: rgb(117, 104, 84);
+  }
+
+  .btn.submit:active {
+    --color: rgb(105, 94, 78);
+    box-shadow: 0 3px 8px -4px #222222b0;
+  }
+
+  // .btn.reset {
+  //   --color: #cb5c5c;
+  // }
+
+  // .btn.reset:active {
+  //   --color: #b34f4f;
+  //   box-shadow: 0 3px 8px -4px #222222b0;
+  // }
+
+  .btn.submit[disabled] {
+    --color: var(--gray-5);
+    // cursor: wait;
+  }
+
+  .btn.submit[disabled]:hover {
+    background-color: transparent;
+    color: var(--color);
+  }
+}
+
 // Read 
 .read-component {
   .grid-gallery {

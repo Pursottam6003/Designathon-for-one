@@ -38,49 +38,49 @@ export class Submissions extends Component {
     console.log('TESTING: Update DB');
     const { pending, approved } = this.state
 
-      const approvedFs = await fs.collection(`approved`).get();
-      const pendingFs = await fs.collection(`pendings`).get();
+    const approvedFs = await fs.collection(`approved`).get();
+    const pendingFs = await fs.collection(`pendings`).get();
 
-	for (let snap of approvedFs.docs) {
-        fs.collection(`approved`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
-  } 
-  for (let snap of pendingFs.docs) {
-        fs.collection(`pendings`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
+    for (let snap of approvedFs.docs) {
+      fs.collection(`approved`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
+    }
+    for (let snap of pendingFs.docs) {
+      fs.collection(`pendings`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
+    }
+
+    approved.forEach(obj => {
+      const uploadObj = {
+        created: obj.created,
+        author: 'TODO',
+        categoryId: obj.categoryId,
+        title: obj.title,
+        desc: obj.desc,
+        eventDate: obj.eventDate,
+        imgUrl: obj.imgUrl,
+        brochureUrl: obj.brochureUrl,
+        imgCaption: obj.imgCaption,
       }
+      fs.collection(`approved`).doc().set(uploadObj).then(() => {
+        console.log("Sucessfully uploaded to approved");
+      })
+    })
 
-      approved.forEach(obj => {
-            const uploadObj = {
-              created: obj.created,
-              author: 'TODO',
-              categoryId: obj.categoryId,
-              title: obj.title,
-              desc: obj.desc,
-              eventDate: obj.eventDate,
-              imgUrl: obj.imgUrl,
-              brochureUrl: obj.brochureUrl,
-              imgCaption: obj.imgCaption,
-            }
-            fs.collection(`approved`).doc().set(uploadObj).then(() => {
-              console.log("Sucessfully uploaded to approved");
-            })
-        })
-
-      pending.forEach(obj => {
-            const uploadObj = {
-              created: obj.created,
-              author: 'TODO',
-              categoryId: obj.categoryId,
-              title: obj.title,
-              desc: obj.desc,
-              eventDate: obj.eventDate,
-              imgUrl: obj.imgUrl,
-              brochureUrl: obj.brochureUrl,
-              imgCaption: obj.imgCaption,
-            }
-            fs.collection(`pendings`).doc().set(uploadObj).then(() => {
-              console.log("Sucessfully uploaded to pending");
-            })
-        })
+    pending.forEach(obj => {
+      const uploadObj = {
+        created: obj.created,
+        author: 'TODO',
+        categoryId: obj.categoryId,
+        title: obj.title,
+        desc: obj.desc,
+        eventDate: obj.eventDate,
+        imgUrl: obj.imgUrl,
+        brochureUrl: obj.brochureUrl,
+        imgCaption: obj.imgCaption,
+      }
+      fs.collection(`pendings`).doc().set(uploadObj).then(() => {
+        console.log("Sucessfully uploaded to pending");
+      })
+    })
 
     this.fetchSubmissions();
   }
@@ -156,9 +156,11 @@ export class Submissions extends Component {
                 <Submission approve={this.approveSubmission} reject={this.rejectSubmission} type="approved" ls={approved} />
               </div>
             </div>
-            <button onClick={this.commitChanges}>
-              Save changes
-            </button>
+            <div className="btns-group">
+              <button className="btn" onClick={this.commitChanges}>
+                Save changes
+              </button>
+            </div>
           </main>
         </div>
       </div>

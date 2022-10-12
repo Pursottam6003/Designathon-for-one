@@ -134,7 +134,7 @@ class DndSubmissions extends Component {
       categoriesFsArr.push(categoriesFs[id])
     })
 
-    this.setState({categories: categoriesFsArr})
+    this.setState({ categories: categoriesFsArr })
   }
 
   state = this.initialState
@@ -238,7 +238,7 @@ export class Draft extends Component {
     iss: '',
     month: '',
     year: '',
-    formView: false
+    formView: true
   }
   state = this.initialState
 
@@ -271,9 +271,24 @@ export class Draft extends Component {
             )}
 
 
-            <button onClick={this.switchView} type="button">
-              {formView ? 'Next' : 'Previous'}
-            </button>
+            <div className="btns-group">
+              <button className="btn" onClick={this.switchView} type="button">
+                {formView ? 'Next' : 'Previous'}
+              </button>
+
+              {formView ? (
+                <button className="btn submit" onClick={() => { console.log('TODO: Publish') }} type="button" disabled>
+                  Publish
+                </button>
+
+              ) : (
+                <button className="btn submit" onClick={() => { console.log('TODO: Publish') }} type="button">
+                  Publish
+                </button>
+
+              )}
+
+            </div>
           </main>
         </div>
       </div>
