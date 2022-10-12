@@ -120,17 +120,17 @@ class DndSubmissions extends Component {
       if (categoriesFs[sub.categoryId]) {
         existingItems = categoriesFs[sub.categoryId].items
       }
-
+      
       categoriesFs[sub.categoryId] = {
         id: sub.categoryId,
         name: Categories[sub.categoryId],
         items: [...existingItems, subObj]
       }
-      categoryIds.push(sub.categoryId)
+      if (!categoryIds.includes(sub.categoryId)) categoryIds.push(sub.categoryId)
     }
-
+    
     const categoriesFsArr = []
-    categoryIds.map(id => {
+    categoryIds.forEach(id => {
       categoriesFsArr.push(categoriesFs[id])
     })
 
