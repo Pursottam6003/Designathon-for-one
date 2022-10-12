@@ -19,6 +19,7 @@
     "remark-gfm": "^3.0.1",
     "sass": "^1.54.9",
     "scss": "^0.2.4",
+    "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

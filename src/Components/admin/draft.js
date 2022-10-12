@@ -1,9 +1,22 @@
 import React, { Component } from "react"
+import { DragDropContext } from "react-beautiful-dnd"
+
 import { Field } from "../form/Field"
-import { Drag, Drop, DragAndDrop, reorder } from "../../drag-and-drop"
-import { fs } from '../../config/config'
-import "../../scss/dnd.scss"
-import { Categories } from "../../helpers"
+import { DndSubmissions } from "../dnd/dndSubmissions"
+import styled from "styled-components"
+
+const Container = styled.div`
+  margin: 0.5rem;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  display: flex;
+`;
+
+
+// import { fs } from '../../config/config'
+// import { Drag, Drop, DragAndDrop, reorder } from "../../drag-and-drop"
+// import "../../scss/dnd.scss"
+// import { Categories } from "../../helpers"
 
 class DraftForm extends Component {
   handleChange = (e) => {
@@ -72,165 +85,6 @@ class DraftForm extends Component {
   }
 }
 
-class DndSubmissions extends Component {
-  initialState = {
-    categories: [
-      {
-        id: '1',
-        name: 'MoU',
-        items: [
-          { id: 'abc', name: 'First' },
-          { id: 'def', name: 'Second' },
-        ],
-      },
-      {
-        id: '2',
-        name: 'Announcements',
-        items: [
-          { id: 'ghi', name: 'Third' },
-          { id: 'jkl', name: 'Fourth' },
-        ],
-      },
-      {
-        id: '3',
-        name: 'Patents',
-        items: [
-          { id: 'bnm', name: 'Fifth' },
-          { id: 'ghj', name: 'Sixth' },
-        ],
-      },
-    ],
-  }
-
-  fetchData = async () => {
-    const data = await fs.collection(`approved`).get();
-    const categoriesFs = {}
-    const categoryIds = []
-    for (let snap of data.docs) {
-      const sub = snap.data()
-      const subObj = {
-        id: snap.id,
-        author: sub.author,
-        created: sub.created,
-        eventDate: sub.eventDate,
-        desc: sub.desc
-      }
-
-      let existingItems = []
-      if (categoriesFs[sub.categoryId]) {
-        existingItems = categoriesFs[sub.categoryId].items
-      }
-      
-      categoriesFs[sub.categoryId] = {
-        id: sub.categoryId,
-        name: Categories[sub.categoryId],
-        items: [...existingItems, subObj]
-      }
-      if (!categoryIds.includes(sub.categoryId)) categoryIds.push(sub.categoryId)
-    }
-    
-    const categoriesFsArr = []
-    categoryIds.forEach(id => {
-      categoriesFsArr.push(categoriesFs[id])
-    })
-
-    this.setState({ categories: categoriesFsArr })
-  }
-
-  state = this.initialState
-
-  handleOnDragEnd = (result) => {
-    const { type, source, destination } = result;
-    const { categories } = this.state
-
-    if (!destination) return;
-
-    const sourceCategoryId = source.droppableId
-    const destinationCategoryId = destination.droppableId
-
-    // Reordering items
-    if (type === 'droppable-item') {
-      // If reordering within the same category
-      if (sourceCategoryId === destinationCategoryId) {
-        const updatedOrder = reorder(
-          categories.find((category) => category.id === sourceCategoryId).items,
-          source.index,
-          destination.index
-        )
-        const updatedCategories = categories.map((category) =>
-          category.id !== sourceCategoryId ? category : { ...category, items: updatedOrder }
-        )
-
-        this.setState({ categories: updatedCategories })
-      } else {
-        // Dragging to a different category
-        const sourceOrder = categories.find((category) => category.id === sourceCategoryId).items
-        const destinationOrder = categories.find(
-          (category) => category.id === destinationCategoryId
-        ).items
-
-        const [removed] = sourceOrder.splice(source.index, 1)
-        destinationOrder.splice(destination.index, 0, removed)
-
-        destinationOrder[removed] = sourceOrder[removed]
-        delete sourceOrder[removed]
-
-        const updatedCategories = categories.map((category) =>
-          category.id === sourceCategoryId
-            ? { ...category, items: sourceOrder }
-            : category.id === destinationCategoryId
-              ? { ...category, items: destinationOrder }
-              : category
-        )
-
-        this.setState({ categories: updatedCategories })
-      }
-    }
-
-    // Reordering categories
-    if (type === 'droppable-category') {
-      const updatedCategories = reorder(categories, source.index, destination.index)
-
-      this.setState({ categories: updatedCategories })
-    }
-  }
-
-  componentDidMount() {
-    this.fetchData()
-  }
-
-  render() {
-    const { categories } = this.state
-    return (
-      <div className="submissions-dnd">
-        <DragAndDrop onDragEnd={this.handleOnDragEnd}>
-          <Drop id="droppable" type="droppable-category" droppableDir="horizontal">
-            {categories.map((category, categoryIndex) => {
-              return (
-                <Drag outer={true} key={category.id} id={category.id} index={categoryIndex}>
-                  <div className="category">
-                    <h2>{category.name}</h2>
-
-                    <Drop key={category.id} id={category.id} type="droppable-item" outer={false} droppableDir="vertical">
-                      {category.items.map((item, index) => {
-                        return (
-                          <Drag outer={false} key={item.id} id={item.id} index={index}>
-                            <div>{item.desc}</div>
-                          </Drag>
-                        )
-                      })}
-                    </Drop>
-                  </div>
-                </Drag>
-              )
-            })}
-          </Drop>
-        </DragAndDrop>
-      </div>
-    )
-  }
-}
-
 export class Draft extends Component {
   initialState = {
     title: '',
@@ -238,7 +92,34 @@ export class Draft extends Component {
     iss: '',
     month: '',
     year: '',
-    formView: true
+    formView: true,
+    orders: {
+      tasks: {
+        'task-1': { id: 'task-1', content: 'Take out the garbage' },
+        'task-2': { id: 'task-2', content: 'Watch my favorite show' },
+        'task-3': { id: 'task-3', content: 'Charge my phone' },
+        'task-4': { id: 'task-4', content: 'Cook dinner' },
+      },
+      columns: {
+        'column-1': {
+          id: 'column-1',
+          title: 'To do',
+          taskIds: ['task-1', 'task-2', 'task-3', 'task-4'],
+        },
+        'column-2': {
+          id: 'column-2',
+          title: 'In progress',
+          taskIds: [],
+        },
+        'column-3': {
+          id: 'column-3',
+          title: 'Done',
+          taskIds: [],
+        },
+      },
+
+      columnOrder: ['column-1', 'column-2', 'column-3'],
+    }
   }
   state = this.initialState
 
@@ -253,45 +134,104 @@ export class Draft extends Component {
   }
 
 
+  // render() {
+  //   const { title, vol, iss, month, year, formView, orders } = this.state
+  //   const formProps = { title: title, vol: vol, iss: iss, month: month, year: year }
+  //   return (
+  //     <div className="draft">
+  //       <div className="container">
+  //         <header className="page-header">
+  //           <h1 className="heading">Draft an Issue</h1>
+  //         </header>
+
+  //         <main className="workspace">
+  //           {formView ? (
+  //             <DraftForm handleChange={this.handleChange} {...formProps} />
+  //           ) : (
+  //             {return () {
+  //               orders.columnOrder.map(columnId => {
+  //                 const column = orders.columns[columnId];
+  //                 const tasks = column.taskIds.map(taskId => orders.tasks[taskId]);
+
+  //                 return <DndSubmissions key={column.id} column={column} tasks={tasks} />;
+  //               })
+  //             }}
+  //           )}
+
+
+  //           <div className="btns-group">
+  //             <button className="btn" onClick={this.switchView} type="button">
+  //               {formView ? 'Next' : 'Previous'}
+  //             </button>
+
+  //             {formView ? (
+  //               <button className="btn submit" onClick={() => { console.log('TODO: Publish') }} type="button" disabled>
+  //                 Publish
+  //               </button>
+
+  //             ) : (
+  //               <button className="btn submit" onClick={() => { console.log('TODO: Publish') }} type="button">
+  //                 Publish
+  //               </button>
+
+  //             )}
+
+  //           </div>
+  //         </main>
+  //       </div>
+  //     </div>
+  //   )
+  // }
+
+  onDragEnd = result => {
+    const { destination, source, draggableId } = result;
+    const { orders } = this.state;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    const column = orders.columns[source.droppableId];
+    const newTaskIds = Array.from(column.taskIds);
+    newTaskIds.splice(source.index, 1);
+    newTaskIds.splice(destination.index, 0, draggableId);
+
+    const newColumn = {
+      ...column,
+      taskIds: newTaskIds,
+    };
+
+    const newOrders = {
+      ...orders,
+      columns: {
+        ...orders.columns,
+        [newColumn.id]: newColumn,
+      },
+    };
+
+    this.setState({ orders: newOrders });
+  }
+
   render() {
-    const { title, vol, iss, month, year, formView } = this.state
-    const formProps = { title: title, vol: vol, iss: iss, month: month, year: year }
+    const { orders } = this.state
     return (
-      <div className="draft">
-        <div className="container">
-          <header className="page-header">
-            <h1 className="heading">Draft an Issue</h1>
-          </header>
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <Container>
+          {orders.columnOrder.map(columnId => {
+            const column = orders.columns[columnId];
+            const tasks = column.taskIds.map(taskId => orders.tasks[taskId]);
 
-          <main className="workspace">
-            {formView ? (
-              <DraftForm handleChange={this.handleChange} {...formProps} />
-            ) : (
-              <DndSubmissions />
-            )}
-
-
-            <div className="btns-group">
-              <button className="btn" onClick={this.switchView} type="button">
-                {formView ? 'Next' : 'Previous'}
-              </button>
-
-              {formView ? (
-                <button className="btn submit" onClick={() => { console.log('TODO: Publish') }} type="button" disabled>
-                  Publish
-                </button>
-
-              ) : (
-                <button className="btn submit" onClick={() => { console.log('TODO: Publish') }} type="button">
-                  Publish
-                </button>
-
-              )}
-
-            </div>
-          </main>
-        </div>
-      </div>
+            return <DndSubmissions key={column.id} column={column} tasks={tasks} />;
+          })}
+        </Container>
+      </DragDropContext>
     )
   }
 }

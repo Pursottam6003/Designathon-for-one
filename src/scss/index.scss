@@ -828,97 +828,97 @@ h3 {
     max-width: 1500px;
   }
 
-  .admin-view {
-    display: flex;
-    flex-direction: row;
+  // .admin-view {
+  //   display: flex;
+  //   flex-direction: row;
 
-    aside {
-      display: flex;
-      flex-direction: column;
-      height: calc(100vh - var(--nav-height));
-      border-right: solid 1px #dbdbdb;
+  //   aside {
+  //     display: flex;
+  //     flex-direction: column;
+  //     height: calc(100vh - var(--nav-height));
+  //     border-right: solid 1px #dbdbdb;
 
-      .console-nav {
-        position: sticky;
-        top: var(--nav-height);
-        flex-grow: 1;
+  //     .console-nav {
+  //       position: sticky;
+  //       top: var(--nav-height);
+  //       flex-grow: 1;
 
-        .nav-items {
-          display: flex;
-          flex-direction: column;
-          list-style: none;
-          padding-left: 0;
-          height: 100%;
-          justify-content: center;
-          gap: .8rem;
+  //       .nav-items {
+  //         display: flex;
+  //         flex-direction: column;
+  //         list-style: none;
+  //         padding-left: 0;
+  //         height: 100%;
+  //         justify-content: center;
+  //         gap: .8rem;
 
-          .nav-item {
-            a {
-              position: relative;
-              display: block;
-              padding: 0.6rem 2rem;
-              margin: 0.3rem 0.6rem;
-              text-decoration: none;
-              text-align: right;
-              color: var(--gray-65);
-              transition: all 0.3s ease;
-            }
+  //         .nav-item {
+  //           a {
+  //             position: relative;
+  //             display: block;
+  //             padding: 0.6rem 2rem;
+  //             margin: 0.3rem 0.6rem;
+  //             text-decoration: none;
+  //             text-align: right;
+  //             color: var(--gray-65);
+  //             transition: all 0.3s ease;
+  //           }
 
-            a.active {
-              color: var(--gray-10);
-              font-weight: 500;
-            }
+  //           a.active {
+  //             color: var(--gray-10);
+  //             font-weight: 500;
+  //           }
 
-            a::after {
-              content: ">";
-              font-weight: 600;
-              position: absolute;
-              display: none;
-              top: 50%;
-              transform: translateY(-50%);
-              left: 3rem;
-              transition: 0.2s left ease-out;
-            }
+  //           a::after {
+  //             content: ">";
+  //             font-weight: 600;
+  //             position: absolute;
+  //             display: none;
+  //             top: 50%;
+  //             transform: translateY(-50%);
+  //             left: 3rem;
+  //             transition: 0.2s left ease-out;
+  //           }
 
-            a:hover {
-              color: var(--gray-9);
-            }
+  //           a:hover {
+  //             color: var(--gray-9);
+  //           }
 
-            a:hover::after {
-              display: block;
-            }
+  //           a:hover::after {
+  //             display: block;
+  //           }
 
-            a.active::after {
-              display: block;
-              left: 90%;
-            }
-          }
+  //           a.active::after {
+  //             display: block;
+  //             left: 90%;
+  //           }
+  //         }
 
-        }
-      }
+  //       }
+  //     }
 
-      .console-footer {
-        padding: 1.2rem 0.8rem;
-      }
-    }
+  //     .console-footer {
+  //       padding: 1.2rem 0.8rem;
+  //     }
+  //   }
 
-    .main-body {
-      min-width: 0;
-      flex-grow: 1;
+  //   .main-body {
+  //     min-width: 0;
+  //     flex-grow: 1;
 
-      .container {
-        max-width: 100%;
+  //     .container {
+  //       max-width: 100%;
 
-        .page-header {
-          border-bottom: none;
+  //       .page-header {
+  //         border-bottom: none;
 
-          .heading {
-            text-align: left;
-          }
-        }
-      }
-    }
-  }
+  //         .heading {
+  //           text-align: left;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
 }
 
