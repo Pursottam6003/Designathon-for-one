@@ -12,6 +12,7 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 `;
 const Title = styled.h4`
   padding: 0.5rem;

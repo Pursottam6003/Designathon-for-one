@@ -837,6 +837,7 @@ h3 {
       flex-direction: column;
       height: calc(100vh - var(--nav-height));
       border-right: solid 1px #dbdbdb;
+      flex-shrink: 0;
 
       .console-nav {
         position: sticky;
@@ -900,6 +901,60 @@ h3 {
       .console-footer {
         padding: 1.2rem 0.8rem;
       }
+
+    }
+
+    @media screen and (max-width: 1000px) {
+      flex-direction: column;
+
+      main.main-body {
+        .draft {
+          .workspace.container {
+            padding: 0 2rem 0;
+          }
+        }
+      }
+
+      aside {
+        height: fit-content;
+
+        .console-nav {
+          ul.nav-items {
+            flex-direction: row;
+            background-color: var(--gray-8);
+
+            .nav-item {
+
+              a {
+                color: var(--gray-1);
+                position: relative;
+                padding: 0.3rem 0.6rem;
+                margin: 0.8rem 0.4rem;
+                border: solid 1px transparent;
+                border-radius: 2rem;
+              }
+              a:hover {
+                color: var(--gray-1);
+                border: solid 1px var(--gray-1);
+              }
+              a.active {
+                color: white;
+                background-color: var(--gray-3);
+                color: var(--gray-7);
+              }
+
+              a::after {
+                content: '';
+              }
+            }
+
+          }
+        }
+
+        .console-footer {
+          display: none;
+        }
+      }
     }
 
     .main-body {
@@ -920,6 +975,25 @@ h3 {
     }
   }
 
+}
+
+.draft {
+  .page-header.container {
+    padding: 2rem;
+    border: none;
+
+    .heading {
+      text-align: left;
+    }
+  }
+
+  .workspace.container {
+    padding: 0 1rem 0 2rem;
+
+    .dnd-wrapper {
+      overflow-x: auto;
+    }
+  }
 }
 
 
@@ -2010,6 +2084,7 @@ h3 {
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
+
       .issues-preview {
         width: 15rem;
         height: fit-content;
@@ -2058,7 +2133,7 @@ h3 {
 
   .subscription-cont {
     display: flex;
-  font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: 3rem 0;
     justify-content: center;
     flex-direction: column;
@@ -2072,8 +2147,8 @@ h3 {
       justify-content: center;
       align-items: center;
       gap: 1.2rem;
-     
-      input{
+
+      input {
         padding: .8rem 2rem;
         margin: 0 .4rem;
       }
@@ -2108,7 +2183,8 @@ h3 {
         }
 
       }
-      .submit:hover > .circle{
+
+      .submit:hover>.circle {
         width: 13.4rem;
         display: block;
       }

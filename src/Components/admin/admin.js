@@ -47,7 +47,7 @@ export const AdminConsole = (props) => {
 
   return (
     <div className="admin-portal route">
-      <div className="admin-view container">
+      <div className="admin-view">
         <aside>
           <ConsoleNav />
           <div className="console-footer">

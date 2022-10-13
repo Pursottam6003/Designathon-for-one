@@ -119,12 +119,11 @@ export class Draft extends Component {
 
     return (
       <div className="draft">
-        <div className="container">
-          <header className="page-header">
+          <header className="page-header container">
             <h1 className="heading">Draft an Issue</h1>
           </header>
 
-          <main className="workspace">
+          <main className="workspace container">
             {formView ? (
               <DraftForm handleChange={this.handleChange} {...formProps} />
             ) : (
@@ -149,7 +148,6 @@ export class Draft extends Component {
               )}
             </div>
           </main>
-        </div>
       </div>
     )
   }
