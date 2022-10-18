@@ -13,7 +13,7 @@ import { AddBlogs } from "./Components/addBlogs"
 
 // import { Login } from "./Components/Login";
 // import { FacultyLogin } from "./Components/notInUse/FacultyLogin";
-// import { Signup } from "./Components/SignUp";
+import { Signup } from "./Components/SignUp";
 
 import { UploadCover } from "./Components/uploadCover";
 
@@ -88,6 +88,11 @@ function App() {
           </Layout>
         )} />
 
+        <Route path="/signup" element={(
+          <Layout admin={false}>
+            <Signup />
+          </Layout>
+        )} />
 
       </Routes>
     </BrowserRouter>
