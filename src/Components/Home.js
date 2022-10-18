@@ -1,85 +1,83 @@
 import React from 'react'
 // import AddBlogs from '../images/AddBlogs.jpeg'
+import MagazineCover from '../images/technodaya-cover.png'
+import { MagazineCard } from './read'
+import { ReactComponent as ArrowIcon } from '../images/icons/arrowicon.svg'
+
 import Ph from '../images/technodaya-cover.png'
 export const Home = () => {
   return (
-    <>
-      <div className='home-component '>
-        <div className='hero'>
+    <div className='home-component '>
+      <div className='route'>
 
-          <div className='content'>
-            <h1>LATEST PUBLISHED</h1>
-            <h3> Technodaya volume 3 issu 4</h3>
-            <p>12-11-2302  july-august</p>
+        <section className='home-section hero parallax'>
+          <div className='content container'>
+            <h4>Latest issue published</h4>
+            <h1 className='section-heading'>Technodaya Vol-3 Issue-4</h1>
+            <p>12-11-2022 July-August</p>
 
-            <a className='read-button'> <p>read</p> </a>
+            <a href='#' className='btn home-btn'>Read more</a>
+          </div>
+        </section>
+
+        <section className='home-section'>
+        <div className='container'>
+          <header className='section-header'>
+            <h1 className='section-heading'> Recent releases</h1>
+            <button className='btn'>View all</button>
+          </header>
+          <div className='issues grid-gallery'>
+            <MagazineCard imgsrc={MagazineCover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
+            <MagazineCard imgsrc={MagazineCover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
+            <MagazineCard imgsrc={MagazineCover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
           </div>
         </div>
-        <div className='route'>
-          <div className='container '>
-            <header className='page-header '>
-              <h1 className='heading'> MAGAZINE</h1>
+        </section>
 
-            </header>
-            <section className='issues'>
-              <div className='release-list'>
-                <div className='issues-preview'>
-                  <img className='image' src={Ph}></img>
-                  <div className='overview'>
-                    <h3> technodaya vol 1 iss 3</h3>
-                    <p> mar-april 2020  vol 1 iss 3</p>
-                    <a className='read-magazine'> read</a>
-                  </div>
-                </div>
-                <div className='issues-preview'>
-                  <img className='image' src={Ph}></img>
-                  <div className='overview'>
-                    <h3> technodaya vol 1 iss 3</h3>
-                    <p> mar-april 2020  vol 1 iss 3</p>
-                    <a className='read-magazine'> read</a>
-                  </div>
-                </div>
-                <div className='issues-preview'>
-                  <img className='image' src={Ph}></img>
-                  <div className='overview'>
-                    <h3> technodaya vol 1 iss 3</h3>
-                    <p> mar-april 2020  vol 1 iss 3</p>
-                    <a className='read-magazine'> read</a>
-                  </div>
-                </div>
-              </div>
-            </section>
-              </div>
+        <section className='home-section publication-count-wrapper parallax'>
+          <div className='container publication-counts'>
+            <div className='journels publication'>
+              <h1>53</h1>
+              <h4 className='title'>International Journals</h4>
             </div>
-            
-          <div className='publication-count'>
-              <div className='journels publication'> 123</div>
-              <div className='research-papers publication'> 123</div>
-              <div className='book chapters publication'> 123</div>
+            <div className='research-papers publication'>
+              <h1>109</h1>
+              <h4 className='title'>National Journals</h4>
             </div>
-           <div className='container'> 
-            <div className='subscription-cont'>
-          <h1>subscribe to our newsletter</h1>     
-          <h3>get updated when new vol is published</h3>     
-            <form>
-              <div>
-            <input type="text" placeholder='first-name'></input>
-            <input type="text" placeholder='last-name'></input>
-              <input type="text" placeholder='email'></input>
+            <div className='book chapters publication'>
+              <h1>24</h1>
+              <h4 className='title'>Technodaya Issues</h4>
             </div>
-            <div>
-            <button type="submit" className='submit'>  <div className='circle'> <p> > </p>  </div><h3> subscribe</h3>  </button>
-            </div>
-            </form>
-              <div>
-              </div>
-          </div> 
+          </div>
+        </section>
 
-        </div>
-        
+
+        <section className='home-section'>
+            <div className='subscription-cont container'>
+              <h1 className='section-heading'>subscribe to our<br/> newsletter</h1>
+              <h4>Stay updated with new Issues of Technodaya!</h4>
+              <form>
+                <div>
+                  <input type="text" placeholder='First Name'></input>
+                  <input type="text" placeholder='Last Name'></input>
+                  <input type="text" placeholder='Email'></input>
+                </div>
+                <div>
+                  <button type="submit" className='submit'>  
+                    <div className='circle'>
+                      <span>
+                        <ArrowIcon />  
+                      </span>  
+                    </div>
+                    <h3>subscribe</h3>  
+                  </button>
+                </div>
+              </form>
+          </div>
+        </section>
       </div>
 
 
-    </>
+    </div>
   )
 }

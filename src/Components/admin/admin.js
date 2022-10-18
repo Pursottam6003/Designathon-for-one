@@ -1,14 +1,8 @@
-import React, { Component, useEffect } from "react"
+import React, { useEffect } from "react"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { ConsoleNav } from "./consoleNav"
-import { Database } from "./database"
-import { Dashboard } from "./dashboard"
 import { Draft } from "./draft"
 import { Submissions } from "./submissions"
-import { checkAuth } from "../../config/config"
-// import {fs} from 
-import { auth } from '../../config/config'
-import { getAuth } from "firebase/auth"
 
 let MonthName;
 const month = new Date().getMonth();
@@ -56,10 +50,8 @@ export const AdminConsole = (props) => {
         </aside>
         <main className="main-body">
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="submissions" element={<Submissions />} />
+            <Route path="/" element={<Submissions />} />
             <Route path="draft" element={<Draft />} />
-            <Route path="database" element={<Database />} />
           </Routes>
         </main>
       </div>
