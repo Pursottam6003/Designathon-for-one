@@ -95,7 +95,7 @@ export class Read extends Component {
           <div className="grid-gallery">
             {this.state.blogs.map((blog, i) => {
               const { imgsrc, title, vol, iss, month, year, pdfLink } = blog
-              return <Card key={i} imgsrc={imgsrc} title={title} vol={vol} iss={iss} month={month} year={year} link={pdfLink} pdfLink={pdfLink} />
+              return <MagazineCard key={i} imgsrc={imgsrc} title={title} vol={vol} iss={iss} month={month} year={year} link={pdfLink} pdfLink={pdfLink} />
             })}
           </div>
         </div>

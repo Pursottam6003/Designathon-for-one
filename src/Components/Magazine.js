@@ -1,23 +1,11 @@
 import React, { Component } from 'react'
-// import jote_img from "../images/image_jote.jpg"
-// import bglogo from '../images/logobgrm.png'
-// import img from '../images/icons8-calendar-week-32.png'
+import { BiMonthlyNames } from '../helpers';
 import { fs } from '../config/config'
 import $ from 'jquery';
 
 const year = new Date().getFullYear();
 let MonthName;
 const month = new Date().getMonth();
-
-const BiMonthlyNames = [
-  '',
-  'JanFeb',
-  'MarApril',
-  'MayJune',
-  'JulyAug',
-  'SeptOct',
-  'NovDec',
-]
 
 if (month === 1 || month === 2) MonthName = BiMonthlyNames[1];
 else if (month === 3 || month === 4) MonthName = BiMonthlyNames[2];

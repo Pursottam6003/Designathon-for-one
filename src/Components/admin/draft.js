@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Field } from "../form/Field"
 import { DndMain } from "../dnd/dndMain"
 import { fs } from '../../config/config'
-import { Categories } from "../../helpers"
+import { Categories, BiMonthlyNames } from "../../helpers"
 
 class DraftForm extends Component {
   handleChange = (e) => {
@@ -11,7 +11,7 @@ class DraftForm extends Component {
   }
 
   render() {
-    const { title, vol, iss, month, year } = this.props
+    const { title, vol, iss, month } = this.props
     return (
       <form id="draftForm" className="draft-form form-group">
         <input type="text" name="title" className='form-control form-title' placeholder="Title of newsletter" onChange={this.handleChange} value={title} />
@@ -22,11 +22,9 @@ class DraftForm extends Component {
         <Field labeltxt="Issue" showLabel={iss.length}>
           <input type="text" className='form-control' required name="iss" value={iss} onChange={this.handleChange} placeholder="Issue" />
         </Field>
+        <p className='sub-label'>Month and year</p>
         <Field labeltxt="Month" showLabel={month.length}>
-          <input type="text" className='form-control' required name="month" value={month} onChange={this.handleChange} placeholder="Month" />
-        </Field>
-        <Field labeltxt="Year" showLabel={year.length}>
-          <input type="text" className='form-control' required name="year" value={year} onChange={this.handleChange} placeholder="Year" />
+          <input type="month" className='form-control' required name="month" value={month} onChange={this.handleChange} placeholder="Month" />
         </Field>
       </form>
     )
@@ -39,7 +37,6 @@ export class Draft extends Component {
     vol: '',
     iss: '',
     month: '',
-    year: '',
     formView: true,
     orders: {
       tasks: {},
@@ -93,6 +90,27 @@ export class Draft extends Component {
     })
   }
 
+  handlePublish = () => {
+    const { orders, title, vol, iss, month } = this.state
+    const publishObj = {
+      orders: {
+        columnOrder: orders.columnOrder,
+        columns: orders.columns,
+      },
+      title: title, 
+      vol: vol, 
+      iss: iss, 
+      month: month, 
+    }
+
+    const year = month.slice(0, 4)
+    const biMonth = BiMonthlyNames[Math.floor((+month.slice(5, month.length) + 1) / 2)]
+
+    fs.collection(`issues/${year}/${biMonth}`).doc().set(publishObj).then(() => {
+      console.log('Published!');
+    })
+  }
+
   handleForm = (name, value) => {
     this.setState({
       [name]: value
@@ -114,8 +132,8 @@ export class Draft extends Component {
   }
 
   render() {
-    const { title, vol, iss, month, year, formView, orders } = this.state
-    const formProps = { title: title, vol: vol, iss: iss, month: month, year: year }
+    const { title, vol, iss, month, formView, orders } = this.state
+    const formProps = { title: title, vol: vol, iss: iss, month: month }
 
     return (
       <div className="draft">
@@ -125,7 +143,7 @@ export class Draft extends Component {
 
           <main className="workspace container">
             {formView ? (
-              <DraftForm handleChange={this.handleChange} {...formProps} />
+              <DraftForm handleChange={this.handleForm} {...formProps} />
             ) : (
               <DndMain orders={orders} updateOrders={this.handleUpdateOrders} />
             )}
@@ -136,15 +154,13 @@ export class Draft extends Component {
               </button>
 
               {formView ? (
-                <button className="btn submit" onClick={() => { console.log('TODO: Publish') }} type="button" disabled>
+                <button className="btn submit" type="button" disabled>
                   Publish
                 </button>
-
               ) : (
-                <button className="btn submit" onClick={() => { console.log('TODO: Publish') }} type="button">
+                <button className="btn submit" onClick={this.handlePublish} type="button">
                   Publish
                 </button>
-
               )}
             </div>
           </main>

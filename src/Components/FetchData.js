@@ -1,20 +1,11 @@
 import React,{useState, useEffect} from 'react'
 import {fs} from '../config/config'
 import { Magazine } from './Magazine';
+import { BiMonthlyNames } from '../helpers';
 
 const year = new Date().getFullYear();
 let MonthName;
 const month = new Date().getMonth();
-
-const BiMonthlyNames = [
-    '',
-    'JanFeb',
-    'MarApril',
-    'MayJune',
-    'JulyAug',
-    'SeptOct',
-    'NovDec',
-  ]
 
 if(month ===1 || month ===2) MonthName=BiMonthlyNames[1];
 else if(month===3 || month ===4) MonthName=BiMonthlyNames[2];
