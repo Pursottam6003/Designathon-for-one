@@ -3,7 +3,7 @@ import Cover from '../images/technodaya-cover.png'
 import { fs } from '../config/config'
 
 
-class Card extends Component {
+export class MagazineCard extends Component {
   render() {
     const { imgsrc, title, vol, iss, month, year, link, pdfLink } = this.props
     return (

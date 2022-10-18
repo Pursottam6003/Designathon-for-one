@@ -395,137 +395,129 @@ h3 {
 }
 
 // Read 
-.read-component {
-  .grid-gallery {
-    display: grid;
+
+
+.magazine-card {
+  width: 100%;
+  background-color: #fcfcfc;
+  transition: all 0.3s ease;
+
+  .cover-img {
     width: 100%;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.8rem 2.2rem;
+
+
+    img {
+      width: 100%;
+      aspect-ratio: 1 / 1.1;
+      object-fit: cover;
+      object-position: center center;
+    }
+  }
+
+  .desc {
+    position: relative;
+    padding: 1.6rem 1.6rem 4.8rem;
+
+    .date {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      font-size: 0.9rem;
+      font-family: 'Crimson Text', serif;
+      padding: .8rem 0;
+
+      time {
+        font-size: inherit;
+      }
+
+      .issue {
+        font-size: inherit;
+
+      }
+    }
+
+    .title {
+      text-decoration: none;
+      font-family: 'Open Sans', sans-serif;
+
+      p {
+        text-transform: uppercase;
+        color: var(--gray-8);
+        font-size: 1.2rem;
+        line-height: 1.5;
+        font-weight: 700;
+        letter-spacing: 0.08rem;
+        transition: all 0.15s;
+      }
+
+      p:hover {
+        color: rgb(27, 27, 122);
+      }
+    }
+
+    .actions {
+      position: absolute;
+      margin: 1.6rem 0;
+      bottom: 0;
+      font-family: 'Open Sans', sans-serif;
+
+      .action-btn {
+        font-family: inherit;
+        text-decoration: none;
+        color: var(--gray-8);
+        background-color: transparent;
+        padding: 0.6rem 1.2rem;
+        border: solid 2px var(--gray-8);
+        border-radius: 4rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.075rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-right: 1.2rem;
+      }
+
+      .action-btn:hover {
+        cursor: pointer;
+        color: var(--gray-7);
+      }
+
+      .action-btn:active {
+        background-color: rgba(194, 194, 194, 0.3);
+      }
+    }
+  }
+}
+
+.grid-gallery {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.8rem 2.2rem;
+
+
+  @media screen and (max-width: 890px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 780px) {
+    gap: 2.2rem 1.6rem;
+  }
+
+  @media screen and (max-width: 650px) {
+    grid-template-columns: repeat(1, 1fr);
 
     .magazine-card {
-      width: 100%;
-      background-color: rgb(229, 247, 229);
-      transition: all 0.3s ease;
-
       .cover-img {
-        width: 100%;
-
-
         img {
-          width: 100%;
-          aspect-ratio: 1 / 1.1;
-          object-fit: cover;
-          object-position: center center;
-        }
-      }
-
-      .desc {
-        position: relative;
-        padding: 1.6rem 1.6rem 4rem;
-
-        .date {
-          display: flex;
-          justify-content: space-between;
-          flex-direction: row;
-          font-size: 0.7rem;
-          font-family: monospace;
-          padding: .8rem 0;
-
-          time {
-            font-size: inherit;
-          }
-
-          .issue {
-            font-size: inherit;
-
-          }
-        }
-
-        .title {
-          text-decoration: none;
-          font-family: 'Open Sans', sans-serif;
-
-          p {
-            text-transform: uppercase;
-            color: var(--gray-8);
-            font-size: 1.2rem;
-            line-height: 1.1;
-            font-weight: 600;
-            letter-spacing: 0.05;
-            transition: all 0.15s;
-          }
-
-          p:hover {
-            color: rgb(27, 27, 122);
-          }
-        }
-
-        .actions {
-          position: absolute;
-          margin: 1.6rem 0;
-          bottom: 0;
-          font-family: 'Open Sans', sans-serif;
-
-          .action-btn {
-            font-family: inherit;
-            text-decoration: none;
-            color: var(--gray-7);
-            background-color: transparent;
-            padding: 0.4rem 0.6rem;
-            border: solid 2px var(--gray-5);
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin-right: 1rem;
-            transition: all 0.2s;
-          }
-
-          .action-btn:hover {
-            cursor: pointer;
-            background-color: rgba(255, 255, 255, 0.349);
-            color: var(--grey-9);
-            border: solid 2px var(--gray-6);
-          }
-
-          .action-btn:active {
-            background-color: rgba(194, 194, 194, 0.3);
-          }
-        }
-      }
-    }
-
-    .magazine-card:hover {
-      box-shadow: 0px 3px 13px -8px #000000cc;
-    }
-  }
-
-  @media screen and (max-width: 800px) {
-    .grid-gallery {
-      grid-template-columns: repeat(2, 1fr);
-
-    }
-  }
-
-  @media screen and (max-width: 720px) {
-    .grid-gallery {
-      gap: 2.2rem 1.6rem;
-    }
-  }
-
-  @media screen and (max-width: 548px) {
-    .grid-gallery {
-      grid-template-columns: repeat(1, 1fr);
-
-      .magazine-card {
-        .cover-img {
-          img {
-            aspect-ratio: 1 / 0.5;
-            object-position: top center;
-          }
+          aspect-ratio: 1 / 0.5;
+          object-position: top center;
         }
       }
     }
   }
 }
+
+// .read-component {}
 
 // navigation bar
 .navbar-component {
@@ -933,10 +925,12 @@ h3 {
                 border: solid 1px transparent;
                 border-radius: 2rem;
               }
+
               a:hover {
                 color: var(--gray-1);
                 border: solid 1px var(--gray-1);
               }
+
               a.active {
                 color: white;
                 background-color: var(--gray-3);
@@ -2050,30 +2044,90 @@ h3 {
 .home-component {
   font-family: 'Courier New', Courier, monospace;
 
+  .home-btn {
+    font-family: "Open Sans", sans-serif;
+    height: fit-content;
+    color: white;
+    background-color: transparent;
+    padding: 0.6rem 1.2rem;
+    padding: 1.5625rem 2.875rem;
+    border: solid 2px white;
+    border-radius: 4rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+  }
+
+  .home-btn:hover {
+    background-color: white;
+    color: black;
+  }
+
+  .home-section {
+    padding: 2rem 0;
+
+    .section-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.2rem;
+
+      @media screen and (max-width: 548px) {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+    }
+  }
+
+  .parallax {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+
+    .section-heading {
+      text-align: center;
+    }
+
+    h4 {
+      font-family: inherit;
+      font-weight: 400;
+      font-size: inherit;
+      font-style: oblique;
+      text-transform: capitalize;
+    }
+
+    p {
+      font-size: inherit;
+    }
+  }
+
+  .section-heading {
+    font-family: "Open Sans", sans-serif;
+    font-size: 2.25rem;
+    letter-spacing: 0.2rem;
+    line-height: 1.45;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
   .hero {
-    background: linear-gradient(rgba(38, 37, 37, 0.5), rgba(33, 32, 32, 0.5)), url(../images/AddBlogs.jpeg);
+    background: linear-gradient(rgba(112, 112, 112, 0.4), rgba(112, 112, 112, 0.4)), url(../images/AddBlogs.jpeg);
     height: 30rem;
     background-size: cover;
     background-position: center top;
     background-attachment: fixed;
 
     .content {
-      font-family: 'Courier New', Courier, monospace;
       color: #f8f8f8;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 2rem;
-      max-width: 1000px;
-      margin: auto;
-      padding-top: 7rem;
-
-      .read-button {
-        padding: .4rem 2rem;
-        border-radius: 4rem;
-        border: 2px solid rgba(184, 181, 181, 0.815);
-      }
+      height: 100%;
     }
   }
 
@@ -2114,81 +2168,134 @@ h3 {
 
   }
 
-  .publication-count {
+  .publication-count-wrapper {
     background: linear-gradient(rgba(59, 59, 59, 0.5), rgba(51, 51, 51, 0.5)), url(../images/form-bg.jpg);
     height: 20rem;
     background-position: center;
     background-attachment: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
 
-    .publication {
-      width: 10rem;
-      height: 5rem;
-      background: #fff;
+    .publication-counts {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      height: 100%;
+
+      .publication {
+        text-align: center;
+        color: white;
+
+        h1 {
+          font-family: 'Open Sans', sans-serif;
+          font-size: 2.25rem;
+          letter-spacing: 0.2rem;
+          line-height: 1.45;
+          text-transform: uppercase;
+          font-weight: 600;
+          margin-bottom: 0.8rem;
+        }
+
+        .title {
+          font-style: normal;
+        }
+      }
     }
+
   }
 
   .subscription-cont {
     display: flex;
     font-family: 'Open Sans', sans-serif;
-    margin: 3rem 0;
+    margin: 3rem auto;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
 
-    form {
+    .section-heading {
+      text-align: center;
+    }
 
+    h4 {
+      font-style: oblique;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+    }
+
+    form {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       gap: 1.2rem;
+      margin: 1.6rem 0;
 
       input {
-        padding: .8rem 2rem;
+        padding: 1rem;
         margin: 0 .4rem;
+        border: solid 1px rgba(0, 0, 0, 0.12);
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1rem;
+      }
+
+      input:focus {
+        border: solid 1px rgba(0, 0, 0, 0.3);
+        outline: none;
       }
 
       .submit {
         position: relative;
-        padding: .4rem 2rem;
+        padding: .4rem 0;
         border-radius: 4rem;
         border: none;
         background-color: white;
         cursor: pointer;
 
         .circle {
+          position: absolute;
           width: 2.4rem;
           height: 2.4rem;
-          border: 1px solid black;
-          position: absolute;
+          --clr: rgba(0, 0, 0, 0.3);
+          border: 1px solid var(--clr);
           border-radius: 50px;
-          left: -11px;
-          top: 11px;
-          transition: .3s ease-out width;
+          transition: all .3s ease-out;
 
-          p {
+          span {
             position: absolute;
-            top: 12px;
-            left: 27px;
+            left: 1.2rem;
+            top: 1.2rem;
+            transform: translateY(-40%);
+            width: 2rem;
+            height: fit-content;
+
+            svg {
+              fill: var(--clr);
+              width: 100%;
+              transition: all 0.3s ease;
+            }
           }
         }
 
         h3 {
-          font-size: 32px;
+          font-size: 1.6rem;
+          margin-left: 3.6rem;
+          margin-right: 1rem;
+          transition: all 0.3s ease;
+        }
+      }
+
+      .submit:hover {
+        h3 {
+          color: rgb(160, 66, 71);
         }
 
+        .circle {
+          width: 100%;
+          display: block;
+          --clr: rgba(160, 66, 71, 0.692);
+        }
       }
-
-      .submit:hover>.circle {
-        width: 13.4rem;
-        display: block;
-      }
-
     }
   }
 }
