@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Field } from "../form/Field"
 import { DndMain } from "../dnd/dndMain"
 import { fs } from '../../config/config'
-import { Categories, BiMonthlyNames } from "../../helpers"
+import { Categories, BiMonthlyNames, getBiMonth } from "../../helpers"
 
 class DraftForm extends Component {
   handleChange = (e) => {
@@ -64,7 +64,11 @@ export class Draft extends Component {
         author: sub.author,
         created: sub.created,
         eventDate: sub.eventDate,
-        content: sub.desc
+        content: sub.desc,
+        brochureUrl: sub.brochureUrl,
+        imgCaption: sub.imgCaption,
+        imgUrl: sub.imgUrl,
+        title: sub.title
       }
 
       fetchedOrders.tasks[subObj.id] = subObj
@@ -96,6 +100,7 @@ export class Draft extends Component {
       orders: {
         columnOrder: orders.columnOrder,
         columns: orders.columns,
+        tasks: orders.tasks
       },
       title: title, 
       vol: vol, 
@@ -104,7 +109,7 @@ export class Draft extends Component {
     }
 
     const year = month.slice(0, 4)
-    const biMonth = BiMonthlyNames[Math.floor((+month.slice(5, month.length) + 1) / 2)]
+    const biMonth = BiMonthlyNames[getBiMonth(month)]
 
     fs.collection(`issues/${year}/${biMonth}`).doc().set(publishObj).then(() => {
       console.log('Published!');

@@ -29,10 +29,15 @@ const BiMonthlyNames = [
     'NovDec',
 ]
 
+const getBiMonth = (date) => {
+    const biMonth = Math.floor((+date.slice(5, date.length) + 1) / 2)
+    return biMonth
+}
+
 
 const toCapital = (s) => {
     const len = s.length
     return s.slice(0, 1).toUpperCase() + s.slice(1, len).toLowerCase()
 }
 
-export { Categories, toCapital, BiMonthlyNames } 
+export { Categories, toCapital, BiMonthlyNames, getBiMonth } 

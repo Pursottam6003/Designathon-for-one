@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { BiMonthlyNames } from '../helpers';
 import { fs } from '../config/config'
-import { Categories } from '../helpers';
+import { Categories, getBiMonth } from '../helpers';
 import $ from 'jquery';
 
-const year = new Date().getFullYear();
 let MonthName;
-const month = new Date().getMonth();
 
 if (month === 1 || month === 2) MonthName = BiMonthlyNames[1];
 else if (month === 3 || month === 4) MonthName = BiMonthlyNames[2];
@@ -14,21 +12,6 @@ else if (month === 5 || month === 6) MonthName = BiMonthlyNames[3];
 else if (month === 7 || month === 8) MonthName = BiMonthlyNames[4];
 else if (month === 9 || month === 10) MonthName = BiMonthlyNames[5];
 else if (month === 11 || month === 12) MonthName = BiMonthlyNames[6];
-
-const linkCopied = () => {
-  var $temp = $("<input>");
-  var $url = $(window.location).attr('href');
-  $('.share').on('click', function () {
-    $("body").append($temp);
-    $temp.val($url).select();
-    document.execCommand("copy");
-    $temp.remove();
-    console.log('working inside')
-
-  })
-  let btn = document.getElementById('share');
-  btn.innerHTML = "Linked Copied"
-}
 
 class MagezineArticle extends Component {
   render() {
@@ -89,35 +72,40 @@ class MagazineSection extends Component {
 
 export class Magazine extends Component {
   initialState = {
-    blogs: {},
-    magSecComponents: [],
-    toc: []
+    // blogs: {},
+    // magSecComponents: [],
+    // toc: []
+    title: '',
+    vol: '',
+    iss: '',
+    month: '',
+    orders: null
   }
   state = this.initialState
 
 
   getTechnodayaBlogs = async () => {
     // section component array
-    for (let i = 1; i <= 17; i++) {
-      const blogsarray = []
-      const blogsFirebase = await fs.collection(`/${year}/${MonthName}/${i}`).get();
-      // getting its snapshort 
-      for (var snap of blogsFirebase.docs) {
-        var data = snap.data();
-        data.ID = snap.id;
-        blogsarray.push({ ...data })
-        if (blogsarray.length === blogsFirebase.docs.length) {
-          this.setState({
-            blogs: {
-              ...this.state.blogs,
-              [i]: blogsarray
-            }
-          }, () => {
-            this.createComponents()
-          })
-        }
+    const blogsarray = []
+    const blogsFirebase = await fs.collection(`issues/${year}/${BiMonthlyNames[getBiMonth('2022-03')]}/`).get();
+    // getting its snapshort 
+    for (var snap of blogsFirebase.docs) {
+      var data = snap.data();
+      data.ID = snap.id;
+      blogsarray.push({ ...data })
+      if (blogsarray.length === blogsFirebase.docs.length) {
+        this.setState({
+          blogs: {
+            ...this.state.blogs,
+            [i]: blogsarray
+          }
+        }, () => {
+          this.createComponents()
+        })
       }
     }
+
+
   }
 
   createComponents() {
@@ -163,7 +151,7 @@ export class Magazine extends Component {
         <div className='container'>
           <div className='page-header'><h1 className='heading'>Technodaya vol-3 iss-4</h1></div>
           <div className='magazine-wrapper'>
-           
+
             <div className='magazine'>
               <ul>
                 {this.state.magSecComponents}
