@@ -350,10 +350,10 @@ h3 {
 
 .btns-group {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+  gap: 2rem;
   --color: rgb(117, 104, 84);
   margin: 1rem 0;
-  max-width: 548px;
 
   .btn {
     border: 1px solid var(--color);
@@ -366,7 +366,7 @@ h3 {
   }
 
   .btn.submit {
-    --color: rgb(117, 104, 84);
+    --color: green;
   }
 
   .btn.submit:active {
@@ -374,18 +374,8 @@ h3 {
     box-shadow: 0 3px 8px -4px #222222b0;
   }
 
-  // .btn.reset {
-  //   --color: #cb5c5c;
-  // }
-
-  // .btn.reset:active {
-  //   --color: #b34f4f;
-  //   box-shadow: 0 3px 8px -4px #222222b0;
-  // }
-
   .btn.submit[disabled] {
     --color: var(--gray-5);
-    // cursor: wait;
   }
 
   .btn.submit[disabled]:hover {
@@ -983,6 +973,12 @@ h3 {
 
   .workspace.container {
     padding: 0 1rem 0 2rem;
+
+    .draft-form {
+      input {
+        max-width: 500px;
+      }
+    }
 
     .dnd-wrapper {
       overflow-x: auto;
@@ -2299,6 +2295,77 @@ h3 {
     }
   }
 }
+
+.submissions {
+  .submissions-wrapper {
+    .submission {
+      .sub-summary {
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin: 1.5rem 0;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+
+        td,
+        th {
+          padding: 0.5rem;
+        }
+
+        thead {
+          tr {
+            border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+
+            th {
+              text-align: left;
+            }
+          }
+        }
+
+        tbody {
+          .action-btn {
+            position: relative;
+            background-color: transparent;
+            border: none;
+            width: 32px;
+            height: 32px;
+            background-color: rgb(255, 169, 169);
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            svg {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              transform: translate(-50%, -50%);
+              fill: white;
+            }
+          }
+
+          .action-btn.add {
+            background-color: green;
+          }
+
+          .add:hover {
+            background-color: rgb(3, 100, 3);
+          }
+
+          .action-btn.remove {
+            background-color: rgb(182, 43, 43);
+          }
+
+          .remove:hover {
+            background-color: rgb(161, 12, 12);
+          }
+        }
+      }
+    }
+  }
+}
+
 
 .bg1 {
   background: linear-gradient(rgba(255, 250, 250, 0.5), rgba(255, 255, 255, 0.5)), url('../images/bg1.jpg');

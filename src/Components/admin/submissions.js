@@ -1,11 +1,15 @@
 import React, { Component } from "react"
 import { fs } from '../../config/config'
 
+import { ReactComponent as DoneIcon } from '../../images/icons/done.svg'
+import { ReactComponent as RemoveIcon } from '../../images/icons/remove.svg'
+
 
 export class Submissions extends Component {
   initialState = {
     pending: [],
     approved: [],
+    uploading: false,
   }
 
   state = this.initialState
@@ -34,55 +38,62 @@ export class Submissions extends Component {
     }
   }
 
-  commitChanges = async () => {
-    console.log('TESTING: Update DB');
-    const { pending, approved } = this.state
+  commitChanges = () => {
+    this.setState({
+      uploading: true
+    }, async () => {
+      console.log('TESTING: Update DB');
+      const { pending, approved } = this.state
 
-    const approvedFs = await fs.collection(`approved`).get();
-    const pendingFs = await fs.collection(`pendings`).get();
+      const approvedFs = await fs.collection(`approved`).get();
+      const pendingFs = await fs.collection(`pendings`).get();
 
-    for (let snap of approvedFs.docs) {
-      fs.collection(`approved`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
-    }
-    for (let snap of pendingFs.docs) {
-      fs.collection(`pendings`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
-    }
-
-    approved.forEach(obj => {
-      const uploadObj = {
-        created: obj.created,
-        author: 'TODO',
-        categoryId: obj.categoryId,
-        title: obj.title,
-        desc: obj.desc,
-        eventDate: obj.eventDate,
-        imgUrl: obj.imgUrl,
-        brochureUrl: obj.brochureUrl,
-        imgCaption: obj.imgCaption,
+      for (let snap of approvedFs.docs) {
+        fs.collection(`approved`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
       }
-      fs.collection(`approved`).doc().set(uploadObj).then(() => {
-        console.log("Sucessfully uploaded to approved");
+      for (let snap of pendingFs.docs) {
+        fs.collection(`pendings`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
+      }
+
+      approved.forEach(obj => {
+        const uploadObj = {
+          created: obj.created,
+          author: 'TODO',
+          categoryId: obj.categoryId,
+          title: obj.title,
+          desc: obj.desc,
+          eventDate: obj.eventDate,
+          imgUrl: obj.imgUrl,
+          brochureUrl: obj.brochureUrl,
+          imgCaption: obj.imgCaption,
+        }
+        fs.collection(`approved`).doc().set(uploadObj).then(() => {
+          console.log("Sucessfully uploaded to approved");
+        })
+      })
+
+      pending.forEach(obj => {
+        const uploadObj = {
+          created: obj.created,
+          author: 'TODO',
+          categoryId: obj.categoryId,
+          title: obj.title,
+          desc: obj.desc,
+          eventDate: obj.eventDate,
+          imgUrl: obj.imgUrl,
+          brochureUrl: obj.brochureUrl,
+          imgCaption: obj.imgCaption,
+        }
+        fs.collection(`pendings`).doc().set(uploadObj).then(() => {
+          console.log("Sucessfully uploaded to pending");
+        })
+      })
+
+      this.fetchSubmissions();
+      this.setState({
+        uploading: false
       })
     })
-
-    pending.forEach(obj => {
-      const uploadObj = {
-        created: obj.created,
-        author: 'TODO',
-        categoryId: obj.categoryId,
-        title: obj.title,
-        desc: obj.desc,
-        eventDate: obj.eventDate,
-        imgUrl: obj.imgUrl,
-        brochureUrl: obj.brochureUrl,
-        imgCaption: obj.imgCaption,
-      }
-      fs.collection(`pendings`).doc().set(uploadObj).then(() => {
-        console.log("Sucessfully uploaded to pending");
-      })
-    })
-
-    this.fetchSubmissions();
   }
 
   approveSubmission = (id) => {
@@ -98,8 +109,6 @@ export class Submissions extends Component {
       })
     })
   }
-
-  // const allBlogsTokenId=[] // containing all tokens of blogsID
 
   rejectSubmission = (id, type) => {
     const { pending, approved } = this.state
@@ -140,7 +149,7 @@ export class Submissions extends Component {
   }
 
   render() {
-    const { pending, approved } = this.state
+    const { pending, approved, uploading } = this.state
     return (
       <div className="submissions">
         <div className="container">
@@ -157,9 +166,15 @@ export class Submissions extends Component {
               </div>
             </div>
             <div className="btns-group">
-              <button className="btn" onClick={this.commitChanges}>
-                Save changes
-              </button>
+              {uploading ? (
+                <button className="btn submit" disabled>
+                  Saving...
+                </button>
+              ) : (
+                <button className="btn submit" onClick={this.commitChanges}>
+                  Save changes
+                </button>
+              )}
             </div>
           </main>
         </div>
@@ -203,21 +218,21 @@ const Submission = (props) => {
                 {type === 'pending' ? (
                   <>
                     <td>
-                      <button type="button" onClick={(e) => { reject(sub.ID, 'reject') }}>
-                        Reject
+                      <button className="action-btn remove" type="button" onClick={(e) => { reject(sub.ID, 'reject') }}>
+                        <RemoveIcon />
                       </button>
                     </td>
                     <td>
-                      <button type="button" onClick={(e) => { approve(sub.ID) }}>
-                        Approve
+                      <button className="action-btn add" type="button" onClick={(e) => { approve(sub.ID) }}>
+                        <DoneIcon />
                       </button>
                     </td>
                   </>
                 ) : (
                   <>
                     <td>
-                      <button type="button" onClick={() => { reject(sub.ID, 'remove') }}>
-                        Remove
+                      <button className="action-btn remove" type="button" onClick={() => { reject(sub.ID, 'remove') }}>
+                        <RemoveIcon />
                       </button>
                     </td>
                   </>
