@@ -20,8 +20,7 @@ export class CategoryForm extends Component {
     department: '',//2, 3, 5, 11, 12 , 13, 14 
     lectureType: '',  // 2, 3 
     eventName: '',// 2, 9, 15, 16, 17 
-    nationalCount: '',   // 7, 9
-    internationalCount: '',   // 7, 9
+    confType: 'national',   // 7, 9
     eventType: '',   // 9, 10
     organizer: '',// 2, 3, 14, 16, 17 
     pi: [], // 4
@@ -594,32 +593,29 @@ export class CategoryForm extends Component {
       return (
         <>
           <p className='sub-label'>Research Papers</p>
+          <Field showLabel={1} labeltxt="Journal type">
+            <div className='radio-inputs'>
 
-          <div className='count-fields'>
-            <Field showLabel={this.state.nationalCount.length} labeltxt="No. of National journals">
-              <input type="number"
-                className='form-control'
-                required
-                name="nationalCount"
-                value={this.state.nationalCount}
-                onChange={this.handleChange}
-                min={0}
-                placeholder="No. of National journals"
-              />
-            </Field>
+              <div className='radio-btn'>
+                <input type="radio"
+                  value="national"
+                  required
+                  defaultChecked
+                  onChange={this.handleChange}
+                  name="confType"
+                /> National
+              </div>
 
-            <Field showLabel={this.state.internationalCount.length} labeltxt="No. of International journals">
-              <input type="number"
-                className='form-control'
-                required
-                name="internationalCount"
-                value={this.state.internationalCount}
-                onChange={this.handleChange}
-                min={0}
-                placeholder="No. of International journals"
-              />
-            </Field>
-          </div>
+              <div className='radio-btn'>
+                <input type="radio"
+                  value="international"
+                  name="confType"
+                  onChange={this.handleChange}
+                /> International
+              </div>
+            </div>
+
+          </Field>
 
           <p className='sub-label'>Author details</p>
           <List items={this.state.author} itemType="author" removeItem={this.removePerson} />
@@ -778,31 +774,29 @@ export class CategoryForm extends Component {
           <Person personType="author" notFirst={this.state.author.length} handleSubmit={this.addPerson} />
 
           <p className='sub-label'>Research details </p>
-          <div className='count-fields'>
-            <Field showLabel={this.state.nationalCount.length} labeltxt="No. of National journals">
-              <input type="number"
-                className='form-control'
-                required
-                name="nationalCount"
-                value={this.state.nationalCount}
-                onChange={this.handleChange}
-                min={0}
-                placeholder="No. of National papers"
-              />
-            </Field>
+          <Field showLabel={1} labeltxt="Conference type">
+            <div className='radio-inputs'>
 
-            <Field showLabel={this.state.internationalCount.length} labeltxt="No. of International journals">
-              <input type="number"
-                className='form-control'
-                required
-                name="internationalCount"
-                value={this.state.internationalCount}
-                onChange={this.handleChange}
-                min={0}
-                placeholder="No. of International papers"
-              />
-            </Field>
-          </div>
+              <div className='radio-btn'>
+                <input type="radio"
+                  value="national"
+                  required
+                  defaultChecked
+                  onChange={this.handleChange}
+                  name="confType"
+                /> National
+              </div>
+
+              <div className='radio-btn'>
+                <input type="radio"
+                  value="international"
+                  name="confType"
+                  onChange={this.handleChange}
+                /> International
+              </div>
+            </div>
+
+          </Field>
 
           <Field showLabel={this.state.title.length} labeltxt="Contribution title">
             <input type="text"

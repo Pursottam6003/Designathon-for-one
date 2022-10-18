@@ -19,9 +19,20 @@ const Categories = [
     'Announcement',
 ]
 
+const BiMonthlyNames = [
+    '',
+    'JanFeb',
+    'MarApril',
+    'MayJune',
+    'JulyAug',
+    'SeptOct',
+    'NovDec',
+]
+
+
 const toCapital = (s) => {
     const len = s.length
     return s.slice(0, 1).toUpperCase() + s.slice(1, len).toLowerCase()
 }
 
-export { Categories, toCapital } 
+export { Categories, toCapital, BiMonthlyNames } 

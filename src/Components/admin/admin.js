@@ -3,19 +3,11 @@ import { Routes, Route, useNavigate } from "react-router-dom"
 import { ConsoleNav } from "./consoleNav"
 import { Draft } from "./draft"
 import { Submissions } from "./submissions"
+import { BiMonthlyNames } from "../../helpers"
 
 let MonthName;
 const month = new Date().getMonth();
 
-const BiMonthlyNames = [
-  '',
-  'JanFeb',
-  'MarApril',
-  'MayJune',
-  'JulyAug',
-  'SeptOct',
-  'NovDec',
-]
 if (month === 1 || month === 2) MonthName = BiMonthlyNames[1];
 else if (month === 3 || month === 4) MonthName = BiMonthlyNames[2];
 else if (month === 5 || month === 6) MonthName = BiMonthlyNames[3];
