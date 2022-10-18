@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import Cover from '../images/technodaya-cover.png'
-import {useState, useEffect } from 'react'
-import {fs} from '../config/config'
+import { fs } from '../config/config'
 
 
 export class MagazineCard extends Component {
@@ -20,7 +19,7 @@ export class MagazineCard extends Component {
           </a>
           <div className="date">
             <time>{month} {year}</time>
-            <div className="issue">Vol {vol} issue {iss}</div>
+            <div className="issue">{vol} issue {iss}</div>
           </div>
           <div className="actions">
             <a className="action-btn" href={pdfLink} target="_blank">View PDF</a>
@@ -32,35 +31,9 @@ export class MagazineCard extends Component {
   }
 }
 
-
-// const [blogs, setblogs]=useState([]);
-// const getTechnodayaBlogs = async ()=>{
-//     const blogsarray = []
-//     const blogsFirebase = await fs.collection(`PastPublications`).get();
-//         // getting its snapshort 
-//     for (var snap of blogsFirebase.docs){
-//       var data = snap.data();
-//       data.ID = snap.id;
-//       blogsarray.push({
-//           ...data
-//       })
-//       // console.log(blogs)
-//       if(blogsarray.length === blogsFirebase.docs.length){
-//         //setting the products
-//           setblogs(blogsarray);
-          
-//       }
-//     }  
-//     console.log(blogsarray)
-// }
-
-// useEffect(()=>{
-//     getTechnodayaBlogs();
-// },[]) 
 export class Read extends Component {
-
   release = {
-    imgsrc: {Cover},
+    imgsrc: { Cover },
     title: 'Technodaya Vol IV, Issue-2',
     vol: 'IV',
     iss: '2',
@@ -69,11 +42,48 @@ export class Read extends Component {
     link: 'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice=',
     pdfLink: 'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'
   }
+
+  initialState = {
+    blogs: []
+  }
+
   state = this.initialState
 
+  fetchPrevIssues = async () => {
+    const previousBlogs = []
+    const blogsFirebase = await fs.collection(`PastPublications`).get();
+    for (var snap of blogsFirebase.docs) {
+      var data = snap.data();
+      data.ID = snap.id;
+      previousBlogs.push({
+        ...data
+      })
+      if (previousBlogs.length === blogsFirebase.docs.length) {
+        this.setState({
+          blogs: previousBlogs
+        })
+      }
+    }
 
+    const blogs = previousBlogs.map(element => {
+      console.log(element)
+      return {
+        imgsrc: element.ImageUrl,
+        title: element.Title,
+        vol: element.Vol,
+        iss: element.Issue,
+        month: element.Month,
+        year: element.Year,
+        pdfLink: element.PdfUrl,
+      }
+    });
 
+    this.setState({ blogs: blogs })
+  }
 
+  componentDidMount() {
+    this.fetchPrevIssues();
+  }
 
   render() {
     return (
@@ -83,19 +93,10 @@ export class Read extends Component {
             <h1 className="heading">All releases</h1>
           </header>
           <div className="grid-gallery">
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-            <MagazineCard imgsrc={Cover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
+            {this.state.blogs.map((blog, i) => {
+              const { imgsrc, title, vol, iss, month, year, pdfLink } = blog
+              return <Card key={i} imgsrc={imgsrc} title={title} vol={vol} iss={iss} month={month} year={year} link={pdfLink} pdfLink={pdfLink} />
+            })}
           </div>
         </div>
       </div>

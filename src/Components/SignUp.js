@@ -30,10 +30,6 @@ export const Signup = () => {
                 setEmail('');
                 setPassword('');
                 setErrorMsg('');
-                setTimeout(()=>{
-                    setSuccessMsg('');
-                    history('/login');
-                },3000)
             }).catch(error=>setErrorMsg(error.message));
         }).catch((error)=>{
             setErrorMsg(error.message)
@@ -60,13 +56,10 @@ export const Signup = () => {
                  onChange={(e)=>setEmail(e.target.value)} value={email}></input>
                 <br></br>
                 <label>Password</label>
-                <input type="password" className='form-control' required
+                <input type="text"  className='form-control' required
                  onChange={(e)=>setPassword(e.target.value)} value={password}></input>
                 <br></br>
                 <div className='btn-box'>
-                    <span>Already have an account Login
-                    <Link to="/login" className='link'> Here</Link></span>
-                    <br></br>
                     <button type="submit" className='SignUpBtn'>SIGN UP</button>
                 </div>
             </form> 
