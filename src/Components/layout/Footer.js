@@ -17,8 +17,8 @@ export const Footer = () => {
           </div>
 
           <div>
-            <p>+123456890</p>
-            <p> <a>example@nitap.ac.in</a></p>
+            <p>0360-2954549</p>
+            <p> <a>nitapadmin@nitap.ac.in</a></p>
 
 
 
@@ -30,7 +30,10 @@ export const Footer = () => {
         </div>
 
         <div className='left'>
-          content loading....
+        “Dream, Dream Dream
+        Dreams transform into thoughts
+        And thoughts result in action.”
+        ― DR APJ ABDUL KALAM
         </div>
       </div>
       </div>
