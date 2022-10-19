@@ -96,6 +96,10 @@ export class Draft extends Component {
 
   handlePublish = () => {
     const { orders, title, vol, iss, month } = this.state
+
+    const year = month.slice(0, 4)
+    const biMonth = BiMonthlyNames[getBiMonth(month)]
+
     const publishObj = {
       orders: {
         columnOrder: orders.columnOrder,
@@ -107,9 +111,6 @@ export class Draft extends Component {
       iss: iss, 
       month: month, 
     }
-
-    const year = month.slice(0, 4)
-    const biMonth = BiMonthlyNames[getBiMonth(month)]
 
     fs.collection(`issues/${year}/${biMonth}`).doc().set(publishObj).then(() => {
       console.log('Published!');

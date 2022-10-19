@@ -8,8 +8,8 @@ import { About } from "./Components/about";
 import { Submit } from "./Components/submit";
 import { AdminConsole } from "./Components/admin/admin";
 import { Login } from "./Components/AdminLogin";
-
 import { AddBlogs } from "./Components/addBlogs"
+import { Published } from "./Components/Published";
 
 // import { Login } from "./Components/Login";
 // import { FacultyLogin } from "./Components/notInUse/FacultyLogin";
@@ -65,6 +65,14 @@ function App() {
             <Login />
           </Layout>
         )} />
+
+        <Route path="/published" element={(
+          <Layout admin={false}>
+            <Published />
+          </Layout>
+        )} />
+
+
 
         <Route path="/magazine_old" element={(
           <Layout admin={false}>

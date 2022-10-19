@@ -1,3 +1,122 @@
+const fetchedMagazine = {
+  "orders": {
+      "columns": {
+          "0": {
+              "title": "Highlights",
+              "taskIds": [],
+              "id": "0"
+          },
+          "1": {
+              "id": "1",
+              "taskIds": [
+                  "21FqanXCtJ7ZdqQlDGB1"
+              ],
+              "title": "Memorandum of Understanding (MoU)"
+          },
+          "4": {
+              "id": "4",
+              "title": "External Funded Projects",
+              "taskIds": [
+                  "L9xUPZVwNTdSI3V3VKYR"
+              ]
+          },
+          "5": {
+              "title": "Consultancy Projects",
+              "id": "5",
+              "taskIds": [
+                  "lq4V01SMEFWPKdoMAJOr"
+              ]
+          },
+          "6": {
+              "taskIds": [
+                  "fOoLNcSLNhy8NtmyW63D"
+              ],
+              "title": "Patent (APA 7th edition format)",
+              "id": "6"
+          },
+          "8": {
+              "taskIds": [
+                  "DZcLa6j7NACyLlOlC2Bk"
+              ],
+              "title": "Books",
+              "id": "8"
+          }
+      },
+      "columnOrder": [
+          "0",
+          "1",
+          "8",
+          "4",
+          "6",
+          "5"
+      ],
+      "tasks": {
+          "21FqanXCtJ7ZdqQlDGB1": {
+              "id": "21FqanXCtJ7ZdqQlDGB1",
+              "imgUrl": [],
+              "created": "Wed, 12 Oct 2022 10:39:17 GMT",
+              "author": "TODO",
+              "imgCaption": "Memorandum of Understanding (MoU)",
+              "eventDate": "2022-10-20",
+              "title": "Memorandum of Understanding (MoU)",
+              "brochureUrl": "",
+              "content": "Harvard Law College and Stanford University, Stanford California signed a Memorandum of Understanding under Ivy League colleges. Because why not. During the event, Professor Zomboss, with Dr. Walter Bishop were present. Olivia Dunham, Agent, Fringe Division FBI had witnessed the event 2022-10-20"
+          },
+          "DZcLa6j7NACyLlOlC2Bk": {
+              "title": "Shyam",
+              "created": "Thu, 13 Oct 2022 15:31:08 GMT",
+              "imgCaption": "Books",
+              "id": "DZcLa6j7NACyLlOlC2Bk",
+              "content": "Tripathi, C, 1990 In the name of love published by ~Chandrashekhar~ Tripathi DOI is available but not for you",
+              "author": "TODO",
+              "brochureUrl": "",
+              "eventDate": "",
+              "imgUrl": []
+          },
+          "lq4V01SMEFWPKdoMAJOr": {
+              "created": "Wed, 12 Oct 2022 05:12:49 GMT",
+              "imgUrl": [],
+              "eventDate": "2022-10-06",
+              "id": "lq4V01SMEFWPKdoMAJOr",
+              "author": "TODO",
+              "brochureUrl": "",
+              "imgCaption": "Consultancy Projects",
+              "title": "Consultancy Projects",
+              "content": "Name of the job: designathon\nName of the Client: NITAP\nPrincipal Investigator: Dr vijay Sir, Assistent professor, M &H "
+          },
+          "L9xUPZVwNTdSI3V3VKYR": {
+              "created": "Fri, 14 Oct 2022 11:46:08 GMT",
+              "eventDate": "2022-10-15",
+              "brochureUrl": "",
+              "id": "L9xUPZVwNTdSI3V3VKYR",
+              "content": "Harsh Pathak, Student, CSE  as a Principal Investigator with CO-PRINCIPAL INVESTIGATORS  recieved an external project titled \"Optimus Prime\". Funding agency: Sonu Pvt Ltd, 2022-10-15",
+              "author": "TODO",
+              "imgCaption": "External Funded Projects",
+              "title": "External Funded Projects",
+              "imgUrl": [
+                  "https://firebasestorage.googleapis.com/v0/b/designothon-bc5ca.appspot.com/o/Images%2FExternal%20Funded%20Projects%2F20221014_115344.jpg?alt=media&token=2090928f-5546-40f0-b40d-e4fab2a25ab9"
+              ]
+          },
+          "fOoLNcSLNhy8NtmyW63D": {
+              "title": "Patent (APA 7th edition format)",
+              "eventDate": "2022-10-14",
+              "author": "TODO",
+              "imgCaption": "Patent (APA 7th edition format)",
+              "imgUrl": [],
+              "id": "fOoLNcSLNhy8NtmyW63D",
+              "content": "Albert Einstein (2022), 69 Earth",
+              "brochureUrl": "",
+              "created": "Wed, 12 Oct 2022 10:35:27 GMT"
+          }
+      }
+  },
+  "title": "asdf",
+  "month": "2022-03",
+  "iss": "sd",
+  "vol": "asdf",
+  "ID": "zaXjCYIAuOcuD4qsn7bL"
+}
+
 
 	submissions = [
 		{

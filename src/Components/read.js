@@ -9,12 +9,10 @@ export class MagazineCard extends Component {
     return (
       <section className="magazine-card">
         <figure className="cover-img">
-          <a href={link} target='_blank'>
-            <img src={imgsrc} alt={`Technodaya Vol ${vol} Iss ${iss} cover`} />
-          </a>
+          <img src={imgsrc} alt={`Technodaya Vol ${vol} Iss ${iss} cover`} />
         </figure>
         <div className="desc">
-          <a className="title" href={link} target='_blank'>
+          <a className="title" href={link} target='_blank' rel='noreferrer'>
             <p>{title}</p>
           </a>
           <div className="date">
@@ -22,7 +20,7 @@ export class MagazineCard extends Component {
             <div className="issue">{vol} issue {iss}</div>
           </div>
           <div className="actions">
-            <a className="action-btn" href={pdfLink} target="_blank">View PDF</a>
+            <a className="action-btn" href={pdfLink} target="_blank" rel='noreferrer'>View PDF</a>
             <button className="action-btn">Share</button>
           </div>
         </div>
@@ -50,8 +48,10 @@ export class Read extends Component {
   state = this.initialState
 
   fetchPrevIssues = async () => {
+    console.log("Fetching...")
     const previousBlogs = []
     const blogsFirebase = await fs.collection(`PastPublications`).get();
+    console.log(previousBlogs)
     for (var snap of blogsFirebase.docs) {
       var data = snap.data();
       data.ID = snap.id;

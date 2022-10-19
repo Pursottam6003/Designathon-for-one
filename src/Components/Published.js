@@ -1,38 +1,35 @@
 import React, { Component } from 'react'
 import { BiMonthlyNames } from '../helpers';
 import { fs } from '../config/config'
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+
 import { Categories, getBiMonth } from '../helpers';
-import $ from 'jquery';
-
-let MonthName;
-
-if (month === 1 || month === 2) MonthName = BiMonthlyNames[1];
-else if (month === 3 || month === 4) MonthName = BiMonthlyNames[2];
-else if (month === 5 || month === 6) MonthName = BiMonthlyNames[3];
-else if (month === 7 || month === 8) MonthName = BiMonthlyNames[4];
-else if (month === 9 || month === 10) MonthName = BiMonthlyNames[5];
-else if (month === 11 || month === 12) MonthName = BiMonthlyNames[6];
 
 class MagezineArticle extends Component {
   render() {
-    const { Heading, EventDate, Urls, wholeDescription, Brochure, imgCaption } = this.props.data
+    const { title, eventDate, imgUrl, content, brochureUrl, imgCaption } = this.props.data
     const { categoryId } = this.props
-    const images = Urls.map((url, i) => {
+    const images = imgUrl.map((url, i) => {
       return (
         <div className='img-wrapper'>
-          <img src={url} key={`i${i}`} />
+          <img src={url} key={`i${i}`} alt={imgCaption} />
         </div>
       )
     })
+
+    console.log(title, Categories[parseInt(categoryId)])
     return (
       <li className='magazine-article'>
-        {Heading !== Categories[parseInt(categoryId)] && (
-          <h2>{Heading}</h2>
+        {title !== Categories[parseInt(categoryId)] && (
+          <h4>{title}</h4>
         )}
         <div className='content'>
-          <p>{wholeDescription}</p>
+          <p>
+            <ReactMarkdown children={content} remarkPlugins={[remarkGfm]} />
+          </p>
           {categoryId === 17 && (
-            <p>For more details, <a href={Brochure}>download brochure</a> or visit <a href='https://nitap.ac.in/'>NIT Arunachal Pradesh website</a>.</p>
+            <p>For more details, <a href={brochureUrl}>download brochure</a> or visit <a href='https://nitap.ac.in/'>NIT Arunachal Pradesh website</a>.</p>
           )}
           <div className='mag-images'>
             {images}
@@ -51,30 +48,28 @@ class MagezineArticle extends Component {
 
 class MagazineSection extends Component {
   render() {
-    const { id, articles } = this.props
-    const articleComponent = articles.map((article, i) => {
+    const { id, order, articles } = this.props
+    const articlesCompArr = order.map((articleId) => {
       return (
-        <MagezineArticle categoryId={id} data={article} key={`a${i}`} />
+        <MagezineArticle categoryId={id} data={articles[articleId]} key={articleId} />
       )
     })
+
     return (
       <div className='magazine-section'>
         <header className='category-header'>
-          <h1 id={`category${id}`}>{Categories[id]}</h1>
+          <h3 className='category-heading' id={`category${id}`}>{Categories[id]}</h3>
         </header>
-        <ol>
-          {articleComponent}
+        <ol className='article-ls'>
+          {articlesCompArr}
         </ol>
       </div>
     )
   }
 }
 
-export class Magazine extends Component {
+export class Published extends Component {
   initialState = {
-    // blogs: {},
-    // magSecComponents: [],
-    // toc: []
     title: '',
     vol: '',
     iss: '',
@@ -85,45 +80,33 @@ export class Magazine extends Component {
 
 
   getTechnodayaBlogs = async () => {
-    // section component array
-    const blogsarray = []
+    const year = '2022'
+
     const blogsFirebase = await fs.collection(`issues/${year}/${BiMonthlyNames[getBiMonth('2022-03')]}/`).get();
     // getting its snapshort 
     for (var snap of blogsFirebase.docs) {
       var data = snap.data();
       data.ID = snap.id;
-      blogsarray.push({ ...data })
-      if (blogsarray.length === blogsFirebase.docs.length) {
-        this.setState({
-          blogs: {
-            ...this.state.blogs,
-            [i]: blogsarray
-          }
-        }, () => {
-          this.createComponents()
-        })
-      }
+
+      this.setState({ ...data }, () => {
+        this.createComponents();
+      })
     }
-
-
   }
 
   createComponents() {
-    console.log('Inside create components')
-    const sections = []
+    const { columns, columnOrder, tasks } = this.state.orders
     const tocln = []
-    Object.keys(this.state.blogs).forEach((id, key) => {
-      sections.push((
-        <MagazineSection id={id} key={`s${key}`} articles={this.state.blogs[id]} />
-      ))
-      tocln.push((
-        <li><a href={`#category${id}`}>{Categories[id]}</a></li>
-      ))
+    const categoriesCompArr = columnOrder.map(colId => {
+      if (columns[colId].taskIds.length) {
+        return (
+          <MagazineSection id={colId} key={`s${colId}`} order={columns[colId].taskIds} articles={tasks} />
+        )
+      }
     })
-    console.log(sections)
-    console.log(this.magSecComponents)
+
     this.setState({
-      magSecComponents: sections,
+      magSecComponents: categoriesCompArr,
       toc: tocln
     })
   }
@@ -146,24 +129,30 @@ export class Magazine extends Component {
   }
 
   render() {
-    return (
-      <div className='route'>
-        <div className='container'>
-          <div className='page-header'><h1 className='heading'>Technodaya vol-3 iss-4</h1></div>
-          <div className='magazine-wrapper'>
+    const { title, iss, vol, month } = this.state
+    const monthObj = new Date(month)
+    const publishedAtStr = monthObj.toLocaleDateString('default', {
+      year: 'numeric',
+      month: 'long',
+    })
 
+    return (
+      <div className='route published-component'>
+        <div className='container'>
+          <div className='page-header'>
+            <div className='issue-meta'>
+              <time className='publish-date'>{publishedAtStr}</time>
+              <span className='iss-vol'>{vol} {iss}</span>
+            </div>
+            <h1 className='heading'>{title}</h1>
+          </div>
+
+          <div className='magazine-wrapper'>
             <div className='magazine'>
               <ul>
                 {this.state.magSecComponents}
               </ul>
             </div>
-            <div className='magazine-toc'>
-              <div className='toc'>
-                <h4>In this article</h4>
-                {this.state.toc}
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
