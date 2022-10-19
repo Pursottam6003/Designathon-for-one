@@ -1750,7 +1750,7 @@ h3 {
 
         .img-wrapper {
           margin: 2rem auto 1rem;
-          width: 480px;
+          max-width: 576px;
           overflow: hidden;
 
           img {
