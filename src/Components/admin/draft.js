@@ -112,8 +112,14 @@ export class Draft extends Component {
       month: month, 
     }
 
-    fs.collection(`issues/${year}/${biMonth}`).doc().set(publishObj).then(() => {
+    fs.collection(`issues/${year}/${biMonth}`).doc().set(publishObj).then( async () => {
       console.log('Published!');
+
+      // delete all approved
+      const approvedFs = await fs.collection(`approved`).get();
+      for (let snap of approvedFs.docs) {
+        fs.collection(`approved`).doc(`${snap.id}`).delete().then(console.log(`Deleted ${snap.id}`));
+      }
 
       // upload cover
       const coverObj = {
