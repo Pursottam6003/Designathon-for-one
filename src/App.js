@@ -9,20 +9,10 @@ import { Submit } from "./Components/submit";
 import { AdminConsole } from "./Components/admin/admin";
 import { Login } from "./Components/AdminLogin";
 import { AddBlogs } from "./Components/addBlogs"
-import { Published } from "./Components/Published";
+import { Issue } from "./Components/Issue";
 
-// import { Login } from "./Components/Login";
-// import { FacultyLogin } from "./Components/notInUse/FacultyLogin";
 import { Signup } from "./Components/SignUp";
-
 import { UploadCover } from "./Components/uploadCover";
-
-import { Magazine } from "./Components/Magazine";     // published magazine
-// below imports are not in use
-
-import { Magzine } from "./Components/notInUse/Magzine";
-import { FetchData } from "./Components/FetchData";
-
 
 function App() {
   return (
@@ -59,40 +49,20 @@ function App() {
             <AdminConsole />
           </Layout>
         )} />
-
+        <Route path="/issues/*" element={(
+          <Layout admin={false}>
+            <Issue />
+          </Layout>
+        )} />
         <Route path="/login" element={(
           <Layout admin={false}>
             <Login />
           </Layout>
         )} />
 
-        <Route path="/published" element={(
-          <Layout admin={false}>
-            <Published />
-          </Layout>
-        )} />
-
-
-
-        <Route path="/magazine_old" element={(
-          <Layout admin={false}>
-            <Magazine />
-          </Layout>
-        )} />
-
         <Route path="/uploadcover" element={(
           <Layout admin={false}>
             <UploadCover />
-          </Layout>
-        )} />
-        <Route path="/magzine" element={(
-          <Layout admin={false}>
-            <Magzine />
-          </Layout>
-        )} />
-        <Route path="/magzine2" element={(
-          <Layout admin={false}>
-            <FetchData />
           </Layout>
         )} />
 
