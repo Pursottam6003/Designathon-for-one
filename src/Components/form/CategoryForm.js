@@ -798,14 +798,14 @@ export class CategoryForm extends Component {
 
           </Field>
 
-          <Field showLabel={this.state.title.length} labeltxt="Contribution title">
+          <Field showLabel={this.state.title.length} labeltxt="Title of the paper">
             <input type="text"
               className='form-control'
               required
               name="title"
               value={this.state.title}
               onChange={this.handleChange}
-              placeholder="Contribution title"
+              placeholder="Title of the paper"
             />
           </Field>
 
@@ -849,6 +849,16 @@ export class CategoryForm extends Component {
                 required
                 name="date"
                 value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+            <span>to</span>
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="date"
+                className='form-control'
+                required
+                name="toDate"
+                value={this.state.toDate}
                 onChange={this.handleChange}
               />
             </Field>
@@ -945,7 +955,6 @@ export class CategoryForm extends Component {
             <Field labeltxt="Date" showLabel={0}>
               <input type="date"
                 className='form-control'
-                required
                 name="date"
                 value={this.state.date}
                 onChange={this.handleChange}

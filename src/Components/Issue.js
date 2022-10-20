@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-import { BiMonthlyNames } from '../helpers';
 import { fs } from '../config/config'
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-import { Categories, getBiMonth } from '../helpers';
+import { Categories } from '../helpers';
+import { Route, Routes, useParams } from 'react-router-dom';
 
 class MagezineArticle extends Component {
   render() {
-    const { title, eventDate, imgUrl, content, brochureUrl, imgCaption } = this.props.data
+    const { title, imgUrl, content, brochureUrl, imgCaption } = this.props.data
     const { categoryId } = this.props
     const images = imgUrl.map((url, i) => {
       return (
@@ -68,7 +68,16 @@ class MagazineSection extends Component {
   }
 }
 
-export class Published extends Component {
+const IssueRoute = (props) => {
+  const { year, biMonth } = useParams()
+  const issueLn = `${year}/${biMonth}`
+
+  return (
+    <FetchedIssue issueLn={issueLn} />
+  )
+}
+
+class FetchedIssue extends Component {
   initialState = {
     title: '',
     vol: '',
@@ -78,13 +87,11 @@ export class Published extends Component {
   }
   state = this.initialState
 
+  fetchIssue = async () => {
+    const { issueLn } = this.props
 
-  getTechnodayaBlogs = async () => {
-    const year = '2022'
-
-    const blogsFirebase = await fs.collection(`issues/${year}/${BiMonthlyNames[getBiMonth('2022-03')]}/`).get();
-    // getting its snapshort 
-    for (var snap of blogsFirebase.docs) {
+    const fetchedIssue = await fs.collection(`issues/${issueLn}`).get();
+    for (var snap of fetchedIssue.docs) {
       var data = snap.data();
       data.ID = snap.id;
 
@@ -96,7 +103,6 @@ export class Published extends Component {
 
   createComponents() {
     const { columns, columnOrder, tasks } = this.state.orders
-    const tocln = []
     const categoriesCompArr = columnOrder.map(colId => {
       if (columns[colId].taskIds.length) {
         return (
@@ -107,54 +113,49 @@ export class Published extends Component {
 
     this.setState({
       magSecComponents: categoriesCompArr,
-      toc: tocln
     })
   }
 
-  changebg = () => {
-    var maxNumber = 21;
-    let bg = document.getElementById('Main_box')
-    var randomNumber = Math.floor((Math.random() * maxNumber) + 1);
-    let randClass = `bg${randomNumber}`
-    if (bg.classList.length > 1) {
-      bg.classList.remove(bg.classList[1]);
-      bg.classList.add(randClass);
-    } else {
-      bg.classList.add(randClass);
-    }
-  }
-
   componentDidMount() {
-    this.getTechnodayaBlogs()
+    this.fetchIssue()
   }
 
   render() {
     const { title, iss, vol, month } = this.state
     const monthObj = new Date(month)
-    const publishedAtStr = monthObj.toLocaleDateString('default', {
+    const publishedAtStr = monthObj ? monthObj.toLocaleDateString('default', {
       year: 'numeric',
       month: 'long',
-    })
+    }) : ''
 
     return (
-      <div className='route published-component'>
-        <div className='container'>
-          <div className='page-header'>
-            <div className='issue-meta'>
-              <time className='publish-date'>{publishedAtStr}</time>
-              <span className='iss-vol'>{vol} {iss}</span>
-            </div>
-            <h1 className='heading'>{title}</h1>
+      <div className='container'>
+        <div className='page-header'>
+          <div className='issue-meta'>
+            <time className='publish-date'>{publishedAtStr}</time>
+            <span className='iss-vol'>Vol-{vol}, Issue-{iss}</span>
           </div>
-
-          <div className='magazine-wrapper'>
-            <div className='magazine'>
-              <ul>
-                {this.state.magSecComponents}
-              </ul>
-            </div>
+          <h1 className='heading'>{title.slice(0, 1).toUpperCase() + title.slice(1, title.length)}</h1>
+        </div>
+        <div className='magazine-wrapper'>
+          <div className='magazine'>
+            <ul>
+              {this.state.magSecComponents}
+            </ul>
           </div>
         </div>
+      </div>
+    )
+  }
+}
+
+export class Issue extends Component {
+  render() {
+    return (
+      <div className='route published-component'>
+        <Routes>
+          <Route path=":year/:biMonth" element={<IssueRoute />} />
+        </Routes>
       </div>
     )
   }

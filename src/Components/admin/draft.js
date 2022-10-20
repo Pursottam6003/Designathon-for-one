@@ -14,13 +14,13 @@ class DraftForm extends Component {
     const { title, vol, iss, month } = this.props
     return (
       <form id="draftForm" className="draft-form form-group">
-        <input type="text" name="title" className='form-control form-title' placeholder="Title of newsletter" onChange={this.handleChange} value={title} />
+        <input type="text" required name="title" className='form-control form-title' placeholder="Title of newsletter" onChange={this.handleChange} value={title} />
         <p className='sub-label'>Issue details</p>
         <Field labeltxt="Volume no." showLabel={vol.length}>
-          <input type="text" className='form-control' required name="vol" value={vol} onChange={this.handleChange} placeholder="Volume no." />
+          <input type="text" required className='form-control' name="vol" value={vol} onChange={this.handleChange} placeholder="Volume no. (in Romans)" />
         </Field>
         <Field labeltxt="Issue" showLabel={iss.length}>
-          <input type="text" className='form-control' required name="iss" value={iss} onChange={this.handleChange} placeholder="Issue" />
+          <input type="number" min="1" required className='form-control' name="iss" value={iss} onChange={this.handleChange} placeholder="Issue" />
         </Field>
         <p className='sub-label'>Month and year</p>
         <Field labeltxt="Month" showLabel={month.length}>
@@ -98,7 +98,7 @@ export class Draft extends Component {
     const { orders, title, vol, iss, month } = this.state
 
     const year = month.slice(0, 4)
-    const biMonth = BiMonthlyNames[getBiMonth(month)]
+    const biMonth = `MarApril`
 
     const publishObj = {
       orders: {
@@ -114,6 +114,20 @@ export class Draft extends Component {
 
     fs.collection(`issues/${year}/${biMonth}`).doc().set(publishObj).then(() => {
       console.log('Published!');
+
+      // upload cover
+      const coverObj = {
+        Title: title,
+        Vol: vol,
+        Issue: iss,
+        Month: month,
+        Year: year,
+        ImageUrl: 'https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_960_720.jpg',
+        Link: `./issues/${year}/${biMonth}`
+      }
+      fs.collection(`PastPublications`).doc().set(coverObj).then(() => {
+        console.log('Cover uploaded');
+      })
     })
   }
 

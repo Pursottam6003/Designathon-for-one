@@ -88,6 +88,7 @@ export class Preview extends Component {
       outMembers: { 1: 'Members present from partner Institute/Organization with their designation' },   // 1
       otherMembers: { 1: 'Other Renowned Members’ names with their designation' },   // 1
       date: { 1: 'Date', 2: 'Date', 3: 'Date', 4: 'Date', 5: 'Date', 6: 'Date', 7: 'Date', 8: 'Date', 9: 'Month (optional)', 10: 'Date', 11: 'Date', 12: 'Date', 13: 'Date', 14: 'Date', 15: 'Date', 16: 'Date', 17: 'Date' }, // 1, 2, 3, 4, 5, 6, 14, 15, 16, 17 
+      toDate: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '', 9: '', 10: '', 11: '', 12: '', 13: '', 14: '', 15: '', 16: '', 17: '' },
       speakerName: { 2: 'Speaker name', 3: 'Speaker name' }, // 2, 3 
       designation: { 2: 'Designation', 3: 'Designation', 5: 'Designation', 11: 'Designation', 12: 'Designation', 13: 'Designation', 16: 'Designation', 17: 'Designation' },//2, 3, 5 , 11, 12, 13, 15
       department: { 2: 'Department', 3: 'Department', 5: 'Department', 11: 'Department', 12: 'Department', 13: 'Department' },//2, 5, 11, 12 , 13, 15
@@ -124,6 +125,11 @@ export class Preview extends Component {
       imgCaption: { 5: 'Image caption' }    // 5
     }
 
+    if (val === 'date' || val === 'toDate') {
+      let dateObj = new Date(fields[val])
+      return dateObj.toLocaleDateString('en-IN')
+    }
+
     const peopleLs = ['copi', 'pi', 'author']
     if (!(peopleLs.includes(val))) {    // when not adding lists
       if (!fields[val]) {
@@ -132,7 +138,6 @@ export class Preview extends Component {
         return fields[val]
       }
     } else if (fields[val]) {            // for persons that are not undefined
-      console.log(fields[val]);
       if (fields[val].length !== 0) {
         let outstrArr = []
         if (val === "pi") {
@@ -145,7 +150,7 @@ export class Preview extends Component {
           })
         } else if (val === "author") {
           outstrArr = fields[val].map(el => {
-            return `${el.lastName}, ${el.firstInitials}`
+            return `${el.lastName}, ${el.firstInitials}.`
           })
         }
         let outstr = outstrArr[0];
@@ -192,16 +197,16 @@ export class Preview extends Component {
         outMdStr = `${this.ov('invName')} (${this.ov('year')}), ${this.ov('patId')} ${this.ov('patOffice')}`
         break;
       case 7:
-        outMdStr = `${this.ov('author')} ${this.ov('year')} Article title: ${this.ov('title')} Journal title :` + <em>{this.ov('journalTitle')}</em> + `Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
+        outMdStr = `${this.ov('author')} (${this.ov('year')}) Article title: ${this.ov('title')} Journal title :` + <em>{this.ov('journalTitle')}</em> + `Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
         break;
       case 8:
-        outMdStr = `${this.ov('author')}, ${this.ov('year')} ${this.ov('title')} published by ${this.ov('publisher')} ${this.ov('doiUrl')}`
+        outMdStr = `${this.ov('author')} (${this.ov('year')}). *${this.ov('title')}*. ${this.ov('publisher')}. ${this.ov('doiUrl')}`
         break;
       case 9:
-        outMdStr = `${this.ov('author')}, ${this.ov('date')} ${this.ov('title')} {paper representation} ,${this.ov('confType')} ${this.ov('place')} ${this.ov('doiUrl')}`
+        outMdStr = `${this.ov('author')} *${this.ov('title')}* [Paper presentation]. ${this.ov('eventName')}, ${this.ov('place')}, from ${this.ov('date')} to ${this.ov('toDate')}. ${this.ov('doiUrl')}`
         break;
       case 10:
-        outMdStr = `${this.ov('author')} (${this.ov('year')}).Title of chapter: ${this.ov('title')}.Edited by ${this.ov('editors')} of book "${this.ov('bookTitle')}"  (pp ${this.ov('pageNos')}). Published by ${this.ov('publisher')}, ${this.ov('doiUrl')}`
+        outMdStr = `${this.ov('author')}. (${this.ov('year')}). ${this.ov('title')}. In ${this.ov('editors')} (Eds.), *${this.ov('bookTitle')}* (pp. ${this.ov('pageNos')}). ${this.ov('publisher')}. ${this.ov('doiUrl')}`
         break;
       case 11:
         outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on "${this.ov('title')}", organised by ${this.ov('organizer')} on  ${this.ov('date')}`

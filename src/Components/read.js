@@ -66,7 +66,6 @@ export class Read extends Component {
     }
 
     const blogs = previousBlogs.map(element => {
-      console.log(element)
       return {
         imgsrc: element.ImageUrl,
         title: element.Title,
@@ -75,6 +74,7 @@ export class Read extends Component {
         month: element.Month,
         year: element.Year,
         pdfLink: element.PdfUrl,
+        link: element.Link
       }
     });
 
@@ -94,8 +94,8 @@ export class Read extends Component {
           </header>
           <div className="grid-gallery">
             {this.state.blogs.map((blog, i) => {
-              const { imgsrc, title, vol, iss, month, year, pdfLink } = blog
-              return <MagazineCard key={i} imgsrc={imgsrc} title={title} vol={vol} iss={iss} month={month} year={year} link={pdfLink} pdfLink={pdfLink} />
+              const { imgsrc, title, vol, iss, month, year, link, pdfLink } = blog
+              return <MagazineCard key={i} imgsrc={imgsrc} title={title} vol={vol} iss={iss} month={month} year={year} link={link} pdfLink={pdfLink} />
             })}
           </div>
         </div>
