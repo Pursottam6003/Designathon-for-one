@@ -8,6 +8,7 @@ import { Categories } from '../helpers'
 export class AddBlogs extends Component {
   initialState = {
     category: 0,
+    username: '',
     edit: true,
     formData: {},
     activityTitle: '',
@@ -24,14 +25,14 @@ export class AddBlogs extends Component {
   handleSubmit = (out) => {
     const { heading, output: wholeDescription } = out
     const { date, eventBrochure: Mybrochure } = this.state.formData
-    const { category: category_Id } = this.state
+    const { category: category_Id, username } = this.state
     let imgCaption = this.state.imgCaption
     let brochureUrl = ''
 
     const uploadOnFirestore = () => {
       const uploadObj = {
         created: (new Date()).toUTCString(),
-        author: 'TODO',
+        author: username,
         categoryId: category_Id,
         title: heading,
         desc: wholeDescription,
@@ -113,6 +114,17 @@ export class AddBlogs extends Component {
 
   switchForm = (status) => {
     this.setState({ edit: status })
+  }
+
+  componentDidMount() {
+    const UID = sessionStorage.getItem('UID') 
+    if (UID) {
+      fs.collection('users').doc(UID).get().then(snapshot => {
+        const fullName = snapshot.data().FullName
+        const name = fullName.slice(0, fullName.search(' '))
+        this.setState({username: name})
+      })
+    }
   }
 
   render() {

@@ -126,8 +126,12 @@ export class Preview extends Component {
     }
 
     if (val === 'date' || val === 'toDate') {
-      let dateObj = new Date(fields[val])
-      return dateObj.toLocaleDateString('en-IN')
+      if (fields[val]) {
+        let dateObj = new Date(fields[val])
+        return dateObj.toLocaleDateString('en-IN')
+      } else {
+        return 'DATE'
+      }
     }
 
     const peopleLs = ['copi', 'pi', 'author']
@@ -197,7 +201,7 @@ export class Preview extends Component {
         outMdStr = `${this.ov('invName')} (${this.ov('year')}), ${this.ov('patId')} ${this.ov('patOffice')}`
         break;
       case 7:
-        outMdStr = `${this.ov('author')} (${this.ov('year')}) Article title: ${this.ov('title')} Journal title :` + <em>{this.ov('journalTitle')}</em> + `Volume ${this.ov('volNo')} ${this.ov('doiUrl')}`
+        outMdStr = `${this.ov('author')} (${this.ov('year')}). ${this.ov('title')}. *${this.ov('journalTitle')}* *${this.ov('volNo')}*(${this.ov('issueNo')}), ${this.ov('pageNos')}. ${this.ov('doiUrl')}`
         break;
       case 8:
         outMdStr = `${this.ov('author')} (${this.ov('year')}). *${this.ov('title')}*. ${this.ov('publisher')}. ${this.ov('doiUrl')}`
@@ -209,7 +213,7 @@ export class Preview extends Component {
         outMdStr = `${this.ov('author')}. (${this.ov('year')}). ${this.ov('title')}. In ${this.ov('editors')} (Eds.), *${this.ov('bookTitle')}* (pp. ${this.ov('pageNos')}). ${this.ov('publisher')}. ${this.ov('doiUrl')}`
         break;
       case 11:
-        outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on "${this.ov('title')}", organised by ${this.ov('organizer')} on  ${this.ov('date')}`
+        outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on "${this.ov('title')}", organised by ${this.ov('organizer')} from ${this.ov('date')} to ${this.ov('toDate')}`
         break;
       case 12:
         outMdStr = `${this.ov('facultyName')} ${this.ov('designation')} of ${this.ov('department')}  was Reviewer of "${this.ov('journalTitle')}". ${this.ov('publisher')}  on ${this.ov('date')}`

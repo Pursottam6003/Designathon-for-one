@@ -657,7 +657,8 @@ export class CategoryForm extends Component {
           </Field>
 
           <Field showLabel={this.state.volNo.length} labeltxt="Volume no.">
-            <input type="text"
+            <input type="number"
+              min="0"
               className='form-control'
               required
               name="volNo"
@@ -668,7 +669,8 @@ export class CategoryForm extends Component {
           </Field>
 
           <Field showLabel={this.state.issueNo.length} labeltxt="Issue No.">
-            <input type="text"
+            <input type="number"
+              min="0"
               className='form-control'
               required
               name="issueNo"

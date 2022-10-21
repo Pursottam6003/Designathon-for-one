@@ -58,7 +58,7 @@ export class Submissions extends Component {
       approved.forEach(obj => {
         const uploadObj = {
           created: obj.created,
-          author: 'TODO',
+          author: obj.author,
           categoryId: obj.categoryId,
           title: obj.title,
           desc: obj.desc,
@@ -75,7 +75,7 @@ export class Submissions extends Component {
       pending.forEach(obj => {
         const uploadObj = {
           created: obj.created,
-          author: 'TODO',
+          author: obj.author,
           categoryId: obj.categoryId,
           title: obj.title,
           desc: obj.desc,
