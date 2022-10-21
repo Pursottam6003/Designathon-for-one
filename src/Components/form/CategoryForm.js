@@ -1437,7 +1437,7 @@ export class CategoryForm extends Component {
             name='designation'
             onChange={this.handleChange}
             value={this.state.designation}
-            placeholder="Desingation"
+            placeholder="Designation"
           />
         </Field>
 
@@ -1511,14 +1511,14 @@ export class CategoryForm extends Component {
           />
         </Field>
 
-        <Field showLabel={this.state.designation.length} labeltxt="Desingation">
+        <Field showLabel={this.state.designation.length} labeltxt="Designation">
           <input type="text"
             className='form-control'
             required
             name='designation'
             value={this.state.designation}
             onChange={this.handleChange}
-            placeholder="Desingation"
+            placeholder="Designation"
           />
         </Field>
 
