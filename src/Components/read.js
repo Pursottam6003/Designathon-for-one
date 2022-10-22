@@ -51,7 +51,6 @@ export class Read extends Component {
     console.log("Fetching...")
     const previousBlogs = []
     const blogsFirebase = await fs.collection(`PastPublications`).get();
-    console.log(previousBlogs)
     for (var snap of blogsFirebase.docs) {
       var data = snap.data();
       data.ID = snap.id;

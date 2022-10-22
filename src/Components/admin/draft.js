@@ -124,6 +124,7 @@ export class Draft extends Component {
       // upload cover
       const coverObj = {
         Title: title,
+        publishedAt: new Date().toLocaleString('en-IN'),
         Vol: vol,
         Issue: iss,
         Month: month,

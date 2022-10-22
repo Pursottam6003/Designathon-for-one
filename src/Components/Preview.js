@@ -3,7 +3,7 @@ import { ReactComponent as EmptyLetterBoxSvg } from '../images/emptyletterbox.sv
 import { ReactComponent as MarkdownIcon } from '../images/icons/markdownIcon.svg'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { Categories, toCapital } from '../helpers'
+import { Categories } from '../helpers'
 
 const NoPreview = () => {
   return (
@@ -180,13 +180,13 @@ export class Preview extends Component {
     const { fields, title, categoryId, images } = this.props
     const category = parseInt(categoryId)
 
-    let outMdStr = '';
+    let outMdStr = '', dateStr = '';
     switch (category) {
       case 1:
         outMdStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
         break;
       case 2:
-        outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, **${this.ov('department')}**, NITAP delivered a ${this.ov('lectureType')} on "${this.ov('title')}" in the ${this.ov('eventName')} organised by ${this.ov('organizer')} on ${this.ov('date')}.`
+        outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, NITAP delivered a ${this.ov('lectureType')} on "${this.ov('title')}" in the ${this.ov('eventName')} organised by ${this.ov('organizer')} on ${this.ov('date')}.`
         break;
       case 3:
         outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, ${this.ov('insName')} visited and delivered a ${this.ov('lectureType')} on "${this.ov('title')}" organised by ${this.ov('organizer')} on ${this.ov('date')}`
@@ -195,7 +195,11 @@ export class Preview extends Component {
         outMdStr = `${this.ov('pi')} ${fields.pi ? (fields.pi.length === 1 ? 'as a Principal Investigator' : 'as Principal Investigators') : ''} with ${this.ov('copi')} ${fields.copi ? (fields.copi.length === 1 ? 'as a Co-Principal Investigator' : 'as Co-Principal Investigators') : ''} recieved an external project titled "${this.ov('title')}". Funding agency: ${this.ov('fundAgency')}, ${this.ov('date')}`
         break;
       case 5:
-        outMdStr = `Name of the job: ${this.ov('title')}\nName of the Client: ${this.ov('fundAgency')}\nPrincipal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')}`
+        outMdStr = `Name of the job: ${this.ov('title')}
+
+Name of the Client: ${this.ov('fundAgency')}
+
+Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')}`
         break;
       case 6:
         outMdStr = `${this.ov('invName')} (${this.ov('year')}), ${this.ov('patId')} ${this.ov('patOffice')}`
@@ -207,16 +211,18 @@ export class Preview extends Component {
         outMdStr = `${this.ov('author')} (${this.ov('year')}). *${this.ov('title')}*. ${this.ov('publisher')}. ${this.ov('doiUrl')}`
         break;
       case 9:
-        outMdStr = `${this.ov('author')} *${this.ov('title')}* [Paper presentation]. ${this.ov('eventName')}, ${this.ov('place')}, from ${this.ov('date')} to ${this.ov('toDate')}. ${this.ov('doiUrl')}`
+        dateStr = fields.toDate ? `from ${this.ov('date')} to ${this.ov('toDate')}` : `on ${this.ov('date')}`
+        outMdStr = `${this.ov('author')} *${this.ov('title')}* [Paper presentation]. ${this.ov('eventName')}, ${this.ov('place')}, ${dateStr}. ${this.ov('doiUrl')}`
         break;
       case 10:
         outMdStr = `${this.ov('author')}. (${this.ov('year')}). ${this.ov('title')}. In ${this.ov('editors')} (Eds.), *${this.ov('bookTitle')}* (pp. ${this.ov('pageNos')}). ${this.ov('publisher')}. ${this.ov('doiUrl')}`
         break;
       case 11:
-        outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on "${this.ov('title')}", organised by ${this.ov('organizer')} from ${this.ov('date')} to ${this.ov('toDate')}`
+        dateStr = fields.toDate ? `from ${this.ov('date')} to ${this.ov('toDate')}` : `on ${this.ov('date')}`
+        outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} attended ${this.ov('eventType')} on "${this.ov('title')}", organised by ${this.ov('organizer')} ${dateStr}.`
         break;
       case 12:
-        outMdStr = `${this.ov('facultyName')} ${this.ov('designation')} of ${this.ov('department')}  was Reviewer of "${this.ov('journalTitle')}". ${this.ov('publisher')}  on ${this.ov('date')}`
+        outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} served as a *Reviewer* of "${this.ov('journalTitle')}". ${this.ov('publisher')}. ${this.ov('date')}.`
         break;
       case 13:
         outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} was The Chair of Panel Session at ${this.ov('eventName')}, organised by ${this.ov('organizer')} on ${this.ov('date')}`

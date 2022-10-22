@@ -701,19 +701,6 @@ export class CategoryForm extends Component {
               placeholder="DOI (if available)"
             />
           </Field>
-
-          <p className='sub-label'>Date</p>
-          <div className="date-wrapper">
-            <Field labeltxt="Date" showLabel={0}>
-              <input type="date"
-                className='form-control'
-                required
-                name="date"
-                value={this.state.date}
-                onChange={this.handleChange}
-              />
-            </Field>
-          </div>
         </>
       )
     } else if (parseInt(categoryId) === 8) {    // done

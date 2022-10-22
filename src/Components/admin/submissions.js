@@ -133,17 +133,6 @@ export class Submissions extends Component {
     }
   }
 
-  removeBlogFromFirestore = (id) => {
-    var done = 0;
-    fs.collection('pendings').doc(id).delete().then(() => {
-      console.log('Removed Sucessfully');
-      done = 1
-    })
-    if (done === 0) {
-      console.log('Unable to remove the element form blog')
-    }
-  }
-
   componentDidMount() {
     this.fetchSubmissions();
   }

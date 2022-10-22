@@ -1321,7 +1321,7 @@ h3 {
     .preview {
       position: relative;
       --txt-field-padding: 1.625rem 1.125rem;
-      --txt-font-size: 14px;
+      --txt-font-size: 0.95rem;
       --txt-line-height: 1.42857143;
       --txt-font-family: "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif, Roboto;
       --txt-area-padding: 0.325rem 0.625rem;
@@ -1462,6 +1462,7 @@ h3 {
 
         .formatted-preview {
           font-size: var(--txt-font-size);
+          line-height: 1.45;
           cursor: pointer;
         }
 
@@ -2271,17 +2272,23 @@ h3 {
       gap: 1.2rem;
       margin: 1.6rem 0 0.8rem;
 
-      input {
-        padding: 1rem;
-        margin: 0 .4rem;
-        border: solid 1px rgba(0, 0, 0, 0.12);
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 1rem;
-      }
+      div.inputs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
 
-      input:focus {
-        border: solid 1px rgba(0, 0, 0, 0.3);
-        outline: none;
+        input {
+          padding: 1rem;
+          margin: .4rem;
+          border: solid 1px rgba(0, 0, 0, 0.12);
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1rem;
+        }
+
+        input:focus {
+          border: solid 1px rgba(0, 0, 0, 0.3);
+          outline: none;
+        }
       }
 
       .submit {
@@ -2493,6 +2500,7 @@ h3 {
 }
 
 @media print {
+
   .navbar-component,
   .footer {
     display: none;

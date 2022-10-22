@@ -31,7 +31,10 @@ export class AddBlogs extends Component {
 
     const uploadOnFirestore = () => {
       const uploadObj = {
-        created: (new Date()).toUTCString(),
+        created: new Date().toLocaleString('en-IN', {
+          dateStyle:"medium",
+          timeStyle: "short",
+        }),
         author: username,
         categoryId: category_Id,
         title: heading,

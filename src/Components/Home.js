@@ -57,10 +57,10 @@ export const Home = () => {
               <h1 className='section-heading'>subscribe to our<br/> newsletter</h1>
               <h4>Stay updated with new Issues of Technodaya!</h4>
               <form>
-                <div>
-                  <input type="text" placeholder='First Name'></input>
-                  <input type="text" placeholder='Last Name'></input>
-                  <input type="text" placeholder='Email'></input>
+                <div className='inputs'>
+                  <input type="text" placeholder='First Name'/>
+                  <input type="text" placeholder='Last Name'/>
+                  <input type="text" placeholder='Email'/>
                 </div>
                 <div>
                   <button type="submit" className='submit'>  
