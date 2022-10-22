@@ -24,23 +24,18 @@ export const Login = () => {
             setErrorMsg('');
             setSuccessMsg('');
 
-            const currUid = auth.currentUser.uid
-            sessionStorage.setItem('UID', currUid)
-
-            if (currUid === "ATsAjTnFsRTytg8bWZ02XY3zDaa2") {
-                history('/admin/');
-            } else {
-                history('/submit');
-            }
+            const currUid = auth.currentUser.uid;
+            sessionStorage.setItem('UID', currUid);
+            history(-1);
         })
-            .catch(error => setErrorMsg(error.message));
+        .catch(error => setErrorMsg(error.message));
     }
     return (
         <div className='login-page route'>
             <div className='container'>
                 <div className='login-container'>
                     <div className='login-image'>
-                        <img src={loginImg}></img>
+                        <img alt="" src={loginImg} />
                     </div>
                     {successMsg && <>
                         <div className='success-msg'>{successMsg}</div>
@@ -51,11 +46,11 @@ export const Login = () => {
                         </div>
                         <form className='login-form' onSubmit={handleLogin}>
                             <div className='login-field email'>
-                                <img src={envelop} className='icon'></img>
+                                <img alt="" src={envelop} className='icon' />
                                 <input type='email' required placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email} ></input>
                             </div>
                             <div className='login-field password'>
-                                <img src={lock} className='icon' />
+                                <img alt="" src={lock} className='icon' />
                                 <input type='password' onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password'></input>
                             </div>
                             <button className='login-btn' type="submit">Login</button>

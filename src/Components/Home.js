@@ -1,10 +1,8 @@
 import React from 'react'
-// import AddBlogs from '../images/AddBlogs.jpeg'
 import MagazineCover from '../images/technodaya-cover.png'
 import { MagazineCard } from './read'
 import { ReactComponent as ArrowIcon } from '../images/icons/arrowicon.svg'
 
-import Ph from '../images/technodaya-cover.png'
 export const Home = () => {
   return (
     <div className='home-component '>
@@ -16,7 +14,7 @@ export const Home = () => {
             <h1 className='section-heading'>Technodaya Vol-3 Issue-4</h1>
             <p>12-11-2022 July-August</p>
 
-            <a href='#' className='btn home-btn'>Read more</a>
+            <a href='/' className='btn home-btn'>Read more</a>
           </div>
         </section>
 

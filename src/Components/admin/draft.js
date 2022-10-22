@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Field } from "../form/Field"
 import { DndMain } from "../dnd/dndMain"
 import { fs } from '../../config/config'
-import { Categories, BiMonthlyNames, getBiMonth } from "../../helpers"
+import { Categories } from "../../helpers"
 
 class DraftForm extends Component {
   handleChange = (e) => {
