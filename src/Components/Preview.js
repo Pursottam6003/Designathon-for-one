@@ -154,7 +154,7 @@ export class Preview extends Component {
           })
         } else if (val === "author") {
           outstrArr = fields[val].map(el => {
-            return `${el.lastName}, ${el.firstInitials}.`
+            return `${el.lastName} ${el.firstInitials.toUpperCase()}.`
           })
         }
         let outstr = outstrArr[0];
@@ -225,7 +225,8 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
         outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} served as a *Reviewer* of "${this.ov('journalTitle')}". ${this.ov('publisher')}. ${this.ov('date')}.`
         break;
       case 13:
-        outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} was The Chair of Panel Session at ${this.ov('eventName')}, organised by ${this.ov('organizer')} on ${this.ov('date')}`
+        dateStr = fields.toDate ? `from ${this.ov('date')} to ${this.ov('toDate')}` : `on ${this.ov('date')}`
+        outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} was *The Chair of Panel Session* at ${this.ov('eventName')}, organised by ${this.ov('organizer')}, ${dateStr}.`
         break;
       case 14:
         outMdStr = `${this.ov('winner')}, ${this.ov('insName')} won the ${this.ov('rank')} in the competition on the theme of "${this.ov('theme')}" organized by ${this.ov('organizer')}  ${fields.collaboration ? `in association with ${this.ov('collaboration')},` : ''} on ${this.ov('date')}`
