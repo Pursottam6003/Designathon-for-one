@@ -19,6 +19,27 @@ const Categories = [
     'Announcement',
 ]
 
+const CategoryTitles = [
+    '',
+    'Memorandum of Understanding (MoU)',
+    'Invited/Expert Lectures given by NIT AP members',
+    'Visits and Invited/Expert Lectures to NITAP from other insitutes',
+    'External Funded Projects',
+    'Consultancy Projects',
+    'Patent',
+    'Research Papers',
+    'Books',
+    'Conference Paper',
+    'Book Chapters',
+    'Faculty Empowerment Programmes',
+    'Reviewers',
+    'Session Chairs',
+    'Winners of Competition',
+    'Workshop / FDP / Conference / seminar / short term course etc.',
+    'Outreach Activity',
+    'Announcement',
+]
+
 const BiMonthlyNames = [
     '',
     'JanFeb',
@@ -40,4 +61,4 @@ const toCapital = (s) => {
     return s.slice(0, 1).toUpperCase() + s.slice(1, len).toLowerCase()
 }
 
-export { Categories, toCapital, BiMonthlyNames, getBiMonth } 
+export { Categories, CategoryTitles, toCapital, BiMonthlyNames, getBiMonth } 

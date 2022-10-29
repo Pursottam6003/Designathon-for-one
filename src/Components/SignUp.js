@@ -1,12 +1,9 @@
 import React,{useState} from 'react'
-import {Link} from 'react-router-dom'
 import {auth,fs} from '../config/config'
-import {useNavigate} from 'react-router-dom'
 
 
 export const Signup = () => {
 
-    const history = useNavigate();
     const [fullName, setFullname]=useState('');
     const [email, setEmail]=useState('');
     const [password, setPassword]=useState('');

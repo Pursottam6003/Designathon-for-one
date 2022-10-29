@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { BiMonthlyNames } from '../helpers';
-import { fs } from '../config/config'
-import { Categories } from '../helpers';
+import { BiMonthlyNames } from '../../helpers';
+import { fs } from '../../config/config'
+import { Categories } from '../../helpers';
 import $ from 'jquery';
 
 const year = new Date().getFullYear();

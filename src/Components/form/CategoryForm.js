@@ -563,7 +563,7 @@ export class CategoryForm extends Component {
             />
           </Field>
 
-          <p className='sub-label'>Official source of the patent information</p>
+          <p className='sub-label'>Name of Issuing Office</p>
           <Field showLabel={this.state.patOffice.length} labeltxt="Patent office name">
             <input type="text"
               className='form-control'
@@ -574,19 +574,6 @@ export class CategoryForm extends Component {
               placeholder="Patent office name"
             />
           </Field>
-
-          <p className='sub-label'>Date</p>
-          <div className="date-wrapper">
-            <Field labeltxt="Date" showLabel={0}>
-              <input type="date"
-                className='form-control'
-                required
-                name="date"
-                value={this.state.date}
-                onChange={this.handleChange}
-              />
-            </Field>
-          </div>
         </>
       )
     } else if (parseInt(categoryId) === 7) {    // done

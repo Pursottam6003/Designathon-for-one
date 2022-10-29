@@ -17,16 +17,9 @@ export const Footer = () => {
           </div>
 
           <div>
-            <p>0360-2954549</p>
-            <p> <a>nitapadmin@nitap.ac.in</a></p>
-
-
-
-
+            <p><a href='tel:0360-2954549'>0360-2954549</a></p>
+            <p><a href='mailto:nitapadmin@nitap.ac.in'>nitapadmin@nitap.ac.in</a></p>
           </div>
-
-
-
         </div>
 
         <div className='left'>

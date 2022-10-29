@@ -3,7 +3,7 @@ import { fs } from '../config/config'
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
-import { Categories } from '../helpers';
+import { CategoryTitles } from '../helpers';
 import { Route, Routes, useParams } from 'react-router-dom';
 
 class MagezineArticle extends Component {
@@ -18,10 +18,10 @@ class MagezineArticle extends Component {
       )
     })
 
-    console.log(title, Categories[parseInt(categoryId)])
+    console.log(title, CategoryTitles[parseInt(categoryId)])
     return (
       <li className='magazine-article'>
-        {title !== Categories[parseInt(categoryId)] && (
+        {title !== CategoryTitles[parseInt(categoryId)] && (
           <h4>{title}</h4>
         )}
         <div className='content'>
@@ -36,7 +36,7 @@ class MagezineArticle extends Component {
 
             {images.length !== 0 && (
               <p className='img-caption'>
-                {imgCaption ? imgCaption : Categories[parseInt(categoryId)]}
+                {imgCaption ? imgCaption : CategoryTitles[parseInt(categoryId)]}
               </p>
             )}
           </div>
@@ -58,7 +58,7 @@ class MagazineSection extends Component {
     return (
       <div className='magazine-section'>
         <header className='category-header'>
-          <h3 className='category-heading' id={`category${id}`}>{Categories[id]}</h3>
+          <h3 className='category-heading' id={`category${id}`}>{CategoryTitles[id]}</h3>
         </header>
         <ol className='article-ls'>
           {articlesCompArr}
@@ -109,6 +109,7 @@ class FetchedIssue extends Component {
           <MagazineSection id={colId} key={`s${colId}`} order={columns[colId].taskIds} articles={tasks} />
         )
       }
+      return null;
     })
 
     this.setState({
