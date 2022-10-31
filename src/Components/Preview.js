@@ -99,7 +99,7 @@ export class Preview extends Component {
       organizer: { 2: 'Organizer with address', 3: 'Organizing member/department/section (NITAP)', 11: 'Organising institute name and address', 13: 'Organising institute name with address', 14: 'Organising section/institute name', 16: 'Organizer name', 17: 'Organizer name' },// 2, 3, 14, 16, 17 
       pi: { 4: 'Principal Investigators' }, // 4
       copi: { 4: 'Co-principal Investigators' }, // 4 
-      title: { 2: 'Title of speech', 3: 'Title of speech', 4: 'Projec title', 5: 'Nature/ title of the work/job', 7: 'Article title', 8: 'Book title, subtitle', 9: 'Contribution title', 10: 'Title', 11: 'Title of the programme' }, // 2, 3, 4, 8, 7, 9, 10
+      title: { 2: 'Title of speech', 3: 'Title of speech', 4: 'PROJECT TITLE', 5: 'Nature/ title of the work/job', 7: 'Article title', 8: 'Book title, subtitle', 9: 'Contribution title', 10: 'Title', 11: 'Title of the programme' }, // 2, 3, 4, 8, 7, 9, 10
       editors: { 10: "Editors' Name" }, // 10
       bookTitle: { 10: 'Title of book' }, // 10
       fundAgency: { 4: 'Funding Agency', 5: 'Sponsored agency' },// 4, 5 
@@ -194,7 +194,7 @@ export class Preview extends Component {
         outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, ${this.ov('insName')} visited and delivered a ${this.ov('lectureType')} on "${this.ov('title')}" organised by ${this.ov('organizer')}, ${this.ov('date')}`
         break;
       case 4:
-        outMdStr = `${this.ov('pi')} ${fields.pi ? (fields.pi.length === 1 ? 'as a Principal Investigator' : 'as Principal Investigators') : ''} with ${this.ov('copi')} ${fields.copi ? (fields.copi.length === 1 ? 'as a Co-Principal Investigator' : 'as Co-Principal Investigators') : ''} recieved an external project titled "${this.ov('title')}". Funding agency: ${this.ov('fundAgency')}, ${this.ov('date')}.`
+        outMdStr = `${this.ov('pi')} ${fields.pi ? (fields.pi.length === 1 ? 'as a Principal Investigator' : 'as Principal Investigators') : ''} and ${this.ov('copi')} ${fields.copi ? (fields.copi.length === 1 ? 'as a Co-Principal Investigator' : 'as Co-Principal Investigators') : ''} received an external project titled "${this.ov('title')}". Funding Agency: ${this.ov('fundAgency')}, ${this.ov('date')}.`
         break;
       case 5:
         outMdStr = `Name of the job: ${this.ov('title')}
