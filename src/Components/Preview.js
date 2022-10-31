@@ -185,13 +185,13 @@ export class Preview extends Component {
     let outMdStr = '', dateStr = '';
     switch (category) {
       case 1:
-        outMdStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event ${this.ov('date')}`
+        outMdStr = `${this.ov('insName')} and ${this.ov('partnerInsName')}, ${this.ov('partnerInsAddr')} signed a Memorandum of Understanding under ${this.ov('theme')}. ${this.ov('purposeAgreement')}. During the event, ${this.ov('insMembers')}, with ${this.ov('outMembers')} were present. ${this.ov('otherMembers')} had witnessed the event. ${this.ov('date')}`
         break;
       case 2:
-        outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, NITAP delivered a ${this.ov('lectureType')} on "${this.ov('title')}" in the ${this.ov('eventName')} organised by ${this.ov('organizer')} on ${this.ov('date')}.`
+        outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, NITAP delivered a ${this.ov('lectureType')} on "${this.ov('title')}" in the ${this.ov('eventName')} organised by ${this.ov('organizer')}, ${this.ov('date')}.`
         break;
       case 3:
-        outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, ${this.ov('insName')} visited and delivered a ${this.ov('lectureType')} on "${this.ov('title')}" organised by ${this.ov('organizer')} on ${this.ov('date')}`
+        outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, ${this.ov('insName')} visited and delivered a ${this.ov('lectureType')} on "${this.ov('title')}" organised by ${this.ov('organizer')}, ${this.ov('date')}`
         break;
       case 4:
         outMdStr = `${this.ov('pi')} ${fields.pi ? (fields.pi.length === 1 ? 'as a Principal Investigator' : 'as Principal Investigators') : ''} with ${this.ov('copi')} ${fields.copi ? (fields.copi.length === 1 ? 'as a Co-Principal Investigator' : 'as Co-Principal Investigators') : ''} recieved an external project titled "${this.ov('title')}". Funding agency: ${this.ov('fundAgency')}, ${this.ov('date')}.`
@@ -231,16 +231,19 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
         outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} was *The Chair of Panel Session* at ${this.ov('eventName')}, organised by ${this.ov('organizer')}, ${dateStr}.`
         break;
       case 14:
-        outMdStr = `${this.ov('winner')}, ${this.ov('insName')} won the ${this.ov('rank')} in the competition on the theme of "${this.ov('theme')}" organized by ${this.ov('organizer')}  ${fields.collaboration ? `in association with ${this.ov('collaboration')},` : ''} on ${this.ov('date')}`
+        outMdStr = `${this.ov('winner')}, ${this.ov('insName')} won the ${this.ov('rank')} in the ${this.ov('eventName')} on the theme of "${this.ov('theme')}" organized by ${this.ov('organizer')}${fields.collaboration ? ` in association with ${this.ov('collaboration')}` : ''}, ${this.ov('date')}`
         break;
       case 15:
-        outMdStr = `${this.ov('eventName')} on "${this.ov('theme')}" was organized by ${this.ov('coordinatorName')}, ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} at ${this.ov('place')} on ${this.ov('date')}.`
+        dateStr = fields.toDate ? `from ${this.ov('date')} to ${this.ov('toDate')}` : ` ${this.ov('date')}`
+        outMdStr = `${this.ov('eventName')} on "${this.ov('theme')}" was organized by ${this.ov('coordinatorName')}, ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} at ${this.ov('place')}, ${dateStr}.`
         break;
       case 16:
-        outMdStr = `${this.ov('eventName')} was organised  by ${this.ov('organizer')}, ${this.ov('designation')}  ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} on the mark/occassion of ${this.ov('theme')}, on ${this.ov('date')}.`
+        dateStr = fields.toDate ? `from ${this.ov('date')} to ${this.ov('toDate')}` : ` ${this.ov('date')}`
+        outMdStr = `${this.ov('eventName')} was organised  by ${this.ov('organizer')}, ${this.ov('designation')}, ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} on the ${this.ov('theme')}, ${dateStr}.`
         break;
       case 17:
-        outMdStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('designation')}, NITAP, ${fields.collaboration ? `sponsored by ${this.ov('collaboration')},` : ''} , ${this.ov('date')}. More details, visit  NITAP official website : www.nitap.ac.in or link of event: ${this.ov('eventLink')}`
+        dateStr = fields.toDate ? `from ${this.ov('date')} to ${this.ov('toDate')}` : ` ${this.ov('date')}`
+        outMdStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('designation')}, ${fields.collaboration ? `sponsored by ${this.ov('collaboration')},` : ''} ${dateStr}. More details, visit  NITAP official website: www.nitap.ac.in ${fields.eventLink ? `or link of event: ${this.ov('eventLink')}` : ''}`
         break;
       default:
         break;
