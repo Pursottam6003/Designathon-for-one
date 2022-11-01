@@ -23,7 +23,7 @@
   --gray-10: rgb(22, 25, 28);
 
   --nav-height: 4rem;
-  --footer-height: 229px;
+  --footer-height: 232px;
 
   @media screen and (max-width: 548px) {
     --nav-height: 4rem;
@@ -775,6 +775,15 @@ h3 {
   background: linear-gradient(rgba(21, 21, 21, 0.8), rgba(5, 5, 5, 0.8)), url(../images/banner.jpg);
   background-size: cover;
 
+  a {
+    color: #ddd;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #fefefe;
+    text-decoration: underline;
+  }
+
   .info-Footer {
 
     color: white;
@@ -994,6 +1003,7 @@ h3 {
 
     .dnd-h-scroll {
       overflow-x: auto;
+
       .dnd-wrapper {
         width: fit-content;
       }
@@ -1969,95 +1979,88 @@ h3 {
 
 
 .login-page {
-  .login-container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
+  // display: flex;
+  // flex-direction: row;
+  // width: 100%;
 
+  .form-box {
 
-    .login-image {
-      flex: 1 1;
-      margin-top: 30px;
-
-      img {
-        width: 100%;
+    .greet-box {
+      .heading {
+        font-size: 1.6rem;
+        color: var(--gray-8);
+        border-bottom: solid 1px rgb(200, 200, 200);
       }
+
+      margin-bottom: 2rem;
     }
 
-    .form-box {
-      flex: 1 1;
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-      .greet-box {
-        .heading {
-          font-size: 1.6rem;
-          color: var(--gray-8);
-          border-bottom: solid 1px rgb(200, 200, 200);
+      .login-field {
+        position: relative;
+        margin: 0 0 1.6rem;
+
+        .icon {
+          position: absolute;
+          width: 24px;
+          height: 24px;
+          top: 50%;
+          left: 0.8rem;
+          transform: translateY(-50%);
+          z-index: 1;
         }
 
-        margin-bottom: 2rem;
-      }
-
-      .login-form {
-        .login-field {
+        input {
           position: relative;
-          margin: 0 0 1.2rem;
-
-          .icon {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            top: 50%;
-            left: 0.25rem;
-            transform: translateY(-50%);
-          }
-
-          input {
-            position: relative;
-            background-color: transparent;
-            padding: 0.5rem 2.5rem;
-            border: none;
-            outline: none;
-            border-bottom: solid 2px transparent;
-            transition: all 0.3s;
-            width: 100%;
-          }
-
-          input:hover {
-            background-color: rgba(80, 44, 138, 0.082);
-          }
-
-          input:focus {
-            border-bottom: solid 2px var(--gray-7);
-            background-color: transparent;
-          }
+          background-color: transparent;
+          padding: 0.8rem 0.8rem 0.8rem 3rem;
+          border: none;
+          outline: none;
+          border-bottom: solid 2px transparent;
+          transition: all 0.3s;
+          width: 100%;
+          font-size: 1rem;
         }
 
-        .login-btn {
-          background-color: white;
-          font-size: 0.95rem;
-          border: solid 2px var(--gray-7);
-          padding: 0.4rem 2.5rem;
-          border-radius: 4rem;
-          transition: 0.2s all;
-          width: 50%;
-          margin: 1rem 0;
+        input:hover {
+          background-color: rgba(80, 44, 138, 0.082);
         }
 
-        .login-btn:hover {
-          background-color: var(--gray-7);
-          color: var(--gray-0);
-        }
-
-        .login-btn:focus {
-          background-color: var(--gray-9);
-          border: solid 2px var(--gray-9);
-          color: #fff;
+        input:focus {
+          border-bottom: solid 2px var(--gray-7);
+          background-color: transparent;
         }
       }
+
+      .login-btn {
+        background-color: white;
+        font-size: 1rem;
+        border: solid 2px var(--gray-7);
+        padding: 0.45rem 2.5rem;
+        min-width: 250px;
+        border-radius: 4rem;
+        transition: 0.2s all;
+        margin: 1rem 0;
+      }
+
+      .login-btn:hover {
+        background-color: var(--gray-7);
+        color: var(--gray-0);
+      }
+
+      .login-btn:focus {
+        background-color: var(--gray-9);
+        border: solid 2px var(--gray-9);
+        color: #fff;
+      }
     }
-
-
   }
+
+
 
   .LoginButton {
     padding: 10px;

@@ -28,37 +28,32 @@ export const Login = () => {
             sessionStorage.setItem('UID', currUid);
             history(-1);
         })
-        .catch(error => setErrorMsg(error.message));
+            .catch(error => setErrorMsg(error.message));
     }
     return (
         <div className='login-page route'>
             <div className='container'>
-                <div className='login-container'>
-                    <div className='login-image'>
-                        <img alt="" src={loginImg} />
-                    </div>
+                <header className='page-header'>
+                    <h1 className='heading'>Login</h1>
+                </header>
+                <div className='form-box'>
                     {successMsg && <>
                         <div className='success-msg'>{successMsg}</div>
                     </>}
-                    <div className='form-box'>
-                        <div className='greet-box'>
-                            <h2 className='heading'>Login</h2>
+                    <form className='login-form' onSubmit={handleLogin}>
+                        <div className='login-field email'>
+                            <img alt="" src={envelop} className='icon' />
+                            <input type='email' required placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email} ></input>
                         </div>
-                        <form className='login-form' onSubmit={handleLogin}>
-                            <div className='login-field email'>
-                                <img alt="" src={envelop} className='icon' />
-                                <input type='email' required placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email} ></input>
-                            </div>
-                            <div className='login-field password'>
-                                <img alt="" src={lock} className='icon' />
-                                <input type='password' onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password'></input>
-                            </div>
-                            <button className='login-btn' type="submit">Login</button>
-                        </form>
-                        {errorMsg && <>
-                            <div className='error-msg'>{errorMsg}</div>
-                        </>}
-                    </div>
+                        <div className='login-field password'>
+                            <img alt="" src={lock} className='icon' />
+                            <input type='password' onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password'></input>
+                        </div>
+                        <button className='login-btn' type="submit">Login</button>
+                    </form>
+                    {errorMsg && <>
+                        <div className='error-msg'>{errorMsg}</div>
+                    </>}
                 </div>
             </div>
         </div>

@@ -31,7 +31,7 @@ export const Footer = () => {
       </div>
       </div>
       <div className='copyright '>
-      <div className='container'>&#169; 2022 all rights are preserved , Technodaya , NIT arunchal pradesh </div>
+      <div className='container'>&#169; 2022 all rights are reserved, Technodaya, NIT Arunchal Pradesh</div>
       </div>
     </div>
   )
