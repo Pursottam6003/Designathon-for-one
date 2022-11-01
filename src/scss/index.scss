@@ -844,6 +844,7 @@ h3 {
       flex-shrink: 0;
       position: sticky;
       top: var(--nav-height);
+      z-index: 1;
 
       .console-nav {
         flex-grow: 1;
