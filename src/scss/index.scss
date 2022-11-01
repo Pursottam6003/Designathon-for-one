@@ -992,8 +992,11 @@ h3 {
       }
     }
 
-    .dnd-wrapper {
+    .dnd-h-scroll {
       overflow-x: auto;
+      .dnd-wrapper {
+        width: fit-content;
+      }
     }
   }
 }

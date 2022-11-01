@@ -91,12 +91,12 @@ export class Preview extends Component {
       toDate: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '', 9: '', 10: '', 11: '', 12: '', 13: '', 14: '', 15: '', 16: '', 17: '' },
       speakerName: { 2: 'Speaker name', 3: 'Speaker name' }, // 2, 3 
       designation: { 2: 'Designation', 3: 'Designation', 5: 'Designation', 11: 'Designation', 12: 'Designation', 13: 'Designation', 16: 'Designation', 17: 'Designation' },//2, 3, 5 , 11, 12, 13, 15
-      department: { 2: 'Department', 3: 'Department', 5: 'Department', 11: 'Department', 12: 'Department', 13: 'Department' },//2, 5, 11, 12 , 13, 15
+      department: { 2: 'Department', 3: 'Department', 5: 'Department', 11: 'Department', 12: 'Department', 13: 'Department', 17: 'Department' },//2, 5, 11, 12 , 13, 15
       lectureType: { 2: 'Keynote/special lecture/inagural address etc.', 3: 'Keynote/special lecture/inagural address etc.' },  // 2, 3 
       eventName: { 2: 'Event name', 9: 'Conference Name', 13: 'Name of workshop', 14: 'Name of the competition', 15: 'Event name', 16: 'Name of the event', 17: 'Event name' },// 2, 9, 15, 16, 17 
       confType: { 7: 'national', 9: 'national' },   // 9
       eventType: { 11: 'Programme type: workshop/confrence/seminaar/FDP/EDP' },   // 9, 10
-      organizer: { 2: 'Organizer with address', 3: 'Organizing member/department/section (NITAP)', 11: 'Organising institute name and address', 13: 'Organising institute name with address', 14: 'Organising section/institute name', 16: 'Organizer name', 17: 'Organizer name' },// 2, 3, 14, 16, 17 
+      organizer: { 2: 'Organizer with address', 3: 'Organizing member/department/section (NITAP)', 11: 'Organising institute name and address', 13: 'Organising institute name with address', 14: 'Organising section/institute name', 16: 'Organizer name', 17: 'Organizer name and designation' },// 2, 3, 14, 16, 17 
       pi: { 4: 'Principal Investigators' }, // 4
       copi: { 4: 'Co-principal Investigators' }, // 4 
       title: { 2: 'Title of speech', 3: 'Title of speech', 4: 'PROJECT TITLE', 5: 'Nature/ title of the work/job', 7: 'Article title', 8: 'Book title, subtitle', 9: 'Contribution title', 10: 'Title', 11: 'Title of the programme' }, // 2, 3, 4, 8, 7, 9, 10
@@ -194,7 +194,7 @@ export class Preview extends Component {
         outMdStr = `${this.ov('speakerName')}, ${this.ov('designation')}, ${this.ov('department')}, ${this.ov('insName')} visited and delivered a ${this.ov('lectureType')} on "${this.ov('title')}" organised by ${this.ov('organizer')}, ${this.ov('date')}`
         break;
       case 4:
-        outMdStr = `${this.ov('pi')} ${fields.pi ? (fields.pi.length === 1 ? 'as a Principal Investigator' : 'as Principal Investigators') : ''} and ${this.ov('copi')} ${fields.copi ? (fields.copi.length === 1 ? 'as a Co-Principal Investigator' : 'as Co-Principal Investigators') : ''} received an external project titled "${this.ov('title')}". Funding Agency: ${this.ov('fundAgency')}, ${this.ov('date')}.`
+        outMdStr = `${this.ov('pi')} ${fields.pi ? (fields.pi.length === 1 ? 'as a Principal Investigator' : 'as Principal Investigators') : ''} ${fields.copi ? (fields.copi.length === 1 ? `and ${this.ov('copi')} as a Co-Principal Investigator` : `and ${this.ov('copi')} as Co-Principal Investigators`) : ''} received an external project titled "${this.ov('title')}". Funding Agency: ${this.ov('fundAgency')}, ${this.ov('date')}.`
         break;
       case 5:
         outMdStr = `Name of the job: ${this.ov('title')}
@@ -239,11 +239,11 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
         break;
       case 16:
         dateStr = fields.toDate ? `from ${this.ov('date')} to ${this.ov('toDate')}` : ` ${this.ov('date')}`
-        outMdStr = `${this.ov('eventName')} was organised  by ${this.ov('organizer')}, ${this.ov('designation')}, ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} on the ${this.ov('theme')}, ${dateStr}.`
+        outMdStr = `${this.ov('eventName')} was organised  by ${this.ov('organizer')}, ${this.ov('designation')} ${fields.collaboration ? `in collaboration with ${this.ov('collaboration')},` : ''} on the ${this.ov('theme')}, ${dateStr}.`
         break;
       case 17:
         dateStr = fields.toDate ? `from ${this.ov('date')} to ${this.ov('toDate')}` : ` ${this.ov('date')}`
-        outMdStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('designation')}, ${fields.collaboration ? `sponsored by ${this.ov('collaboration')},` : ''} ${dateStr}. More details, visit  NITAP official website: www.nitap.ac.in ${fields.eventLink ? `or link of event: ${this.ov('eventLink')}` : ''}`
+        outMdStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('department')}, ${fields.collaboration ? `sponsored by ${this.ov('collaboration')},` : ''} ${dateStr}. More details, visit  NITAP official website: www.nitap.ac.in ${fields.eventLink ? `or link of event: ${this.ov('eventLink')}` : ''}`
         break;
       default:
         break;

@@ -97,24 +97,26 @@ export class DndMain extends Component {
   render() {
     const { orders } = this.props
     return (
-      <div className="dnd-wrapper">
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable droppableId="all-columns" direction="horizontal" type="column">
-            {provided => (
-              <Container
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {orders.columnOrder.map((columnId, index) => {
-                  const column = orders.columns[columnId];
-                  
-                  return <InnerList key={column.id} column={column} taskMap={orders.tasks} index={index} />
-                })}
-                {provided.placeholder}
-              </Container>
-            )}
-          </Droppable>
-        </DragDropContext>
+      <div className="dnd-h-scroll">
+        <div className="dnd-wrapper">
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <Droppable droppableId="all-columns" direction="horizontal" type="column">
+              {provided => (
+                <Container
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {orders.columnOrder.map((columnId, index) => {
+                    const column = orders.columns[columnId];
+
+                    return <InnerList key={column.id} column={column} taskMap={orders.tasks} index={index} />
+                  })}
+                  {provided.placeholder}
+                </Container>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </div>
       </div>
     )
   }

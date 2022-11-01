@@ -1476,25 +1476,25 @@ export class CategoryForm extends Component {
         </Field>
 
         <p className='sub-label'>Organiser details</p>
-        <Field showLabel={this.state.organizer.length} labeltxt="Organizer name">
+        <Field showLabel={this.state.organizer.length} labeltxt="Organizer name and designation">
           <input type="text"
             className='form-control'
             required
             name="organizer"
             value={this.state.organizer}
             onChange={this.handleChange}
-            placeholder="Organizer name"
+            placeholder="Organizer name and designation"
           />
         </Field>
 
-        <Field showLabel={this.state.designation.length} labeltxt="Designation">
+        <Field showLabel={this.state.department.length} labeltxt="Department name">
           <input type="text"
             className='form-control'
             required
-            name='designation'
-            value={this.state.designation}
+            name='department'
+            value={this.state.department}
             onChange={this.handleChange}
-            placeholder="Designation"
+            placeholder="Department name"
           />
         </Field>
 
