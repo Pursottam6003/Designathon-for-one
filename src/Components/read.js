@@ -17,10 +17,14 @@ export class MagazineCard extends Component {
           </a>
           <div className="date">
             <time>{month} {year}</time>
-            <div className="issue">{vol} issue {iss}</div>
+            <div className="issue">Vol-{vol} issue {iss}</div>
           </div>
           <div className="actions">
-            <a className="action-btn" href={pdfLink} target="_blank" rel='noreferrer'>View PDF</a>
+            {pdfLink ? (
+              <a className="action-btn" href={pdfLink} target="_blank" rel='noreferrer'>View PDF</a>
+            ) : (
+              <a className="action-btn" href={link} target="_blank" rel='noreferrer'>Read issue</a>
+            )}
             <button className="action-btn">Share</button>
           </div>
         </div>

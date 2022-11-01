@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
-import {fs} from '../config/config'
+import {fs} from '../../config/config'
 import { Magazine } from './Magazine';
-import { BiMonthlyNames } from '../helpers';
+import { BiMonthlyNames } from '../../helpers';
 
 const year = new Date().getFullYear();
 let MonthName;

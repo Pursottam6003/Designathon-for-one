@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 
 import { CategoryTitles } from '../helpers';
 import { Route, Routes, useParams } from 'react-router-dom';
+import { getBiMonth, BiMonthlyNames } from '../helpers';
 
 class MagezineArticle extends Component {
   render() {
@@ -123,11 +124,7 @@ class FetchedIssue extends Component {
 
   render() {
     const { title, iss, vol, month } = this.state
-    const monthObj = new Date(month)
-    const publishedAtStr = monthObj ? monthObj.toLocaleDateString('default', {
-      year: 'numeric',
-      month: 'long',
-    }) : ''
+    const publishedAtStr = BiMonthlyNames[getBiMonth(month)][1] + ' ' + month.slice(0, 4);
 
     return (
       <div className='container'>

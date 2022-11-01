@@ -1360,7 +1360,6 @@ export class CategoryForm extends Component {
           <Field labeltxt="Date" showLabel={0}>
             <input type="date"
               className='form-control'
-              required
               name="toDate"
               value={this.state.toDate}
               onChange={this.handleChange}
@@ -1442,7 +1441,6 @@ export class CategoryForm extends Component {
           <Field labeltxt="Date" showLabel={0}>
             <input type="date"
               className='form-control'
-              required
               name="toDate"
               value={this.state.toDate}
               onChange={this.handleChange}
@@ -1536,7 +1534,6 @@ export class CategoryForm extends Component {
           <Field labeltxt="Date" showLabel={0}>
             <input type="date"
               className='form-control'
-              required
               name="toDate"
               value={this.state.toDate}
               onChange={this.handleChange}

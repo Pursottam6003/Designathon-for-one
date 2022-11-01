@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import { Field } from "../form/Field"
 import { DndMain } from "../dnd/dndMain"
-import { fs } from '../../config/config'
-import { Categories } from "../../helpers"
+import { fs } from "../../config/config"
+import { Categories, getBiMonth, BiMonthlyNames } from "../../helpers"
 
 class DraftForm extends Component {
   handleChange = (e) => {
@@ -96,10 +96,10 @@ export class Draft extends Component {
 
   handlePublish = () => {
     const { orders, title, vol, iss, month } = this.state
+    document.getElementById("publishBtn").setAttribute("disabled", "");
 
     const year = month.slice(0, 4)
-    const biMonth = `MarApril`
-
+    const biMonth = BiMonthlyNames[getBiMonth(month)][0]
     const publishObj = {
       orders: {
         columnOrder: orders.columnOrder,
@@ -127,15 +127,17 @@ export class Draft extends Component {
         publishedAt: new Date().toLocaleString('en-IN'),
         Vol: vol,
         Issue: iss,
-        Month: month,
+        Month: biMonth,
         Year: year,
-        ImageUrl: 'https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_960_720.jpg',
-        Link: `./issues/${year}/${biMonth}`
+        ImageUrl: 'https://images.unsplash.com/photo-1667386513218-f4fab772a3eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+        Link: `./issues/${year}/${biMonth}`,
+        PdfUrl: ''
       }
       fs.collection(`PastPublications`).doc().set(coverObj).then(() => {
         console.log('Cover uploaded');
       })
     })
+    document.getElementById("publishBtn").removeAttribute("disabled");
   }
 
   handleForm = (name, value) => {
@@ -185,7 +187,7 @@ export class Draft extends Component {
                   Publish
                 </button>
               ) : (
-                <button className="btn submit" onClick={this.handlePublish} type="button">
+                <button className="btn submit" id="publishBtn" onClick={this.handlePublish} type="button">
                   Publish
                 </button>
               )}

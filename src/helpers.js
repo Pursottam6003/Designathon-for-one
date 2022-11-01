@@ -41,13 +41,13 @@ const CategoryTitles = [
 ]
 
 const BiMonthlyNames = [
-    '',
-    'JanFeb',
-    'MarApril',
-    'MayJune',
-    'JulyAug',
-    'SeptOct',
-    'NovDec',
+    ['', ''],
+    ['JanFeb', 'January - February'],
+    ['MarApril', 'March - April'],
+    ['MayJune', 'May - June'],
+    ['JulyAug', 'July - August'],
+    ['SeptOct', 'September - October'],
+    ['NovDec', 'November - December'],
 ]
 
 const getBiMonth = (date) => {
