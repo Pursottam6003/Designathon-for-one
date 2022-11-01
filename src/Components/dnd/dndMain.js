@@ -4,7 +4,7 @@ import { DndSubmissions } from "../dnd/dndSubmissions"
 import styled from "styled-components"
 
 const Container = styled.div`
-  margin: 0.5rem;
+  margin: 0.5rem 0;
   border-radius: 2px;
   display: flex;
 `;
