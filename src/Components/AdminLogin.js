@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { auth } from '../config/config'
-import loginImg from '../images/LoginPageImg.jpg'
 import lock from '../images/lock2.png'
 import envelop from '../images/envelop.png'
 import { useNavigate } from 'react-router-dom'
