@@ -38,7 +38,7 @@ const Created = styled.time`
 export class Task extends Component {
   render() {
     const { content, created, author } = this.props.task
-    const date = created.slice(0, 11)
+    const date = created.slice(0, 11);
     return (
       <Draggable draggableId={this.props.task.id} index={this.props.index}>
         {(provided, snapshot) => {
