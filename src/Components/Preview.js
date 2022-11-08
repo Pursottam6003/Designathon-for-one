@@ -122,7 +122,8 @@ export class Preview extends Component {
       coordinatorName: { 15: 'Coordinator Name' },  // 15
       eventLink: { 17: 'Event link' },  // 17
       eventBrochure: { 17: 'Upload brochure' },  // 17,
-      imgCaption: { 5: 'Image caption' }    // 5
+      imgCaption: { 5: 'Image caption' },    // 
+      desc: {18: 'Activity description'}
     }
 
     if (val === 'date' || val === 'toDate') {
@@ -244,6 +245,9 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
       case 17:
         dateStr = fields.toDate ? `from ${this.ov('date')} to ${this.ov('toDate')}` : ` ${this.ov('date')}`
         outMdStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('department')}, ${fields.collaboration ? `sponsored by ${this.ov('collaboration')},` : ''} ${dateStr}. More details, visit  NITAP official website: www.nitap.ac.in ${fields.eventLink ? `or link of event: ${this.ov('eventLink')}` : ''}`
+        break;
+      case 18:
+        outMdStr = `${this.ov('desc')}`
         break;
       default:
         break;

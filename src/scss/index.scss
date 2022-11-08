@@ -780,6 +780,7 @@ h3 {
     color: #ddd;
     text-decoration: none;
   }
+
   a:hover {
     color: #fefefe;
     text-decoration: underline;
@@ -1121,6 +1122,17 @@ h3 {
           transition: 0.2s border ease;
         }
 
+        .form-control.raw-md-desc {
+          width: 100%;
+          min-height: 128px;
+          font-family: monospace;
+          resize: vertical;
+        }
+
+        .form-control.raw-md-desc:focus {
+          border: solid 2px rgb(57, 57, 160);
+        }
+
         select,
         input {
           background-color: transparent;
@@ -1329,6 +1341,42 @@ h3 {
         }
       }
 
+      .form-navigate {
+        position: relative;
+        display: block;
+        height: 2.8rem;
+        width: 2.8rem;
+        margin: 2.2rem auto 0;
+        background-color: rgb(117, 104, 84);
+        border: none;
+        border-radius: 50%;
+
+        svg {
+          fill: none;
+          position: absolute;
+          height: 1.2rem;
+          width: auto;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          transition: all 0.1s ease;
+          opacity: 0;
+          fill: white;
+        }
+      }
+
+      .next.form-navigate svg,
+      .prev.form-navigate svg {
+        opacity: 1;
+      }
+
+      .next.form-navigate:active svg {
+        transform: translate(-35%, -50%);
+      }
+
+      .prev.form-navigate:active svg {
+        transform: translate(-65%, -50%);
+      }
     }
   }
 
@@ -1397,6 +1445,7 @@ h3 {
         padding: var(--txt-field-padding);
         transition: 0.3s background-color ease;
         border: solid 1px transparent;
+        overflow-y: auto;
 
         .previewed-input {
           margin: 0 0 0.8rem;

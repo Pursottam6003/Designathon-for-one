@@ -49,6 +49,19 @@ export class Form extends Component {
     })
   }
 
+  handleActivityTitleUpdate = (val) => {
+    this.setState({
+      activityTitle: val
+    }, () => {
+      this.props.getPreview({
+        category: this.state.category,
+        activityTitle: this.state.activityTitle,
+        images: this.state.images,
+        imgCaption: this.state.imgCaption
+      })
+    })
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.category !== prevState.category) {
       this.setState({
@@ -113,6 +126,8 @@ export class Form extends Component {
         {parseInt(this.state.category) !== 0 && (
           <>
             <CategoryForm
+              activityTitle={this.state.activityTitle}
+              handleActivityTitleUpdate={this.handleActivityTitleUpdate}
               handleUpdate={this.fetchCategoryData}
               categoryId={parseInt(this.state.category)}
               key={parseInt(this.state.category)}

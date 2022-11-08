@@ -4,6 +4,9 @@ import { Preview } from './Preview'
 import { storage, fs } from '../config/config'
 import firebase from 'firebase/compat/app'
 import { Categories } from '../helpers'
+import { ReactComponent as NextIcon } from '../images/icons/forward-arrow.svg'
+import { ReactComponent as PrevIcon } from '../images/icons/back-arrow.svg'
+
 
 export class AddBlogs extends Component {
   initialState = {
@@ -48,7 +51,8 @@ export class AddBlogs extends Component {
       fs.collection(`pendings/`).doc().set(uploadObj).then(() => {
         console.log("Sucessfully uploaded");
         this.setState({
-          clearRev: this.state.clearRev + 1
+          clearRev: this.state.clearRev + 1,
+          category: this.initialState.category
         })
       })
     }
@@ -160,6 +164,16 @@ export class AddBlogs extends Component {
               switchForm={this.switchForm}
               display={this.state.edit ? 'none' : 'block'}
             />
+
+            <div>
+              <button onClick={(e) => { this.switchForm(!this.state.edit) }} 
+                className={`form-navigate${this.state.edit ? ' next' : ' prev'}`} 
+                role="navigate"
+                title={`${this.state.edit ? 'Next' : 'Go back'}`}
+              >
+                {this.state.edit ? <NextIcon /> : <PrevIcon />}
+              </button>
+            </div>
           </div>
         </div>
       </div>

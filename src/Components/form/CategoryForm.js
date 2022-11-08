@@ -1553,6 +1553,30 @@ export class CategoryForm extends Component {
           />
         </Field>
       </>)
+    } else {
+      return (
+        <>
+          <p className='sub-label'>Activity title</p>
+          <input type="text"
+            className='form-control'
+            name="activityTitle"
+            onChange={e => { this.props.handleActivityTitleUpdate(e.target.value) }}
+            value={this.props.activityTitle}
+            required
+            placeholder="Mention activity title"
+          />
+
+          <p className='sub-label'>Activity description</p>
+          <textarea
+            className='form-control raw-md-desc'
+            name="desc"
+            placeholder="Paste activity description here (Use Markdown for formating)"
+            onChange={this.handleChange} 
+            required
+          />
+
+        </>
+      )
     }
   }
 }

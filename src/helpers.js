@@ -17,6 +17,7 @@ const Categories = [
     'Workshop / FDP / Conference / seminar / short term course etc.',
     'Outreach Activity',
     'Announcement',
+    'Other'
 ]
 
 const CategoryTitles = [
@@ -38,6 +39,7 @@ const CategoryTitles = [
     'Workshop / FDP / Conference / seminar / short term course etc.',
     'Outreach Activity',
     'Announcement',
+    'Untitled'
 ]
 
 const BiMonthlyNames = [
