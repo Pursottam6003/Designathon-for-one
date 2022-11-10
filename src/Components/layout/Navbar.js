@@ -11,8 +11,8 @@ import {auth} from '../../config/config'
 const toggleHamburger = () => {
   let navbar = document.getElementsByClassName("mobile")[0];
   navbar.style.width = "100%";
-
 }
+
 const close = () => {
   let navbar = document.getElementsByClassName("mobile")[0];
   navbar.style.width = "0";

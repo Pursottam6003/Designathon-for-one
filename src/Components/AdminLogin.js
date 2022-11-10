@@ -22,7 +22,6 @@ export const Login = () => {
             setPassword('');
             setErrorMsg('');
             setSuccessMsg('');
-
             const currUid = auth.currentUser.uid;
             sessionStorage.setItem('UID', currUid);
             history(-1);
