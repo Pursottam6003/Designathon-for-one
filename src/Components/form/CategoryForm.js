@@ -50,6 +50,7 @@ export class CategoryForm extends Component {
     coordinatorName: '',  // 15
     eventLink: '',  // 17
     eventBrochure: null,  // 17
+    desc: '',
     formData: {}
   }
 
@@ -647,11 +648,10 @@ export class CategoryForm extends Component {
             <input type="number"
               min="0"
               className='form-control'
-              required
               name="volNo"
               value={this.state.volNo}
               onChange={this.handleChange}
-              placeholder="Volume no."
+              placeholder="Volume no. (if available)"
             />
           </Field>
 
@@ -659,22 +659,20 @@ export class CategoryForm extends Component {
             <input type="number"
               min="0"
               className='form-control'
-              required
               name="issueNo"
               value={this.state.issueNo}
               onChange={this.handleChange}
-              placeholder="Issue No."
+              placeholder="Issue No. (if available)"
             />
           </Field>
 
           <Field showLabel={this.state.pageNos.length} labeltxt="Page no.">
             <input type="text"
               className='form-control'
-              required
               name="pageNos"
               value={this.state.pageNos}
               onChange={this.handleChange}
-              placeholder="Page no."
+              placeholder="Page no. (if available)"
             />
           </Field>
 

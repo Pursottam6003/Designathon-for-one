@@ -141,9 +141,17 @@ export class AddBlogs extends Component {
         <div className='activity-form'>
           <div className='tablist-wrapper'>
             <div id='tabList' className='tablist'>
-              <button onClick={(e) => { this.switchForm(true) }} className={`tab ${this.state.edit && 'active'}`} role="tab">Form</button>
-              <button onClick={(e) => { this.switchForm(false) }} className={`tab ${!this.state.edit && 'active'}`} role="tab">Preview</button>
+              <button onClick={(e) => { this.switchForm(true) }} className={`tab ${this.state.edit ? 'active' : ''}`} role="tab">Form</button>
+              <button onClick={(e) => { this.switchForm(false) }} className={`tab ${!this.state.edit ? 'active' : ''}`} role="tab">Preview</button>
             </div>
+
+            <button onClick={(e) => { this.switchForm(!this.state.edit) }} 
+              className={`form-navigate${this.state.edit ? ' next' : ' prev'}`} 
+              role="navigate"
+              title={`${this.state.edit ? 'Next' : 'Go back'}`}
+            >
+              {this.state.edit ? <NextIcon /> : <PrevIcon />}
+            </button>
           </div>
 
           <div className='form-wrapper'>
@@ -165,15 +173,13 @@ export class AddBlogs extends Component {
               display={this.state.edit ? 'none' : 'block'}
             />
 
-            <div>
-              <button onClick={(e) => { this.switchForm(!this.state.edit) }} 
-                className={`form-navigate${this.state.edit ? ' next' : ' prev'}`} 
-                role="navigate"
-                title={`${this.state.edit ? 'Next' : 'Go back'}`}
-              >
-                {this.state.edit ? <NextIcon /> : <PrevIcon />}
-              </button>
-            </div>
+            <button onClick={(e) => { this.switchForm(!this.state.edit) }} 
+              className={`form-navigate${this.state.edit ? ' next' : ' prev'}`} 
+              role="navigate"
+              title={`${this.state.edit ? 'Next' : 'Go back'}`}
+            >
+              {this.state.edit ? <NextIcon /> : <PrevIcon />}
+            </button>
           </div>
         </div>
       </div>

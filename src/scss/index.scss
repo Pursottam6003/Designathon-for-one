@@ -23,7 +23,7 @@
   --gray-10: rgb(22, 25, 28);
 
   --nav-height: 4rem;
-  --footer-height: 232px;
+  --footer-height: 235px;
 
   @media screen and (max-width: 548px) {
     --nav-height: 4rem;
@@ -54,7 +54,6 @@ html {
 
 .route {
   min-height: calc(100vh - var(--nav-height) - var(--footer-height));
-  padding: 0 0 3rem;
 }
 
 // headings
@@ -1019,14 +1018,13 @@ h3 {
 
 .add-blogs {
   --bg-img-url: url('../images/form-bg2.png');
-  --bg-color: rgba(255, 255, 255, 0.97);
-  // background-image: linear-gradient(rgba(38, 37, 37, 0.5), rgba(33, 32, 32, 0.5)), var(--bg-img-url);
-  background-image: linear-gradient(rgb(145 144 144 / 50%), rgba(33, 32, 32, 0.5)), var(--bg-img-url);
+  --page-bg: linear-gradient(rgb(145 144 144 / 50%), rgba(33, 32, 32, 0.5)), var(--bg-img-url);
+  --form-bg-color: rgba(255, 255, 255, 0.97);
+  background-image: var(--page-bg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
-  padding: 1px 0;
 
   --top-offset: 54px;
 
@@ -1053,7 +1051,7 @@ h3 {
       height: var(--tablist-h);
       position: sticky;
       top: var(--nav-height);
-      background-image: linear-gradient(rgb(145 144 144 / 50%), rgba(33, 32, 32, 0.5)), var(--bg-img-url);
+      background-image: var(--page-bg);
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
@@ -1066,6 +1064,7 @@ h3 {
         display: flex;
         height: var(--tablist-h);
         align-items: flex-end;
+        font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
         overflow: visible;
 
         border-radius: 0.25rem 0.25rem 0 0;
@@ -1075,6 +1074,7 @@ h3 {
           color: rgb(74, 74, 74);
           border: none;
           display: block;
+          font-family: inherit;
           font-size: 1rem;
           width: 100%;
           padding: 0.6rem;
@@ -1087,7 +1087,7 @@ h3 {
         }
 
         .active {
-          background-color: var(--bg-color);
+          background-color: var(--form-bg-color);
           border-top: solid var(--active-border-h) var(--active-color);
           color: var(--active-color);
           font-weight: 600;
@@ -1095,14 +1095,59 @@ h3 {
           box-shadow: 0 0 11px rgb(0 0 0 / 12%);
         }
       }
+
+      .form-navigate {
+        display: none;
+      }
+    }
+
+    .form-navigate {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
+      display: block;
+      height: 2.8rem;
+      width: 2.8rem;
+      margin: 0.6rem auto 1.4rem;
+      background-color: #007e7c;
+      border: none;
+      border-radius: 50%;
+
+      svg {
+        fill: none;
+        position: absolute;
+        height: 1.2rem;
+        width: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.1s ease;
+        opacity: 0;
+        fill: white;
+      }
+    }
+
+    .next.form-navigate svg,
+    .prev.form-navigate svg {
+      opacity: 1;
+    }
+
+    .next.form-navigate:active svg {
+      transform: translate(-35%, -50%);
+    }
+
+    .prev.form-navigate:active svg {
+      transform: translate(-65%, -50%);
     }
 
     .form-wrapper {
-      min-height: 335px;
+      position: relative;
+      min-height: 380px;
       margin: 0 1rem 2rem;
-      padding: 3rem 2rem;
+      padding: 3rem 2rem 5rem;
       border-radius: 0 0 0.25rem 0.25rem;
-      background-color: var(--bg-color);
+      background-color: var(--form-bg-color);
       box-shadow: 0 5px 11px 0px rgb(0 0 0 / 12%);
       z-index: 0;
 
@@ -1339,43 +1384,6 @@ h3 {
             border: solid 2px rgb(57, 57, 160);
           }
         }
-      }
-
-      .form-navigate {
-        position: relative;
-        display: block;
-        height: 2.8rem;
-        width: 2.8rem;
-        margin: 2.2rem auto 0;
-        background-color: rgb(117, 104, 84);
-        border: none;
-        border-radius: 50%;
-
-        svg {
-          fill: none;
-          position: absolute;
-          height: 1.2rem;
-          width: auto;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          transition: all 0.1s ease;
-          opacity: 0;
-          fill: white;
-        }
-      }
-
-      .next.form-navigate svg,
-      .prev.form-navigate svg {
-        opacity: 1;
-      }
-
-      .next.form-navigate:active svg {
-        transform: translate(-35%, -50%);
-      }
-
-      .prev.form-navigate:active svg {
-        transform: translate(-65%, -50%);
       }
     }
   }
@@ -1666,13 +1674,18 @@ h3 {
       .form-wrapper {
         margin: 0;
         border-radius: 0;
-        padding: 1.6rem 1.2rem;
+        padding: 1.6rem 1.2rem 3.2rem;
+        z-index: unset;
 
         .form-group {
           input[type="text"].form-title {
             font-size: 1.8rem;
             margin: 0 0 1.2rem;
           }
+        }
+
+        .form-navigate {
+          display: none;
         }
       }
 
@@ -1683,6 +1696,23 @@ h3 {
         box-shadow: rgb(0 0 0 / 10%) 0px -3px 6px 0px;
         height: fit-content;
         background-image: none;
+        overflow: visible;
+
+        .form-navigate {
+          display: block;
+          bottom: 0.6rem;
+          height: 3.2rem;
+          width: 3.2rem;
+          margin: 0;
+
+          z-index: 1;
+          background-color: white;
+          border: solid 2px #007e7c;
+
+          svg {
+            fill: #007e7c;
+          }
+        }
 
         .tablist {
           height: fit-content;
