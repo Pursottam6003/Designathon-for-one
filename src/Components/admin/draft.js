@@ -13,7 +13,7 @@ class DraftForm extends Component {
   render() {
     const { title, vol, iss, month } = this.props
     return (
-      <form id="draftForm" className="draft-form form-group">
+      <form id="draftForm" className="draft-form form-group container">
         <input type="text" required name="title" className='form-control form-title' placeholder="Title of newsletter" onChange={this.handleChange} value={title} />
         <p className='sub-label'>Issue details</p>
         <Field labeltxt="Volume no." showLabel={vol.length}>
@@ -170,14 +170,14 @@ export class Draft extends Component {
             <h1 className="heading">Draft an Issue</h1>
           </header>
 
-          <main className="workspace container">
+          <main className="workspace">
             {formView ? (
               <DraftForm handleChange={this.handleForm} {...formProps} />
             ) : (
               <DndMain orders={orders} updateOrders={this.handleUpdateOrders} />
             )}
 
-            <div className="btns-group">
+            <div className="btns-group container">
               <button className="btn" onClick={this.switchView} type="button">
                 {formView ? 'Next' : 'Previous'}
               </button>
