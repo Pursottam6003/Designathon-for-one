@@ -147,7 +147,6 @@ export class AddBlogs extends Component {
 
             <button onClick={(e) => { this.switchForm(!this.state.edit) }} 
               className={`form-navigate${this.state.edit ? ' next' : ' prev'}`} 
-              role="navigate"
               title={`${this.state.edit ? 'Next' : 'Go back'}`}
             >
               {this.state.edit ? <NextIcon /> : <PrevIcon />}
@@ -175,7 +174,6 @@ export class AddBlogs extends Component {
 
             <button onClick={(e) => { this.switchForm(!this.state.edit) }} 
               className={`form-navigate${this.state.edit ? ' next' : ' prev'}`} 
-              role="navigate"
               title={`${this.state.edit ? 'Next' : 'Go back'}`}
             >
               {this.state.edit ? <NextIcon /> : <PrevIcon />}
