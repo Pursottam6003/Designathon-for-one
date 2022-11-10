@@ -994,9 +994,11 @@ h3 {
     }
   }
 
-  .workspace.container {
+  .container {
     padding: 0 1rem 0 2rem;
+  }
 
+  .workspace {
     .draft-form {
       input {
         max-width: 500px;
@@ -1008,6 +1010,7 @@ h3 {
 
       .dnd-wrapper {
         width: fit-content;
+        margin-left: 2rem;
       }
     }
   }
