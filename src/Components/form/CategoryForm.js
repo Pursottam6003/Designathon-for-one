@@ -1551,7 +1551,78 @@ export class CategoryForm extends Component {
           />
         </Field>
       </>)
-    } else {
+    } else if (parseInt(categoryId) === 18) {    // done
+      return (<>
+          <p className='sub-label'>Faculty member details</p>
+          <Field showLabel={this.state.facultyName.length} labeltxt="Name of faculty">
+            <input type="text"
+              className='form-control'
+              required
+              name="facultyName"
+              value={this.state.facultyName}
+              onChange={this.handleChange}
+              placeholder="Name of faculty"
+            />
+          </Field>
+
+          <Field showLabel={this.state.designation.length} labeltxt="Designation">
+            <input type="text"
+              className='form-control'
+              required
+              name="designation"
+              value={this.state.designation}
+              onChange={this.handleChange}
+              placeholder="Designation"
+            />
+          </Field>
+
+          <Field showLabel={this.state.department.length} labeltxt="Department">
+            <input type="text"
+              className='form-control'
+              required
+              name="department"
+              value={this.state.department}
+              onChange={this.handleChange}
+              placeholder="Department"
+            />
+          </Field>
+
+          <p className='sub-label'>Award details</p>
+          <Field showLabel={this.state.title.length} labeltxt="Award name">
+            <input type="text"
+              className='form-control'
+              required
+              name="title"
+              value={this.state.title}
+              onChange={this.handleChange}
+              placeholder="Award name"
+            />
+          </Field>
+
+          <Field showLabel={this.state.fundAgency.length} labeltxt="Award Issuing Organization">
+            <input type="text"
+              className='form-control'
+              required
+              name="fundAgency"
+              value={this.state.fundAgency}
+              onChange={this.handleChange}
+              placeholder="Award Issuing Organization"
+            />
+          </Field>
+
+          <p className='sub-label'>Date (Optional)</p>
+          <div className="date-wrapper">
+            <Field labeltxt="Date" showLabel={0}>
+              <input type="month"
+                className='form-control'
+                name="date"
+                value={this.state.date}
+                onChange={this.handleChange}
+              />
+            </Field>
+          </div>
+        </>)
+      } else {
       return (
         <>
           <p className='sub-label'>Activity title</p>

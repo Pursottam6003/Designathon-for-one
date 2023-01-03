@@ -87,11 +87,11 @@ export class Preview extends Component {
       insMembers: { 1: 'Members present from NITAP with their designation' },   // 1
       outMembers: { 1: 'Members present from partner Institute/Organization with their designation' },   // 1
       otherMembers: { 1: 'Other Renowned Members’ names with their designation' },   // 1
-      date: { 1: 'Date', 2: 'Date', 3: 'Date', 4: 'Date', 5: 'Date', 6: 'Date', 7: 'Date', 8: 'Date', 9: 'Month (optional)', 10: 'Date', 11: 'Date', 12: 'Date', 13: 'Date', 14: 'Date', 15: 'Date', 16: 'Date', 17: 'Date' }, // 1, 2, 3, 4, 5, 6, 14, 15, 16, 17 
+      date: { 1: 'Date', 2: 'Date', 3: 'Date', 4: 'Date', 5: 'Date', 6: 'Date', 7: 'Date', 8: 'Date', 9: 'Month (optional)', 10: 'Date', 11: 'Date', 12: 'Date', 13: 'Date', 14: 'Date', 15: 'Date', 16: 'Date', 17: 'Date', 18: 'Date' }, // 1, 2, 3, 4, 5, 6, 14, 15, 16, 17 
       toDate: { 1: '', 2: '', 3: '', 4: '', 5: '', 6: '', 7: '', 8: '', 9: '', 10: '', 11: '', 12: '', 13: '', 14: '', 15: '', 16: '', 17: '' },
       speakerName: { 2: 'Speaker name', 3: 'Speaker name' }, // 2, 3 
-      designation: { 2: 'Designation', 3: 'Designation', 5: 'Designation', 11: 'Designation', 12: 'Designation', 13: 'Designation', 16: 'Designation', 17: 'Designation' },//2, 3, 5 , 11, 12, 13, 15
-      department: { 2: 'Department', 3: 'Department', 5: 'Department', 11: 'Department', 12: 'Department', 13: 'Department', 17: 'Department' },//2, 5, 11, 12 , 13, 15
+      designation: { 2: 'Designation', 3: 'Designation', 5: 'Designation', 11: 'Designation', 12: 'Designation', 13: 'Designation', 16: 'Designation', 17: 'Designation', 18: 'Designation' },//2, 3, 5 , 11, 12, 13, 15, 18
+      department: { 2: 'Department', 3: 'Department', 5: 'Department', 11: 'Department', 12: 'Department', 13: 'Department', 17: 'Department', 18: 'Department' },//2, 5, 11, 12 , 13, 15, 18
       lectureType: { 2: 'Keynote/special lecture/inagural address etc.', 3: 'Keynote/special lecture/inagural address etc.' },  // 2, 3 
       eventName: { 2: 'Event name', 9: 'Conference Name', 13: 'Name of workshop', 14: 'Name of the competition', 15: 'Event name', 16: 'Name of the event', 17: 'Event name' },// 2, 9, 15, 16, 17 
       confType: { 7: 'national', 9: 'national' },   // 9
@@ -99,11 +99,11 @@ export class Preview extends Component {
       organizer: { 2: 'Organizer with address', 3: 'Organizing member/department/section (NITAP)', 11: 'Organising institute name and address', 13: 'Organising institute name with address', 14: 'Organising section/institute name', 16: 'Organizer name', 17: 'Organizer name and designation' },// 2, 3, 14, 16, 17 
       pi: { 4: 'Principal Investigators' }, // 4
       copi: { 4: 'Co-principal Investigators' }, // 4 
-      title: { 2: 'Title of speech', 3: 'Title of speech', 4: 'PROJECT TITLE', 5: 'Nature/ title of the work/job', 7: 'Article title', 8: 'Book title, subtitle', 9: 'Contribution title', 10: 'Title', 11: 'Title of the programme' }, // 2, 3, 4, 8, 7, 9, 10
+      title: { 2: 'Title of speech', 3: 'Title of speech', 4: 'PROJECT TITLE', 5: 'Nature/ title of the work/job', 7: 'Article title', 8: 'Book title, subtitle', 9: 'Contribution title', 10: 'Title', 11: 'Title of the programme', 18: 'Award name' }, // 2, 3, 4, 8, 7, 9, 10
       editors: { 10: "Editors' Name" }, // 10
       bookTitle: { 10: 'Title of book' }, // 10
-      fundAgency: { 4: 'Funding Agency', 5: 'Sponsored agency' },// 4, 5 
-      facultyName: { 5: 'Name of faculty', 11: 'Name of the faculty', 12: 'Name of the faculty', 13: 'Name of the faculty' },// 11, 12, 13
+      fundAgency: { 4: 'Funding Agency', 5: 'Sponsored agency', 18: 'Award Issuing Organization' },// 4, 5, 18 
+      facultyName: { 5: 'Name of faculty', 11: 'Name of the faculty', 12: 'Name of the faculty', 13: 'Name of the faculty', 18: 'Name of the faculty' },// 11, 12, 13, 18
       invName: { 6: 'Name of inventor' }, // 6
       year: { 6: 'Year the patent was issued', 7: 'Publication year', 8: 'Publication year', 10: 'Publication year' }, // 6, 7, 8
       patId: { 6: 'Unique patent identifier (patent number)' },  // 6
@@ -247,6 +247,10 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
         outMdStr = `${this.ov('eventName')} on ${this.ov('theme')} will be organized by ${this.ov('organizer')}, ${this.ov('department')}, ${fields.collaboration ? `sponsored by ${this.ov('collaboration')},` : ''} ${dateStr}. More details, visit  NITAP official website: www.nitap.ac.in ${fields.eventLink ? `or link of event: ${this.ov('eventLink')}` : ''}`
         break;
       case 18:
+        dateStr = fields.date ? ` ${this.ov('date')}` : ''
+        outMdStr = `${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')} is ${this.ov('title')} of ${this.ov('fundAgency')}${dateStr}.`
+        break;
+      case 19:
         outMdStr = `${this.ov('desc')}`
         break;
       default:
