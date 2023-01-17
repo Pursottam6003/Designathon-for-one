@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { fs } from '../config/config'
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 import { CategoryTitles } from '../helpers';
 import { Route, Routes, useParams } from 'react-router-dom';
@@ -23,11 +24,15 @@ class MagezineArticle extends Component {
     return (
       <li className='magazine-article'>
         {title !== CategoryTitles[parseInt(categoryId)] && (
-          <h4>{title}</h4>
+          <h4>
+            <ReactMarkdown children={title} rehypePlugins={[rehypeRaw]}
+              remarkPlugins={[remarkGfm]} />
+          </h4>
         )}
         <div className='content'>
           <p>
-            <ReactMarkdown children={content} remarkPlugins={[remarkGfm]} />
+            <ReactMarkdown children={content} rehypePlugins={[rehypeRaw]}
+              remarkPlugins={[remarkGfm]} />
           </p>
           {categoryId === 17 && (
             <p>For more details, <a href={brochureUrl}>download brochure</a> or visit <a href='https://nitap.ac.in/'>NIT Arunachal Pradesh website</a>.</p>
@@ -69,7 +74,7 @@ class MagazineSection extends Component {
   }
 }
 
-const IssueRoute = ({slug}) => {
+const IssueRoute = ({ slug }) => {
   const { year, biMonth } = useParams()
   const issueLn = `${year}/${biMonth}`
 
@@ -149,7 +154,7 @@ class FetchedIssue extends Component {
 
 export class Issue extends Component {
   render() {
-    const { slug } = this.props; 
+    const { slug } = this.props;
     return (
       <div className='route published-component'>
         <Routes>

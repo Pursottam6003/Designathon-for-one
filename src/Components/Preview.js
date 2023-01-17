@@ -3,6 +3,7 @@ import { ReactComponent as EmptyLetterBoxSvg } from '../images/emptyletterbox.sv
 import { ReactComponent as MarkdownIcon } from '../images/icons/markdownIcon.svg'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import { CategoryTitles } from '../helpers'
 
 const NoPreview = () => {
@@ -123,7 +124,7 @@ export class Preview extends Component {
       eventLink: { 17: 'Event link' },  // 17
       eventBrochure: { 17: 'Upload brochure' },  // 17,
       imgCaption: { 5: 'Image caption' },    // 
-      desc: {19: 'Activity description'},
+      desc: { 19: 'Activity description' },
     }
 
     if (val === 'date' || val === 'toDate') {
@@ -344,7 +345,10 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
                   editingMode={this.editingMode}
                   output={heading}
                 >
-                  <h1>{heading}</h1>
+                  <h1>
+                    <ReactMarkdown children={heading} rehypePlugins={[rehypeRaw]}
+                      remarkPlugins={[remarkGfm]} />
+                  </h1>
                 </PreviewedInput>
 
                 <PreviewedInput
@@ -354,7 +358,8 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
                   editingMode={this.editingMode}
                   output={output}
                 >
-                  <ReactMarkdown children={output} remarkPlugins={[remarkGfm]} />
+                  <ReactMarkdown children={output} rehypePlugins={[rehypeRaw]}
+                    remarkPlugins={[remarkGfm]} />
                 </PreviewedInput>
 
                 <footer className='markdown-support'>
