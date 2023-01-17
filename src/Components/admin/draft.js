@@ -139,11 +139,11 @@ export class Draft extends Component {
             console.log('Preview generated!');
             this.setState({
               preview: previewLink,
-            });
+            }, () => {
+              document.getElementById("publishBtn").removeAttribute("disabled");
+            })
           })
-        document.getElementById("publishBtn").removeAttribute("disabled");
       })
-
   }
 
   handlePublish = () => {
@@ -226,6 +226,44 @@ export class Draft extends Component {
       <div className="draft">
         <header className="page-header container">
           <h1 className="heading">Draft an Issue</h1>
+
+          <div>
+            <div className="btns-group">
+              {!formView && !preview && (
+                <button
+                  form="draftForm"
+                  className="btn submit"
+                  id="publishBtn"
+                  onClick={this.handlePreviewIssue}
+                  type="submit"
+                >
+                  Generate preview
+                </button>
+              )}
+
+              {preview && (<>
+                <a target="_blank" rel="noreferrer" href={`/${preview}`}>
+                  Show preview
+                </a>
+
+                <button
+                  form="draftForm"
+                  className="btn submit"
+                  id="publishBtn"
+                  onClick={this.handlePublish}
+                  type="submit"
+                >
+                  Publish
+                </button>
+              </>)}
+              {iss && month && vol && (
+                <button className="btn" onClick={this.switchView} type="button">
+                  {formView ? 'Next' : 'Previous'}
+                </button>
+              )}
+            </div>
+          </div>
+
         </header>
 
         <main className="workspace">
@@ -248,50 +286,6 @@ export class Draft extends Component {
               <DraftForm handleChange={this.handleForm} {...formProps} />
             ) : (
               <DndMain orders={orders} updateOrders={this.handleUpdateOrders} />
-            )
-          }
-
-          <div className="btns-group container">
-            {iss && month && vol && (
-              <button className="btn" onClick={this.switchView} type="button">
-                {formView ? 'Next' : 'Previous'}
-              </button>
-            )}
-
-            {!formView && !preview && (
-              <button
-                form="draftForm"
-                className="btn submit"
-                id="publishBtn"
-                onClick={this.handlePreviewIssue}
-                type="submit"
-              >
-                Generate preview
-              </button>
-            )}
-
-          </div>
-          {
-            preview && (
-              <div className="container">
-                <h5>Preview is available. Check it by clicking below and come back to publish</h5>
-
-                <div className="btns-group">
-                  <a target="_blank" rel="noreferrer" href={`/${preview}`}>
-                    Show preview
-                  </a>
-
-                  <button
-                    form="draftForm"
-                    className="btn submit"
-                    id="publishBtn"
-                    onClick={this.handlePublish}
-                    type="submit"
-                  >
-                    Publish
-                  </button>
-                </div>
-              </div>
             )
           }
         </main >

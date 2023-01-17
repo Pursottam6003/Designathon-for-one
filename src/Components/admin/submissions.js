@@ -141,10 +141,21 @@ export class Submissions extends Component {
     const { pending, approved, uploading } = this.state
     return (
       <div className="submissions">
+        <header className="page-header">
+          <h1 className="heading">Submissions</h1>
+          <div className="btns-group">
+            {uploading ? (
+              <button className="btn submit" disabled>
+                Saving...
+              </button>
+            ) : (
+              <button className="btn submit" onClick={this.commitChanges}>
+                Save changes
+              </button>
+            )}
+          </div>
+        </header>
         <div className="container">
-          <header className="page-header">
-            <h1 className="heading">Submissions</h1>
-          </header>
           <main className="workspace">
             <div className="submissions-wrapper">
               <div className="submission pending">
@@ -153,17 +164,6 @@ export class Submissions extends Component {
               <div className="submission approved">
                 <Submission approve={this.approveSubmission} reject={this.rejectSubmission} type="approved" ls={approved} />
               </div>
-            </div>
-            <div className="btns-group">
-              {uploading ? (
-                <button className="btn submit" disabled>
-                  Saving...
-                </button>
-              ) : (
-                <button className="btn submit" onClick={this.commitChanges}>
-                  Save changes
-                </button>
-              )}
             </div>
           </main>
         </div>

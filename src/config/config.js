@@ -7,7 +7,7 @@ import 'firebase/compat/storage'
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = devConfig || {
+const firebaseConfig = {
   apiKey: "AIzaSyDPYJNRPPshCclnmM6gN9IphEeSaLWEgHU",
   authDomain: "designothon-bc5ca.firebaseapp.com",
   projectId: "designothon-bc5ca",
