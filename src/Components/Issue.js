@@ -69,12 +69,12 @@ class MagazineSection extends Component {
   }
 }
 
-const IssueRoute = (props) => {
+const IssueRoute = ({slug}) => {
   const { year, biMonth } = useParams()
   const issueLn = `${year}/${biMonth}`
 
   return (
-    <FetchedIssue issueLn={issueLn} />
+    <FetchedIssue slug={slug} issueLn={issueLn} />
   )
 }
 
@@ -89,9 +89,9 @@ class FetchedIssue extends Component {
   state = this.initialState
 
   fetchIssue = async () => {
-    const { issueLn } = this.props
+    const { issueLn, slug } = this.props
 
-    const fetchedIssue = await fs.collection(`issues/${issueLn}`).get();
+    const fetchedIssue = await fs.collection(`${slug}/${issueLn}`).get();
     for (var snap of fetchedIssue.docs) {
       var data = snap.data();
       data.ID = snap.id;
@@ -149,10 +149,11 @@ class FetchedIssue extends Component {
 
 export class Issue extends Component {
   render() {
+    const { slug } = this.props; 
     return (
       <div className='route published-component'>
         <Routes>
-          <Route path=":year/:biMonth" element={<IssueRoute />} />
+          <Route path=":year/:biMonth" element={<IssueRoute slug={slug} />} />
         </Routes>
       </div>
     )

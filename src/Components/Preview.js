@@ -123,7 +123,7 @@ export class Preview extends Component {
       eventLink: { 17: 'Event link' },  // 17
       eventBrochure: { 17: 'Upload brochure' },  // 17,
       imgCaption: { 5: 'Image caption' },    // 
-      desc: {18: 'Activity description'}
+      desc: {19: 'Activity description'},
     }
 
     if (val === 'date' || val === 'toDate') {

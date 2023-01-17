@@ -51,9 +51,16 @@ function App() {
         )} />
         <Route path="/issues/*" element={(
           <Layout admin={false}>
-            <Issue />
+            <Issue slug='issues' />
           </Layout>
         )} />
+
+        <Route path="/previews/*" element={(
+          <Layout admin={false}>
+            <Issue slug='previews' />
+          </Layout>
+        )} />
+
         <Route path="/login" element={(
           <Layout admin={false}>
             <Login />

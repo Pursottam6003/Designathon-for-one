@@ -17,7 +17,8 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         auth.signInWithEmailAndPassword(email, password).then(() => {
-            setSuccessMsg('Login successful! Redirecting...')
+            console.log('login successful...');
+            setSuccessMsg('Login successful! Redirecting...');
             setEmail('');
             setPassword('');
             setErrorMsg('');

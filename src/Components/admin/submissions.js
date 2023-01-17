@@ -174,35 +174,33 @@ export class Submissions extends Component {
 
 const Submission = (props) => {
   const { type, ls, approve, reject } = props
-
   return (
     <>
       <h3 className="sub-summary">{ls.length} {type} submissions</h3>
       {ls.length !== 0 && (
         <table>
           <thead>
-            {type === 'pending' ? (
-              <tr>
-                <th>Author</th>
-                <th>Title</th>
-                <th>Date added</th>
+            <tr>
+              <th>Author</th>
+              <th style={{
+                width: '300px',
+              }}>Title</th>
+              <th style={{ width: '600px' }}>Content</th>
+              <th>Date added</th>
+              {type === 'pending' ? (<>
                 <th>Reject</th>
                 <th>Approve</th>
-              </tr>
-            ) : (
-              <tr>
-                <th>Author</th>
-                <th>Title</th>
-                <th>Date added</th>
+              </>) : (
                 <th>Move to pending</th>
-              </tr>
-            )}
+              )}
+            </tr>
           </thead>
           <tbody>
             {ls.map((sub) => {
               return (<tr key={sub.ID}>
                 <td>{sub.author}</td>
                 <td>{sub.title}</td>
+                <td>{`${sub.desc.slice(0, 150)}...`}</td>
                 <td>{sub.created}</td>
                 {type === 'pending' ? (
                   <>

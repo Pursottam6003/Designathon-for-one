@@ -2084,9 +2084,17 @@ h3 {
       flex-direction: column;
       align-items: center;
 
+      .login-field:focus-within {
+        border-radius: 32px;
+      }
+
       .login-field {
         position: relative;
         margin: 0 0 1.6rem;
+        border: solid 1px var(--gray-8);
+        border-radius: 4px;
+        overflow: hidden;
+        transition: 0.3s ease;
 
         .icon {
           position: absolute;
@@ -2108,15 +2116,6 @@ h3 {
           transition: all 0.3s;
           width: 100%;
           font-size: 1rem;
-        }
-
-        input:hover {
-          background-color: rgba(80, 44, 138, 0.082);
-        }
-
-        input:focus {
-          border-bottom: solid 2px var(--gray-7);
-          background-color: transparent;
         }
       }
 

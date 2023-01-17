@@ -38,6 +38,8 @@ export class Draft extends Component {
     iss: '',
     month: '',
     formView: true,
+    preview: null,
+    published: false,
     orders: {
       tasks: {},
       columns: {
@@ -79,19 +81,69 @@ export class Draft extends Component {
           ...fetchedOrders.columns[sub.categoryId].taskIds, subObj.id
         ] : [subObj.id],
       }
-      fetchedOrders.columnOrder = fetchedOrders.columnOrder.includes(sub.categoryId) ? 
-                                    [...fetchedOrders.columnOrder] : 
-                                    [...fetchedOrders.columnOrder, sub.categoryId]
+      fetchedOrders.columnOrder = fetchedOrders.columnOrder.includes(sub.categoryId) ?
+        [...fetchedOrders.columnOrder] :
+        [...fetchedOrders.columnOrder, sub.categoryId]
     }
 
     const { tasks, columns, columnOrder } = this.state.orders
     this.setState({
       orders: {
-        tasks: {...tasks, ...fetchedOrders.tasks},
-        columns: {...columns, ...fetchedOrders.columns},
+        tasks: { ...tasks, ...fetchedOrders.tasks },
+        columns: { ...columns, ...fetchedOrders.columns },
         columnOrder: [...columnOrder, ...fetchedOrders.columnOrder]
-      } 
+      }
     })
+  }
+
+  handlePreviewIssue = (e) => {
+    e.preventDefault();
+    const { orders, title, vol, iss, month } = this.state
+    document.getElementById("publishBtn").setAttribute("disabled", "");
+
+    const year = month.slice(0, 4)
+    const biMonth = BiMonthlyNames[getBiMonth(month)][0]
+    const publishObj = {
+      orders: {
+        columnOrder: orders.columnOrder,
+        columns: orders.columns,
+        tasks: orders.tasks
+      },
+      title: title,
+      vol: vol,
+      iss: iss,
+      month: month,
+    }
+
+    const previewLink = `previews/${year}/${biMonth}`
+
+    // delete existing previes
+    fs.collection(previewLink).get()
+      .then(previews => {
+        console.log(previews.docs);
+        console.log('Deleting old previews');
+        let left = previews.docs.length;
+        console.log(`${left} to delete`);
+        for (let snap of previews.docs) {
+          fs.collection(previewLink).doc(`${snap.id}`).delete().then(() => {
+            console.log(`Deleted ${snap.id}`);
+            if (left === 0) return;
+          })
+            .catch(err => { throw err; })
+        }
+      })
+      .then(() => {
+        console.log(`Generating preview`)
+        fs.collection(previewLink).doc().set(publishObj)
+          .then(async () => {
+            console.log('Preview generated!');
+            this.setState({
+              preview: previewLink,
+            });
+          })
+        document.getElementById("publishBtn").removeAttribute("disabled");
+      })
+
   }
 
   handlePublish = () => {
@@ -106,13 +158,13 @@ export class Draft extends Component {
         columns: orders.columns,
         tasks: orders.tasks
       },
-      title: title, 
-      vol: vol, 
-      iss: iss, 
-      month: month, 
+      title: title,
+      vol: vol,
+      iss: iss,
+      month: month,
     }
 
-    fs.collection(`issues/${year}/${biMonth}`).doc().set(publishObj).then( async () => {
+    fs.collection(`issues/${year}/${biMonth}`).doc().set(publishObj).then(async () => {
       console.log('Published!');
 
       // delete all approved
@@ -135,6 +187,11 @@ export class Draft extends Component {
       }
       fs.collection(`PastPublications`).doc().set(coverObj).then(() => {
         console.log('Cover uploaded');
+        this.setState({
+          ...this.initialState,
+          published: true,
+          preview: this.state.preview
+        })
       })
     })
     document.getElementById("publishBtn").removeAttribute("disabled");
@@ -148,7 +205,8 @@ export class Draft extends Component {
 
   handleUpdateOrders = (orders) => {
     this.setState({
-      orders: orders
+      orders: orders,
+      preview: null
     })
   }
 
@@ -161,39 +219,83 @@ export class Draft extends Component {
   }
 
   render() {
-    const { title, vol, iss, month, formView, orders } = this.state
+    const { title, vol, iss, month, formView, orders, preview, published } = this.state
     const formProps = { title: title, vol: vol, iss: iss, month: month }
 
     return (
       <div className="draft">
-          <header className="page-header container">
-            <h1 className="heading">Draft an Issue</h1>
-          </header>
+        <header className="page-header container">
+          <h1 className="heading">Draft an Issue</h1>
+        </header>
 
-          <main className="workspace">
-            {formView ? (
+        <main className="workspace">
+          {published && (
+            <div className="container" >
+              <div style={{
+                color: '#155724',
+                backgroundColor: '#d4edda',
+                borderColor: '#c3e6cb',
+                padding: '1.75rem 1.25rem',
+                margin: '2rem 0',
+              }}>
+                <h3>Published! <a href={`/${preview}`}>Check it out</a></h3>
+              </div>
+            </div>
+          )}
+
+          {
+            formView ? (
               <DraftForm handleChange={this.handleForm} {...formProps} />
             ) : (
               <DndMain orders={orders} updateOrders={this.handleUpdateOrders} />
-            )}
+            )
+          }
 
-            <div className="btns-group container">
+          <div className="btns-group container">
+            {iss && month && vol && (
               <button className="btn" onClick={this.switchView} type="button">
                 {formView ? 'Next' : 'Previous'}
               </button>
+            )}
 
-              {formView ? (
-                <button className="btn submit" type="button" disabled>
-                  Publish
-                </button>
-              ) : (
-                <button className="btn submit" id="publishBtn" onClick={this.handlePublish} type="button">
-                  Publish
-                </button>
-              )}
-            </div>
-          </main>
-      </div>
+            {!formView && !preview && (
+              <button
+                form="draftForm"
+                className="btn submit"
+                id="publishBtn"
+                onClick={this.handlePreviewIssue}
+                type="submit"
+              >
+                Generate preview
+              </button>
+            )}
+
+          </div>
+          {
+            preview && (
+              <div className="container">
+                <h5>Preview is available. Check it by clicking below and come back to publish</h5>
+
+                <div className="btns-group">
+                  <a target="_blank" rel="noreferrer" href={`/${preview}`}>
+                    Show preview
+                  </a>
+
+                  <button
+                    form="draftForm"
+                    className="btn submit"
+                    id="publishBtn"
+                    onClick={this.handlePublish}
+                    type="submit"
+                  >
+                    Publish
+                  </button>
+                </div>
+              </div>
+            )
+          }
+        </main >
+      </div >
     )
   }
 }
