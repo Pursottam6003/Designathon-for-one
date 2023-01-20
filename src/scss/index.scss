@@ -751,6 +751,10 @@ h3 {
   .banner #technodayaLogo {
     filter: invert(1);
   }
+
+  .nav-content-wrapper .nav-items-wrapper .hamburgur .line {
+    background-color: white;
+  }
 }
 
 
@@ -1172,6 +1176,7 @@ h3 {
           line-height: 1.4;
           font-family: inherit;
           transition: 0.2s border ease;
+          width: 100%;
         }
 
         .form-control.raw-md-desc {
@@ -1221,6 +1226,7 @@ h3 {
 
           .form-field {
             margin: 0;
+            flex-grow: 1;
           }
         }
 

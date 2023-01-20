@@ -15,9 +15,9 @@ function useAuthStatus() {
             if (snapshot.exists && snapshot.data().Role === 'admin') {
               setAdmin(true);
             }
-          })
-      };
-      setCheckingStatus(false);
+          }).then(() => {setCheckingStatus(false)});
+      }
+      else setCheckingStatus(false);
     })
   }, []);
 

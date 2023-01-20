@@ -19,7 +19,7 @@ const ProtectedComponent = ({ children, isAdmin }) => {
   })
 
   return (
-    checkingStatus ? <h1>Please wait...</h1> : (<>
+    checkingStatus ? <div className='container'><h1>Please wait...</h1></div> : (<>
       {loggedIn && (<>
         {!isAdmin ? <>{children}</> : (<>
           {admin ? <>{children}</> : <UnauthorizedComponent />}

@@ -36,7 +36,6 @@ function App() {
   }, [checkingStatus])
 
   return (
-
     <BrowserRouter>
       <Layout user={user} logoutUser={handleLogout} admin={false}>
         <Routes>

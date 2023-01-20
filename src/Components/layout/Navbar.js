@@ -62,50 +62,48 @@ export const Navbar = ({ user, logoutUser }) => {
             </button>
             {/* USUAL */}
             {NavLinks.filter(item => !item.auth).map((item, i) => (
-              <NavItem mobile={true} key={`d${i}`} {...item} />
-            ))}
-
-            {/* AUTH */}
-            {user ? (<>
-              {user.user && (<>
-                <>
-                  {NavLinks.filter(item => item.auth && !item.admin).map((item, i) => (
-                    <NavItem mobile={true} key={`d${i}`} {...item} />
-                  ))}
-                </>
-
-                {user.admin && (<>
-                  {NavLinks.filter(item => item.admin).map((item, i) => (
-                    <NavItem mobile={true} key={`d${i}`} {...item} />
-                  ))}
-                </>)}
-
-                {/* SIGNOUT BUTTON */}
-                <button type="button" onClick={handleLogout} className='nav-item'>
-                  <div className='nav-item-txt'>Logout</div>
-                </button>
-              </>)}
-            </>) : (<NavItem mobile={true} link={'/login'} name='Login' />)}
-          </ul>
-
-
-          <ul className='nav-items desktop'>
-            {/* USUAL */}
-            {NavLinks.filter(item => !item.auth).map((item, i) => (
-              <NavItem key={`d${i}`} {...item} />
+              <NavItem key={`mu${i}`} {...item} mobile={true} />
             ))}
 
             {/* AUTH */}
             {user.user ? (<>
               <>
                 {NavLinks.filter(item => item.auth && !item.admin).map((item, i) => (
-                  <NavItem key={`d${i}`} {...item} />
+                  <NavItem key={`mau${i}`} {...item} mobile={true} />
                 ))}
               </>
 
               {user.admin && (<>
                 {NavLinks.filter(item => item.admin).map((item, i) => (
-                  <NavItem key={`d${i}`} {...item} />
+                  <NavItem key={`ma${i}`} {...item} mobile={true} />
+                ))}
+              </>)}
+
+              {/* SIGNOUT BUTTON */}
+              <button type="button" onClick={handleLogout} className='nav-item'>
+                <div className='nav-item-txt'>Logout</div>
+              </button>
+            </>) : <NavItem link={'/login'} name='Login' mobile={true} />}
+          </ul>
+
+
+          <ul className='nav-items desktop'>
+            {/* USUAL */}
+            {NavLinks.filter(item => !item.auth).map((item, i) => (
+              <NavItem key={`du${i}`} {...item} />
+            ))}
+
+            {/* AUTH */}
+            {user.user ? (<>
+              <>
+                {NavLinks.filter(item => item.auth && !item.admin).map((item, i) => (
+                  <NavItem key={`dau${i}`} {...item} />
+                ))}
+              </>
+
+              {user.admin && (<>
+                {NavLinks.filter(item => item.admin).map((item, i) => (
+                  <NavItem key={`da${i}`} {...item} />
                 ))}
               </>)}
 

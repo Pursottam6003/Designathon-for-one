@@ -192,7 +192,7 @@ const Submission = (props) => {
                   <th>Reject</th>
                   <th>Approve</th>
                 </>) : (
-                  <th>Move to pending</th>
+                  <th style={{whiteSpace: 'pre'}}>Move to pending</th>
                 )}
               </tr>
             </thead>
