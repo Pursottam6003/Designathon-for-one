@@ -1,3 +1,5 @@
+import { auth, fs } from './config/config'
+
 const Categories = [
     '',
     'Memorandum of Understanding (MoU)',

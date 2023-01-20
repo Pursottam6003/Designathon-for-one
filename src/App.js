@@ -1,85 +1,70 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from "./Components/layout/Layout"
 
-import { Home } from "./Components/Home"
-import { Read } from "./Components/read";
-import { About } from "./Components/about";
-import { Submit } from "./Components/submit";
-import { AdminConsole } from "./Components/admin/admin";
-import { Login } from "./Components/AdminLogin";
-import { AddBlogs } from "./Components/addBlogs"
-import { Issue } from "./Components/Issue";
+import { Home, Read, Issue, About, Submit, AdminConsole, Login } from './pages'
+import ProtectedComponent from "./Components/ProtectedRoute";
 
 import { Signup } from "./Components/SignUp";
 import { UploadCover } from "./Components/uploadCover";
 
+import { reauth } from "./config/config";
+import { useAuthStatus } from "./hooks/hooks";
+
 function App() {
+  const [user, setUser] = useState({
+    user: null, admin: false
+  });
+  const { checkingStatus, loggedIn, admin } = useAuthStatus();
+
+  const handleLogout = () => {
+    reauth.signOut()
+      .then(() => {
+        setUser({user: null, admin: false});
+      })
+      .catch((err) => { console.log(err) });
+  }
+
+  const handleLogin = (user) => {
+    setUser(user);
+  }
+
+  useEffect(() => {
+    if (!checkingStatus) {
+      setUser({user: loggedIn, admin: admin});
+    }
+  }, [checkingStatus])
+
   return (
 
     <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={(
-          <Layout admin={false}>
-            <Home />
-          </Layout>
-        )} />
-        <Route path="/magazine" element={(
-          <Layout admin={false}>
-            <Read />
-          </Layout>
-        )} />
-        <Route path="/about" element={(
-          <Layout admin={false}>
-            <About />
-          </Layout>
-        )} />
-        <Route path="/addblogs" element={(
-          <Layout admin={false}>
-            <AddBlogs />
-          </Layout>
-        )} />
-        <Route path="/submit" element={(
-          <Layout admin={false}>
-            <Submit />
-          </Layout>
-        )} />
-        <Route path="/admin/*" element={(
-          <Layout admin={true}>
-            <AdminConsole />
-          </Layout>
-        )} />
-        <Route path="/issues/*" element={(
-          <Layout admin={false}>
+      <Layout user={user} logoutUser={handleLogout} admin={false}>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/magazine" element={<Read />} />
+          <Route path="/about" element={<About />} />
+
+          <Route path="/submit" element={(
+            <ProtectedComponent isAdmin={false} children={<Submit />} />
+          )} />
+
+          <Route path="/admin/*" element={(
+            <ProtectedComponent isAdmin={true} children={<AdminConsole />} />
+          )} />
+
+          <Route path="/issues/*" element={(
             <Issue slug='issues' />
-          </Layout>
-        )} />
-
-        <Route path="/previews/*" element={(
-          <Layout admin={false}>
+          )} />
+          <Route path="/previews/*" element={(
             <Issue slug='previews' />
-          </Layout>
-        )} />
+          )} />
+          <Route path="/login" element={<Login loginUser={handleLogin} />} />
 
-        <Route path="/login" element={(
-          <Layout admin={false}>
-            <Login />
-          </Layout>
-        )} />
+          <Route path="/uploadcover" element={<UploadCover />} />
+          <Route path="/signup" element={<Signup />} />
+        </Routes>
+      </Layout>
 
-        <Route path="/uploadcover" element={(
-          <Layout admin={false}>
-            <UploadCover />
-          </Layout>
-        )} />
-
-        <Route path="/signup" element={(
-          <Layout admin={false}>
-            <Signup />
-          </Layout>
-        )} />
-
-      </Routes>
     </BrowserRouter>
   )
 }

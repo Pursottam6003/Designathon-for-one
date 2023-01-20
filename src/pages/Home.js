@@ -1,6 +1,6 @@
 import React from 'react'
 import MagazineCover from '../images/technodaya-cover.png'
-import { MagazineCard } from './read'
+import { MagazineCard } from './Read'
 import { ReactComponent as ArrowIcon } from '../images/icons/arrowicon.svg'
 
 export const Home = () => {

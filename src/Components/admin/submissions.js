@@ -178,56 +178,58 @@ const Submission = (props) => {
     <>
       <h3 className="sub-summary">{ls.length} {type} submissions</h3>
       {ls.length !== 0 && (
-        <table>
-          <thead>
-            <tr>
-              <th>Author</th>
-              <th style={{
-                width: '300px',
-              }}>Title</th>
-              <th style={{ width: '600px' }}>Content</th>
-              <th>Date added</th>
-              {type === 'pending' ? (<>
-                <th>Reject</th>
-                <th>Approve</th>
-              </>) : (
-                <th>Move to pending</th>
-              )}
-            </tr>
-          </thead>
-          <tbody>
-            {ls.map((sub) => {
-              return (<tr key={sub.ID}>
-                <td>{sub.author}</td>
-                <td>{sub.title}</td>
-                <td>{`${sub.desc.slice(0, 150)}...`}</td>
-                <td>{sub.created}</td>
-                {type === 'pending' ? (
-                  <>
-                    <td>
-                      <button className="action-btn remove" type="button" onClick={(e) => { reject(sub.ID, 'reject') }}>
-                        <RemoveIcon />
-                      </button>
-                    </td>
-                    <td>
-                      <button className="action-btn add" type="button" onClick={(e) => { approve(sub.ID) }}>
-                        <DoneIcon />
-                      </button>
-                    </td>
-                  </>
-                ) : (
-                  <>
-                    <td>
-                      <button className="action-btn remove" type="button" onClick={() => { reject(sub.ID, 'remove') }}>
-                        <RemoveIcon />
-                      </button>
-                    </td>
-                  </>
+        <div className="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th style={{
+                  width: '300px',
+                }}>Title</th>
+                <th style={{ width: '600px' }}>Content</th>
+                <th>Date added</th>
+                {type === 'pending' ? (<>
+                  <th>Reject</th>
+                  <th>Approve</th>
+                </>) : (
+                  <th>Move to pending</th>
                 )}
-              </tr>)
-            })}
-          </tbody>
-        </table>
+              </tr>
+            </thead>
+            <tbody>
+              {ls.map((sub) => {
+                return (<tr key={sub.ID}>
+                  <td>{sub.author}</td>
+                  <td>{sub.title}</td>
+                  <td>{`${sub.desc.slice(0, 150)}...`}</td>
+                  <td style={{whiteSpace: 'pre'}}>{sub.created}</td>
+                  {type === 'pending' ? (
+                    <>
+                      <td>
+                        <button className="action-btn remove" type="button" onClick={(e) => { reject(sub.ID, 'reject') }}>
+                          <RemoveIcon />
+                        </button>
+                      </td>
+                      <td>
+                        <button className="action-btn add" type="button" onClick={(e) => { approve(sub.ID) }}>
+                          <DoneIcon />
+                        </button>
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td>
+                        <button className="action-btn remove" type="button" onClick={() => { reject(sub.ID, 'remove') }}>
+                          <RemoveIcon />
+                        </button>
+                      </td>
+                    </>
+                  )}
+                </tr>)
+              })}
+            </tbody>
+          </table>
+        </div>
       )}
     </>
   )

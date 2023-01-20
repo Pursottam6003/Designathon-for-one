@@ -52,7 +52,7 @@ html {
   margin: auto;
 }
 
-.route {
+.main-page {
   min-height: calc(100vh - var(--nav-height) - var(--footer-height));
 }
 
@@ -518,8 +518,6 @@ h3 {
   }
 }
 
-// .read-component {}
-
 // navigation bar
 .navbar-component {
   --navbar-bg: white;
@@ -541,7 +539,6 @@ h3 {
 
   .nav-content-wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     height: 100%;
     margin: auto;
@@ -550,6 +547,7 @@ h3 {
 
     .banner {
       height: fit-content;
+      flex-grow: 1;
 
       #technodayaLogo {
         height: 1.8rem;
@@ -568,6 +566,7 @@ h3 {
         display: flex;
 
         .nav-item {
+          font-family: inherit;
           background-color: transparent;
           border: none;
           text-decoration: none;
@@ -598,8 +597,6 @@ h3 {
             border: solid 2px transparent;
             border-radius: 4rem;
             letter-spacing: 0.01rem;
-
-            line-height: 1.1;
             padding: 0.25rem 0.6rem;
             color: var(--nav-items-color);
             text-transform: uppercase;
@@ -715,7 +712,7 @@ h3 {
       }
     }
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 850px) {
       .nav-items-wrapper {
         .nav-items.desktop {
           gap: 0 0.2rem;
@@ -724,7 +721,7 @@ h3 {
       }
     }
 
-    @media screen and (max-width: 720px) {
+    @media screen and (max-width: 780px) {
       .nav-items-wrapper>.hamburgur {
         display: block;
       }
@@ -746,29 +743,16 @@ h3 {
 
 .navbar-component.admin {
   --navbar-bg: black;
-  --nav-items-color: var(--gray-1);
+  --nav-items-color: white;
+  --nav-hover-color: white;
+  --nav-active-txt-color: black;
+  --nav-active-bg: rgb(220, 220, 220);
 
-  --nav-hover-color: var(--gray-0);
-
-  --nav-active-txt-color: #fff;
-  --nav-active-bg: #464646;
-
-  .nav-content-wrapper {
-    .nav-items-wrapper {
-      .nav-items.desktop {
-        .nav-item>.nav-item-txt {
-          font-weight: 500;
-        }
-      }
-
-      .hamburgur {
-        .line {
-          background-color: #e8e8e8;
-        }
-      }
-    }
+  .banner #technodayaLogo {
+    filter: invert(1);
   }
 }
+
 
 .footer {
   background: linear-gradient(rgba(21, 21, 21, 0.8), rgba(5, 5, 5, 0.8)), url(../images/banner.jpg);
@@ -848,6 +832,7 @@ h3 {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        gap: 1rem;
         justify-content: space-between;
       }
 
@@ -1046,6 +1031,7 @@ h3 {
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
+  min-height: inherit;
 
   --top-offset: 54px;
 
@@ -2453,6 +2439,11 @@ h3 {
       }
     }
   }
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
 }
 
 .submissions {

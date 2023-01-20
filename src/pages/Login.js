@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { auth } from '../config/config'
+import { auth, fs } from '../config/config'
 import lock from '../images/lock2.png'
 import envelop from '../images/envelop.png'
 import { useNavigate } from 'react-router-dom'
 
-export const Login = () => {
+export const Login = ({loginUser}) => {
 
     const history = useNavigate()
     const [email, setEmail] = useState('');
@@ -16,15 +16,24 @@ export const Login = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        auth.signInWithEmailAndPassword(email, password).then(() => {
+        auth.signInWithEmailAndPassword(email, password).then((res) => {
+            console.log(res.user);
+            fs.collection('users').doc(res.user.uid).get()
+            .then(snapshot => {
+                if (snapshot.data().Role === 'admin') {
+                    history('/admin/');
+                    loginUser({user: res.user, admin: true})
+                } else {
+                    history('/submit');
+                    loginUser({user: res.user, admin: false})
+                }
+            })
             console.log('login successful...');
             setSuccessMsg('Login successful! Redirecting...');
             setEmail('');
             setPassword('');
             setErrorMsg('');
             setSuccessMsg('');
-            const currUid = auth.currentUser.uid;
-            sessionStorage.setItem('UID', currUid);
             history(-1);
         })
             .catch(error => setErrorMsg(error.message));

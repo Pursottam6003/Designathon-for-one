@@ -3,10 +3,15 @@ import { NavLink } from 'react-router-dom'
 import technodayaLogo from "../../images/logo/technodaya-logo1.png"
 import technodayaLogoLight from "../../images/logo/technodaya-logo-white.png"
 import { ReactComponent as CloseIcon } from '../../images/logo/remove.svg'
-import {useNavigate } from 'react-router-dom'
-import {auth} from '../../config/config'
+import { useNavigate } from 'react-router-dom'
 
-
+const HamburgerIcon = () => (
+  <div id='hamburgerMenu' className='hamburgur' onClick={toggleHamburger}>
+    <div className='line first'></div>
+    <div className='line second'></div>
+    <div className='line third'></div>
+  </div>
+)
 
 const toggleHamburger = () => {
   let navbar = document.getElementsByClassName("mobile")[0];
@@ -18,129 +23,102 @@ const close = () => {
   navbar.style.width = "0";
 }
 
-const NavLis = (props) => {
-  const { links } = props
+const NavItem = ({ link, name, mobile }) => (
+  <li>
+    <NavLink onClick={() => { if (mobile) close() }} className='nav-item' to={link}>
+      <div className='nav-item-txt'>{name}</div>
+    </NavLink>
+  </li>
+)
 
-  const mobile = links.map((li, i) => {
-    const { link, name } = li
-    if (link === '/') {
-      return (
-        <li key={`m${i}`}>
-          <NavLink onClick={close} className='nav-item' exact to={link}>
-            <div className='nav-item-txt'>{name}</div>
-          </NavLink>
-        </li>
-      )
-    }
-    return (
-      <li key={`m${i}`}>
-        <NavLink onClick={close} className='nav-item' to={link}>
-          <div className='nav-item-txt'>{name}</div>
-        </NavLink>
-      </li>
-    )
-  })
+const NavLinks = [
+  { link: '/', name: 'Home' },
+  { link: '/magazine', name: 'Read' },
+  { link: '/about', name: 'About us' },
+  { link: '/submit', name: 'Submit', auth: true },
+  { link: '/admin', name: 'Admin', auth: true, admin: true },
+]
 
-  const desktop = links.map((li, i) => {
-    const { link, name } = li
-    if (link === '/') {
-      return (
-        <li key={`d${i}`}>
-          <NavLink className='nav-item' exact to={link}>
-            <div className='nav-item-txt'>{name}</div>
-          </NavLink>
-        </li>
-      )
-    }
-    return (
-      <li key={`d${i}`}>
-        <NavLink className='nav-item' to={link}>
-          <div className='nav-item-txt'>{name}</div>
-        </NavLink>
-      </li>
-    )
-  })
-
-  return (
-    <div className='nav-items-wrapper'>
-      <ul className='nav-items mobile'>
-        <li>
-          <button className='hide-nav-menu' onClick={close}>
-            <CloseIcon />
-          </button>
-        </li>
-        {mobile}
-      </ul>
-
-      <ul className='nav-items desktop'>
-        {desktop}
-      </ul>
-
-      <div id='hamburgerMenu' className='hamburgur' onClick={toggleHamburger}>
-        <div className='line first'></div>
-        <div className='line second'></div>
-        <div className='line third'></div>
-      </div>
-    </div>
-  )
-}
-
-export const Navbar = (props) => {
+export const Navbar = ({ user, logoutUser }) => {
   const history = useNavigate()
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
     close();
-    sessionStorage.removeItem('UID');
-    auth.signOut().then(() => {
-      history('/')
-    })
+    history('/');
+    logoutUser();
   }
   return (
-    <div className={`navbar-component${props.admin ? ' admin' : ''}`}>
+    <div className={`navbar-component ${user.admin ? 'admin' : ''}`}>
       <div className='nav-content-wrapper container'>
         <header className='banner'>
-          <NavLink exact to='/'><img id='technodayaLogo' src={props.admin ? technodayaLogoLight : technodayaLogo} alt="Technodaya" /></NavLink>
+          <NavLink exact to='/'><img id='technodayaLogo' src={false ? technodayaLogoLight : technodayaLogo} alt="Technodaya" /></NavLink>
         </header>
-        {props.admin ? (
-          <div className='nav-items-wrapper'>
-            <ul className='nav-items mobile'>
-              <li>
-                <button className='hide-nav-menu' onClick={close}>
-                  <CloseIcon />
-                </button>
-              </li>
-              <li>
+
+        <div className='nav-items-wrapper'>
+
+          <ul className='nav-items mobile'>
+            <button className='hide-nav-menu' onClick={close}>
+              <CloseIcon />
+            </button>
+            {/* USUAL */}
+            {NavLinks.filter(item => !item.auth).map((item, i) => (
+              <NavItem mobile={true} key={`d${i}`} {...item} />
+            ))}
+
+            {/* AUTH */}
+            {user ? (<>
+              {user.user && (<>
+                <>
+                  {NavLinks.filter(item => item.auth && !item.admin).map((item, i) => (
+                    <NavItem mobile={true} key={`d${i}`} {...item} />
+                  ))}
+                </>
+
+                {user.admin && (<>
+                  {NavLinks.filter(item => item.admin).map((item, i) => (
+                    <NavItem mobile={true} key={`d${i}`} {...item} />
+                  ))}
+                </>)}
+
+                {/* SIGNOUT BUTTON */}
                 <button type="button" onClick={handleLogout} className='nav-item'>
                   <div className='nav-item-txt'>Logout</div>
                 </button>
-              </li>
-            </ul>
+              </>)}
+            </>) : (<NavItem mobile={true} link={'/login'} name='Login' />)}
+          </ul>
 
-            <ul className='nav-items desktop'>
-              <li>
-                <button type="button" onClick={handleLogout} className='nav-item'>
-                  <div className='nav-item-txt'>Logout</div>
-                </button>
-              </li>
-            </ul>
 
-            <div id='hamburgerMenu' className='hamburgur' onClick={toggleHamburger}>
-              <div className='line first'></div>
-              <div className='line second'></div>
-              <div className='line third'></div>
-            </div>
-          </div>
-        ) : (
-          <NavLis links={[
-            { link: '/', name: 'Home' },
-            { link: '/magazine', name: 'Read' },
-            { link: '/about', name: 'About us' },
-            { link: '/submit', name: 'Submit' },
-            { link: '/admin/', name: 'Admin' }
-          ]} />
-        )}
+          <ul className='nav-items desktop'>
+            {/* USUAL */}
+            {NavLinks.filter(item => !item.auth).map((item, i) => (
+              <NavItem key={`d${i}`} {...item} />
+            ))}
 
+            {/* AUTH */}
+            {user.user ? (<>
+              <>
+                {NavLinks.filter(item => item.auth && !item.admin).map((item, i) => (
+                  <NavItem key={`d${i}`} {...item} />
+                ))}
+              </>
+
+              {user.admin && (<>
+                {NavLinks.filter(item => item.admin).map((item, i) => (
+                  <NavItem key={`d${i}`} {...item} />
+                ))}
+              </>)}
+
+              {/* SIGNOUT BUTTON */}
+              <button type="button" onClick={handleLogout} className='nav-item'>
+                <div className='nav-item-txt'>Logout</div>
+              </button>
+            </>) : <NavItem link={'/login'} name='Login' mobile={false} />}
+          </ul>
+
+          <HamburgerIcon />
+        </div>
       </div>
-
     </div>
   )
 }
