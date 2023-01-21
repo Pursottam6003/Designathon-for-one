@@ -139,9 +139,9 @@ export class Submissions extends Component {
     }
   }
 
-  updateSubmission = (type, index, val) => {
+  updateSubmission = (type, field, index, val) => {
     const updatedls = this.state[type];
-    updatedls[index].desc = val;
+    updatedls[index][field] = val;
     this.setState({
       [type]: updatedls
     }, () => {this.setUnsaved()});
@@ -239,12 +239,10 @@ const Submission = ({ type, ls, approve, reject, update }) => {
                 return (<tr key={sub.ID}>
                   <td>{sub.author}</td>
                   <td>
-                    <ReactMarkdown children={sub.title} rehypePlugins={[rehypeRaw]}
-                      remarkPlugins={[remarkGfm]}
-                    />
+                    <PreviewedInput value={sub.title} updateVal={(txt) => {update(type, 'title', i, txt) }} />
                   </td>
                   <td>
-                    <PreviewedInput value={sub.desc} updateVal={(txt) => { update(type, i, txt) }} />
+                    <PreviewedInput value={sub.desc} updateVal={(txt) => {update(type, 'desc', i, txt) }} />
                   </td>
                   <td>{sub.created}</td>
                   {type === 'pending' ? (<>
