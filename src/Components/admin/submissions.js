@@ -223,16 +223,14 @@ const Submission = ({ type, ls, approve, reject, update }) => {
             <thead>
               <tr>
                 <th>Author</th>
-                <th style={{
-                  width: '300px',
-                }}>Title</th>
-                <th style={{ width: '600px' }}>Content</th>
-                <th>Date added</th>
+                <th style={{ minWidth: '160px' }}>Title</th>
+                <th style={{ minWidth: '400px' }}>Content</th>
+                <th style={{ minWidth: '120px' }}>Date added</th>
                 {type === 'pending' ? (<>
                   <th>Reject</th>
                   <th>Approve</th>
                 </>) : (
-                  <th style={{ whiteSpace: 'pre' }}>Move to pending</th>
+                  <th style={{ minWidth: '64px', whiteSpace: 'pre' }}>Move to pending</th>
                 )}
               </tr>
             </thead>
@@ -246,9 +244,9 @@ const Submission = ({ type, ls, approve, reject, update }) => {
                     />
                   </td>
                   <td>
-                    <PreviewedInput value={sub.desc} placeholder={`${sub.desc.slice(0, 150)}...`} updateVal={(txt) => { update(type, i, txt) }} />
+                    <PreviewedInput value={sub.desc} updateVal={(txt) => { update(type, i, txt) }} />
                   </td>
-                  <td style={{ whiteSpace: 'pre' }}>{sub.created}</td>
+                  <td>{sub.created}</td>
                   {type === 'pending' ? (<>
                     <td>
                       <button className="action-btn remove" type="button" onClick={(e) => { reject(sub.ID, 'reject') }}>

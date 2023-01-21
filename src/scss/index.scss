@@ -899,7 +899,7 @@ h3 {
               display: none;
               top: 50%;
               transform: translateY(-50%);
-              left: 3rem;
+              left: 1rem;
               transition: 0.2s left ease-out;
             }
 
@@ -2472,7 +2472,7 @@ h3 {
 
         thead {
           tr {
-            border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+            border-bottom: solid 2px rgba(0, 0, 0, 0.5);
 
             th {
               text-align: left;
@@ -2481,6 +2481,12 @@ h3 {
         }
 
         tbody {
+          tr {
+            border-bottom: solid 1px rgba(72, 72, 72, 0.2);
+            td {
+              vertical-align: top;
+            }
+          }
           .action-btn {
             position: relative;
             background-color: transparent;

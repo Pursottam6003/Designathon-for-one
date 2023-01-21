@@ -67,10 +67,7 @@ export const PreviewedInput = ({ value, inpClassName, updateVal, placeholder }) 
                 </div>
             ) : (
                 <div onClick={(e) => {toggleEdit()}}
-                    style={{
-                        ...defaultSpacing,
-                        cursor: 'pointer',
-                    }}
+                    style={{ cursor: 'pointer' }}
                     title="Click to edit"
                 >
                     <ReactMarkdown children={placeholder} rehypePlugins={[rehypeRaw]}
