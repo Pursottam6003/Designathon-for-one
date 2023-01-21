@@ -108,7 +108,7 @@ export class Submissions extends Component {
       pending: pending.filter((sub, i) => {
         if (sub.ID === id) {
           this.setState({
-            approved: [...approved, sub]
+            approved: [sub, ...approved]
           })
         }
         return sub.ID !== id
@@ -130,7 +130,7 @@ export class Submissions extends Component {
         approved: approved.filter((sub, i) => {
           if (sub.ID === id) {
             this.setState({
-              pending: [...pending, sub]
+              pending: [sub, ...pending]
             })
           }
           return sub.ID !== id
@@ -175,9 +175,23 @@ export class Submissions extends Component {
                   Save changes
                 </button>
               ) : (
-                <button className="btn submit" disabled>
-                  Saved
-                </button>
+                <span style={{
+                  border: 'solid 2px seagreen',
+                  fontSize: '0.8rem',
+                  color: 'seagreen',
+                  fontWeight: '500',
+                  padding: '0.3rem 0.6rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  borderRadius: '2rem',
+                  flexWrap: 'nowrap',
+                  overflow: 'hidden',
+                  whiteSpace: 'pre'
+                }}>
+                  <DoneIcon fill="seagreen" width={16} height={16} />
+                  Saved to firebase
+                </span>
               )
             )}
           </div>
