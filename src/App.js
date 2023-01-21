@@ -55,7 +55,7 @@ function App() {
             <Issue slug='issues' />
           )} />
           <Route path="/previews/*" element={(
-            <ProtectedComponent isAdmin={true} children={<Issue slug='previews' />} />
+            <ProtectedComponent isAdmin={false} children={<Issue slug='previews' />} />
           )} />
           <Route path="/login" element={<Login user={user} loginUser={handleLogin} />} />
 

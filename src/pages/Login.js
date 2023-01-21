@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { auth, fs } from '../config/config'
 import lock from '../images/lock2.png'
 import envelop from '../images/envelop.png'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export const Login = ({user, loginUser}) => {
+    const history = useNavigate();
+    const location = useLocation();
 
-    const history = useNavigate()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
-
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -21,11 +21,13 @@ export const Login = ({user, loginUser}) => {
             fs.collection('users').doc(res.user.uid).get()
             .then(snapshot => {
                 if (snapshot.data().Role === 'admin') {
-                    history('/admin/');
                     loginUser({user: res.user, admin: true})
+                    if (location.state.from) history(location.state.from)
+                    else history('/admin')
                 } else {
-                    history('/submit');
                     loginUser({user: res.user, admin: false})
+                    if (location.state.from) history(location.state.from)
+                    else history('/submit')
                 }
             })
             console.log('login successful...');
