@@ -15,6 +15,9 @@ export const AdminConsole = () => {
       <div className="admin-view">
         <aside>
           <ConsoleNav />
+          <div className="console-footer">
+            <p className="c">&#169; 2022 Technodaya, NITAP</p>
+          </div>
         </aside>
         <main className="main-body">
           <Routes>
