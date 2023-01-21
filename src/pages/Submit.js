@@ -123,9 +123,9 @@ class Submit extends Component {
   }
 
   componentDidMount() {
-    const UID = sessionStorage.getItem('UID') 
-    if (UID) {
-      fs.collection('users').doc(UID).get().then(snapshot => {
+    const { user } = this.props 
+    if (user) {
+      fs.collection('users').doc(user.uid).get().then(snapshot => {
         const fullName = snapshot.data().FullName
         const name = fullName.slice(0, fullName.search(' '))
         this.setState({username: name})

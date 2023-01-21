@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { AddBlogs } from './addBlogs'
-import { fs } from "../config/config"
+import { fs } from "../../config/config"
 import { useNavigate } from 'react-router-dom'
 
 export const Submit = (props) => {

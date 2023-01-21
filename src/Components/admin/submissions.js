@@ -1,15 +1,20 @@
 import React, { Component } from "react"
 import { fs } from '../../config/config'
+import { PreviewedInput } from '../MdInput'
 
 import { ReactComponent as DoneIcon } from '../../images/icons/done.svg'
 import { ReactComponent as RemoveIcon } from '../../images/icons/remove.svg'
 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 export class Submissions extends Component {
   initialState = {
     pending: [],
     approved: [],
     uploading: false,
+    unsavedChanges: false,
   }
 
   state = this.initialState
@@ -91,7 +96,8 @@ export class Submissions extends Component {
 
       this.fetchSubmissions();
       this.setState({
-        uploading: false
+        uploading: false,
+        unsavedChanges: false
       })
     })
   }
@@ -107,7 +113,7 @@ export class Submissions extends Component {
         }
         return sub.ID !== id
       })
-    })
+    }, () => {this.setUnsaved()})
   }
 
   rejectSubmission = (id, type) => {
@@ -117,7 +123,7 @@ export class Submissions extends Component {
         pending: pending.filter((sub, i) => {
           return sub.ID !== id
         })
-      })
+      }, () => {this.setUnsaved()})
 
     } else {
       this.setState({
@@ -129,16 +135,31 @@ export class Submissions extends Component {
           }
           return sub.ID !== id
         })
-      })
+      }, () => {this.setUnsaved()})
     }
   }
+
+  updateSubmission = (type, index, val) => {
+    const updatedls = this.state[type];
+    updatedls[index].desc = val;
+    this.setState({
+      [type]: updatedls
+    }, () => {this.setUnsaved()});
+  }
+
+  setUnsaved = () => {
+    if (!this.state.unsavedChanges) {
+      this.setState({ unsavedChanges: true })
+    }
+  }
+
 
   componentDidMount() {
     this.fetchSubmissions();
   }
 
   render() {
-    const { pending, approved, uploading } = this.state
+    const { pending, approved, uploading, unsavedChanges } = this.state
     return (
       <div className="submissions">
         <header className="page-header">
@@ -149,9 +170,15 @@ export class Submissions extends Component {
                 Saving...
               </button>
             ) : (
-              <button className="btn submit" onClick={this.commitChanges}>
-                Save changes
-              </button>
+              unsavedChanges ? (
+                <button className="btn submit" onClick={this.commitChanges}>
+                  Save changes
+                </button>
+              ) : (
+                <button className="btn submit" disabled>
+                  Saved
+                </button>
+              )
             )}
           </div>
         </header>
@@ -159,10 +186,10 @@ export class Submissions extends Component {
           <main className="workspace">
             <div className="submissions-wrapper">
               <div className="submission pending">
-                <Submission approve={this.approveSubmission} reject={this.rejectSubmission} type="pending" ls={pending} />
+                <Submission approve={this.approveSubmission} reject={this.rejectSubmission} update={this.updateSubmission} type="pending" ls={pending} />
               </div>
               <div className="submission approved">
-                <Submission approve={this.approveSubmission} reject={this.rejectSubmission} type="approved" ls={approved} />
+                <Submission approve={this.approveSubmission} reject={this.rejectSubmission} update={this.updateSubmission} type="approved" ls={approved} />
               </div>
             </div>
           </main>
@@ -172,8 +199,7 @@ export class Submissions extends Component {
   }
 }
 
-const Submission = (props) => {
-  const { type, ls, approve, reject } = props
+const Submission = ({ type, ls, approve, reject, update }) => {
   return (
     <>
       <h3 className="sub-summary">{ls.length} {type} submissions</h3>
@@ -192,38 +218,40 @@ const Submission = (props) => {
                   <th>Reject</th>
                   <th>Approve</th>
                 </>) : (
-                  <th style={{whiteSpace: 'pre'}}>Move to pending</th>
+                  <th style={{ whiteSpace: 'pre' }}>Move to pending</th>
                 )}
               </tr>
             </thead>
             <tbody>
-              {ls.map((sub) => {
+              {ls.map((sub, i) => {
                 return (<tr key={sub.ID}>
                   <td>{sub.author}</td>
-                  <td>{sub.title}</td>
-                  <td>{`${sub.desc.slice(0, 150)}...`}</td>
-                  <td style={{whiteSpace: 'pre'}}>{sub.created}</td>
-                  {type === 'pending' ? (
-                    <>
-                      <td>
-                        <button className="action-btn remove" type="button" onClick={(e) => { reject(sub.ID, 'reject') }}>
-                          <RemoveIcon />
-                        </button>
-                      </td>
-                      <td>
-                        <button className="action-btn add" type="button" onClick={(e) => { approve(sub.ID) }}>
-                          <DoneIcon />
-                        </button>
-                      </td>
-                    </>
-                  ) : (
-                    <>
-                      <td>
-                        <button className="action-btn remove" type="button" onClick={() => { reject(sub.ID, 'remove') }}>
-                          <RemoveIcon />
-                        </button>
-                      </td>
-                    </>
+                  <td>
+                    <ReactMarkdown children={sub.title} rehypePlugins={[rehypeRaw]}
+                      remarkPlugins={[remarkGfm]}
+                    />
+                  </td>
+                  <td>
+                    <PreviewedInput value={sub.desc} placeholder={`${sub.desc.slice(0, 150)}...`} updateVal={(txt) => { update(type, i, txt) }} />
+                  </td>
+                  <td style={{ whiteSpace: 'pre' }}>{sub.created}</td>
+                  {type === 'pending' ? (<>
+                    <td>
+                      <button className="action-btn remove" type="button" onClick={(e) => { reject(sub.ID, 'reject') }}>
+                        <RemoveIcon />
+                      </button>
+                    </td>
+                    <td>
+                      <button className="action-btn add" type="button" onClick={(e) => { approve(sub.ID) }}>
+                        <DoneIcon />
+                      </button>
+                    </td>
+                  </>) : (
+                    <td>
+                      <button className="action-btn remove" type="button" onClick={() => { reject(sub.ID, 'remove') }}>
+                        <RemoveIcon />
+                      </button>
+                    </td>
                   )}
                 </tr>)
               })}

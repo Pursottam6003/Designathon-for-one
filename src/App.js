@@ -44,7 +44,7 @@ function App() {
           <Route path="/about" element={<About />} />
 
           <Route path="/submit" element={(
-            <ProtectedComponent isAdmin={false} children={<Submit />} />
+            <ProtectedComponent isAdmin={false} children={<Submit user={user.user} />} />
           )} />
 
           <Route path="/admin/*" element={(

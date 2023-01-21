@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Form } from './form/Form.js'
-import { Preview } from './Preview'
-import { storage, fs } from '../config/config'
+import { Form } from '../form/Form.js'
+import { Preview } from '../Preview'
+import { storage, fs } from '../../config/config'
 import firebase from 'firebase/compat/app'
-import { Categories } from '../helpers'
+import { Categories } from '../../helpers'
 import { ReactComponent as NextIcon } from '../images/icons/forward-arrow.svg'
 import { ReactComponent as PrevIcon } from '../images/icons/back-arrow.svg'
 

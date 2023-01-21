@@ -34,7 +34,6 @@ export const Login = ({loginUser}) => {
             setPassword('');
             setErrorMsg('');
             setSuccessMsg('');
-            history(-1);
         })
             .catch(error => setErrorMsg(error.message));
     }
