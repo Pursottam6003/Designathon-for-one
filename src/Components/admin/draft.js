@@ -256,7 +256,7 @@ export class Draft extends Component {
                   Publish
                 </button>
               </>)}
-              {iss && month && vol && (
+              {title && iss && month && vol && (
                 <button className="btn" onClick={this.switchView} type="button">
                   {formView ? 'Next' : 'Previous'}
                 </button>

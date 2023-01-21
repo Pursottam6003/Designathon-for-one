@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { auth, fs } from '../config/config'
 import lock from '../images/lock2.png'
 import envelop from '../images/envelop.png'
 import { useNavigate } from 'react-router-dom'
 
-export const Login = ({loginUser}) => {
+export const Login = ({user, loginUser}) => {
 
     const history = useNavigate()
     const [email, setEmail] = useState('');
@@ -37,6 +37,11 @@ export const Login = ({loginUser}) => {
         })
             .catch(error => setErrorMsg(error.message));
     }
+
+    useEffect(() => {
+        if (user.user) history('/');
+    })
+
     return (
         <div className='login-page route'>
             <div className='container'>

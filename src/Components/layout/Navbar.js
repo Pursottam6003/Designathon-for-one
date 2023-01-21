@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import technodayaLogo from "../../images/logo/technodaya-logo1.png"
 import technodayaLogoLight from "../../images/logo/technodaya-logo-white.png"
 import { ReactComponent as CloseIcon } from '../../images/logo/remove.svg'
@@ -40,7 +40,9 @@ const NavLinks = [
 ]
 
 export const Navbar = ({ user, logoutUser }) => {
-  const history = useNavigate()
+  const history = useNavigate();
+  const location = useLocation();
+
   const handleLogout = (e) => {
     e.preventDefault();
     close();
@@ -49,7 +51,7 @@ export const Navbar = ({ user, logoutUser }) => {
   }
   return (
     <div className={`navbar-component ${user.admin ? 'admin' : ''}`}>
-      <div className='nav-content-wrapper container'>
+      <div className='nav-content-wrapper container' style={location.pathname.includes('/admin') ? { maxWidth: '100%' } : {}}>
         <header className='banner'>
           <NavLink exact to='/'><img id='technodayaLogo' src={false ? technodayaLogoLight : technodayaLogo} alt="Technodaya" /></NavLink>
         </header>

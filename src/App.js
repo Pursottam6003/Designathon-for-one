@@ -57,7 +57,7 @@ function App() {
           <Route path="/previews/*" element={(
             <ProtectedComponent isAdmin={true} children={<Issue slug='previews' />} />
           )} />
-          <Route path="/login" element={<Login loginUser={handleLogin} />} />
+          <Route path="/login" element={<Login user={user} loginUser={handleLogin} />} />
 
           <Route path="/uploadcover" element={<UploadCover />} />
           <Route path="/signup" element={<Signup />} />
