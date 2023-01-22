@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { LoadingPage } from './Loading';
 import { useAuthStatus } from '../hooks/hooks';
 
 const UnauthorizedComponent = () => (
@@ -22,7 +23,7 @@ const ProtectedComponent = ({ children, isAdmin }) => {
   })
 
   return (
-    checkingStatus ? <div className='container'><h1>Please wait...</h1></div> : (<>
+    checkingStatus ? <LoadingPage /> : (<>
       {loggedIn && (<>
         {!isAdmin ? <>{children}</> : (<>
           {admin ? <>{children}</> : <UnauthorizedComponent />}

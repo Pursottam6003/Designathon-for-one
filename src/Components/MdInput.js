@@ -9,8 +9,8 @@ const growableStyles = {
 }
 
 const defaultFontStyles = {
-    fontSize: '0.95rem',
-    fontFamily: `"Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif, Roboto`,
+    fontSize: '0.8rem',
+    fontFamily: `monospace`,
     lineHeight: 1.42857143,
     borderBottom: 'solid 2px transparent',
 }

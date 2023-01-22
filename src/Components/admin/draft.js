@@ -3,6 +3,7 @@ import { Field } from "../form/Field"
 import { DndMain } from "../dnd/dndMain"
 import { fs } from "../../config/config"
 import { Categories, getBiMonth, BiMonthlyNames } from "../../helpers"
+import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 
 class DraftForm extends Component {
   handleChange = (e) => {
@@ -40,6 +41,7 @@ export class Draft extends Component {
     formView: true,
     preview: null,
     published: false,
+    loading: false,
     orders: {
       tasks: {},
       columns: {
@@ -98,7 +100,9 @@ export class Draft extends Component {
 
   handlePreviewIssue = (e) => {
     e.preventDefault();
-    const { orders, title, vol, iss, month } = this.state
+    const { orders, title, vol, iss, month } = this.state;
+    this.setState({loading: true});
+
     document.getElementById("publishBtn").setAttribute("disabled", "");
 
     const year = month.slice(0, 4)
@@ -139,9 +143,7 @@ export class Draft extends Component {
             console.log('Preview generated!');
             this.setState({
               preview: previewLink,
-            }, () => {
-              document.getElementById("publishBtn").removeAttribute("disabled");
-            })
+            }, () => this.setState({loading: false}))
           })
       })
   }
@@ -230,14 +232,18 @@ export class Draft extends Component {
           <div>
             <div className="btns-group">
               {!formView && !preview && (
-                <button
+                !this.state.loading ? <button
                   form="draftForm"
                   className="btn submit"
                   id="publishBtn"
                   onClick={this.handlePreviewIssue}
                   type="submit"
+                >Generate preview</button> : 
+                <button
+                  className="btn submit"
+                  disabled
                 >
-                  Generate preview
+                  <SpinnerIcon />
                 </button>
               )}
 

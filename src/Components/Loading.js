@@ -1,0 +1,19 @@
+import React from 'react'
+import { ReactComponent as SpinnerIcon } from '../images/icons/spinner.svg'
+
+export const LoadingPage = () => {
+    return (
+        <div style={{
+            position: 'absolute',
+            top: '40%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)'
+        }}>
+            <SpinnerIcon style={{
+                display: 'block',
+                height: '3rem',
+                width: '3rem'
+            }} />
+        </div>
+    )
+}

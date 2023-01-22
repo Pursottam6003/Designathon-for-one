@@ -566,6 +566,11 @@ h3 {
         list-style-type: none;
         display: flex;
 
+        .nav-item.spinner {
+          display: flex;
+          width: 1.4rem;
+        }
+
         .nav-item {
           font-family: inherit;
           background-color: transparent;
@@ -2073,12 +2078,7 @@ h3 {
 
 
 .login-page {
-  // display: flex;
-  // flex-direction: row;
-  // width: 100%;
-
   .form-box {
-
     .greet-box {
       .heading {
         font-size: 1.6rem;
@@ -2087,6 +2087,37 @@ h3 {
       }
 
       margin-bottom: 2rem;
+    }
+
+    .login-msg {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      font-size: 0.875rem;
+      margin: 1rem auto 2rem;
+      border-radius: 4px;
+      font-family: "Open Sans", sans-serif;
+      box-shadow: 0px 1px 3px -2px #000000e6;
+
+      .icon {
+        color: inherit;
+        margin-right: 0.8rem;
+        
+        svg {
+          width: 1.375rem;
+          height: 1.375rem;
+          fill: currentColor;
+        }
+      }
+    }
+
+    .login-msg.success {
+      color: #2e7d32;
+      background-color: rgb(237, 247, 237);
+    }
+    .login-msg.error {
+      color: #d32f2f;
+      background-color: rgb(253, 237, 237);
     }
 
     .login-form {
@@ -2149,6 +2180,12 @@ h3 {
         background-color: var(--gray-9);
         border: solid 2px var(--gray-9);
         color: #fff;
+      }
+
+      .login-btn[disabled] {
+        background-color: transparent;
+        border: solid 2px var(--gray-5);
+        color: var(--gray-5);
       }
     }
   }

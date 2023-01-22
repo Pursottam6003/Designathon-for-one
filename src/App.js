@@ -37,7 +37,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Layout user={user} logoutUser={handleLogout} admin={false}>
+      <Layout user={user} logoutUser={handleLogout} checkingStatus={checkingStatus}>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/magazine" element={<Read />} />

@@ -2,42 +2,46 @@ import React, { useEffect, useState } from 'react'
 import { auth, fs } from '../config/config'
 import lock from '../images/lock2.png'
 import envelop from '../images/envelop.png'
+import { ReactComponent as ErrorIcon } from '../images/icons/error.svg'
+import { ReactComponent as SpinnerIcon } from '../images/icons/spinner.svg'
+
 import { useNavigate, useLocation } from 'react-router-dom'
 
-export const Login = ({user, loginUser}) => {
+export const Login = ({ user, loginUser }) => {
     const history = useNavigate();
     const location = useLocation();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const [loading, setLoading] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
-    const [successMsg, setSuccessMsg] = useState('');
 
     const handleLogin = (e) => {
         e.preventDefault();
+        setLoading(true);
+        setErrorMsg('');
         auth.signInWithEmailAndPassword(email, password).then((res) => {
-            console.log(res.user);
             fs.collection('users').doc(res.user.uid).get()
-            .then(snapshot => {
-                if (snapshot.data().Role === 'admin') {
-                    loginUser({user: res.user, admin: true})
-                    if (location.state.from) history(location.state.from)
-                    else history('/admin')
-                } else {
-                    loginUser({user: res.user, admin: false})
-                    if (location.state.from) history(location.state.from)
-                    else history('/submit')
-                }
-            })
+                .then(snapshot => {
+                    loginUser({ 
+                        user: res.user, 
+                        admin: snapshot.data().Role === 'admin' 
+                    })
+                    if (location.state) history(location.state.from)
+                    else history( snapshot.data().Role === 'admin' ? '/admin/' : '/submit' );
+                })
             console.log('login successful...');
-            setSuccessMsg('Login successful! Redirecting...');
-            setEmail('');
-            setPassword('');
-            setErrorMsg('');
-            setSuccessMsg('');
         })
-            .catch(error => setErrorMsg(error.message));
+        .catch(error => {
+            setErrorMsg(error.message);
+            resetForm();
+            setLoading(false);
+        });
+    }
+
+    const resetForm = () => {
+        setEmail('');
+        setPassword('');
     }
 
     useEffect(() => {
@@ -51,9 +55,12 @@ export const Login = ({user, loginUser}) => {
                     <h1 className='heading'>Login</h1>
                 </header>
                 <div className='form-box'>
-                    {successMsg && <>
-                        <div className='success-msg'>{successMsg}</div>
-                    </>}
+                    <div className='messages'>
+                        {errorMsg && <div className='login-msg error'>
+                            <div className='icon'><ErrorIcon /></div>
+                            {errorMsg}
+                        </div>}
+                    </div>
                     <form className='login-form' onSubmit={handleLogin}>
                         <div className='login-field email'>
                             <img alt="" src={envelop} className='icon' />
@@ -63,11 +70,15 @@ export const Login = ({user, loginUser}) => {
                             <img alt="" src={lock} className='icon' />
                             <input type='password' onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password'></input>
                         </div>
-                        <button className='login-btn' type="submit">Login</button>
+                        {loading ? (
+                            <button className='login-btn' style={{display: 'flex', justifyContent: 'center'}} disabled type="submit">
+                                <SpinnerIcon style={{height: '1.2rem'}} />
+                            </button>
+                            ) : (
+                            <button className='login-btn' type="submit">Login</button>
+                        )}
+
                     </form>
-                    {errorMsg && <>
-                        <div className='error-msg'>{errorMsg}</div>
-                    </>}
                 </div>
             </div>
         </div>

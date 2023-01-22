@@ -2,12 +2,10 @@ import React, { Component } from "react"
 import { fs } from '../../config/config'
 import { PreviewedInput } from '../MdInput'
 
+import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
+
 import { ReactComponent as DoneIcon } from '../../images/icons/done.svg'
 import { ReactComponent as RemoveIcon } from '../../images/icons/remove.svg'
-
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
 
 export class Submissions extends Component {
   initialState = {
@@ -113,7 +111,7 @@ export class Submissions extends Component {
         }
         return sub.ID !== id
       })
-    }, () => {this.setUnsaved()})
+    }, () => { this.setUnsaved() })
   }
 
   rejectSubmission = (id, type) => {
@@ -123,7 +121,7 @@ export class Submissions extends Component {
         pending: pending.filter((sub, i) => {
           return sub.ID !== id
         })
-      }, () => {this.setUnsaved()})
+      }, () => { this.setUnsaved() })
 
     } else {
       this.setState({
@@ -135,7 +133,7 @@ export class Submissions extends Component {
           }
           return sub.ID !== id
         })
-      }, () => {this.setUnsaved()})
+      }, () => { this.setUnsaved() })
     }
   }
 
@@ -144,7 +142,7 @@ export class Submissions extends Component {
     updatedls[index][field] = val;
     this.setState({
       [type]: updatedls
-    }, () => {this.setUnsaved()});
+    }, () => { this.setUnsaved() });
   }
 
   setUnsaved = () => {
@@ -167,8 +165,10 @@ export class Submissions extends Component {
           <div className="btns-group">
             {uploading ? (
               <button className="btn submit" disabled>
-                Saving...
+                <SpinnerIcon />
               </button>
+
+              
             ) : (
               unsavedChanges ? (
                 <button className="btn submit" onClick={this.commitChanges}>
@@ -196,18 +196,16 @@ export class Submissions extends Component {
             )}
           </div>
         </header>
-        <div className="container">
-          <main className="workspace">
-            <div className="submissions-wrapper">
-              <div className="submission pending">
-                <Submission approve={this.approveSubmission} reject={this.rejectSubmission} update={this.updateSubmission} type="pending" ls={pending} />
-              </div>
-              <div className="submission approved">
-                <Submission approve={this.approveSubmission} reject={this.rejectSubmission} update={this.updateSubmission} type="approved" ls={approved} />
-              </div>
+        <main className="workspace">
+          <div className="submissions-wrapper">
+            <div className="submission pending">
+              <Submission approve={this.approveSubmission} reject={this.rejectSubmission} update={this.updateSubmission} type="pending" ls={pending} />
             </div>
-          </main>
-        </div>
+            <div className="submission approved">
+              <Submission approve={this.approveSubmission} reject={this.rejectSubmission} update={this.updateSubmission} type="approved" ls={approved} />
+            </div>
+          </div>
+        </main>
       </div>
     )
   }
@@ -216,13 +214,13 @@ export class Submissions extends Component {
 const Submission = ({ type, ls, approve, reject, update }) => {
   return (
     <>
-      <h3 className="sub-summary">{ls.length} {type} submissions</h3>
+      <h3 className="sub-summary container">{ls.length} {type} submissions</h3>
       {ls.length !== 0 && (
-        <div className="table-wrapper">
+        <div className="table-wrapper container">
           <table>
             <thead>
               <tr>
-                <th>Author</th>
+                <th style={{ minWidth: '120px' }}>Author</th>
                 <th style={{ minWidth: '160px' }}>Title</th>
                 <th style={{ minWidth: '400px' }}>Content</th>
                 <th style={{ minWidth: '120px' }}>Date added</th>
@@ -239,10 +237,10 @@ const Submission = ({ type, ls, approve, reject, update }) => {
                 return (<tr key={sub.ID}>
                   <td>{sub.author}</td>
                   <td>
-                    <PreviewedInput value={sub.title} updateVal={(txt) => {update(type, 'title', i, txt) }} />
+                    <PreviewedInput value={sub.title} updateVal={(txt) => { update(type, 'title', i, txt) }} />
                   </td>
                   <td>
-                    <PreviewedInput value={sub.desc} updateVal={(txt) => {update(type, 'desc', i, txt) }} />
+                    <PreviewedInput value={sub.desc} updateVal={(txt) => { update(type, 'desc', i, txt) }} />
                   </td>
                   <td>{sub.created}</td>
                   {type === 'pending' ? (<>

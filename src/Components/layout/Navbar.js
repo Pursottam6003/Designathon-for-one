@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import technodayaLogo from "../../images/logo/technodaya-logo1.png"
 import technodayaLogoLight from "../../images/logo/technodaya-logo-white.png"
 import { ReactComponent as CloseIcon } from '../../images/logo/remove.svg'
+import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 import { useNavigate } from 'react-router-dom'
 
 const HamburgerIcon = () => (
@@ -39,7 +40,7 @@ const NavLinks = [
   { link: '/admin', name: 'Admin', auth: true, admin: true },
 ]
 
-export const Navbar = ({ user, logoutUser }) => {
+export const Navbar = ({ user, logoutUser, checkingStatus }) => {
   const history = useNavigate();
   const location = useLocation();
 
@@ -113,7 +114,11 @@ export const Navbar = ({ user, logoutUser }) => {
               <button type="button" onClick={handleLogout} className='nav-item'>
                 <div className='nav-item-txt'>Logout</div>
               </button>
-            </>) : <NavItem link={'/login'} name='Login' mobile={false} />}
+            </>) : checkingStatus ?
+              <div className='nav-item spinner'>
+                <SpinnerIcon />
+              </div> :
+              <NavItem link={'/login'} name='Login' mobile={false} />}
           </ul>
 
           <HamburgerIcon />

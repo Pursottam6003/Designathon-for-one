@@ -7,6 +7,7 @@ import rehypeRaw from 'rehype-raw';
 import { CategoryTitles } from '../helpers';
 import { Route, Routes, useParams } from 'react-router-dom';
 import { getBiMonth, BiMonthlyNames } from '../helpers';
+import { LoadingPage } from '../Components/Loading';
 
 class MagezineArticle extends Component {
   render() {
@@ -89,7 +90,8 @@ class FetchedIssue extends Component {
     vol: '',
     iss: '',
     month: '',
-    orders: null
+    orders: null,
+    loading: true
   }
   state = this.initialState
 
@@ -105,6 +107,7 @@ class FetchedIssue extends Component {
         this.createComponents();
       })
     }
+    this.setState({ loading: false });
   }
 
   createComponents() {
@@ -132,22 +135,24 @@ class FetchedIssue extends Component {
     const publishedAtStr = BiMonthlyNames[getBiMonth(month)][1] + ' ' + month.slice(0, 4);
 
     return (
-      <div className='container'>
-        <div className='page-header'>
-          <div className='issue-meta'>
-            <time className='publish-date'>{publishedAtStr}</time>
-            <span className='iss-vol'>Vol-{vol}, Issue-{iss}</span>
+      this.state.loading ? <LoadingPage /> :
+        !this.state.orders ? <h2>Not found</h2> :
+          <div className='container'>
+            <div className='page-header'>
+              <div className='issue-meta'>
+                <time className='publish-date'>{publishedAtStr}</time>
+                <span className='iss-vol'>Vol-{vol}, Issue-{iss}</span>
+              </div>
+              <h1 className='heading'>{title.slice(0, 1).toUpperCase() + title.slice(1, title.length)}</h1>
+            </div>
+            <div className='magazine-wrapper'>
+              <div className='magazine'>
+                <ul>
+                  {this.state.magSecComponents}
+                </ul>
+              </div>
+            </div>
           </div>
-          <h1 className='heading'>{title.slice(0, 1).toUpperCase() + title.slice(1, title.length)}</h1>
-        </div>
-        <div className='magazine-wrapper'>
-          <div className='magazine'>
-            <ul>
-              {this.state.magSecComponents}
-            </ul>
-          </div>
-        </div>
-      </div>
     )
   }
 }
