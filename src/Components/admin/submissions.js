@@ -62,6 +62,7 @@ export class Submissions extends Component {
         const uploadObj = {
           created: obj.created,
           author: obj.author,
+          uid: obj.uid,
           categoryId: obj.categoryId,
           title: obj.title,
           desc: obj.desc,
@@ -79,6 +80,7 @@ export class Submissions extends Component {
         const uploadObj = {
           created: obj.created,
           author: obj.author,
+          uid: obj.uid,
           categoryId: obj.categoryId,
           title: obj.title,
           desc: obj.desc,

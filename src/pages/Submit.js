@@ -11,6 +11,7 @@ class Submit extends Component {
   initialState = {
     category: 0,
     username: '',
+    userUid: '',
     edit: true,
     formData: {},
     activityTitle: '',
@@ -27,7 +28,7 @@ class Submit extends Component {
   handleSubmit = (out) => {
     const { heading, output: wholeDescription } = out
     const { date, eventBrochure: Mybrochure } = this.state.formData
-    const { category: category_Id, username } = this.state
+    const { category: category_Id, username, userUid } = this.state
     let imgCaption = this.state.imgCaption
     let brochureUrl = ''
 
@@ -38,6 +39,7 @@ class Submit extends Component {
           timeStyle: "short",
         }),
         author: username,
+        uid: userUid,
         categoryId: category_Id,
         title: heading,
         desc: wholeDescription,
@@ -128,7 +130,10 @@ class Submit extends Component {
       fs.collection('users').doc(user.uid).get().then(snapshot => {
         const fullName = snapshot.data().FullName
         const name = fullName.slice(0, fullName.search(' '))
-        this.setState({username: name})
+        this.setState({
+          username: name,
+          userUid: user.uid
+        })
       })
     }
   }

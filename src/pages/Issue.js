@@ -107,7 +107,9 @@ class FetchedIssue extends Component {
         this.createComponents();
       })
     }
-    this.setState({ loading: false });
+    this.setState({ loading: false }, () => {
+      console.log(this.state.orders);
+    });
   }
 
   createComponents() {

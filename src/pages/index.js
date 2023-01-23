@@ -5,5 +5,6 @@ import { AdminConsole } from "./Admin";
 import { Login } from "./Login";
 import { Issue } from "./Issue";
 import { Submit } from "./Submit";
+import { Activity } from "./Activity";
 
-export { Home, Read, About, AdminConsole, Login, Issue, Submit };
+export { Home, Read, About, AdminConsole, Login, Issue, Submit, Activity };

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from "./Components/layout/Layout"
 
-import { Home, Read, Issue, About, Submit, AdminConsole, Login } from './pages'
+import { Home, Read, Issue, About, Submit, AdminConsole, Login, Activity } from './pages'
 import ProtectedComponent from "./Components/ProtectedRoute";
 
 import { Signup } from "./Components/SignUp";
@@ -45,6 +45,10 @@ function App() {
 
           <Route path="/submit" element={(
             <ProtectedComponent isAdmin={false} children={<Submit user={user.user} />} />
+          )} />
+          
+          <Route path="/activity" element={(
+            <ProtectedComponent isAdmin={false} children={<Activity user={user.user} />} />
           )} />
 
           <Route path="/admin/*" element={(

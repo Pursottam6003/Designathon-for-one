@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { CategoryTitles } from '../helpers'
+import { NavLink } from 'react-router-dom'
 
 const NoPreview = () => {
   return (
@@ -14,7 +15,10 @@ const NoPreview = () => {
       </div>
 
       <h2 className='no-content-heading'>There's nothing to show yet.</h2>
-      <p className='no-content-desc'>Select an activity category first and fill the form, then use this preview mode to edit the generated text.</p>
+      <p className='no-content-desc'>
+        Select an activity category first and fill the form, then use this preview mode to edit the generated text or 
+      </p>
+      <p className='no-content-desc'>Already filled? <NavLink to={'/activity'}>View your submissions</NavLink></p>
     </div>
   )
 }
