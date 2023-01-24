@@ -33,11 +33,13 @@ class Submit extends Component {
     let brochureUrl = ''
 
     const uploadOnFirestore = () => {
+      const currentTime = new Date().getTime()
       const uploadObj = {
-        created: new Date().toLocaleString('en-IN', {
+        created: currentTime.toLocaleString('en-IN', {
           dateStyle:"medium",
           timeStyle: "short",
         }),
+        createdInSeconds: currentTime,
         author: username,
         uid: userUid,
         categoryId: category_Id,
@@ -50,7 +52,7 @@ class Submit extends Component {
       }
 
       fs.collection(`pendings/`).doc().set(uploadObj).then(() => {
-        console.log("Sucessfully uploaded");
+        alert("Sucecssfully uploaded");
         this.setState({
           clearRev: this.state.clearRev + 1,
           category: this.initialState.category

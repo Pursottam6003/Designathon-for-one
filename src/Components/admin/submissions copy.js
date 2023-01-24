@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { fs, db, app } from '../../config/config'
+import { fs, db } from '../../config/config'
 import { PreviewedInput } from '../MdInput'
 
 import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
@@ -7,62 +7,65 @@ import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 import { ReactComponent as DoneIcon } from '../../images/icons/done.svg'
 import { ReactComponent as RemoveIcon } from '../../images/icons/remove.svg'
 
-import { getDocs, query, collection, where, orderBy, getDoc } from 'firebase/firestore'
-
+import { getDocs, query, collection, where, orderBy } from 'firebase/firestore'
 
 export class Submissions extends Component {
   initialState = {
-    pending: [],
-    approved: [],
+    pending: {},
+    approved: {},
+    unsaved: [],
     uploading: false,
     unsavedChanges: false,
   }
 
   state = this.initialState
 
-  fetchSubmissions = async () => {
-    const queryApproved =  query(collection(db, 'approved'), orderBy('createdInSeconds', 'desc'))
-    const queryPending =  query(collection(db, 'pendings'), orderBy('createdInSeconds', 'desc'))
+  fetchSubs = () => {
+    const qa = query(collection(db, 'approved'), orderBy('createdInSeconds', 'desc'))
+    const qp = query(collection(db, 'pendings'), orderBy('createdInSeconds', 'desc'))
 
-    getDocs(queryApproved).then(snapshot => {
-      const ls = []
+    getDocs(qa).then(snapshot => {
+      const ls = {}
       snapshot.forEach(doc => {
-        ls.push({...doc.data(), ID: doc.id})
+        ls[doc.id] = { ...doc.data(), id: doc.id }
+        // ls.push({ ...doc.data(), id: doc.id })
       })
-      this.setState({approved: ls})
-    }).catch(err => {
-      console.log(err);
-    })
+      this.setState({ approved: ls });
+    }).catch(err => { console.log(err) });
 
-    getDocs(queryPending).then(snapshot => {
-      const ls = []
+    getDocs(qp).then(snapshot => {
+      const ls = {}
       snapshot.forEach(doc => {
-        ls.push({...doc.data(), ID: doc.id})
+        ls[doc.id] = { ...doc.data(), id: doc.id }
+        // ls.push({ ...doc.data(), id: doc.id })
       })
-      this.setState({pending: ls})
-    }).catch(err => {
-      console.log(err);
-    })    
-
-    // const pending = []
-    // const approved = []
-    // for (let snap of pendingsFirebase.docs) {
-    //   let data = snap.data();
-    //   data.ID = snap.id;
-    //   pending.push(data)
-    //   if (pending.length === pendingsFirebase.docs.length) {
-    //     this.setState({ pending: pending })
-    //   }
-    // }
-    // for (let snap of approvedFirebase.docs) {
-    //   let data = snap.data();
-    //   data.ID = snap.id;
-    //   approved.push(data)
-    //   if (approved.length === approvedFirebase.docs.length) {
-    //     this.setState({ approved: approved })
-    //   }
-    // }
+      this.setState({ pending: ls });
+    }).catch(err => { console.log(err) })
   }
+
+  // fetchSubmissions = async () => {
+  //   const pending = []
+  //   const approved = []
+  //   const pendingsFirebase = await fs.collection(`pendings`).get();
+  //   const approvedFirebase = await fs.collection(`approved`).get();
+
+  //   for (let snap of pendingsFirebase.docs) {
+  //     let data = snap.data();
+  //     data.ID = snap.id;
+  //     pending.push(data)
+  //     if (pending.length === pendingsFirebase.docs.length) {
+  //       this.setState({ pending: pending })
+  //     }
+  //   }
+  //   for (let snap of approvedFirebase.docs) {
+  //     let data = snap.data();
+  //     data.ID = snap.id;
+  //     approved.push(data)
+  //     if (approved.length === approvedFirebase.docs.length) {
+  //       this.setState({ approved: approved })
+  //     }
+  //   }
+  // }
 
   commitChanges = () => {
     this.setState({
@@ -84,7 +87,7 @@ export class Submissions extends Component {
       approved.forEach(obj => {
         const uploadObj = {
           created: obj.created,
-          createdInSeconds: new Date(obj.created).getTime(),
+          createdInSeconds: obj.createdInSeconds,
           author: obj.author,
           uid: obj.uid,
           categoryId: obj.categoryId,
@@ -103,7 +106,7 @@ export class Submissions extends Component {
       pending.forEach(obj => {
         const uploadObj = {
           created: obj.created,
-          createdInSeconds: new Date(obj.created).getTime(),
+          createdInSeconds: obj.createdInSeconds,
           author: obj.author,
           uid: obj.uid,
           categoryId: obj.categoryId,
@@ -119,7 +122,7 @@ export class Submissions extends Component {
         })
       })
 
-      this.fetchSubmissions();
+      this.fetchSubs();
       this.setState({
         uploading: false,
         unsavedChanges: false
@@ -127,16 +130,21 @@ export class Submissions extends Component {
     })
   }
 
+  saveChanges = () => {
+
+  }
+
   approveSubmission = (id) => {
-    const { pending, approved } = this.state
+    const { pending, approved, unsaved } = this.state
     this.setState({
       pending: pending.filter((sub, i) => {
-        if (sub.ID === id) {
+        if (sub.id === id) {
           this.setState({
-            approved: [sub, ...approved]
+            approved: [sub, ...approved],
+            unsaved: !unsaved.includes(sub.id) ? [...unsaved, sub.id] : unsaved
           })
         }
-        return sub.ID !== id
+        return sub.id !== id
       })
     }, () => { this.setUnsaved() })
   }
@@ -146,19 +154,19 @@ export class Submissions extends Component {
     if (type === 'reject') {
       this.setState({
         pending: pending.filter((sub, i) => {
-          return sub.ID !== id
+          return sub.id !== id
         })
       }, () => { this.setUnsaved() })
 
     } else {
       this.setState({
         approved: approved.filter((sub, i) => {
-          if (sub.ID === id) {
+          if (sub.id === id) {
             this.setState({
               pending: [sub, ...pending]
             })
           }
-          return sub.ID !== id
+          return sub.id !== id
         })
       }, () => { this.setUnsaved() })
     }
@@ -180,7 +188,7 @@ export class Submissions extends Component {
 
 
   componentDidMount() {
-    this.fetchSubmissions();
+    this.fetchSubs();
   }
 
   render() {
@@ -194,8 +202,6 @@ export class Submissions extends Component {
               <button className="btn submit" disabled>
                 <SpinnerIcon />
               </button>
-
-              
             ) : (
               unsavedChanges ? (
                 <button className="btn submit" onClick={this.commitChanges}>
@@ -241,8 +247,8 @@ export class Submissions extends Component {
 const Submission = ({ type, ls, approve, reject, update }) => {
   return (
     <>
-      <h3 className="sub-summary container">{ls.length} {type} submissions</h3>
-      {ls.length !== 0 && (
+      <h3 className="sub-summary container">{Object.keys(ls).length} {type} submissions</h3>
+      {Object.keys(ls).length !== 0 && (
         <div className="table-wrapper container">
           <table>
             <thead>
@@ -260,15 +266,20 @@ const Submission = ({ type, ls, approve, reject, update }) => {
               </tr>
             </thead>
             <tbody>
-              {ls.map((sub, i) => {
-                return (<tr key={sub.ID}>
-                  <td>{sub.author}</td>
+              {Object.keys(ls).map(id => {
+                const { author, title, desc, imgUrl, created } = ls[id]
+                return (<tr key={id}>
+                  <td>{author}</td>
                   <td>
-                    <PreviewedInput value={sub.title} updateVal={(txt) => { update(type, 'title', i, txt) }} />
+                    <PreviewedInput value={title}
+                    updateVal={(txt) => { update(type, 'title', id, txt) }} 
+                    />
                   </td>
                   <td>
-                    <PreviewedInput value={sub.desc} updateVal={(txt) => { update(type, 'desc', i, txt) }} />
-                    {sub.imgUrl.length > 0 && (
+                    <PreviewedInput value={desc}
+                    updateVal={(txt) => { update(type, 'desc', id, txt) }}
+                    />
+                    {imgUrl.length > 0 && (
                       <div style={{
                         margin: '1rem 0 0',
                         display: 'flex',
@@ -276,7 +287,7 @@ const Submission = ({ type, ls, approve, reject, update }) => {
                         flexWrap: 'wrap',
                         gap: '1rem'
                       }}>
-                        {sub.imgUrl.map(url => (
+                        {imgUrl.map(url => (
                           <div style={{ maxWidth: '450px', }}>
                             <img style={{ width: '100%', height: 'auto' }} key={url} src={url} alt="" />
                           </div>
@@ -284,21 +295,27 @@ const Submission = ({ type, ls, approve, reject, update }) => {
                       </div>
                     )}
                   </td>
-                  <td>{sub.created}</td>
+                  <td>{created}</td>
                   {type === 'pending' ? (<>
                     <td>
-                      <button className="action-btn remove" type="button" onClick={(e) => { reject(sub.ID, 'reject') }}>
+                      <button className="action-btn remove" type="button"
+                      onClick={(e) => { reject(id, 'reject') }}
+                      >
                         <RemoveIcon />
                       </button>
                     </td>
                     <td>
-                      <button className="action-btn add" type="button" onClick={(e) => { approve(sub.ID) }}>
+                      <button className="action-btn add" type="button"
+                      onClick={(e) => { approve(id) }}
+                      >
                         <DoneIcon />
                       </button>
                     </td>
                   </>) : (
                     <td>
-                      <button className="action-btn remove" type="button" onClick={() => { reject(sub.ID, 'remove') }}>
+                      <button className="action-btn remove" type="button"
+                      onClick={(e) => { reject(id, 'remove') }}
+                      >
                         <RemoveIcon />
                       </button>
                     </td>
