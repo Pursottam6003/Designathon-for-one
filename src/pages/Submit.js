@@ -35,10 +35,7 @@ class Submit extends Component {
     const uploadOnFirestore = () => {
       const currentTime = new Date().getTime()
       const uploadObj = {
-        created: currentTime.toLocaleString('en-IN', {
-          dateStyle:"medium",
-          timeStyle: "short",
-        }),
+        created: new Date(currentTime).toLocaleString('en-IN', {dateStyle:"medium",timeStyle: "short",}),
         createdInSeconds: currentTime,
         author: username,
         uid: userUid,
@@ -49,9 +46,10 @@ class Submit extends Component {
         imgUrl: firebase.firestore.FieldValue.arrayUnion(...imageLinks),
         brochureUrl: brochureUrl,
         imgCaption: imgCaption,
+        approved: false
       }
 
-      fs.collection(`pendings/`).doc().set(uploadObj).then(() => {
+      fs.collection(`submissions/`).doc().set(uploadObj).then(() => {
         alert("Sucecssfully uploaded");
         this.setState({
           clearRev: this.state.clearRev + 1,

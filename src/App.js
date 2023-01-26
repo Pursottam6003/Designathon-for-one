@@ -48,7 +48,7 @@ function App() {
           )} />
           
           <Route path="/activity" element={(
-            <ProtectedComponent isAdmin={false} children={<Activity user={user.user} />} />
+            <ProtectedComponent isAdmin={false} children={<Activity uid={user.user ? user.user.uid : null} />} />
           )} />
 
           <Route path="/admin/*" element={(
@@ -67,7 +67,6 @@ function App() {
           <Route path="/signup" element={<Signup />} />
         </Routes>
       </Layout>
-
     </BrowserRouter>
   )
 }

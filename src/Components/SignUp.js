@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {auth,fs} from '../config/config'
+import {reauth,fs} from '../config/config'
 
 
 export const Signup = () => {
@@ -14,7 +14,7 @@ export const Signup = () => {
     const handleSignup=(e)=>{
         e.preventDefault();
         // console.log(fullName, email, password);
-        auth.createUserWithEmailAndPassword(email,password).then((credentials)=>{
+        reauth.createUserWithEmailAndPassword(email,password).then((credentials)=>{
            // console.log(credentials);
             fs.collection('users').doc(credentials.user.uid).set({
                 FullName: fullName,

@@ -21,7 +21,7 @@ export const Login = ({ user, loginUser }) => {
     setLoading(true);
     setErrorMsg('');
     auth.signInWithEmailAndPassword(email, password).then((res) => {
-      fs.collection('users').doc(res.user.uid).get()
+      return fs.collection('users').doc(res.user.uid).get()
         .then(snapshot => {
           loginUser({
             user: res.user,
@@ -35,8 +35,8 @@ export const Login = ({ user, loginUser }) => {
             history(snapshot.data().Role === 'admin'
               ? '/admin/' : '/submit');
           }
+          console.log('login successful...');
         })
-      console.log('login successful...');
     })
       .catch(error => {
         setErrorMsg(error.message);

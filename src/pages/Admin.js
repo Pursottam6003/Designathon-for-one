@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { ConsoleNav } from "../Components/admin/consoleNav"
 import { Draft } from "../Components/admin/draft"
+import { SubmissionsFC } from "../Components/admin/submissions2"
 import { Submissions } from "../Components/admin/submissions"
 
 export const AdminConsole = () => {
@@ -21,7 +22,7 @@ export const AdminConsole = () => {
         </aside>
         <main className="main-body">
           <Routes>
-            <Route path="/" element={<Submissions />} />
+            <Route path="/" element={<SubmissionsFC />} />
             <Route path="draft" element={<Draft />} />
           </Routes>
         </main>

@@ -1,59 +1,23 @@
-import React, { Component, useEffect, useState } from "react"
-import { db } from '../config/config'
-import { getDocs, query, collection, where, orderBy } from "firebase/firestore";
+import React from "react"
+import { where } from "firebase/firestore";
 import { ReactComponent as SpinnerIcon } from '../images/icons/spinner.svg'
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import { useGetSubmissions } from "../hooks/hooks";
 
 
-export const Activity = ({ user }) => {
-  const [pending, setPending] = useState([]);
-  const [approved, setApproved] = useState([]);
-  const [loading, setLoading] = useState(true);
+export const Activity = ({ uid }) => {
+  const { docs: pending, fetching: fetchingPending } = useGetSubmissions('submissions', [
+    where("uid", "==", uid),
+    where("approved", "==", false),
+  ])
 
-  const fetchSubmissions = () => {
-    const qa = query(
-      collection(db, "approved"),
-      where("uid", "==", user.uid),
-      orderBy('createdInSeconds', 'desc')
-    );
-    const qp = query(
-      collection(db, "pending"),
-      where("uid", "==", user.uid),
-      orderBy('createdInSeconds', 'desc')
-    );
-
-    getDocs(qp).then(snapshot => {
-      const pendingArr = [];
-      snapshot.forEach(doc => {
-        pendingArr.push({
-          ...doc.data(),
-          id: doc.id
-        });
-      })
-      setPending(pendingArr);
-    })
-      .catch(err => { console.log(err) });
-
-    getDocs(qa).then(snapshot => {
-      const approvedArr = [];
-      snapshot.forEach(doc => {
-        approvedArr.push({
-          ...doc.data(),
-          id: doc.id
-        });
-      })
-      setApproved(approvedArr);
-    })
-      .catch(err => { console.log(err) })
-      .finally(() => { setLoading(false) });
-  }
-
-  useEffect(() => {
-    if (user) fetchSubmissions();
-  }, [user])
+  const { docs: approved, fetching: fetchingApproved } = useGetSubmissions('submissions', [
+    where("uid", "==", uid),
+    where("approved", "==", true),
+  ])
 
   return (
     <div className="activity-component">
@@ -61,24 +25,25 @@ export const Activity = ({ user }) => {
         <header className="page-header">
           <h1 className="heading">My Activity</h1>
         </header>
-        {loading ? <SpinnerIcon /> : pending.length || approved.length ? (
-          <div className="table-wrapper">
-            <table>
-              <thead>
-                <tr>
-                  <th>Status</th>
-                  <th style={{ minWidth: '120px' }}>Date added</th>
-                  <th style={{ minWidth: '160px' }}>Title</th>
-                  <th>Content</th>
-                </tr>
-              </thead>
-              <tbody>
-                {approved.map(sub => <Submission {...sub} type='Approved' key={sub.id} />)}
-                {pending.map(sub => <Submission {...sub} type='Pending' key={sub.id} />)}
-              </tbody>
-            </table>
-          </div>
-        ) : <p>No activity yet</p>}
+        {fetchingApproved && fetchingPending ? <SpinnerIcon />
+          : Object.keys(pending).length || Object.keys(approved).length ? (
+            <div className="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th style={{ minWidth: '120px' }}>Date added</th>
+                    <th style={{ minWidth: '160px' }}>Title</th>
+                    <th>Content</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.keys(approved).map(id => <Submission {...approved[id]} type='Approved' key={id} />)}
+                  {Object.keys(pending).map(id => <Submission {...pending[id]} type='Pending' key={id} />)}
+                </tbody>
+              </table>
+            </div>
+          ) : <p>No activity yet</p>}
       </div>
     </div>
   )
