@@ -2,8 +2,7 @@ import React, { useEffect } from "react"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { ConsoleNav } from "../Components/admin/consoleNav"
 import { Draft } from "../Components/admin/draft"
-import { SubmissionsFC } from "../Components/admin/submissions2"
-import { Submissions } from "../Components/admin/submissions"
+import { Submissions } from "../Components/admin/Submissions"
 
 export const AdminConsole = () => {
   const history = useNavigate();
@@ -22,7 +21,7 @@ export const AdminConsole = () => {
         </aside>
         <main className="main-body">
           <Routes>
-            <Route path="/" element={<SubmissionsFC />} />
+            <Route path="/" element={<Submissions />} />
             <Route path="draft" element={<Draft />} />
           </Routes>
         </main>

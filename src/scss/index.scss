@@ -2577,8 +2577,12 @@ table {
       }
     }
 
+    .action-btn {
+      background-color: #007E7C;
+    }
+
     .action-btn.add {
-      background-color: green;
+      background-color: rgb(117, 104, 84);
     }
 
     .add:hover {

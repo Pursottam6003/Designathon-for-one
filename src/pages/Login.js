@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { auth, fs } from '../config/config'
+import { reauth, db } from '../config/config'
 import lock from '../images/lock2.png'
 import envelop from '../images/envelop.png'
 import { ReactComponent as ErrorIcon } from '../images/icons/error.svg'
 import { ReactComponent as SpinnerIcon } from '../images/icons/spinner.svg'
 
 import { useNavigate, useLocation } from 'react-router-dom'
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { getDoc, doc } from 'firebase/firestore'
 
 export const Login = ({ user, loginUser }) => {
   const history = useNavigate();
@@ -20,29 +22,33 @@ export const Login = ({ user, loginUser }) => {
     e.preventDefault();
     setLoading(true);
     setErrorMsg('');
-    auth.signInWithEmailAndPassword(email, password).then((res) => {
-      return fs.collection('users').doc(res.user.uid).get()
-        .then(snapshot => {
-          loginUser({
-            user: res.user,
-            admin: snapshot.data().Role === 'admin'
-          })
-          if (location.state !== null &&
-            location.state.from.includes('/previews')) {
-            history(location.state.from)
-          }
-          else {
-            history(snapshot.data().Role === 'admin'
-              ? '/admin/' : '/submit');
-          }
-          console.log('login successful...');
-        })
-    })
-      .catch(error => {
-        setErrorMsg(error.message);
+
+    signInWithEmailAndPassword(reauth, email, password).then(async (res) => {
+      const docSnap = await getDoc(doc(db, 'users', res.user.uid));
+      if (docSnap.exists()) {
+        loginUser({
+          user: res.user,
+          admin: docSnap.data().Role === 'admin'
+        });
+
+        if (location.state !== null &&
+          location.state.from.includes('/previews')) {
+          history(location.state.from);
+        } else {
+          history(docSnap.data().Role ? '/admin' : '/submit');
+        }
+      }
+      else {
+        signOut(reauth);
+        setErrorMsg('Invalid user!');
         resetForm();
         setLoading(false);
-      });
+      }
+    }).catch(err => {
+      setErrorMsg(err.message);
+      resetForm();
+      setLoading(false);
+    })
   }
 
   const resetForm = () => {

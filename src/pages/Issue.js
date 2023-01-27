@@ -101,7 +101,7 @@ class FetchedIssue extends Component {
     const fetchedIssue = await fs.collection(`${slug}/${issueLn}`).get();
     for (var snap of fetchedIssue.docs) {
       var data = snap.data();
-      data.ID = snap.id;
+      data.id = snap.id;
 
       this.setState({ ...data }, () => {
         this.createComponents();

@@ -55,7 +55,7 @@ export const Navbar = ({ user, logoutUser, checkingStatus }) => {
     <div className={`navbar-component ${user.admin ? 'admin' : ''}`}>
       <div className='nav-content-wrapper container' style={location.pathname.includes('/admin') ? { maxWidth: '100%' } : {}}>
         <header className='banner'>
-          <NavLink exact to='/'><img id='technodayaLogo' src={false ? technodayaLogoLight : technodayaLogo} alt="Technodaya" /></NavLink>
+          <NavLink exact="true" to='/'><img id='technodayaLogo' src={false ? technodayaLogoLight : technodayaLogo} alt="Technodaya" /></NavLink>
         </header>
 
         <div className='nav-items-wrapper'>

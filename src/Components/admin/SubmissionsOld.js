@@ -42,26 +42,7 @@ export class Submissions extends Component {
       this.setState({pending: ls})
     }).catch(err => {
       console.log(err);
-    })    
-
-    // const pending = []
-    // const approved = []
-    // for (let snap of pendingsFirebase.docs) {
-    //   let data = snap.data();
-    //   data.ID = snap.id;
-    //   pending.push(data)
-    //   if (pending.length === pendingsFirebase.docs.length) {
-    //     this.setState({ pending: pending })
-    //   }
-    // }
-    // for (let snap of approvedFirebase.docs) {
-    //   let data = snap.data();
-    //   data.ID = snap.id;
-    //   approved.push(data)
-    //   if (approved.length === approvedFirebase.docs.length) {
-    //     this.setState({ approved: approved })
-    //   }
-    // }
+    })
   }
 
   commitChanges = () => {

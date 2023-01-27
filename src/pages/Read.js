@@ -59,7 +59,7 @@ export class Read extends Component {
     const blogsFirebase = await fs.collection(`PastPublications`).get();
     for (var snap of blogsFirebase.docs) {
       var data = snap.data();
-      data.ID = snap.id;
+      data.id = snap.id;
       previousBlogs.push({
         ...data
       })

@@ -50,7 +50,7 @@ function useGetSubmissions(collectionName, filter=[]) {
     })
 
     return () => unsubscribe();
-  }, []);
+  }, [collectionName, filter]);
 
   return { docs, setDocs, fetching };
 }
