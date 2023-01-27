@@ -20,7 +20,7 @@ function App() {
   const handleLogout = () => {
     reauth.signOut()
       .then(() => {
-        setUser({user: null, admin: false});
+        setUser({ user: null, admin: false });
       })
       .catch((err) => { console.log(err) });
   }
@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     if (!checkingStatus) {
-      setUser({user: loggedIn, admin: admin});
+      setUser({ user: loggedIn, admin: admin });
     }
   }, [checkingStatus])
 
@@ -46,7 +46,7 @@ function App() {
           <Route path="/submit" element={(
             <ProtectedComponent isAdmin={false} children={<Submit user={user.user} />} />
           )} />
-          
+
           <Route path="/activity" element={(
             <ProtectedComponent isAdmin={false} children={<Activity uid={user.user ? user.user.uid : null} />} />
           )} />
@@ -61,7 +61,9 @@ function App() {
           <Route path="/previews/*" element={(
             <ProtectedComponent isAdmin={false} children={<Issue slug='previews' />} />
           )} />
-          <Route path="/login" element={<Login user={user} loginUser={handleLogin} />} />
+          <Route path="/login" element={
+            <Login user={user} loginUser={handleLogin} logoutUser={handleLogout} />
+          } />
 
           <Route path="/uploadcover" element={<UploadCover />} />
           <Route path="/signup" element={<Signup />} />

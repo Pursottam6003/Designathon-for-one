@@ -16,7 +16,15 @@ function useAuthStatus() {
             if (snapshot.exists && snapshot.data().Role === 'admin') {
               setAdmin(true);
             }
-          }).then(() => {setCheckingStatus(false)});
+            return;
+          })
+          .catch(err => {
+            reauth.signOut();
+            console.error(err);
+            setAdmin(false);
+            setLoggedIn(null);
+          })
+          .finally(() => {setCheckingStatus(false)});
       }
       else setCheckingStatus(false);
     })

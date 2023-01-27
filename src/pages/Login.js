@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { getDoc, doc } from 'firebase/firestore'
 
-export const Login = ({ user, loginUser }) => {
+export const Login = ({ user, loginUser, logoutUser }) => {
   const history = useNavigate();
   const location = useLocation();
 
@@ -47,6 +47,7 @@ export const Login = ({ user, loginUser }) => {
     }).catch(err => {
       setErrorMsg(err.message);
       resetForm();
+      logoutUser();
       setLoading(false);
     })
   }
