@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { db } from '../../config/config'
 import { PreviewedInput } from '../MdInput'
 
@@ -9,24 +9,27 @@ import { ReactComponent as RemoveIcon } from '../../images/icons/remove.svg'
 import { ReactComponent as UndoIcon } from '../../images/icons/undo.svg'
 
 import { where, setDoc, doc, deleteDoc } from 'firebase/firestore'
-import { useGetSubmissions } from "../../hooks/hooks"
+import { useFetchSubmissions } from "../../hooks/hooks"
 import { LoadingPage } from "../Loading"
 
 export const Submissions = () => {
   const [unsaved, setUnsaved] = useState({});
   const [uploading, setUploading] = useState(false);
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   const {
     docs: pending,
     setDocs: setPending,
     fetching: fetchingPending,
-  } = useGetSubmissions('submissions', [where("approved", "==", false)]);
+    refetch: refetchPending
+  } = useFetchSubmissions('submissions', [where("approved", "==", false)]);
 
   const {
     docs: approved,
     setDocs: setApproved,
     fetching: fetchingApproved,
-  } = useGetSubmissions('submissions', [where("approved", "==", true)]);
+    refetch: refetchApproved
+  } = useFetchSubmissions('submissions', [where("approved", "==", true)]);
 
   const approve = (id) => {
     const ls = pending;
@@ -101,12 +104,27 @@ export const Submissions = () => {
     })
   }
 
+  const refresh = () => {
+    refetchPending();
+    refetchApproved();
+    setUnsaved({});
+  }
+
+  useEffect(() => {
+    if (!(fetchingApproved && fetchingPending)) {
+      setLastUpdated(new Date().toLocaleString('en-IN', { 
+        timeStyle: "medium", 
+        dateStyle: "medium",
+      }));
+    }
+  }, [fetchingApproved, fetchingPending])
+
   return (
     <div className="submissions">
       <header className="page-header">
         <h1 className="heading">Submissions</h1>
         <div className="btns-group">
-          {fetchingApproved && fetchingPending || uploading ? (
+          {(fetchingApproved && fetchingPending) || uploading ? (
             <button className="btn submit" disabled>
               <SpinnerIcon />
             </button>
@@ -116,25 +134,12 @@ export const Submissions = () => {
                 Save changes
               </button>
             ) : (
-              <span style={{
-                border: 'solid 2px seagreen',
-                fontSize: '0.8rem',
-                color: 'seagreen',
-                fontWeight: '500',
-                padding: '0.3rem 0.6rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                borderRadius: '2rem',
-                flexWrap: 'nowrap',
-                overflow: 'hidden',
-                whiteSpace: 'pre'
-              }}>
-                <DoneIcon fill="seagreen" width={16} height={16} />
-                Saved to firebase
-              </span>
+              <p>Last updated: {lastUpdated}</p>
             )
           )}
+          <button className="btn" onClick={refresh}>
+            Refresh
+          </button>
         </div>
       </header>
       <main className="workspace">
@@ -174,7 +179,7 @@ const Submission = ({ type, ls, approve, reject, update, moveBack }) => {
                 <th style={{ minWidth: '120px' }}>Date added</th>
                 {type === 'pending'
                   ? <><th>Reject</th><th>Approve</th></>
-                  : <th style={{minWidth: '150px'}}>Await</th>
+                  : <th style={{ minWidth: '150px' }}>Await</th>
                 }
               </tr>
             </thead>

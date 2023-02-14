@@ -1,23 +1,38 @@
-import React from "react"
+import React, { useState, useEffect } from "react";
 import { where } from "firebase/firestore";
-import { ReactComponent as SpinnerIcon } from '../images/icons/spinner.svg'
-
+import { ReactComponent as SpinnerIcon } from '../images/icons/spinner.svg';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import { useGetSubmissions } from "../hooks/hooks";
+import { useFetchSubmissions } from "../hooks/hooks";
 
 
 export const Activity = ({ uid }) => {
-  const { docs: pending, fetching: fetchingPending } = useGetSubmissions('submissions', [
+  const [lastUpdated, setLastUpdated] = useState(null);
+
+  const { docs: pending, fetching: fetchingPending, refetch: refetchPending } = useFetchSubmissions('submissions', [
     where("uid", "==", uid),
     where("approved", "==", false),
-  ])
+  ]);
 
-  const { docs: approved, fetching: fetchingApproved } = useGetSubmissions('submissions', [
+  const { docs: approved, fetching: fetchingApproved, refetch: refetchApproved } = useFetchSubmissions('submissions', [
     where("uid", "==", uid),
     where("approved", "==", true),
-  ])
+  ]);
+
+  const refresh = () => {
+    refetchApproved();
+    refetchPending();
+  }
+
+  useEffect(() => {
+    if (!(fetchingApproved && fetchingPending)) {
+      setLastUpdated(new Date().toLocaleString('en-IN', {
+        timeStyle: "medium",
+        dateStyle: "medium"
+      }))
+    }
+  }, [fetchingApproved, fetchingPending])
 
   return (
     <div className="activity-component">
@@ -25,6 +40,15 @@ export const Activity = ({ uid }) => {
         <header className="page-header">
           <h1 className="heading">My Activity</h1>
         </header>
+
+        {lastUpdated && (
+          <div className="last-updated">
+            <p>Last updated: {lastUpdated}</p>
+            <button onClick={refresh} className="btn">
+              Refresh
+            </button>
+          </div>
+        )}
         {fetchingApproved && fetchingPending ? <SpinnerIcon />
           : Object.keys(pending).length || Object.keys(approved).length ? (
             <div className="table-wrapper">

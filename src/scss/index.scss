@@ -2526,6 +2526,14 @@ h3 {
 
 .activity-component {
   font-family: 'Open Sans', sans-serif;
+
+  .last-updated {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2rem;
+  }
 }
 
 

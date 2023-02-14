@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { reauth, fs, db } from "../config/config";
-import { query, collection, orderBy, onSnapshot } from 'firebase/firestore'
+import { query, collection, orderBy, getDocs } from 'firebase/firestore'
 
 function useAuthStatus() {
   const [loggedIn, setLoggedIn] = useState(null);
@@ -24,7 +24,7 @@ function useAuthStatus() {
             setAdmin(false);
             setLoggedIn(null);
           })
-          .finally(() => {setCheckingStatus(false)});
+          .finally(() => { setCheckingStatus(false) });
       }
       else setCheckingStatus(false);
     })
@@ -33,36 +33,36 @@ function useAuthStatus() {
   return { loggedIn, checkingStatus, admin };
 }
 
-
 /** 
  * Get submissions from firestore
  * @param {string} collectionName
  * @param {Array} filter
  */
-function useGetSubmissions(collectionName, filter=[]) {
+function useFetchSubmissions(collectionName, filter = []) {
   const [fetching, setFetching] = useState(true);
   const [docs, setDocs] = useState({});
-  
-  useEffect(() => {
+
+  const fetchDocs = () => {
+    console.log('fetchDocs: Fetching...')
+    setFetching(true);
     const q = query(collection(db, collectionName), orderBy('createdInSeconds', 'desc'), ...filter);
 
-    const unsubscribe = onSnapshot(q, snapshot => {
+    getDocs(q).then(snapshot => {
       const ls = {};
-
       snapshot.forEach(doc => {
         ls[doc.id] = { ...doc.data(), id: doc.id };
       });
       const ls_l = ls;
       setDocs(ls_l);
       setFetching(false);
-    })
+    });
+  };
 
-    return () => unsubscribe();
-  }, [collectionName, filter]);
+  useEffect(() => {
+    fetchDocs();
+  }, []);
 
-  return { docs, setDocs, fetching };
+  return { docs, setDocs, fetching, refetch: fetchDocs };
 }
 
-
-
-export { useAuthStatus, useGetSubmissions };
+export { useAuthStatus, useFetchSubmissions };
