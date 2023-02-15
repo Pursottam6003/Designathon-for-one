@@ -851,6 +851,11 @@ h3 {
     flex-direction: row;
 
     main.main-body {
+
+      .draft .page-header.container {
+        position: static;
+      }
+
       .page-header {
         position: sticky;
         top: var(--nav-height);
@@ -1027,11 +1032,20 @@ h3 {
 }
 
 .draft {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--nav-height));
+
+  .page-header.container {
+    margin: 0 0 2.2rem;
+  }
   .container {
     padding: 0 1rem 0 2rem;
   }
 
   .workspace {
+    height: 0;
+    flex: auto;
     .draft-form {
       input {
         max-width: 500px;
@@ -1039,7 +1053,10 @@ h3 {
     }
 
     .dnd-h-scroll {
+      display: flex;
+      height: 100%;
       overflow-x: auto;
+      padding: 0 2rem;
 
       .dnd-wrapper {
         width: fit-content;

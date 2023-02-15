@@ -98,7 +98,7 @@ export class DndMain extends Component {
     const { orders } = this.props
     return (
       <div className="dnd-h-scroll">
-        <div className="dnd-wrapper">
+        {/* <div className="dnd-wrapper"> */}
           <DragDropContext onDragEnd={this.onDragEnd}>
             <Droppable droppableId="all-columns" direction="horizontal" type="column">
               {provided => (
@@ -116,7 +116,7 @@ export class DndMain extends Component {
               )}
             </Droppable>
           </DragDropContext>
-        </div>
+        {/* </div> */}
       </div>
     )
   }
