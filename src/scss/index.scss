@@ -2001,13 +2001,22 @@ h3 {
       background-color: #0d212f;
       color: #fff;
     }
-
-    .chutiyas {
+    .Team-card-component
+    {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
+    }
+
+    .chutiyas {
+      display: flex;
+      width:max-content;
+      min-width: 1200px;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .team-member-card {
