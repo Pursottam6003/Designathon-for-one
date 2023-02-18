@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { LoadingPage } from './Loading';
 import { useAuthStatus } from '../hooks/hooks';
 
 const UnauthorizedComponent = () => (
@@ -11,15 +12,18 @@ const UnauthorizedComponent = () => (
 const ProtectedComponent = ({ children, isAdmin }) => {
   const { checkingStatus, loggedIn, admin } = useAuthStatus();
   const history = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (!checkingStatus && !loggedIn) {
-      return history('/login');
+      return history('/login', {state: {
+        from: location.pathname.includes('/previews') ? location.pathname : null
+      }});
     }
   })
 
   return (
-    checkingStatus ? <div className='container'><h1>Please wait...</h1></div> : (<>
+    checkingStatus ? <LoadingPage /> : (<>
       {loggedIn && (<>
         {!isAdmin ? <>{children}</> : (<>
           {admin ? <>{children}</> : <UnauthorizedComponent />}

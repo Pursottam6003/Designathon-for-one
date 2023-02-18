@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { ConsoleNav } from "../Components/admin/consoleNav"
 import { Draft } from "../Components/admin/draft"
-import { Submissions } from "../Components/admin/submissions"
+import { Submissions } from "../Components/admin/Submissions"
 
 export const AdminConsole = () => {
   const history = useNavigate();

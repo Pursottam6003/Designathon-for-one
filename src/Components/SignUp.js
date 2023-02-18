@@ -1,5 +1,7 @@
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 import React,{useState} from 'react'
-import {auth,fs} from '../config/config'
+import {reauth, db} from '../config/config'
 
 
 export const Signup = () => {
@@ -14,23 +16,24 @@ export const Signup = () => {
     const handleSignup=(e)=>{
         e.preventDefault();
         // console.log(fullName, email, password);
-        auth.createUserWithEmailAndPassword(email,password).then((credentials)=>{
-           // console.log(credentials);
-            fs.collection('users').doc(credentials.user.uid).set({
-                FullName: fullName,
-                Email: email,
-                Password: password 
-            }).then(()=>{
+        createUserWithEmailAndPassword(reauth, email, password).then(async credentials => {
+            try {
+                await setDoc(doc(db, 'users', credentials.user.uid), {
+                    FullName: fullName,
+                    Email: email,
+                    Password: password
+                })
+    
                 setSuccessMsg('Signup Successfull. You will now automatically get redirected to Login');
-                // empty the state of name
-                setFullname('');
-                setEmail('');
-                setPassword('');
-                setErrorMsg('');
-            }).catch(error=>setErrorMsg(error.message));
-        }).catch((error)=>{
-            setErrorMsg(error.message)
-        })
+                    // empty the state of name
+                    setFullname('');
+                    setEmail('');
+                    setPassword('');
+                    setErrorMsg('');         
+            } catch (error) {
+                setErrorMsg(error.message);
+            }
+        }).catch(err => {setErrorMsg(err.message)});
     }
 
     return (

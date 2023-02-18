@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { reauth, fs } from "../config/config";
+import { reauth, fs, db } from "../config/config";
+import { query, collection, orderBy, getDocs } from 'firebase/firestore'
 
 function useAuthStatus() {
   const [loggedIn, setLoggedIn] = useState(null);
@@ -15,7 +16,15 @@ function useAuthStatus() {
             if (snapshot.exists && snapshot.data().Role === 'admin') {
               setAdmin(true);
             }
-          }).then(() => {setCheckingStatus(false)});
+            return;
+          })
+          .catch(err => {
+            reauth.signOut();
+            console.error(err);
+            setAdmin(false);
+            setLoggedIn(null);
+          })
+          .finally(() => { setCheckingStatus(false) });
       }
       else setCheckingStatus(false);
     })
@@ -24,4 +33,36 @@ function useAuthStatus() {
   return { loggedIn, checkingStatus, admin };
 }
 
-export { useAuthStatus };
+/** 
+ * Get submissions from firestore
+ * @param {string} collectionName
+ * @param {Array} filter
+ */
+function useFetchSubmissions(collectionName, filter = []) {
+  const [fetching, setFetching] = useState(true);
+  const [docs, setDocs] = useState({});
+
+  const fetchDocs = () => {
+    console.log('fetchDocs: Fetching...')
+    setFetching(true);
+    const q = query(collection(db, collectionName), orderBy('createdInSeconds', 'desc'), ...filter);
+
+    getDocs(q).then(snapshot => {
+      const ls = {};
+      snapshot.forEach(doc => {
+        ls[doc.id] = { ...doc.data(), id: doc.id };
+      });
+      const ls_l = ls;
+      setDocs(ls_l);
+      setFetching(false);
+    });
+  };
+
+  useEffect(() => {
+    fetchDocs();
+  }, []);
+
+  return { docs, setDocs, fetching, refetch: fetchDocs };
+}
+
+export { useAuthStatus, useFetchSubmissions };

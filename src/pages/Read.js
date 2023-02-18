@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import Cover from '../images/technodaya-cover.png'
 import { fs } from '../config/config'
+import { LoadingPage } from "../Components/Loading"
 
 
 export class MagazineCard extends Component {
@@ -46,7 +47,8 @@ export class Read extends Component {
   }
 
   initialState = {
-    blogs: []
+    blogs: [],
+    loading: true
   }
 
   state = this.initialState
@@ -57,13 +59,14 @@ export class Read extends Component {
     const blogsFirebase = await fs.collection(`PastPublications`).get();
     for (var snap of blogsFirebase.docs) {
       var data = snap.data();
-      data.ID = snap.id;
+      data.id = snap.id;
       previousBlogs.push({
         ...data
       })
       if (previousBlogs.length === blogsFirebase.docs.length) {
         this.setState({
-          blogs: previousBlogs
+          blogs: previousBlogs,
+          loading: false
         })
       }
     }
@@ -96,7 +99,7 @@ export class Read extends Component {
             <h1 className="heading">All releases</h1>
           </header>
           <div className="grid-gallery">
-            {this.state.blogs.map((blog, i) => {
+            {this.state.loading ? <LoadingPage /> : this.state.blogs.map((blog, i) => {
               const { imgsrc, title, vol, iss, month, year, link, pdfLink } = blog
               return <MagazineCard key={i} imgsrc={imgsrc} title={title} vol={vol} iss={iss} month={month} year={year} link={link} pdfLink={pdfLink} />
             })}

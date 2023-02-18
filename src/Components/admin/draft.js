@@ -1,34 +1,33 @@
 import React, { Component } from "react"
 import { Field } from "../form/Field"
 import { DndMain } from "../dnd/dndMain"
-import { fs } from "../../config/config"
+import { fs, db } from "../../config/config"
 import { Categories, getBiMonth, BiMonthlyNames } from "../../helpers"
+import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
+import { collection, getDocs, query, where } from "firebase/firestore"
 
-class DraftForm extends Component {
-  handleChange = (e) => {
-    const { name, value } = e.target
-    this.props.handleChange(name, value)
+const DraftForm = ({ title, vol, iss, month, handleChange }) => {
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    handleChange(name, value);
   }
 
-  render() {
-    const { title, vol, iss, month } = this.props
-    return (
-      <form id="draftForm" className="draft-form form-group container">
-        <input type="text" required name="title" className='form-control form-title' placeholder="Title of newsletter" onChange={this.handleChange} value={title} />
-        <p className='sub-label'>Issue details</p>
-        <Field labeltxt="Volume no." showLabel={vol.length}>
-          <input type="text" required className='form-control' name="vol" value={vol} onChange={this.handleChange} placeholder="Volume no. (in Romans)" />
-        </Field>
-        <Field labeltxt="Issue" showLabel={iss.length}>
-          <input type="number" min="1" required className='form-control' name="iss" value={iss} onChange={this.handleChange} placeholder="Issue" />
-        </Field>
-        <p className='sub-label'>Month and year</p>
-        <Field labeltxt="Month" showLabel={month.length}>
-          <input type="month" className='form-control' required name="month" value={month} onChange={this.handleChange} placeholder="Month" />
-        </Field>
-      </form>
-    )
-  }
+  return (
+    <form id="draftForm" className="draft-form form-group container">
+      <input type="text" required name="title" className='form-control form-title' placeholder="Title of newsletter" onChange={handleInput} value={title} />
+      <p className='sub-label'>Issue details</p>
+      <Field labeltxt="Volume no." showLabel={vol.length}>
+        <input type="text" required className='form-control' name="vol" value={vol} onChange={handleInput} placeholder="Volume no. (in Romans)" />
+      </Field>
+      <Field labeltxt="Issue" showLabel={iss.length}>
+        <input type="number" min="1" required className='form-control' name="iss" value={iss} onChange={handleInput} placeholder="Issue" />
+      </Field>
+      <p className='sub-label'>Month and year</p>
+      <Field labeltxt="Month" showLabel={month.length}>
+        <input type="month" className='form-control' required name="month" value={month} onChange={handleInput} placeholder="Month" />
+      </Field>
+    </form>
+  )
 }
 
 export class Draft extends Component {
@@ -40,6 +39,7 @@ export class Draft extends Component {
     formView: true,
     preview: null,
     published: false,
+    loading: false,
     orders: {
       tasks: {},
       columns: {
@@ -55,14 +55,16 @@ export class Draft extends Component {
   state = this.initialState
 
   fetchData = async () => {
-    const data = await fs.collection(`approved`).get();
+    const q = query(collection(db, 'submissions'), where('approved', '==', true));
+    const querySnapshot = await getDocs(q);
+
     const fetchedOrders = {
       tasks: {}, columns: {}, columnOrder: []
     }
-    for (let snap of data.docs) {
-      const sub = snap.data()
+    querySnapshot.forEach(doc => {
+      const sub = doc.data()
       const subObj = {
-        id: snap.id,
+        id: doc.id,
         author: sub.author,
         created: sub.created,
         eventDate: sub.eventDate,
@@ -84,7 +86,7 @@ export class Draft extends Component {
       fetchedOrders.columnOrder = fetchedOrders.columnOrder.includes(sub.categoryId) ?
         [...fetchedOrders.columnOrder] :
         [...fetchedOrders.columnOrder, sub.categoryId]
-    }
+    })
 
     const { tasks, columns, columnOrder } = this.state.orders
     this.setState({
@@ -98,7 +100,9 @@ export class Draft extends Component {
 
   handlePreviewIssue = (e) => {
     e.preventDefault();
-    const { orders, title, vol, iss, month } = this.state
+    const { orders, title, vol, iss, month } = this.state;
+    this.setState({ loading: true });
+
     document.getElementById("publishBtn").setAttribute("disabled", "");
 
     const year = month.slice(0, 4)
@@ -139,9 +143,7 @@ export class Draft extends Component {
             console.log('Preview generated!');
             this.setState({
               preview: previewLink,
-            }, () => {
-              document.getElementById("publishBtn").removeAttribute("disabled");
-            })
+            }, () => this.setState({ loading: false }))
           })
       })
   }
@@ -230,15 +232,19 @@ export class Draft extends Component {
           <div>
             <div className="btns-group">
               {!formView && !preview && (
-                <button
+                !this.state.loading ? <button
                   form="draftForm"
                   className="btn submit"
                   id="publishBtn"
                   onClick={this.handlePreviewIssue}
                   type="submit"
-                >
-                  Generate preview
-                </button>
+                >Generate preview</button> :
+                  <button
+                    className="btn submit"
+                    disabled
+                  >
+                    <SpinnerIcon />
+                  </button>
               )}
 
               {preview && (<>

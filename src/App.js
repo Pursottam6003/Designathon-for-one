@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from "./Components/layout/Layout"
 
-import { Home, Read, Issue, About, Submit, AdminConsole, Login } from './pages'
+import { Home, Read, Issue, About, Submit, AdminConsole, Login, Activity } from './pages'
 import ProtectedComponent from "./Components/ProtectedRoute";
 
 import { Signup } from "./Components/SignUp";
@@ -20,7 +20,7 @@ function App() {
   const handleLogout = () => {
     reauth.signOut()
       .then(() => {
-        setUser({user: null, admin: false});
+        setUser({ user: null, admin: false });
       })
       .catch((err) => { console.log(err) });
   }
@@ -31,13 +31,13 @@ function App() {
 
   useEffect(() => {
     if (!checkingStatus) {
-      setUser({user: loggedIn, admin: admin});
+      setUser({ user: loggedIn, admin: admin });
     }
   }, [checkingStatus])
 
   return (
     <BrowserRouter>
-      <Layout user={user} logoutUser={handleLogout} admin={false}>
+      <Layout user={user} logoutUser={handleLogout} checkingStatus={checkingStatus}>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/magazine" element={<Read />} />
@@ -45,6 +45,10 @@ function App() {
 
           <Route path="/submit" element={(
             <ProtectedComponent isAdmin={false} children={<Submit user={user.user} />} />
+          )} />
+
+          <Route path="/activity" element={(
+            <ProtectedComponent isAdmin={false} children={<Activity uid={user.user ? user.user.uid : null} />} />
           )} />
 
           <Route path="/admin/*" element={(
@@ -55,15 +59,16 @@ function App() {
             <Issue slug='issues' />
           )} />
           <Route path="/previews/*" element={(
-            <ProtectedComponent isAdmin={true} children={<Issue slug='previews' />} />
+            <ProtectedComponent isAdmin={false} children={<Issue slug='previews' />} />
           )} />
-          <Route path="/login" element={<Login user={user} loginUser={handleLogin} />} />
+          <Route path="/login" element={
+            <Login user={user} loginUser={handleLogin} logoutUser={handleLogout} />
+          } />
 
           <Route path="/uploadcover" element={<UploadCover />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
       </Layout>
-
     </BrowserRouter>
   )
 }

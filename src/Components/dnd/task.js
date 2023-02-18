@@ -3,11 +3,11 @@ import { Draggable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  border: 1px solid lightgrey;
+  border: ${props => (props.isDragging ? '2px solid #0969da' : '1px solid lightgrey')};
   border-radius: 0.125rem;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-  background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
+  background-color: ${props => (props.isDragging ? 'white' : 'white')};
 `
 const Flex = styled.div`
   display: flex;
@@ -51,7 +51,7 @@ export class Task extends Component {
             >
               <Content>
                 <Desc>
-                  {`${content}`.slice(0, 50)}{content.length > 50 ? `...` : ``}
+                  {`${content}`.slice(0, 84)}{content.length > 84 ? `...` : ``}
                 </Desc>
                 <Flex>
                   <Author>

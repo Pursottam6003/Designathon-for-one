@@ -6,23 +6,27 @@ import { Task } from './task'
 const Container = styled.div`
   margin: 0.5rem 1rem 0.5rem 0;
   border: 1px solid lightgrey;
-  border-radius: 0.125rem;
-  width: 250px;
-  background-color: rgb(235, 236, 240);
-
+  border-radius: 0.25rem;
+  width: 350px;
+  background-color: #f6f8fa;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  border: ${props => (props.isDragging ? '2px solid #0969da' : '1px solid lightgrey')};
 `;
-const Title = styled.h4`
-  padding: 0.5rem;
+const Title = styled.h5`
+  padding: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 `;
 
 const TaskList = styled.div`
   padding: 0.5rem;
-  background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'inherit')};
+  background-color: ${props => (props.isDraggingOver ? '#dfe4e9' : 'inherit')};
   flex-grow: 1;
-  min-height: 100px;
+  overflow: auto;
 `;
 
 class InnerList extends PureComponent {
@@ -37,10 +41,23 @@ class DndSubmissions extends Component {
   render() {
     return (
       <Draggable draggableId={this.props.column.id} index={this.props.index}>
-        {(provided) => (
-          <Container {...provided.draggableProps} ref={provided.innerRef} >
+        {(provided, snapshot) => (
+          <Container {...provided.draggableProps} ref={provided.innerRef} isDragging={snapshot.isDragging} >
             <Title {...provided.dragHandleProps}>
-              {this.props.column.title}
+              <span style={{
+                backgroundColor: 'rgb(175 184 193 / 20%)',
+                fontWeight: '500',
+                fontSize: '90%',
+                padding: '4px 8px',
+                borderRadius: '8px',
+                marginRight: '8px',
+                height: '24px'
+              }}>
+                {this.props.tasks.length}
+              </span>
+              <span style={{lineHeight: '24px'}}>
+                {this.props.column.title}
+              </span>
             </Title>
             <Droppable droppableId={this.props.column.id} type="task">
               {(provided, snapshot) => (

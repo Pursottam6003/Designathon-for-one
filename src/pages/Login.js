@@ -1,73 +1,99 @@
 import React, { useEffect, useState } from 'react'
-import { auth, fs } from '../config/config'
+import { reauth, db } from '../config/config'
 import lock from '../images/lock2.png'
 import envelop from '../images/envelop.png'
-import { useNavigate } from 'react-router-dom'
+import { ReactComponent as ErrorIcon } from '../images/icons/error.svg'
+import { ReactComponent as SpinnerIcon } from '../images/icons/spinner.svg'
 
-export const Login = ({user, loginUser}) => {
+import { useNavigate, useLocation } from 'react-router-dom'
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { getDoc, doc } from 'firebase/firestore'
 
-    const history = useNavigate()
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+export const Login = ({ user, loginUser, logoutUser }) => {
+  const history = useNavigate();
+  const location = useLocation();
 
-    const [errorMsg, setErrorMsg] = useState('');
-    const [successMsg, setSuccessMsg] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrorMsg('');
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        auth.signInWithEmailAndPassword(email, password).then((res) => {
-            console.log(res.user);
-            fs.collection('users').doc(res.user.uid).get()
-            .then(snapshot => {
-                if (snapshot.data().Role === 'admin') {
-                    history('/admin/');
-                    loginUser({user: res.user, admin: true})
-                } else {
-                    history('/submit');
-                    loginUser({user: res.user, admin: false})
-                }
-            })
-            console.log('login successful...');
-            setSuccessMsg('Login successful! Redirecting...');
-            setEmail('');
-            setPassword('');
-            setErrorMsg('');
-            setSuccessMsg('');
-        })
-            .catch(error => setErrorMsg(error.message));
-    }
+    signInWithEmailAndPassword(reauth, email, password).then(async (res) => {
+      const docSnap = await getDoc(doc(db, 'users', res.user.uid));
+      if (docSnap.exists()) {
+        loginUser({
+          user: res.user,
+          admin: docSnap.data().Role === 'admin'
+        });
 
-    useEffect(() => {
-        if (user.user) history('/');
+        if (location.state !== null &&
+          location.state.from.includes('/previews')) {
+          history(location.state.from);
+        } else {
+          history(docSnap.data().Role ? '/admin' : '/submit');
+        }
+      }
+      else {
+        signOut(reauth);
+        setErrorMsg('Invalid user!');
+        resetForm();
+        setLoading(false);
+      }
+    }).catch(err => {
+      setErrorMsg(err.message);
+      resetForm();
+      logoutUser();
+      setLoading(false);
     })
+  }
 
-    return (
-        <div className='login-page route'>
-            <div className='container'>
-                <header className='page-header'>
-                    <h1 className='heading'>Login</h1>
-                </header>
-                <div className='form-box'>
-                    {successMsg && <>
-                        <div className='success-msg'>{successMsg}</div>
-                    </>}
-                    <form className='login-form' onSubmit={handleLogin}>
-                        <div className='login-field email'>
-                            <img alt="" src={envelop} className='icon' />
-                            <input type='email' required placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email} ></input>
-                        </div>
-                        <div className='login-field password'>
-                            <img alt="" src={lock} className='icon' />
-                            <input type='password' onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password'></input>
-                        </div>
-                        <button className='login-btn' type="submit">Login</button>
-                    </form>
-                    {errorMsg && <>
-                        <div className='error-msg'>{errorMsg}</div>
-                    </>}
-                </div>
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
+  }
+
+  useEffect(() => {
+    if (user.user) history('/');
+  })
+
+  return (
+    <div className='login-page route'>
+      <div className='container'>
+        <header className='page-header'>
+          <h1 className='heading'>Login</h1>
+        </header>
+        <div className='form-box'>
+          <div className='messages'>
+            {errorMsg && <div className='login-msg error'>
+              <div className='icon'><ErrorIcon /></div>
+              {errorMsg}
+            </div>}
+          </div>
+          <form className='login-form' onSubmit={handleLogin}>
+            <div className='login-field email'>
+              <img alt="" src={envelop} className='icon' />
+              <input type='email' required placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email} ></input>
             </div>
+            <div className='login-field password'>
+              <img alt="" src={lock} className='icon' />
+              <input type='password' onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password'></input>
+            </div>
+            {loading ? (
+              <button className='login-btn' style={{ display: 'flex', justifyContent: 'center' }} disabled type="submit">
+                <SpinnerIcon style={{ height: '1.2rem' }} />
+              </button>
+            ) : (
+              <button className='login-btn' type="submit">Login</button>
+            )}
+
+          </form>
         </div>
-    )
+      </div>
+    </div>
+  )
 }

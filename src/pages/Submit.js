@@ -11,6 +11,7 @@ class Submit extends Component {
   initialState = {
     category: 0,
     username: '',
+    userUid: '',
     edit: true,
     formData: {},
     activityTitle: '',
@@ -27,17 +28,17 @@ class Submit extends Component {
   handleSubmit = (out) => {
     const { heading, output: wholeDescription } = out
     const { date, eventBrochure: Mybrochure } = this.state.formData
-    const { category: category_Id, username } = this.state
+    const { category: category_Id, username, userUid } = this.state
     let imgCaption = this.state.imgCaption
     let brochureUrl = ''
 
     const uploadOnFirestore = () => {
+      const currentTime = new Date().getTime()
       const uploadObj = {
-        created: new Date().toLocaleString('en-IN', {
-          dateStyle:"medium",
-          timeStyle: "short",
-        }),
+        created: new Date(currentTime).toLocaleString('en-IN', {dateStyle:"medium",timeStyle: "short",}),
+        createdInSeconds: currentTime,
         author: username,
+        uid: userUid,
         categoryId: category_Id,
         title: heading,
         desc: wholeDescription,
@@ -45,10 +46,11 @@ class Submit extends Component {
         imgUrl: firebase.firestore.FieldValue.arrayUnion(...imageLinks),
         brochureUrl: brochureUrl,
         imgCaption: imgCaption,
+        approved: false
       }
 
-      fs.collection(`pendings/`).doc().set(uploadObj).then(() => {
-        console.log("Sucessfully uploaded");
+      fs.collection(`submissions/`).doc().set(uploadObj).then(() => {
+        alert("Sucecssfully uploaded");
         this.setState({
           clearRev: this.state.clearRev + 1,
           category: this.initialState.category
@@ -128,7 +130,10 @@ class Submit extends Component {
       fs.collection('users').doc(user.uid).get().then(snapshot => {
         const fullName = snapshot.data().FullName
         const name = fullName.slice(0, fullName.search(' '))
-        this.setState({username: name})
+        this.setState({
+          username: name,
+          userUid: user.uid
+        })
       })
     }
   }
