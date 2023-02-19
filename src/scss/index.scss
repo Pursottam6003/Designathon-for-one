@@ -1557,21 +1557,24 @@ h3 {
   font-family: 'Open Sans', sans-serif;
 
   .about-technodaya {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 1.2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-width: 700px;
-    margin: 3rem auto;
-
+    margin: 0 auto 3rem;
+    border-bottom: solid 1px rgb(219, 219, 219);
+    
     h1 {
       font-size: 50px;
     }
-
+    
     p {
-      padding: .4rem 1.2rem;
-      font-size: 20px;
-      line-height: 1.6rem;
+      max-width: 700px;
+      padding: 1rem 3rem 3rem;
+      line-height: 1.4;
     }
   }
 
@@ -1583,18 +1586,20 @@ h3 {
     align-items: center;
     background-color: rgb(254, 253, 253);
     border-bottom: solid 1px rgb(219, 219, 219);
-    border-top: solid 1px rgb(219, 219, 219);
+
+    section {
+      margin-bottom: 4rem;
+    }
 
     .team-heading {
       padding: 1.2rem .4rem;
       width: 100%;
       text-align: center;
-      //  background-color: #161721;
       background-color: #0d212f;
       color: #fff;
     }
 
-    .chutiyas {
+    .Team-card-component {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
@@ -1602,9 +1607,16 @@ h3 {
       justify-content: center;
     }
 
+    .team-members {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
     .team-member-card {
-      margin-top: 10rem;
-      margin-bottom: 2rem;
+      margin-top: 8rem;
+      margin-bottom: 0rem;
       padding-top: 6rem;
       max-width: 18rem;
       border-radius: 2px;
@@ -1622,15 +1634,17 @@ h3 {
         width: 11rem;
         height: 11rem;
         border-radius: 50%;
-        top: -30%;
+        top: 0;
+        transform: translateY(-50%);
         background-color: #fff;
         justify-content: center;
         align-items: center;
-
+        overflow: hidden;
+        border: solid 0.4rem white;
+        
         img {
-          border-radius: 50%;
-          width: 10rem;
-          height: 10rem;
+          width: 100%;
+          height: auto;
         }
       }
 
