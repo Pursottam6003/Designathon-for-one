@@ -4,15 +4,18 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import { Task } from './task'
 
 const Container = styled.div`
+  box-sizing: content-box;
   margin: 0.5rem 1rem 0.5rem 0;
-  border: 1px solid lightgrey;
-  border-radius: 0.25rem;
+  border-radius: 6px;
+  overflow: hidden;
   width: 350px;
   background-color: #f6f8fa;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  border: ${props => (props.isDragging ? '2px solid #0969da' : '1px solid lightgrey')};
+  border: ${props => (props.isDragging ? '2px solid #0969da' : '1px solid #bdbdbd')};
+  box-shadow: ${props => (props.isDragging ? '0 8px 20px rgb(0 0 0 / 20%)' : 'none')};
+  transition: border 0.1s ease-out, box-shadow 0.3s ease-out;
 `;
 const Title = styled.h5`
   padding: 0.8rem;
@@ -26,7 +29,8 @@ const TaskList = styled.div`
   padding: 0.5rem;
   background-color: ${props => (props.isDraggingOver ? '#dfe4e9' : 'inherit')};
   flex-grow: 1;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 class InnerList extends PureComponent {

@@ -3,11 +3,13 @@ import { Draggable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
 
 const Container = styled.div`
-  border: ${props => (props.isDragging ? '2px solid #0969da' : '1px solid lightgrey')};
-  border-radius: 0.125rem;
+  border-radius: 0.25rem;
   padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  background-color: ${props => (props.isDragging ? 'white' : 'white')};
+  margin-bottom: 0.5rem; 
+  background-color: white;
+  border: ${props => (props.isDragging ? '2px solid #777' : '1px solid lightgrey')};
+  box-shadow: ${props => (props.isDragging ? '0 2px 8px rgb(0 0 0 / 12%)' : 'none')};
+  transition: border 0.1s ease-out, box-shadow 0.3s ease-out;
 `
 const Flex = styled.div`
   display: flex;
