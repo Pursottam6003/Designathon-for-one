@@ -26,16 +26,16 @@ export const Login = ({ user, loginUser, logoutUser }) => {
     signInWithEmailAndPassword(reauth, email, password).then(async (res) => {
       const docSnap = await getDoc(doc(db, 'users', res.user.uid));
       if (docSnap.exists()) {
-        loginUser({
+        const authUser = {
           user: res.user,
           admin: docSnap.data().Role === 'admin'
-        });
+        }
+        loginUser(authUser);
 
-        if (location.state !== null &&
-          location.state.from.includes('/previews')) {
+        if (location.state) {
           history(location.state.from);
         } else {
-          history(docSnap.data().Role ? '/admin' : '/submit');
+          history(authUser.admin ? '/admin' : '/submit');
         }
       }
       else {

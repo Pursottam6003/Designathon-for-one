@@ -5,6 +5,7 @@ import { useAuthStatus } from '../hooks/hooks';
 
 const UnauthorizedComponent = () => (
   <div className='container'>
+    <h1>401</h1>
     <h2>Unauthorized</h2>
   </div>
 )
@@ -16,9 +17,7 @@ const ProtectedComponent = ({ children, isAdmin }) => {
 
   useEffect(() => {
     if (!checkingStatus && !loggedIn) {
-      return history('/login', {state: {
-        from: location.pathname.includes('/previews') ? location.pathname : null
-      }});
+      return history('/login', {state: {from: location.pathname}});
     }
   })
 
