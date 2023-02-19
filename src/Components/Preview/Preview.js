@@ -1,73 +1,10 @@
-import React, { Component } from 'react'
-import { ReactComponent as EmptyLetterBoxSvg } from '../images/emptyletterbox.svg'
-import { ReactComponent as MarkdownIcon } from '../images/icons/markdownIcon.svg'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
-import { CategoryTitles } from '../helpers'
-import { NavLink } from 'react-router-dom'
-
-const NoPreview = () => {
-  return (
-    <div className='no-content'>
-      <div className='illustration'>
-        <EmptyLetterBoxSvg />
-      </div>
-
-      <h2 className='no-content-heading'>There's nothing to show yet.</h2>
-      <p className='no-content-desc'>
-        Select an activity category first and fill the form, then use this preview mode to edit the generated text or 
-      </p>
-      <p className='no-content-desc'>Already filled? <NavLink to={'/activity'}>View your submissions</NavLink></p>
-    </div>
-  )
-}
-
-const Grow = (props) => {
-  return (
-    <div className='grow-component'>
-      {props.content}`
-      .`
-    </div>
-  )
-}
-
-class PreviewedInput extends Component {
-  initialState = {
-    edit: false
-  }
-  state = this.initialState
-
-  handleChange = (event) => {
-    const { name, value } = event.target
-    this.props.handleChange(name, value)
-  }
-
-  toggleEdit = () => {
-    this.setState({
-      edit: !this.state.edit
-    }, () => { this.props.editingMode(this.state.edit) })
-  }
-
-  render() {
-    const { children, output, inpName, placeholder } = this.props
-    const { edit } = this.state
-    return (
-      <div className='previewed-input'>
-        {edit ? (
-          <div id={`${inpName}FInput`} className='growable-txtarea'>
-            <textarea autoFocus={true} className='txtarea' name={inpName} placeholder={placeholder} value={output} onBlur={this.toggleEdit} onChange={this.handleChange} />
-            <Grow content={output} />
-          </div>
-        ) : (
-          <div onClick={(e) => { this.toggleEdit(e) }} id={`${inpName}FPreview`} className='formatted-preview'>
-            {children}
-          </div>
-        )}
-      </div>
-    )
-  }
-}
+import React, { Component } from 'react';
+import { ReactComponent as MarkdownIcon } from '../../images/icons/markdownIcon.svg';
+import { CategoryTitles } from '../../helpers';
+import NoPreview from '../NoPreview';
+import MdInput from '../MdInput/MdInput';
+import styles from './Preview.module.scss';
+import cx from 'classnames';
 
 export class Preview extends Component {
   initialState = {
@@ -203,10 +140,8 @@ export class Preview extends Component {
         outMdStr = `${this.ov('pi')} ${fields.pi ? (fields.pi.length === 1 ? 'as a Principal Investigator' : 'as Principal Investigators') : ''} ${fields.copi ? (fields.copi.length === 1 ? `and ${this.ov('copi')} as a Co-Principal Investigator` : `and ${this.ov('copi')} as Co-Principal Investigators`) : ''} received an external project titled "${this.ov('title')}". Funding Agency: ${this.ov('fundAgency')}, ${this.ov('date')}.`
         break;
       case 5:
-        outMdStr = `Name of the job: ${this.ov('title')}
-
-Name of the Client: ${this.ov('fundAgency')}
-
+        outMdStr = `Name of the job: ${this.ov('title')}  
+Name of the Client: ${this.ov('fundAgency')}  
 Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${this.ov('department')}`
         break;
       case 6:
@@ -284,18 +219,6 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
     this.updatePreview()
   }
 
-  editingMode = (edit) => {
-    this.setState({
-      edit: edit
-    })
-  }
-
-  handleChange = (name, value) => {
-    this.setState({
-      [name]: value
-    })
-  }
-
   handleSubmit = (event) => {
     if (document.getElementById('activityForm').checkValidity()) {
       event.preventDefault();
@@ -335,58 +258,50 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
     }
     return (
       <>
-        <div className='preview' style={{ display: this.props.display }} >
+        <div className={styles.preview} style={{ display: this.props.display }} >
 
-          {this.state.category === 0 ? (
-            <NoPreview />
-          ) : (
+          {this.state.category === 0 ? <NoPreview /> : (
             <>
-              <div className={`formatted-preview-wrapper ${this.state.edit ? 'active' : ''}`}>
-                <PreviewedInput
-                  inpName='heading'
-                  placeholder='Title...'
-                  handleChange={this.handleChange}
-                  editingMode={this.editingMode}
-                  output={heading}
-                >
+              <div className={cx(styles['formatted-preview-wrapper'], {[styles.active] : this.state.edit})}>
+                <div className={styles.previews}>
                   <h1>
-                    <ReactMarkdown children={heading} rehypePlugins={[rehypeRaw]}
-                      remarkPlugins={[remarkGfm]} />
+                    <MdInput 
+                      placeholder='Title'
+                      value={heading}
+                      updateVal={txt => {this.setState({heading: txt})}}
+                      editing={status => {this.setState({edit: status})}}
+                    />
                   </h1>
-                </PreviewedInput>
 
-                <PreviewedInput
-                  inpName='output'
-                  placeholder='your output will show here'
-                  handleChange={this.handleChange}
-                  editingMode={this.editingMode}
-                  output={output}
-                >
-                  <ReactMarkdown children={output} rehypePlugins={[rehypeRaw]}
-                    remarkPlugins={[remarkGfm]} />
-                </PreviewedInput>
+                  <MdInput 
+                    placeholder='Your output will show here'
+                    value={output}
+                    updateVal={txt => {this.setState({output: txt})}}
+                    editing={status => {this.setState({edit: status})}}
+                    />
+                </div>
 
-                <footer className='markdown-support'>
+                <footer className={styles['markdown-support']}>
                   <p>
                     Click to edit
-                    <a className='text-link' target='_blank' rel='noreferrer' href='https://guides.github.com/features/mastering-markdown/'>
-                      <MarkdownIcon className='markdown-icon' />
+                    <a className={styles['text-link']} target='_blank' rel='noreferrer' href='https://guides.github.com/features/mastering-markdown/'>
+                      <MarkdownIcon className={styles['markdown-icon']} />
                       <span>Styling with Markdown is supported</span>
                     </a>
                   </p>
                 </footer>
               </div>
 
-              <div className='image-preview'>
+              <div className={styles['image-preview']}>
                 {imgComponentArr}
               </div>
               {imgComponentArr.length !== 0 && (this.state.category !== 1 || this.state.category !== 3) && (
-                <p className='img-caption-preview'>{this.state.imgCaption}</p>
+                <p className={styles['img-caption-preview']}>{this.state.imgCaption}</p>
               )}
               {this.state.category !== 0 && (
-                <div className='prev-btns'>
-                  <button id='submitBtn' form='activityForm' type='submit' onClick={this.handleSubmit} className='btn submit'>Submit</button>
-                  <button onClick={this.resetPreview} className='btn reset'>Reset</button>
+                <div className={styles.actions}>
+                  <button id='submitBtn' form='activityForm' type='submit' onClick={this.handleSubmit} className={cx(styles.btn, styles.submit)}>Submit</button>
+                  <button onClick={this.resetPreview} className={cx(styles.btn, styles.reset)}>Reset</button>
                 </div>
               )}
             </>

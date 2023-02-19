@@ -1,38 +1,8 @@
 import React, { Component } from "react"
 import Cover from '../images/technodaya-cover.png'
 import { fs } from '../config/config'
-import { LoadingPage } from "../Components/Loading"
-
-
-export class MagazineCard extends Component {
-  render() {
-    const { imgsrc, title, vol, iss, month, year, link, pdfLink } = this.props
-    return (
-      <section className="magazine-card">
-        <figure className="cover-img">
-          <img src={imgsrc} alt={`Technodaya Vol ${vol} Iss ${iss} cover`} />
-        </figure>
-        <div className="desc">
-          <a className="title" href={link} target='_blank' rel='noreferrer'>
-            <p>{title}</p>
-          </a>
-          <div className="date">
-            <time>{month} {year}</time>
-            <div className="issue">Vol-{vol} issue {iss}</div>
-          </div>
-          <div className="actions">
-            {pdfLink ? (
-              <a className="action-btn" href={pdfLink} target="_blank" rel='noreferrer'>View PDF</a>
-            ) : (
-              <a className="action-btn" href={link} target="_blank" rel='noreferrer'>Read issue</a>
-            )}
-            <button className="action-btn">Share</button>
-          </div>
-        </div>
-      </section>
-    )
-  }
-}
+import { LoadingPage } from "../Components/Loading";
+import MagazineCard from "../Components/MagazineCard/";
 
 export class Read extends Component {
   release = {
@@ -54,7 +24,6 @@ export class Read extends Component {
   state = this.initialState
 
   fetchPrevIssues = async () => {
-    console.log("Fetching...")
     const previousBlogs = []
     const blogsFirebase = await fs.collection(`PastPublications`).get();
     for (var snap of blogsFirebase.docs) {
@@ -93,7 +62,7 @@ export class Read extends Component {
 
   render() {
     return (
-      <div className="read-component route">
+      <div className="read-component">
         <div className="container">
           <header className="page-header">
             <h1 className="heading">All releases</h1>
@@ -109,4 +78,3 @@ export class Read extends Component {
     )
   }
 }
-

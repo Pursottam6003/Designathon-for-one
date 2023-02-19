@@ -1,15 +1,16 @@
 import React from 'react'
 import technodayaLogo from "../../images/logo/technodaya-logo-white.png"
+import styles from './Footer.module.scss'
 
-export const Footer = () => {
+export const Footer = ({ref}) => {
   return (
-    <div className='footer'>
+    <div className={styles.footer} ref={ref}>
 
       <div className='container'>
-      <div className='info-Footer'>
-        <div className='rights'>
-          <div> <img id='technodayaLogo-white' src={technodayaLogo} alt="Technodaya" />
-
+      <div className={styles['info-Footer']}>
+        <div className={styles.rights}>
+          <div> 
+            <img id='technodayaLogo-white' src={technodayaLogo} alt="Technodaya" />
           </div>
           <div> <h4>Technodaya Magazine</h4>
             <p> National Institute of Technology</p>
@@ -22,7 +23,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className='left'>
+        <div className={styles.left}>
         “Dream, Dream Dream
         Dreams transform into thoughts
         And thoughts result in action.”
@@ -30,7 +31,7 @@ export const Footer = () => {
         </div>
       </div>
       </div>
-      <div className='copyright '>
+      <div className={styles.copyright}>
       <div className='container'>&#169; 2022 all rights are reserved, Technodaya, NIT Arunchal Pradesh</div>
       </div>
     </div>

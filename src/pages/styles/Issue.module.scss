@@ -1,0 +1,210 @@
+.published-component {
+    margin-bottom: 4rem;
+
+    .page-header {
+        border: none;
+        margin: 0;
+        padding: 0;
+
+        .heading {
+            font-size: 2.625rem;
+            font-weight: 550;
+            font-family: "Cormorant Garamond", serif;
+            text-transform: unset;
+            text-align: center;
+            letter-spacing: 0.005rem;
+        }
+
+        .issue-meta {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 3rem 0 2.5rem;
+            font-style: oblique;
+            font-size: 0.9rem;
+            color: var(--gray-6);
+            font-weight: 500;
+        }
+    }
+
+    .magazine-wrapper {
+        scroll-padding-top: 1rem;
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: var(--gray-7);
+        }
+
+        max-width: 1600px;
+        margin: auto;
+        --top-offset: 1.5rem;
+
+        .magazine {
+            padding-top: var(--top-offset);
+
+            ul {
+                padding-left: 0;
+            }
+
+            .magazine-section {
+                h1 {
+                    line-height: 1;
+                    margin-bottom: 1rem;
+                    padding-bottom: 0.5rem;
+                    font-weight: 700;
+                }
+
+                .category-header {
+                    margin: 2.4rem 0 0.8rem;
+
+                    .category-heading {
+                        font-family: 'Open Sans', sans-serif;
+                        font-weight: 550;
+                        text-transform: uppercase;
+                        color: var(--gray-10);
+                        font-size: 1rem;
+                        line-height: 1.4;
+                        letter-spacing: 0.175rem;
+                    }
+                }
+
+                .article-ls {
+                    padding-left: 1.2rem;
+
+                    .magazine-article {
+                        h4 {
+                            font-family: 'Crimson Text', serif;
+                            font-weight: 400;
+                            color: var(--gray-9);
+                            font-style: oblique;
+                            font-size: 1.25rem;
+                            margin: 0 0 0.4rem;
+                        }
+                    }
+                }
+
+                p {
+                    font-family: 'Crimson Text', serif;
+                    font-size: 1.125rem;
+                    font-weight: 400;
+                    color: rgb(44, 43, 43);
+                    line-height: 1.6;
+                    letter-spacing: 0.01125rem;
+                    margin: 0 0 1.125rem;
+                }
+
+                li::marker {
+                    font-weight: 500;
+                    font-size: 1rem;
+                    color: var(--gray-10);
+                }
+            }
+
+            .mag-images {
+                width: 100%;
+
+                .img-wrapper {
+                    margin: 2rem auto 1rem;
+                    max-width: 576px;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+
+                .img-caption {
+                    text-align: center;
+                    font-style: oblique;
+                    font-size: 1rem;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .read-more {
+            padding-top: var(--top-offset);
+
+            h4 {
+                font-weight: 700;
+            }
+
+            ul {
+                color: rgb(72, 70, 70);
+                display: flex;
+                flex-direction: column;
+                gap: .6rem;
+                padding-left: 0.5rem;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+                li {
+                    font-family: inherit;
+                    list-style: none;
+
+                    border-bottom: 0.8px solid rgb(215 215 215);
+
+                    h6:hover {
+                        color: green;
+                        cursor: pointer;
+                    }
+
+                    h6 {
+                        font-weight: 700;
+                        font-size: 1.1rem;
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    time {
+                        color: rgb(59, 59, 59);
+                        font-size: 0.8rem;
+                        font-family: 'Courier New', Courier, monospace;
+
+                        .daate {
+                            width: 10px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .magazine-toc {
+            .toc {
+                position: sticky;
+                top: 0;
+                padding-top: var(--top-offset);
+
+                h4 {
+                    font-weight: 700;
+                }
+
+
+                li {
+                    list-style: none;
+                    border-left: 2px solid rgb(105, 154, 219);
+
+                    font-size: 0.9rem;
+                    padding: 0.6rem 1rem;
+                    margin: 0;
+                    color: rgb(75, 80, 86);
+                    border-left: solid 2px rgb(195, 202, 209);
+
+                    a {
+                        text-decoration: none;
+                        color: rgb(65, 64, 64);
+                    }
+                }
+
+                li:hover {
+                    color: black;
+                    border-left: 3px solid rgb(46, 140, 235);
+                }
+            }
+        }
+    }
+}

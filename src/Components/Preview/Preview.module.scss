@@ -1,0 +1,170 @@
+.preview {
+    position: relative;
+    --txt-area-padding: 0.325rem 0.625rem;
+    --txt-field-padding: 1.625rem 1.125rem;
+
+    textarea {
+        padding: var(--txt-area-padding);
+        background-color: white;
+        border-bottom: solid 2px transparent;
+    }
+
+    textarea:hover {
+        outline: none;
+        background-color: #f8f8f8;
+    }
+
+    textarea:focus {
+        outline: none;
+        background-color: #fff;
+        border-bottom: solid 2px rgb(117, 104, 84);
+    }
+
+    .formatted-preview-wrapper {
+        position: relative;
+        padding: var(--txt-field-padding);
+        transition: 0.3s background-color ease;
+        border: solid 1px transparent;
+        overflow-y: auto;
+        font-family: 'Crimson Text', serif;
+
+        .previews {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+
+            p,
+            h1 {
+                font-family: inherit;
+                font-weight: 500;
+            }
+
+            textarea {
+                border: none;
+                border-bottom: solid 2px transparent;
+            }
+
+            textarea:focus {
+                border-bottom: solid 2px rgb(117, 104, 84);
+            }
+        }
+    }
+
+    .markdown-support {
+        font-family: 'Open Sans', sans-serif;
+
+        p {
+            display: flex;
+            font-size: 0.75rem;
+            color: #1e1f20;
+            line-height: 1rem;
+            letter-spacing: -0.005rem;
+
+            .text-link {
+                display: flex;
+                text-decoration: none;
+                color: inherit;
+                line-height: inherit;
+
+                .markdown-icon {
+                    margin: 0 0.2rem;
+                }
+            }
+
+            .text-link:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .formatted-preview-wrapper:hover {
+        background-color: #f2f2f2;
+        transition: 0.15s background-color ease;
+    }
+
+    .formatted-preview-wrapper.active {
+        background-color: #f2f2f2;
+    }
+
+    .actions {
+        display: flex;
+        justify-content: space-around;
+        --color: rgb(3, 120, 124);
+
+        .btn {
+            border-radius: 2rem;
+            cursor: pointer;
+            font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+            font-size: 0.875rem;
+            font-weight: 600;
+            height: 2rem;
+            min-width: 5rem;
+            outline: transparent;
+            padding: 0px 1rem;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            border: 1px solid var(--color);
+            background-color: transparent;
+            color: var(--color);
+            user-select: none;
+            transition: all 200ms ease;
+        }
+
+        .btn:hover {
+            background-color: var(--color);
+            color: #fff;
+        }
+
+        .btn.submit {
+            --color: rgb(117, 104, 84);
+        }
+
+        .btn.submit:active {
+            --color: rgb(105, 94, 78);
+            box-shadow: 0 3px 8px -4px #222222b0;
+        }
+
+        .btn.reset {
+            --color: #cb5c5c;
+        }
+
+        .btn.reset:active {
+            --color: #b34f4f;
+            box-shadow: 0 3px 8px -4px #222222b0;
+        }
+
+        .btn.submit[disabled] {
+            --color: rgb(117, 104, 84);
+            cursor: wait;
+        }
+
+        .btn.submit[disabled]:hover {
+            background-color: transparent;
+            color: var(--color);
+        }
+    }
+
+    .image-preview {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-top: 2rem;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+
+        img {
+            width: 70%;
+            border: 1px solid black;
+        }
+    }
+
+    .img-caption-preview {
+        text-align: center;
+        font-size: 0.8rem;
+        font-style: italic;
+        margin: 0.5rem 0;
+    }
+}

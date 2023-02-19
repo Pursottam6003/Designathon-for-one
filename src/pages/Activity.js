@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { useFetchSubmissions } from "../hooks/hooks";
-
+import styles from './styles/Activity.module.scss';
 
 export const Activity = ({ uid }) => {
   const [lastUpdated, setLastUpdated] = useState(null);
@@ -35,14 +35,14 @@ export const Activity = ({ uid }) => {
   }, [fetchingApproved, fetchingPending])
 
   return (
-    <div className="activity-component">
+    <div className={styles["activity-component"]}>
       <div className="container">
         <header className="page-header">
           <h1 className="heading">My Activity</h1>
         </header>
 
         {lastUpdated && (
-          <div className="last-updated">
+          <div className={styles["last-updated"]}>
             <p>Last updated: {lastUpdated}</p>
             <button onClick={refresh} className="btn">
               Refresh
@@ -62,8 +62,8 @@ export const Activity = ({ uid }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {Object.keys(approved).map(id => <Submission {...approved[id]} type='Approved' key={id} />)}
                   {Object.keys(pending).map(id => <Submission {...pending[id]} type='Pending' key={id} />)}
+                  {Object.keys(approved).map(id => <Submission {...approved[id]} type='Approved' key={id} />)}
                 </tbody>
               </table>
             </div>

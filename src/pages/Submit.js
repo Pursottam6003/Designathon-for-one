@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form } from '../Components/form/Form'
-import { Preview } from '../Components/Preview'
+import { Preview } from '../Components/Preview/Preview'
 import { storage, fs } from '../config/config'
 import firebase from 'firebase/compat/app'
 import { Categories } from '../helpers'
@@ -10,8 +10,6 @@ import { ReactComponent as PrevIcon } from '../images/icons/back-arrow.svg'
 class Submit extends Component {
   initialState = {
     category: 0,
-    username: '',
-    userUid: '',
     edit: true,
     formData: {},
     activityTitle: '',
@@ -21,14 +19,15 @@ class Submit extends Component {
     clearRev: 0
   }
 
-  selectOptions = Categories
+  selectOptions = Categories;
 
   state = this.initialState;
 
   handleSubmit = (out) => {
     const { heading, output: wholeDescription } = out
     const { date, eventBrochure: Mybrochure } = this.state.formData
-    const { category: category_Id, username, userUid } = this.state
+    const { category: category_Id } = this.state
+    const { uid: userId , displayName: userName } = this.props.user;
     let imgCaption = this.state.imgCaption
     let brochureUrl = ''
 
@@ -37,8 +36,8 @@ class Submit extends Component {
       const uploadObj = {
         created: new Date(currentTime).toLocaleString('en-IN', {dateStyle:"medium",timeStyle: "short",}),
         createdInSeconds: currentTime,
-        author: username,
-        uid: userUid,
+        author: userName,
+        uid: userId,
         categoryId: category_Id,
         title: heading,
         desc: wholeDescription,
@@ -124,25 +123,11 @@ class Submit extends Component {
     this.setState({ edit: status })
   }
 
-  componentDidMount() {
-    const { user } = this.props 
-    if (user) {
-      fs.collection('users').doc(user.uid).get().then(snapshot => {
-        const fullName = snapshot.data().FullName
-        const name = fullName.slice(0, fullName.search(' '))
-        this.setState({
-          username: name,
-          userUid: user.uid
-        })
-      })
-    }
-  }
-
   render() {
     return (
-      <div className='add-blogs route' >
+      <div className='add-blogs' >
         <div className='mobile-bg' />
-        <div className='activity-form'>
+        <div className='activity-form container'>
           <div className='tablist-wrapper'>
             <div id='tabList' className='tablist'>
               <button onClick={(e) => { this.switchForm(true) }} className={`tab ${this.state.edit ? 'active' : ''}`} role="tab">Form</button>

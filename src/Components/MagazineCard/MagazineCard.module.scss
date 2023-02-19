@@ -1,0 +1,109 @@
+.magazine-card {
+    width: 100%;
+    background-color: #fcfcfc;
+    transition: all 0.3s ease;
+
+    .cover-img {
+        width: 100%;
+        
+        img {
+            width: 100%;
+            aspect-ratio: 1 / 1.1;
+            object-fit: cover;
+            object-position: center center;
+        }
+
+        @media screen and (max-width: 650px) {
+            img {
+                aspect-ratio: 1 / 0.5;
+                object-position: top center;
+            }
+        }
+    }
+
+
+
+    .desc {
+        position: relative;
+        padding: 1.6rem 1.6rem 4.8rem;
+
+        .date {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            font-size: 0.9rem;
+            font-family: 'Crimson Text', serif;
+            padding: .8rem 0;
+
+            time {
+                font-size: inherit;
+            }
+
+            .issue {
+                font-size: inherit;
+
+            }
+        }
+
+        .title {
+            text-decoration: none;
+            font-family: 'Open Sans', sans-serif;
+
+            p {
+                text-transform: uppercase;
+                color: var(--gray-8);
+                font-size: 1.2rem;
+                line-height: 1.5;
+                font-weight: 700;
+                letter-spacing: 0.08rem;
+                transition: all 0.15s;
+            }
+
+            p:hover {
+                color: rgb(27, 27, 122);
+            }
+        }
+
+        .actions {
+            position: absolute;
+            margin: 1.6rem 0;
+            bottom: 0;
+            font-family: 'Open Sans', sans-serif;
+
+            .action-btn {
+                font-family: inherit;
+                text-decoration: none;
+                color: var(--gray-8);
+                background-color: transparent;
+                padding: 0.6rem 1.2rem;
+                border: solid 2px var(--gray-8);
+                border-radius: 4rem;
+                font-size: 0.7rem;
+                letter-spacing: 0.075rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                margin-right: 1.2rem;
+            }
+
+            .action-btn:hover {
+                cursor: pointer;
+                color: var(--gray-7);
+            }
+
+            .action-btn:active {
+                background-color: rgba(194, 194, 194, 0.3);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .magazine-card {
+        .cover-img {
+            img {
+                aspect-ratio: 1 / 0.5;
+                object-position: top center;
+            }
+        }
+    }
+}

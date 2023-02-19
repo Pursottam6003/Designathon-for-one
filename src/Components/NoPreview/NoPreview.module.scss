@@ -1,0 +1,33 @@
+.nocontent {
+    font-family: 'Open Sans', sans-serif;
+    color: #212121;
+
+    h2,
+    p {
+      font-family: inherit;
+      text-align: center;
+      color: inherit;
+    }
+
+    h2 {
+        font-size: 1.0625rem;
+        font-weight: 400;
+        margin-bottom: 1.25rem;
+    }
+    
+    p {
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .illustration {
+      width: fit-content;
+      margin: 0 auto 2.5rem;
+    }
+
+
+    .illustration>svg {
+      width: 140px;
+      height: 140px;
+    }
+  }

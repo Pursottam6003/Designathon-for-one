@@ -1,0 +1,29 @@
+.input-wrapper {
+    display: grid;
+
+    textarea, .growable-div {
+        display: block;
+        grid-area: 1 / 1 / 2 / 2;
+        overflow-x: auto;
+        padding: 0.325rem 0.625rem;
+        font-size: 1rem;
+        font-family: 'Zilla Slab', serif;
+        line-height: 1.42857143;
+        border-bottom: 'solid 2px transparent';
+    }
+
+    textarea {
+        overflow: hidden;
+        resize: none;
+    }
+
+    .growable-div {
+        visibility: hidden;
+        white-space: pre-wrap;
+    }
+}
+
+.formatted-output {
+    cursor: pointer;
+    min-height: 1.2rem;
+}

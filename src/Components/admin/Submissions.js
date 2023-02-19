@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { db } from '../../config/config'
-import { PreviewedInput } from '../MdInput'
+import PreviewedInput from '../MdInput/MdInput'
 
 import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 
@@ -185,7 +185,7 @@ const Submission = ({ type, ls, approve, reject, update, moveBack }) => {
             </thead>
             <tbody>
               {Object.keys(ls).map(id => (
-                <Sub key={id} {...ls[id]} type={type} approve={approve}
+                <Sub key={`${id}sub`} {...ls[id]} type={type} approve={approve}
                   reject={reject} update={update} moveBack={moveBack}
                 />
               ))}
@@ -198,15 +198,17 @@ const Submission = ({ type, ls, approve, reject, update, moveBack }) => {
 }
 
 const Sub = ({ id, author, title, created, desc, type, imgUrl, update, reject, approve, moveBack }) => (
-  <tr key={id}>
+  <tr>
     <td>{author}</td>
     <td>
       <PreviewedInput value={title}
+        placeholder='Title'
         updateVal={(txt) => { update(id, type, 'title', txt) }}
       />
     </td>
     <td>
       <PreviewedInput value={desc}
+        placeholder='Description'
         updateVal={(txt) => { update(id, type, 'desc', txt) }}
       />
       {imgUrl.length !== 0 && (

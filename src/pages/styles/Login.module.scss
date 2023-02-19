@@ -1,0 +1,139 @@
+.login-page {
+    margin-bottom: 2rem;
+
+    .form-box {
+        .greet-box {
+            .heading {
+                font-size: 1.6rem;
+                color: var(--gray-8);
+                border-bottom: solid 1px rgb(200, 200, 200);
+            }
+
+            margin-bottom: 2rem;
+        }
+
+        .login-msg {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            font-size: 0.875rem;
+            margin: 1rem auto 2rem;
+            border-radius: 4px;
+            font-family: "Open Sans", sans-serif;
+            box-shadow: 0px 1px 3px -2px #000000e6;
+
+            .icon {
+                display: flex;
+                color: inherit;
+                margin-right: 0.8rem;
+
+                svg {
+                    width: 1.375rem;
+                    height: 1.375rem;
+                    fill: currentColor;
+                }
+            }
+        }
+
+        .login-msg.success {
+            color: #2e7d32;
+            background-color: rgb(237, 247, 237);
+        }
+
+        .login-msg.error {
+            color: #d32f2f;
+            background-color: rgb(253, 237, 237);
+        }
+
+        .login-form {
+            max-width: 280px;
+            margin: auto;
+
+            .login-field:focus-within {
+                border-radius: 32px;
+            }
+
+            .login-field {
+                position: relative;
+                margin: 0 0 1.6rem;
+                border: solid 1px var(--gray-8);
+                border-radius: 4px;
+                overflow: hidden;
+                transition: 0.3s ease;
+
+                .icon {
+                    position: absolute;
+                    width: 24px;
+                    height: 24px;
+                    top: 50%;
+                    left: 0.8rem;
+                    transform: translateY(-50%);
+                    z-index: 1;
+                }
+
+                input {
+                    position: relative;
+                    background-color: transparent;
+                    padding: 0.8rem 0.8rem 0.8rem 3rem;
+                    border: none;
+                    outline: none;
+                    border-bottom: solid 2px transparent;
+                    transition: all 0.3s;
+                    width: 100%;
+                    font-size: 1rem;
+                }
+            }
+
+            .login-btn {
+                background-color: white;
+                font-size: 1rem;
+                border: solid 2px var(--gray-7);
+                padding: 0.45rem 2.5rem;
+                width: 100%;
+                border-radius: 4rem;
+                transition: 0.2s all;
+            }
+
+            .login-btn:hover {
+                background-color: var(--gray-7);
+                color: var(--gray-0);
+            }
+
+            .login-btn:focus {
+                background-color: var(--gray-9);
+                border: solid 2px var(--gray-9);
+                color: #fff;
+            }
+
+            .login-btn[disabled] {
+                background-color: transparent;
+                border: solid 2px var(--gray-5);
+                color: var(--gray-5);
+            }
+        }
+    }
+
+
+
+    .LoginButton {
+        padding: 10px;
+        background-color: #3E8CFA;
+        border-radius: 10px;
+        color: white;
+        border: none;
+        margin-top: 20px;
+
+    }
+
+    .checkbox {
+        margin-left: 20px;
+        width: 20px;
+    }
+
+    .forgotpasswd {
+        float: right;
+        margin-top: -20px;
+
+    }
+
+}
