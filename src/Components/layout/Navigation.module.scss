@@ -261,3 +261,9 @@
         background-color: white;
     }
 }
+
+@media print {
+    .navbar-component {
+        display: none;
+    }
+}

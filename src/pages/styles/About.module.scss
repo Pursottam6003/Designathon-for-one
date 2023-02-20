@@ -1,0 +1,55 @@
+.about-component {
+    font-family: 'Open Sans', sans-serif;
+  
+    .technodaya {
+      font-family: "Cormorant Garamond", serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 3rem;
+      border-bottom: solid 1px rgb(219, 219, 219);
+      
+      h1 {
+        font-size: 50px;
+      }
+      
+      p {
+        max-width: 700px;
+        padding: 1rem 3rem 3rem;
+        line-height: 1.4;
+      }
+    }
+  
+    .team {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: stretch;
+      background-color: rgb(254, 253, 253);
+      border-bottom: solid 1px rgb(219, 219, 219);
+
+      .people {
+        margin-bottom: 4rem;
+      }
+
+      header {
+        padding: 1.2rem .4rem;
+        margin-bottom: 2rem;
+        width: 100%;
+        text-align: center;
+        background-color: #0d212f;
+        color: #fff;
+      }
+  
+      .members {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem 1rem;
+      }
+    }
+  }
+  

@@ -1,39 +1,69 @@
-import React from 'react'
-import MagazineCover from '../images/technodaya-cover.png'
+import React, { useEffect, useState } from 'react'
 import { ReactComponent as ArrowIcon } from '../images/icons/arrowicon.svg'
 import styles from './styles/Home.module.scss'
+import cx from 'classnames'
 import MagazineCard from "../Components/MagazineCard";
+import { useFetchCollection } from '../hooks/hooks'
+import { orderBy, limit } from 'firebase/firestore'
+import { LoadingPage } from '../Components/Loading'
+import { NavLink } from 'react-router-dom'
 
 export const Home = () => {
+  const {
+    docs: issues,
+    fetching: fetchingIssues
+  } = useFetchCollection('PastPublications', [
+    orderBy('index', 'desc'),
+    limit(3),
+  ])
+
+  const [latestIssueId, setLatestIssueId] = useState(null);
+
+  useEffect(() => {
+    if (!fetchingIssues) {
+      console.log(Object.keys(issues)[0])
+      setLatestIssueId(Object.keys(issues)[0])
+    }
+  }, [fetchingIssues])
+
   return (
     <div className={styles['home-component']}>
       <div className='route'>
 
-        <section className={`${styles['hero']} ${styles['parallax']}`}>
+        <section className={cx(styles.hero, styles.parallax, styles.home)}>
           <div className='container'>
             <h4>Latest issue published</h4>
-            <h1>Technodaya Vol-3 Issue-4</h1>
-            <p>12-11-2022 July-August</p>
-
-            <a href='/' className={styles.btn}>Read more</a>
+            {latestIssueId && (<>
+              <h1>{issues[latestIssueId].Title}</h1>
+              <div className={styles['issue-info']}>
+                <p>Vol-{issues[latestIssueId].Vol} Issue-{issues[latestIssueId].Issue}</p>
+                <p>{issues[latestIssueId].Month} {issues[latestIssueId].Year}</p>
+              </div>
+            </>)}
+            <NavLink to='/magazine' className={styles.btn}>Read more</NavLink>
           </div>
         </section>
 
-        <section>
+        <section className={styles.home}>
           <div className='container'>
             <header>
               <h1> Recent releases</h1>
               <button className='btn'>View all</button>
             </header>
-            <div className='issues grid-gallery'>
-              <MagazineCard imgsrc={MagazineCover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-              <MagazineCard imgsrc={MagazineCover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
-              <MagazineCard imgsrc={MagazineCover} title={'Technodaya Vol IV, Issue-2'} vol={'IV'} iss={'2'} month={'Mar-Apr'} year={2021} link={'https://www.nitap.ac.in/news-details?slno=UE82M2lVejRPYzY4NkErTC9kYWdGdz09&notice='} pdfLink={'https://www.nitap.ac.in/storage/pdf/9112Technodaya-Vol-IV-iss-2-2021.pdf'} />
+            <div className={styles.issues}>
+              {fetchingIssues ? <LoadingPage /> : (
+                <div className='grid-gallery'>
+                  {Object.keys(issues).map(id => {
+                    const { ImageUrl, Title, Vol, Issue, Month, Year, Link, PdfUrl } = issues[id];
+                    return <MagazineCard key={id} imgsrc={ImageUrl} title={Title} vol={Vol} iss={Issue} month={Month} year={Year} link={Link} pdfLink={PdfUrl} />
+                  })}
+                </div>
+              )}
             </div>
           </div>
         </section>
 
-        <section className={`${styles['counts']} ${styles['parallax']}`}>
+        <section className={cx(styles.counts, styles.parallax, styles.home)}>
           <div className={`container ${styles['publication-counts']}`}>
             <div className={styles['publication']}>
               <h1>53</h1>
@@ -50,7 +80,7 @@ export const Home = () => {
           </div>
         </section>
 
-        <section>
+        <section className={styles.home}>
           <div className={`${styles['subscription-cont']} container`}>
             <h1>subscribe to our<br /> newsletter</h1>
             <h4>Stay updated with new Issues of Technodaya!</h4>

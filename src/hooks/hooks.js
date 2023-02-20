@@ -38,14 +38,14 @@ function useAuthStatus() {
  * @param {string} collectionName
  * @param {Array} filter
  */
-function useFetchSubmissions(collectionName, filter = []) {
+function useFetchCollection(collectionName, filter = []) {
   const [fetching, setFetching] = useState(true);
   const [docs, setDocs] = useState({});
 
   const fetchDocs = () => {
     console.log('fetchDocs: Fetching...')
     setFetching(true);
-    const q = query(collection(db, collectionName), orderBy('createdInSeconds', 'desc'), ...filter);
+    const q = query(collection(db, collectionName), ...filter);
 
     getDocs(q).then(snapshot => {
       const ls = {};
@@ -65,4 +65,4 @@ function useFetchSubmissions(collectionName, filter = []) {
   return { docs, setDocs, fetching, refetch: fetchDocs };
 }
 
-export { useAuthStatus, useFetchSubmissions };
+export { useAuthStatus, useFetchCollection };

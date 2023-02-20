@@ -1,58 +1,66 @@
-.team-member-card {
-    margin-top: 10rem;
-    margin-bottom: 2rem;
-    padding-top: 6rem;
-    max-width: 18rem;
-    border-radius: 2px;
+.card {
+  margin-top: 6rem;
+  margin-bottom: 0rem;
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+  max-width: 18rem;
+  border-radius: 2px;
+  display: flex;
+  background-color: #0d212f;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  color: white;
+
+  .profile {
     display: flex;
-    background-color: #0d212f;
-    flex-direction: column;
+    position: absolute;
+    width: 11rem;
+    height: 11rem;
+    border-radius: 50%;
+    top: 0;
+    transform: translateY(-50%);
+    background-color: #fff;
     justify-content: center;
     align-items: center;
-    position: relative;
-    color: white;
+    overflow: hidden;
+    border: solid 0.4rem white;
 
-    .member-image {
-      display: flex;
-      position: absolute;
-      width: 11rem;
-      height: 11rem;
-      border-radius: 50%;
-      top: -30%;
-      background-color: #fff;
-      justify-content: center;
-      align-items: center;
-
-      img {
-        border-radius: 50%;
-        width: 10rem;
-        height: 10rem;
-      }
-    }
-
-    .member-info {
-
-      padding: .6rem 1rem;
-
-      h3 {
-        font-size: 1rem;
-        padding: .6rem .3rem;
-      }
-
-
-      p {
-        font-size: .8rem;
-        padding: .6rem .2rem;
-      }
-
-      ul {
-        display: flex;
-        justify-content: space-around;
-        font-size: .8rem;
-
-        li {
-          list-style: none;
-        }
-      }
+    img {
+      width: 100%;
+      height: auto;
     }
   }
+
+  .info {
+    padding: .6rem 1rem;
+
+    h3, p {
+      margin-bottom: 0.8rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+
+
+    p {
+      font-size: .8rem;
+    }
+
+  }
+  .social {
+    padding: 1rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    font-size: .8rem;
+
+    li {
+      list-style: none;
+    }
+  }
+}

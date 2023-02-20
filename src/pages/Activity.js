@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { where } from "firebase/firestore";
+import { where, orderBy } from "firebase/firestore";
 import { ReactComponent as SpinnerIcon } from '../images/icons/spinner.svg';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import { useFetchSubmissions } from "../hooks/hooks";
+import { useFetchCollection } from "../hooks/hooks";
 import styles from './styles/Activity.module.scss';
 
 export const Activity = ({ uid }) => {
   const [lastUpdated, setLastUpdated] = useState(null);
 
-  const { docs: pending, fetching: fetchingPending, refetch: refetchPending } = useFetchSubmissions('submissions', [
+  const { docs: pending, fetching: fetchingPending, refetch: refetchPending } = useFetchCollection('submissions', [
+    orderBy('createdInSeconds', 'desc'),
     where("uid", "==", uid),
     where("approved", "==", false),
   ]);
 
-  const { docs: approved, fetching: fetchingApproved, refetch: refetchApproved } = useFetchSubmissions('submissions', [
+  const { docs: approved, fetching: fetchingApproved, refetch: refetchApproved } = useFetchCollection('submissions', [
+    orderBy('createdInSeconds', 'desc'),
     where("uid", "==", uid),
     where("approved", "==", true),
   ]);

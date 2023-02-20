@@ -13,6 +13,7 @@ export const UploadCover = () => {
     const [imageError, setImageError]=useState(null);
     const [successMsg, setSuccessMsg]=useState('');
     const [uploadError, setUploadError]=useState('');
+    const [index, setIndex] = useState(null);
 
     
     const types =['image/jpg','image/jpeg','image/png','image/PNG','image/webp','image/svg'];
@@ -37,6 +38,7 @@ export const UploadCover = () => {
         const uploadOnFirestore =()=>{
             storage.ref(`Technodaya/CoverImages/`).child(image.name).getDownloadURL().then(imgurl=>{
                 fs.collection('PastPublications').doc().set({
+                    index: parseInt(`${year}${iss}`),
                     Title : title,
                     Vol :vol,
                     Issue: iss,
@@ -76,7 +78,7 @@ export const UploadCover = () => {
   
   return (
     <> 
-        <div className=''>
+        <div className='container'>
             <br></br>
             <br></br>
             <h1>Add Cover Images</h1>

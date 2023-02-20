@@ -8,8 +8,8 @@ import { ReactComponent as DoneIcon } from '../../images/icons/done.svg'
 import { ReactComponent as RemoveIcon } from '../../images/icons/remove.svg'
 import { ReactComponent as UndoIcon } from '../../images/icons/undo.svg'
 
-import { where, setDoc, doc, deleteDoc } from 'firebase/firestore'
-import { useFetchSubmissions } from "../../hooks/hooks"
+import { where, orderBy, setDoc, doc, deleteDoc } from 'firebase/firestore'
+import { useFetchCollection } from "../../hooks/hooks"
 import { LoadingPage } from "../Loading"
 
 export const Submissions = () => {
@@ -22,14 +22,20 @@ export const Submissions = () => {
     setDocs: setPending,
     fetching: fetchingPending,
     refetch: refetchPending
-  } = useFetchSubmissions('submissions', [where("approved", "==", false)]);
+  } = useFetchCollection('submissions', [
+    orderBy('createdInSeconds', 'desc'),
+    where("approved", "==", false)
+  ]);
 
   const {
     docs: approved,
     setDocs: setApproved,
     fetching: fetchingApproved,
     refetch: refetchApproved
-  } = useFetchSubmissions('submissions', [where("approved", "==", true)]);
+  } = useFetchCollection('submissions', [
+    orderBy('createdInSeconds', 'desc'),
+    where("approved", "==", true)
+  ]);
 
   const approve = (id) => {
     const ls = pending;

@@ -177,6 +177,7 @@ export class Draft extends Component {
 
       // upload cover
       const coverObj = {
+        index: parseInt(`${year}${iss}`) ,
         Title: title,
         publishedAt: new Date().toLocaleString('en-IN'),
         Vol: vol,
