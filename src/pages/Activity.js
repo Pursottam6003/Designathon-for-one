@@ -7,7 +7,7 @@ import rehypeRaw from 'rehype-raw';
 import { useFetchCollection } from "../hooks/hooks";
 import styles from './styles/Activity.module.scss';
 
-export const Activity = ({ uid }) => {
+export const Activity = ({ displayName, uid }) => {
   const [lastUpdated, setLastUpdated] = useState(null);
 
   const { docs: pending, fetching: fetchingPending, refetch: refetchPending } = useFetchCollection('submissions', [
@@ -52,7 +52,14 @@ export const Activity = ({ uid }) => {
           </div>
         )}
         {fetchingApproved && fetchingPending ? <SpinnerIcon />
-          : Object.keys(pending).length || Object.keys(approved).length ? (
+          : Object.keys(pending).length || Object.keys(approved).length ? (<>
+            <div className={styles.summary}>
+              <h2>
+                Hi, {displayName.slice(0, displayName.search(' '))}!
+                {Object.keys(pending).length > 0 ? ` You have ${Object.keys(pending).length} pending submission${Object.keys(pending).length > 1 ? 's' : ''}` 
+                                                 : ` You don't have any pending submissions`}
+              </h2>
+            </div>
             <div className="table-wrapper">
               <table>
                 <thead>
@@ -69,7 +76,7 @@ export const Activity = ({ uid }) => {
                 </tbody>
               </table>
             </div>
-          ) : <p>No activity yet</p>}
+          </>) : <p>You haven't made any submissions for the current issue yet</p>}
       </div>
     </div>
   )

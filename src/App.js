@@ -46,7 +46,7 @@ function App() {
           )} />
 
           <Route path="/activity" element={(
-            <ProtectedComponent isAdmin={false} children={<Activity uid={user.user ? user.user.uid : null} />} />
+            <ProtectedComponent isAdmin={false} children={<Activity displayName={user.user ? user.user.displayName : ''} uid={user.user ? user.user.uid : null} />} />
           )} />
 
           <Route path="/admin/*" element={(
