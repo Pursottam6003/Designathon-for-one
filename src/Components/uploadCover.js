@@ -35,6 +35,17 @@ export const UploadCover = () => {
     const handleAdd=(e)=>{
         const uploadOnFirestore =()=>{
             storage.ref(`Technodaya/CoverImages/`).child(image.name).getDownloadURL().then(imgurl=>{
+                console.log({
+                    index: parseInt(`${year}${iss}`),
+                    Title : title,
+                    Vol :vol,
+                    Issue: iss,
+                    Month :month,
+                    Year :year,
+                    ImageUrl : imgurl,
+                    PdfUrl : pdfLink,
+                })
+
                 fs.collection('PastPublications').doc().set({
                     index: parseInt(`${year}${iss}`),
                     Title : title,
