@@ -13,8 +13,6 @@ export const UploadCover = () => {
     const [imageError, setImageError]=useState(null);
     const [successMsg, setSuccessMsg]=useState('');
     const [uploadError, setUploadError]=useState('');
-    const [index, setIndex] = useState(null);
-
     
     const types =['image/jpg','image/jpeg','image/png','image/PNG','image/webp','image/svg'];
     const handleCoverImage=(e)=>{

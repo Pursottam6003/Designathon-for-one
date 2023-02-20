@@ -71,19 +71,60 @@
                 }
             }
 
+            .logout {
+                .nav-item-txt.btn-txt {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+
+                    svg {
+                        right: 0;
+                        display: inline-block;
+                        height: 1.8rem;
+                        width: auto;
+                    }
+                }
+            }
+
             .nav-items.desktop {
                 flex-direction: row;
                 gap: 0 1rem;
                 justify-content: space-around;
                 height: fit-content;
-                align-items: stretch;
-                padding: 0.5rem 0;
+                align-items: center;
+                height: 100%;
 
+                >li {
+                    height: 2rem;
+                }
+                
                 .divider {
                     height: 100%;
                     border-width: 0px thin 0px 0px;
                     border-color: var(--nav-items-color);
                     opacity: 0.25;
+                }
+
+                .logout {
+                    .nav-item-txt.btn-txt {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: center;
+                        width: fit-content;
+                        position: relative;
+                        height: 2rem;
+                        padding-right: 2.2rem;
+
+                        svg {
+                            position: absolute;
+                            right: 0;
+                            display: inline-block;
+                            height: 1.8rem;
+                            width: auto;
+                        }
+                    }
                 }
 
                 .nav-item {
@@ -147,6 +188,23 @@
                 overflow-x: hidden;
                 z-index: 1;
                 font-size: 2rem;
+
+                .nav-item.logout {
+                    .nav-item-txt.btn-txt {
+                        gap: 1rem;
+                        svg {
+                            height: 3rem;
+                            width: 3rem;
+                            
+                            #logoutIconBg {
+                                fill: black;
+                            }
+                            #logoutIcon {
+                                stroke: white;
+                            }
+                        }
+                    }
+                }
 
                 .nav-item {
                     position: relative;

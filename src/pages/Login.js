@@ -70,9 +70,9 @@ export const Login = ({ user, loginUser, logoutUser }) => {
           <h1 className='heading'>Login</h1>
         </header>
         <div className={styles['form-box']}>
-          <div className={styles.messages}>
-            {errorMsg && <div className={styles['login-msg error']}>
-              <div className='icon'><ErrorIcon /></div>
+        <div className='messages'>
+            {errorMsg && <div className={cx(styles['login-msg'], styles.error)}>
+              <div className={styles.icon}><ErrorIcon /></div>
               {errorMsg}
             </div>}
           </div>

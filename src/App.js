@@ -12,9 +12,7 @@ import { reauth } from "./config/config";
 import { useAuthStatus } from "./hooks/hooks";
 
 function App() {
-  const [user, setUser] = useState({
-    user: null, admin: false
-  });
+  const [user, setUser] = useState({user: null, admin: false});
   const { checkingStatus, loggedIn, admin } = useAuthStatus();
 
   const handleLogout = () => {

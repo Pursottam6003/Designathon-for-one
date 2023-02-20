@@ -3,15 +3,16 @@ import { LoadingPage } from "../Components/Loading";
 import MagazineCard from "../Components/MagazineCard/";
 import { useFetchCollection } from "../hooks/hooks";
 import { orderBy } from "firebase/firestore";
+import styles from './styles/Read.module.scss';
 
-export const ReadFC = () => {
+export const Read = () => {
   const {
     docs: blogs,
     fetching: loading,
   } = useFetchCollection('PastPublications', [orderBy('index', 'desc')]);
 
   return (
-    <div className="read-component">
+    <div className={styles["read-component"]}>
       <div className="container">
         <header className="page-header">
           <h1 className="heading">All releases</h1>

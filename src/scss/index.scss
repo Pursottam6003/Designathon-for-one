@@ -353,6 +353,7 @@ h3 {
   font-size: 0.875rem;
   font-weight: 600;
   height: 2rem;
+  line-height: 2rem;
   min-width: 5rem;
   outline: transparent;
   padding: 0px 1rem;
@@ -364,6 +365,7 @@ h3 {
   color: rgb(3, 120, 124);
   user-select: none;
   transition: all 200ms ease;
+  white-space: pre;
 }
 
 .btns-group {

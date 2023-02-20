@@ -2,6 +2,8 @@ import React, { useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import technodayaLogo from "../../images/logo/technodaya-logo1.png"
 import { ReactComponent as CloseIcon } from '../../images/logo/remove.svg'
+import { ReactComponent as LogoutIcon } from '../../images/icons/logout-filled.svg'
+import { ReactComponent as LogoutIconOutlined } from '../../images/icons/logout-outlined.svg'
 import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 import { useNavigate } from 'react-router-dom'
 import cx from 'classnames';
@@ -19,7 +21,7 @@ const NavItem = ({ link, name, toggleNavbar }) => (
   <li>
     <NavLink
       onClick={() => { if (toggleNavbar) toggleNavbar() }}
-      className={state => (cx(styles['nav-item'], {[styles.active]: state.isActive}))}
+      className={state => (cx(styles['nav-item'], { [styles.active]: state.isActive }))}
       to={link}
     >
       <div className={styles['nav-item-txt']}>{name}</div>
@@ -58,7 +60,7 @@ export const Navbar = ({ user, logoutUser, checkingStatus, ref }) => {
   }
   return (
     <div ref={ref} className={cx(styles['navbar-component'], { [styles.admin]: user.admin })}>
-      <div className={cx(styles['nav-content-wrapper'], 'container')} 
+      <div className={cx(styles['nav-content-wrapper'], 'container')}
         style={location.pathname.includes('/admin') ? { maxWidth: '100%' } : {}}>
         <header className={styles.banner}>
           <NavLink exact="true" to='/'><img id='technodayaLogo' src={technodayaLogo} alt="Technodaya" /></NavLink>
@@ -92,9 +94,13 @@ export const Navbar = ({ user, logoutUser, checkingStatus, ref }) => {
                 </>)}
 
                 {/* SIGNOUT BUTTON */}
-                <button type="button" onClick={handleLogout} className={styles['nav-item']}>
-                  <div className={styles['nav-item-txt']}>Logout</div>
+                <button aria-label='Logout button' title='Logout' type="button" onClick={handleLogout} className={cx(styles['nav-item'], styles.logout)}>
+                  <div className={cx(styles['btn-txt'], styles['nav-item-txt'])}>
+                    <span>{user.user.displayName.slice(0, user.user.displayName.search(' '))}</span>
+                    <LogoutIconOutlined />
+                  </div>
                 </button>
+
               </>) : <NavItem link={'/login'} name='Login' mobile={true} toggleNavbar={toggleSideNav} />}
             </ul>
           </div>
@@ -123,8 +129,11 @@ export const Navbar = ({ user, logoutUser, checkingStatus, ref }) => {
               )}
 
               {/* SIGNOUT BUTTON */}
-              <button type="button" onClick={handleLogout} className={styles['nav-item']}>
-                <div className={styles['nav-item-txt']}>Logout</div>
+              <button aria-label='Logout button' title='Logout' type="button" onClick={handleLogout} className={cx(styles['nav-item'], styles.logout)}>
+                <div className={cx(styles['btn-txt'], styles['nav-item-txt'])}>
+                  <span>{user.user.displayName.slice(0, user.user.displayName.search(' '))}</span>
+                  <LogoutIcon />
+                </div>
               </button>
             </>) : checkingStatus ?
               <div className={cx(styles['nav-item'], styles.spinner)}>
@@ -132,7 +141,6 @@ export const Navbar = ({ user, logoutUser, checkingStatus, ref }) => {
               </div> :
               <NavItem link={'/login'} name='Login' mobile={false} />}
           </ul>
-
           <HamburgerIcon toggleNavbar={toggleSideNav} />
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { reauth, fs, db } from "../config/config";
-import { query, collection, orderBy, getDocs } from 'firebase/firestore'
+import { query, collection, getDocs } from 'firebase/firestore'
 
 function useAuthStatus() {
   const [loggedIn, setLoggedIn] = useState(null);
