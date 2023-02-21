@@ -1,14 +1,26 @@
 .about-component {
     font-family: 'Open Sans', sans-serif;
+
+    .section-header {
+      padding: 1.6rem 0;
+      margin-bottom: 1rem;
+
+      .heading {
+        font-family: "Open Sans", sans-serif;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-align: center;
+        font-size: 1.8rem;
+        letter-spacing: 0.2rem;
+        color: var(--gray-9);
+        line-height: 1;
+      }
+    }
   
     .technodaya {
       font-family: "Cormorant Garamond", serif;
       font-style: italic;
       font-size: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       margin: 0 auto 3rem;
       border-bottom: solid 1px rgb(219, 219, 219);
       
@@ -18,6 +30,7 @@
       
       p {
         max-width: 700px;
+        margin: auto;
         padding: 1rem 3rem 3rem;
         line-height: 1.4;
       }
@@ -31,25 +44,17 @@
       background-color: rgb(254, 253, 253);
       border-bottom: solid 1px rgb(219, 219, 219);
 
-      .people {
-        margin-bottom: 4rem;
-      }
+    }
+    .people {
+      margin-bottom: 4rem;
+    }
 
-      header {
-        padding: 1.2rem .4rem;
-        margin-bottom: 2rem;
-        width: 100%;
-        text-align: center;
-        background-color: #0d212f;
-        color: #fff;
-      }
-  
-      .members {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 2rem 1rem;
-      }
+    .members {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem 1rem;
+      margin-bottom: 2rem;
     }
   }
   
