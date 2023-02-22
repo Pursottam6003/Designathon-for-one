@@ -116,11 +116,18 @@
 
                         svg {
                             position: absolute;
-                            right: 0;
+                            right: -8px;
+                            top: 50%;
+                            transform: translate(0, -50%);
                             display: inline-block;
                             height: 1.8rem;
                             width: auto;
                         }
+                    }
+                }
+                .nav-item.logout:hover {
+                    .nav-item-txt {
+                        border-right: transparent 2px solid;
                     }
                 }
 

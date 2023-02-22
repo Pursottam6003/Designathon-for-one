@@ -2,8 +2,8 @@ import React, { useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import technodayaLogo from "../../images/logo/technodaya-logo1.png"
 import { ReactComponent as CloseIcon } from '../../images/logo/remove.svg'
-import { ReactComponent as LogoutIcon } from '../../images/icons/logout-filled.svg'
-import { ReactComponent as LogoutIconOutlined } from '../../images/icons/logout-outlined.svg'
+import { ReactComponent as LogoutIconDark } from '../../images/icons/logout-dark-no-bg.svg'
+import { ReactComponent as LogoutIconLight } from '../../images/icons/logout-light-no-bg.svg'
 import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 import { useNavigate } from 'react-router-dom'
 import cx from 'classnames';
@@ -97,7 +97,7 @@ export const Navbar = ({ user, logoutUser, checkingStatus, ref }) => {
                 <button aria-label='Logout button' title='Logout' type="button" onClick={handleLogout} className={cx(styles['nav-item'], styles.logout)}>
                   <div className={cx(styles['btn-txt'], styles['nav-item-txt'])}>
                     <span>{user.user.displayName.slice(0, user.user.displayName.search(' '))}</span>
-                    <LogoutIconOutlined />
+                    <LogoutIconDark />
                   </div>
                 </button>
 
@@ -132,7 +132,7 @@ export const Navbar = ({ user, logoutUser, checkingStatus, ref }) => {
               <button aria-label='Logout button' title='Logout' type="button" onClick={handleLogout} className={cx(styles['nav-item'], styles.logout)}>
                 <div className={cx(styles['btn-txt'], styles['nav-item-txt'])}>
                   <span>{user.user.displayName.slice(0, user.user.displayName.search(' '))}</span>
-                  <LogoutIcon />
+                  {user.admin ? <LogoutIconDark /> : <LogoutIconLight />}
                 </div>
               </button>
             </>) : checkingStatus ?
