@@ -1,0 +1,35 @@
+.verify {
+    h4 {
+        font-family: "Open Sans", sans-serif;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-align: left;
+        font-size: 1.4rem;
+        letter-spacing: 0.1rem;
+        color: var(--gray-9);
+        line-height: 1;
+        margin: 3rem 0 1.2rem;
+    }
+
+    ul {
+        padding-left: 2rem;
+        margin: 1rem 0 2rem;
+    }
+
+    button {
+        width: 7rem;
+    }
+    button:hover {
+        background-color: rgb(3, 128, 133);
+        color: white;
+    }
+    button:active {
+        background-color: rgb(1, 86, 88);
+        color: white;
+    }
+
+    button[disabled] {
+        background-color: transparent;
+        cursor: not-allowed;
+    }
+}

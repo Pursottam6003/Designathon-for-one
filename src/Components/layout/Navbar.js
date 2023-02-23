@@ -96,7 +96,7 @@ export const Navbar = ({ user, logoutUser, checkingStatus, ref }) => {
                 {/* SIGNOUT BUTTON */}
                 <button aria-label='Logout button' title='Logout' type="button" onClick={handleLogout} className={cx(styles['nav-item'], styles.logout)}>
                   <div className={cx(styles['btn-txt'], styles['nav-item-txt'])}>
-                    <span>{user.user.displayName.slice(0, user.user.displayName.search(' '))}</span>
+                    <span>{user.user.displayName ? user.user.displayName.slice(0, user.user.displayName.search(' ')) : 'Logout'}</span>
                     <LogoutIconDark />
                   </div>
                 </button>
@@ -131,7 +131,7 @@ export const Navbar = ({ user, logoutUser, checkingStatus, ref }) => {
               {/* SIGNOUT BUTTON */}
               <button aria-label='Logout button' title='Logout' type="button" onClick={handleLogout} className={cx(styles['nav-item'], styles.logout)}>
                 <div className={cx(styles['btn-txt'], styles['nav-item-txt'])}>
-                  <span>{user.user.displayName.slice(0, user.user.displayName.search(' '))}</span>
+                  <span>{user.user.displayName ? user.user.displayName.slice(0, user.user.displayName.search(' ')) : 'Logout'}</span>
                   {user.admin ? <LogoutIconDark /> : <LogoutIconLight />}
                 </div>
               </button>

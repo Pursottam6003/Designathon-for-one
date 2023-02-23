@@ -12,7 +12,7 @@ import { getAuth } from 'firebase/auth'
 
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
+const firebaseConfig = devConfig || {
   apiKey: "AIzaSyDPYJNRPPshCclnmM6gN9IphEeSaLWEgHU",
   authDomain: "designothon-bc5ca.firebaseapp.com",
   projectId: "designothon-bc5ca",

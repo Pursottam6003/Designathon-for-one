@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { where, orderBy } from "firebase/firestore";
+import { reauth } from "../config/config";
 import { ReactComponent as SpinnerIcon } from '../images/icons/spinner.svg';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { useFetchCollection } from "../hooks/hooks";
 import styles from './styles/Activity.module.scss';
+import EmailVerification from "../Components/EmailVerification";
 
 export const Activity = ({ displayName, uid }) => {
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [emailVerified, setEmailVerified] = useState(false);
+  const [user, setUser] = useState(null);
 
   const { docs: pending, fetching: fetchingPending, refetch: refetchPending } = useFetchCollection('submissions', [
     orderBy('createdInSeconds', 'desc'),
@@ -28,6 +32,11 @@ export const Activity = ({ displayName, uid }) => {
   }
 
   useEffect(() => {
+    setEmailVerified(reauth.currentUser.emailVerified);
+    setUser(reauth.currentUser);
+  }, [])
+
+  useEffect(() => {
     if (!(fetchingApproved && fetchingPending)) {
       setLastUpdated(new Date().toLocaleString('en-IN', {
         timeStyle: "medium",
@@ -43,40 +52,44 @@ export const Activity = ({ displayName, uid }) => {
           <h1 className="heading">My Activity</h1>
         </header>
 
-        {lastUpdated && (
-          <div className={styles["last-updated"]}>
-            <p>Last updated: {lastUpdated}</p>
-            <button onClick={refresh} className="btn">
-              Refresh
-            </button>
-          </div>
-        )}
-        {fetchingApproved && fetchingPending ? <SpinnerIcon />
-          : Object.keys(pending).length || Object.keys(approved).length ? (<>
-            <div className={styles.summary}>
-              <h2>
-                Hi, {displayName.slice(0, displayName.search(' '))}!
-                {Object.keys(pending).length > 0 ? ` You have ${Object.keys(pending).length} pending submission${Object.keys(pending).length > 1 ? 's' : ''}` 
-                                                 : ` You don't have any pending submissions`}
-              </h2>
+        {!emailVerified ? (
+          <EmailVerification user={user} />
+        ) : (<>
+          {lastUpdated && (
+            <div className={styles["last-updated"]}>
+              <p>Last updated: {lastUpdated}</p>
+              <button onClick={refresh} className="btn">
+                Refresh
+              </button>
             </div>
-            <div className="table-wrapper">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Status</th>
-                    <th style={{ minWidth: '120px' }}>Date added</th>
-                    <th style={{ minWidth: '160px' }}>Title</th>
-                    <th>Content</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.keys(pending).map(id => <Submission {...pending[id]} type='Pending' key={id} />)}
-                  {Object.keys(approved).map(id => <Submission {...approved[id]} type='Approved' key={id} />)}
-                </tbody>
-              </table>
-            </div>
-          </>) : <p>You haven't made any submissions for the current issue yet</p>}
+          )}
+          {fetchingApproved && fetchingPending ? <SpinnerIcon />
+            : Object.keys(pending).length || Object.keys(approved).length ? (<>
+              <div className={styles.summary}>
+                <h2>
+                  Hi{displayName && `, ${displayName.slice(0, displayName.search(' '))}`}!
+                  {Object.keys(pending).length > 0 ? ` You have ${Object.keys(pending).length} pending submission${Object.keys(pending).length > 1 ? 's' : ''}`
+                    : ` You don't have any pending submissions`}
+                </h2>
+              </div>
+              <div className="table-wrapper">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Status</th>
+                      <th style={{ minWidth: '120px' }}>Date added</th>
+                      <th style={{ minWidth: '160px' }}>Title</th>
+                      <th>Content</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.keys(pending).map(id => <Submission {...pending[id]} type='Pending' key={id} />)}
+                    {Object.keys(approved).map(id => <Submission {...approved[id]} type='Approved' key={id} />)}
+                  </tbody>
+                </table>
+              </div>
+            </>) : <p>You haven't made any submissions for the current issue yet</p>}
+        </>)}
       </div>
     </div>
   )

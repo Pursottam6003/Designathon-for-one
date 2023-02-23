@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile, sendEmailVerification } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import React, { useState } from 'react'
 import { reauth, db } from '../config/config'
@@ -24,6 +24,7 @@ export const Signup = () => {
                 displayName: fullName
             })
         })
+        .then(() => sendEmailVerification(user))
         .then(() => {
             return setDoc(doc(db, 'users', user.uid), {
                 FullName: fullName,
@@ -31,7 +32,8 @@ export const Signup = () => {
                 Password: password
             })
         }).then(() => {
-            setSuccessMsg('Signup Successfull.');
+            setSuccessMsg('Signup Successfull. Check your email inbox. An email verification link has been sent');
+            // empty the state of name
             setFullname('');
             setEmail('');
             setPassword('');
