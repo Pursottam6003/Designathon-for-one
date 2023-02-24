@@ -1,39 +1,37 @@
 import React from 'react'
 import technodayaLogo from "../../images/logo/technodaya-logo-white.png"
 import styles from './Footer.module.scss'
+import cx from 'classnames';
 
-export const Footer = ({ref}) => {
+export const Footer = ({ ref }) => {
   return (
-    <div className={styles.footer} ref={ref}>
-
-      <div className='container'>
-      <div className={styles['info-Footer']}>
-        <div className={styles.rights}>
-          <div> 
-            <img id='technodayaLogo-white' src={technodayaLogo} alt="Technodaya" />
-          </div>
-          <div> <h4>Technodaya Magazine</h4>
-            <p> National Institute of Technology</p>
-            <p> Jote , Arunchal Pradesh </p>
-          </div>
-
+    <footer className={styles.footer} ref={ref}>
+      <div className={cx('container', styles['info-Footer'])}>
+        <section>
+          <img id={styles.technodayaLogo} src={technodayaLogo} alt="Technodaya" />
           <div>
-            <p><a href='tel:0360-2954549'>0360-2954549</a></p>
-            <p><a href='mailto:nitapadmin@nitap.ac.in'>nitapadmin@nitap.ac.in</a></p>
+            <p className={styles.tagline}>The Technical Meraki of Arunachal</p>
+            <p>National Institute of Technology,<br />Arunachal Pradesh</p>
           </div>
-        </div>
-
-        <div className={styles.left}>
-        “Dream, Dream Dream
-        Dreams transform into thoughts
-        And thoughts result in action.”
-        ― DR APJ ABDUL KALAM
-        </div>
+        </section>
+        <section>
+          <h3>Links</h3>
+          <ul>
+            <li><a href='https://nitap.ac.in'>NIT Arunachal Pradesh</a></li>
+            <li><a href='https://github.com/Pursottam6003/Designathon-for-one/issues'>Report a bug 🐞</a></li>
+          </ul>
+        </section>
+        <section>
+          <h3>Contact us</h3>
+          <ul>
+            <li><a href='tel:0360-2954549'>0360-2954549</a></li>
+            <li><a href='mailto:nitapadmin@nitap.ac.in'>technodaya@nitap.ac.in</a></li>
+          </ul>
+        </section>
       </div>
+      <div className={cx(styles.copyright, 'container')}>
+        &#169;&nbsp;2022-present&nbsp;Technodaya, NIT&nbsp;Arunchal&nbsp;Pradesh
       </div>
-      <div className={styles.copyright}>
-      <div className='container'>&#169; 2022 all rights are reserved, Technodaya, NIT Arunchal Pradesh</div>
-      </div>
-    </div>
+    </footer>
   )
 }

@@ -5,7 +5,7 @@ import { Layout } from "./Components/layout/Layout"
 import { Home, Read, Issue, About, Submit, AdminConsole, Login, Activity } from './pages'
 import ProtectedComponent from "./Components/ProtectedRoute";
 
-import { Signup } from "./Components/SignUp";
+// import { Signup } from "./Components/SignUp";
 import { UploadCover } from "./Components/uploadCover";
 
 import { reauth } from "./config/config";
@@ -64,7 +64,7 @@ function App() {
           } />
 
           <Route path="/uploadcover" element={<UploadCover />} />
-          <Route path="/signup" element={<Signup />} />
+          {/* <Route path="/signup" element={<Signup />} /> */}
         </Routes>
       </Layout>
     </BrowserRouter>

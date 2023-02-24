@@ -27,8 +27,8 @@
             height: fit-content;
             flex-grow: 1;
 
-            img {
-                height: 1.8rem;
+            #technodayaLogo {
+                height: 1.6rem;
             }
         }
 
@@ -55,6 +55,7 @@
                     border: none;
                     text-decoration: none;
                     display: block;
+                    -webkit-tap-highlight-color: transparent;
 
                     .nav-item-txt {
                         border-top: solid 2px transparent;
@@ -116,18 +117,33 @@
 
                         svg {
                             position: absolute;
-                            right: -8px;
+                            right: -14px;
                             top: 50%;
                             transform: translate(0, -50%);
                             display: inline-block;
                             height: 1.8rem;
                             width: auto;
+                            
+                            #arrow {
+                                transition: all 0.15s ease;
+                            }
                         }
                     }
                 }
+
                 .nav-item.logout:hover {
                     .nav-item-txt {
                         border-right: transparent 2px solid;
+                    }
+
+                    #arrow {
+                        transform: translate(4px, 0);
+                    }
+                }
+
+                .nav-item.logout:active {
+                    #arrow {
+                        transform: translate(6px, 0);
                     }
                 }
 
@@ -162,6 +178,7 @@
             .hamburgur {
                 width: 30px;
                 display: none;
+                -webkit-tap-highlight-color: transparent;
 
                 .line {
                     background-color: #181818;
@@ -178,7 +195,7 @@
                 width: 0;
                 height: 100vh;
                 padding: 3rem 0;
-                transition: all 0.3s ease-out;
+                transition: width 0.3s ease-out;
                 background-color: black;
                 overflow-y: auto;
             }
@@ -285,6 +302,10 @@
         @media screen and (max-width: 950px) {
             .nav-items-wrapper>.hamburgur {
                 display: block;
+            }
+
+            #technodayaLogo {
+                height: 1.4rem;
             }
 
             .nav-items-wrapper {
