@@ -20,12 +20,15 @@
         align-items: center;
         height: 100%;
         margin: auto;
-        padding: 1px 1.6rem;
         transition: all 0.5s cubic-bezier(1, 0, 0.8, 1);
 
         .banner {
             height: fit-content;
             flex-grow: 1;
+
+            a {
+                -webkit-tap-highlight-color: transparent;
+            }
 
             #technodayaLogo {
                 height: 1.6rem;
@@ -81,6 +84,7 @@
                         display: inline-block;
                         height: 1.8rem;
                         width: auto;
+                        fill: black;
                     }
                 }
             }
@@ -96,7 +100,7 @@
                 >li {
                     height: 2rem;
                 }
-                
+
                 .divider {
                     height: 100%;
                     border-width: 0px thin 0px 0px;
@@ -123,7 +127,7 @@
                             display: inline-block;
                             height: 1.8rem;
                             width: auto;
-                            
+
                             #arrow {
                                 transition: all 0.15s ease;
                             }
@@ -143,7 +147,7 @@
 
                 .nav-item.logout:active {
                     #arrow {
-                        transform: translate(6px, 0);
+                        transform: translate(8px, 0);
                     }
                 }
 
@@ -176,14 +180,14 @@
             }
 
             .hamburgur {
-                width: 30px;
+                width: fit-content;
                 display: none;
                 -webkit-tap-highlight-color: transparent;
 
                 .line {
                     background-color: #181818;
                     height: 2px;
-                    margin: 8px;
+                    margin: 8px 0;
                     width: 30px;
                 }
             }
@@ -213,16 +217,11 @@
                 .nav-item.logout {
                     .nav-item-txt.btn-txt {
                         gap: 1rem;
+
                         svg {
                             height: 3rem;
                             width: 3rem;
-                            
-                            #logoutIconBg {
-                                fill: black;
-                            }
-                            #logoutIcon {
-                                stroke: white;
-                            }
+                            fill: white;
                         }
                     }
                 }
@@ -304,10 +303,6 @@
                 display: block;
             }
 
-            #technodayaLogo {
-                height: 1.4rem;
-            }
-
             .nav-items-wrapper {
                 .nav-items.desktop {
                     display: none;
@@ -326,6 +321,19 @@
                 }
             }
         }
+
+        @media screen and (max-width: 780px) {
+            .nav-items-wrapper {
+                .hamburgur > .line {
+                    margin: 6px 0;
+                    width: 24px;
+                }
+            }
+            
+            .banner #technodayaLogo {
+                height: 1.4rem;
+            }
+        }
     }
 }
 
@@ -340,8 +348,14 @@
         filter: invert(1);
     }
 
-    .nav-content-wrapper .nav-items-wrapper .hamburgur .line {
-        background-color: white;
+    .nav-content-wrapper .nav-items-wrapper {
+        .nav-item-txt.btn-txt svg {
+            fill: white;
+        }
+
+        .hamburgur .line {
+            background-color: white;
+        }
     }
 }
 

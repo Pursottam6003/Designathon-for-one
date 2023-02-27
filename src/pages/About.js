@@ -84,7 +84,7 @@ const People = {
     },
     {
       name: 'Daknya Bam',
-      role: 'Font-end, UI-UX',
+      role: 'Front-end, UI-UX',
       designation: 'UG Student, CSE 3rd year',
       description: 'A coder. singer,guitarist a full pack of combination of computer science undergratuate',
       profile: Daknya,

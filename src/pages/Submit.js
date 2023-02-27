@@ -6,6 +6,7 @@ import firebase from 'firebase/compat/app'
 import { Categories } from '../helpers'
 import { ReactComponent as NextIcon } from '../images/icons/forward-arrow.svg'
 import { ReactComponent as PrevIcon } from '../images/icons/back-arrow.svg'
+import styles from './styles/Submit.module.scss';
 
 class Submit extends Component {
   initialState = {

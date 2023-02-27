@@ -2,7 +2,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-
 }
 
 :root {
@@ -23,10 +22,10 @@
   --gray-10: rgb(22, 25, 28);
 
   --nav-height: 4rem;
-  --footer-height: 216px;
+  --footer-height: 220px;
 
-  @media screen and (max-width: 548px) {
-    --nav-height: 4rem;
+  @media screen and (max-width: 780px) {
+    --nav-height: 3.2rem;
   }
 }
 
@@ -61,6 +60,10 @@ html {
   max-width: 1050px;
   padding: 0 2rem 0;
   margin: auto;
+
+  @media screen and (max-width: 780px) {
+    padding: 0 1.6rem 0;
+  }
 }
 
 // headings
@@ -172,6 +175,7 @@ h3 {
 
     .form-field {
       margin: 0;
+      min-width: 8rem;
     }
   }
 
@@ -667,6 +671,8 @@ h3 {
   --bg-img-url: url('../images/form-bg2.png');
   --page-bg: linear-gradient(rgb(145 144 144 / 50%), rgba(33, 32, 32, 0.5)), var(--bg-img-url);
   --form-bg-color: rgba(255, 255, 255, 0.97);
+  display: flex;
+  flex-direction: column;
   background-image: var(--page-bg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -681,6 +687,7 @@ h3 {
   }
 
   .activity-form {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     margin: 0 auto;
@@ -694,7 +701,7 @@ h3 {
       --active-border-h: 5px;
       --active-color: rgb(117, 104, 84);
       --tablist-h: 2.375rem;
-      padding: 2rem 1rem 0;
+      padding: 2rem 2rem 0;
       height: var(--tablist-h);
       position: sticky;
       top: var(--nav-height);
@@ -789,9 +796,10 @@ h3 {
     }
 
     .form-wrapper {
+      flex-grow: 1;
       position: relative;
       min-height: 380px;
-      margin: 0 1rem 2rem;
+      margin: 0 2rem 2rem;
       padding: 4rem 3rem 8rem;
       border-radius: 0 0 0.25rem 0.25rem;
       background-color: var(--form-bg-color);
@@ -862,7 +870,6 @@ h3 {
 
           .form-field {
             margin: 0;
-            flex-grow: 1;
           }
         }
 
@@ -1265,11 +1272,21 @@ h3 {
     }
   }
 }
-
-@media screen and (max-width: 548px) {
-
+@media screen and (max-width: 780px) {
   .add-blogs {
-    min-height: 0;
+    .activity-form {
+      .tablist-wrapper {
+        padding: 2rem 1.6rem 0;
+      }
+      .form-wrapper {
+        margin: 0 1.6rem 2rem;
+      }
+    }
+  }
+}
+@media screen and (max-width: 548px) {
+  .add-blogs {
+    min-height: calc(100vh - var(--nav-height));
     background-image: none;
 
     .mobile-bg {

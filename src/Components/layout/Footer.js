@@ -15,10 +15,10 @@ export const Footer = ({ ref }) => {
           </div>
         </section>
         <section>
-          <h3>Links</h3>
+          <h3>External links</h3>
           <ul>
-            <li><a href='https://nitap.ac.in'>NIT Arunachal Pradesh</a></li>
-            <li><a href='https://github.com/Pursottam6003/Designathon-for-one/issues'>Report a bug 🐞</a></li>
+            <li><a href='https://nitap.ac.in' target='_blank' rel='noreferrer'>NIT Arunachal Pradesh</a></li>
+            <li><a href='https://github.com/Pursottam6003/Designathon-for-one/issues' target='_blank' rel='noreferrer'>Report a bug 🐞</a></li>
           </ul>
         </section>
         <section>
@@ -29,8 +29,10 @@ export const Footer = ({ ref }) => {
           </ul>
         </section>
       </div>
-      <div className={cx(styles.copyright, 'container')}>
-        &#169;&nbsp;2022-present&nbsp;Technodaya, NIT&nbsp;Arunchal&nbsp;Pradesh
+      <div className={styles.copyright}>
+        <p className='container'>
+          &#169;&nbsp;2022-present&nbsp;Technodaya, NIT&nbsp;Arunchal&nbsp;Pradesh
+        </p>
       </div>
     </footer>
   )
