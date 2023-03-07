@@ -53,6 +53,8 @@ const People = {
       description: 'Research Scholar, Department of Mechanical Engineering NIT AP. One of best student from the Department of Mechanical Engineering working very hard to achieve great sucess.Also, he is passionate about writing journels and documentations.',
       profile: ashok,
       links: [
+        { to: 'https://www.linkedin.com/in/ashok-ravichandran-ba761785/', icon: 'linkedin' },
+        { to: 'https://www.facebook.com/ashok.ravi.712', icon: 'facebook' },
         { to: 'https://www.instagram.com/ashokravi3652/', icon: 'instagram' },
       ],
     },
@@ -75,7 +77,7 @@ const People = {
       role: 'Back-end, database',
       designation: 'UG Student, CSE 3rd year',
       description: 'Future CEO ,Computer Sciecne undergratuate student who is currenlty exploring all fields and also a coder who is working together in a team',
-      profile: 'https://pursottam6003.github.io/Portfolio/images/update_image.png',
+      profile: 'https://avatars.githubusercontent.com/u/81693090',
       links: [
         { to: 'https://www.linkedin.com/in/pursottam-sah-78aa4a1bb', icon: 'linkedin' },
         { to: 'https://github.com/Pursottam6003', icon: 'github' },
