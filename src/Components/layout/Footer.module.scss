@@ -93,6 +93,12 @@
   }
 }
 
+@media screen and (max-width: 548px) {
+.mobile-submit {
+    display: none;
+  } 
+} 
+
 @media print {
   .footer {
     display: none;

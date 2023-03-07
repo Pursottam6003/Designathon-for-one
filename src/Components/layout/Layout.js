@@ -10,7 +10,7 @@ export const Layout = ({ children, user, logoutUser, checkingStatus }) => {
   if (location.pathname.startsWith('/admin')) {
     return (<>
       <Navbar user={user} logoutUser={logoutUser} checkingStatus={checkingStatus} />
-      <main className={styles.main}>
+      <main className={styles['main-no-ftr']}>
         {children}
       </main>
     </>)

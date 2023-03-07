@@ -2,10 +2,13 @@ import React from 'react'
 import technodayaLogo from "../../images/logo/technodaya-logo-white.png"
 import styles from './Footer.module.scss'
 import cx from 'classnames';
+import { useLocation } from 'react-router-dom';
 
-export const Footer = ({ ref }) => {
+export const Footer = () => {
+  const location = useLocation();
+
   return (
-    <footer className={styles.footer} ref={ref}>
+    <footer className={cx(styles.footer, {[styles['mobile-submit']]: location.pathname.startsWith('/submit')})}>
       <div className={cx('container', styles['info-Footer'])}>
         <section>
           <img id={styles.technodayaLogo} src={technodayaLogo} alt="Technodaya" />
