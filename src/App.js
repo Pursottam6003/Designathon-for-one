@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from "./Components/layout/Layout"
 
-import { Home, Read, Issue, About, Submit, AdminConsole, Login, Activity } from './pages'
+import { Home, Read, Issue, About, Submit, AdminConsole, Login, Activity, NotFound } from './pages'
 import ProtectedComponent from "./Components/ProtectedRoute";
 
 // import { Signup } from "./Components/SignUp";
@@ -12,7 +12,7 @@ import { reauth } from "./config/config";
 import { useAuthStatus } from "./hooks/hooks";
 
 function App() {
-  const [user, setUser] = useState({user: null, admin: false});
+  const [user, setUser] = useState({ user: null, admin: false });
   const { checkingStatus, loggedIn, admin } = useAuthStatus();
 
   const handleLogout = () => {
@@ -64,6 +64,10 @@ function App() {
           } />
 
           <Route path="/uploadcover" element={<UploadCover />} />
+
+          <Route path="*" element={<NotFound />}/>
+
+
           {/* <Route path="/signup" element={<Signup />} /> */}
         </Routes>
       </Layout>

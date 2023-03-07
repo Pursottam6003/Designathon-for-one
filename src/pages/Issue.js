@@ -10,6 +10,7 @@ import { getBiMonth, BiMonthlyNames } from '../helpers';
 import { LoadingPage } from '../Components/Loading';
 
 import styles from './styles/Issue.module.scss';
+import NotFound from './NotFound';
 
 class MagezineArticle extends Component {
   render() {
@@ -140,7 +141,7 @@ class FetchedIssue extends Component {
 
     return (
       this.state.loading ? <LoadingPage /> :
-        !this.state.orders ? <h2>Not found</h2> :
+        !this.state.orders ? <NotFound /> :
           <div className='container'>
             <div className={styles['page-header']}>
               <div className={styles['issue-meta']}>
@@ -168,6 +169,7 @@ export class Issue extends Component {
       <div className={styles['published-component']}>
         <Routes>
           <Route path=":year/:biMonth" element={<IssueRoute slug={slug} />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     )
