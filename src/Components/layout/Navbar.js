@@ -2,19 +2,11 @@ import React, { useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import technodayaLogo from "../../images/logo/technodaya-logo1.png"
 import { ReactComponent as CloseIcon } from '../../images/logo/remove.svg'
-import { ReactComponent as LogoutIconDark } from '../../images/icons/logout-dark-no-bg-new.svg'
 import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
+import { ReactComponent as HamburgerSvgIcon } from '../../images/icons/hamburger.svg'
 import { useNavigate } from 'react-router-dom'
 import cx from 'classnames';
 import styles from './Navigation.module.scss';
-
-const HamburgerIcon = ({ toggleNavbar }) => (
-  <div id='hamburgerMenu' className={styles.hamburgur} onClick={toggleNavbar}>
-    <div className={styles.line} />
-    <div className={styles.line} />
-    <div className={styles.line} />
-  </div>
-)
 
 const LogoutIcon = () => (
   <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -156,7 +148,9 @@ export const Navbar = ({ user, logoutUser, checkingStatus, ref }) => {
               </div> :
               <NavItem link={'/login'} name='Login' mobile={false} />}
           </ul>
-          <HamburgerIcon toggleNavbar={toggleSideNav} />
+          <button onClick={toggleSideNav} className={styles['mobile-menu']}>
+            <HamburgerSvgIcon />
+          </button>
         </div>
       </div>
     </nav>

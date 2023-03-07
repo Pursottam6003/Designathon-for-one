@@ -179,20 +179,28 @@
                 }
             }
 
-            .hamburgur {
-                width: fit-content;
+            .mobile-menu {
                 display: none;
-                -webkit-tap-highlight-color: transparent;
+                background-color: transparent;
+                color: black;
+                border: none;
+                width: 32px;
+                height: 32px;
+                position: relative;
 
-                .line {
-                    background-color: #181818;
-                    height: 2px;
-                    margin: 8px 0;
-                    width: 30px;
+                svg {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 100%;
+                    height: 100%;
+                    fill: currentColor;
                 }
             }
 
             .mobile-nav-wrapper {
+                z-index: 1000;
                 position: fixed;
                 top: 0;
                 right: 0;
@@ -299,9 +307,14 @@
         }
 
         @media screen and (max-width: 950px) {
-            .nav-items-wrapper>.hamburgur {
+            // .nav-items-wrapper>.hamburgur {
+            //     display: block;
+            // }
+
+            .nav-items-wrapper>.mobile-menu {
                 display: block;
             }
+
 
             .nav-items-wrapper {
                 .nav-items.desktop {
@@ -323,13 +336,6 @@
         }
 
         @media screen and (max-width: 780px) {
-            .nav-items-wrapper {
-                .hamburgur > .line {
-                    margin: 6px 0;
-                    width: 24px;
-                }
-            }
-            
             .banner #technodayaLogo {
                 height: 1.4rem;
             }
@@ -353,8 +359,11 @@
             fill: white;
         }
 
-        .hamburgur .line {
-            background-color: white;
+        // .hamburgur .line {
+        //     background-color: white;
+        // }
+        .mobile-menu {
+            color: white;
         }
     }
 }
