@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { reauth, db } from '../config/config'
-import lock from '../images/lock2.png'
-import envelop from '../images/envelop.png'
 import { ReactComponent as ErrorIcon } from '../images/icons/error.svg'
 import { ReactComponent as SpinnerIcon } from '../images/icons/spinner.svg'
+import { ReactComponent as EmailIcon } from '../images/icons/mail.svg'
+import { ReactComponent as LockIcon } from '../images/icons/lock.svg'
 
 import { useNavigate, useLocation } from 'react-router-dom'
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
@@ -78,21 +78,20 @@ export const Login = ({ user, loginUser, logoutUser }) => {
           </div>
           <form className={styles['login-form']} onSubmit={handleLogin}>
             <div className={cx(styles['login-field'], styles.email)}>
-              <img alt="" src={envelop} className={styles.icon} />
+              <EmailIcon className={styles.icon}/>
               <input type='email' required placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={email} ></input>
             </div>
             <div className={cx(styles['login-field'], styles.password)}>
-              <img alt="" src={lock} className={styles.icon} />
+              <LockIcon className={styles.icon}/>
               <input type='password' onChange={(e) => setPassword(e.target.value)} value={password} required placeholder='Password'></input>
             </div>
             {loading ? (
-              <button className={styles['login-btn']} style={{ display: 'flex', justifyContent: 'center' }} disabled type="submit">
+              <button className={styles['login-btn']} disabled type="submit">
                 <SpinnerIcon style={{ height: '1.2rem' }} />
               </button>
             ) : (
               <button className={styles['login-btn']} type="submit">Login</button>
             )}
-
           </form>
         </div>
       </div>

@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
 
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+
+
 const Container = styled.div`
   border-radius: 0.25rem;
   padding: 0.5rem;
@@ -22,6 +27,11 @@ const Flex = styled.div`
 const Content = styled.div``
 const Desc = styled.p`
   font-size: 0.8rem;
+  height: 2.4rem;
+  overflow: hidden;
+  strong {
+    font-weight: 550;
+  }
 `
 const Author = styled.p`
   font-size: 0.75rem;
@@ -53,7 +63,9 @@ export class Task extends Component {
             >
               <Content>
                 <Desc>
-                  {`${content}`.slice(0, 84)}{content.length > 84 ? `...` : ``}
+                  <ReactMarkdown children={content} rehypePlugins={[rehypeRaw]}
+                    remarkPlugins={[remarkGfm]}
+                  />
                 </Desc>
                 <Flex>
                   <Author>

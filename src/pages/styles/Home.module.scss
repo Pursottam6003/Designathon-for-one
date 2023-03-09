@@ -52,6 +52,12 @@
     .parallax {
         font-family: 'Cormorant', serif;
         font-size: 1.25rem;
+        height: 32rem;
+
+
+        h4, h1, p {
+            text-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
+        }
 
         h1 {
             text-align: center;
@@ -80,8 +86,8 @@
     }
 
     .home.hero {
-        background: linear-gradient(rgba(87, 87, 87, 0.4), rgba(87, 87, 87, 0.3)), url(../../images/basar.jpg);
-        height: 30rem;
+        background: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0)), url(../../images/basar.jpg);
+        height: 36rem;
         background-size: cover;
         background-position: top center;
         background-attachment: fixed;
@@ -148,10 +154,9 @@
     }
 
     .counts {
-        background: linear-gradient(rgba(59, 59, 59, 0.5), rgba(51, 51, 51, 0.5)), url(../../images/nitap.jpg);
+        background: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), url(../../images/nitap.jpg);
         background-repeat: no-repeat;
         background-size: cover;
-        height: 20rem;
         background-position: center;
         background-attachment: fixed;
 

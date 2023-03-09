@@ -48,6 +48,7 @@
         .login-form {
             max-width: 280px;
             margin: auto;
+            padding: 2.5rem 0 4rem;
 
             .login-field {
                 position: relative;
@@ -62,28 +63,32 @@
                     left: 0.8rem;
                     transform: translateY(-50%);
                     z-index: 1;
+                    fill: var(--gray-7);
                 }
 
                 input {
-                border-radius: 4px;
-                position: relative;
-                    background-color: transparent;
+                    border-radius: 2rem;
+                    position: relative;
+                    background-color: #eef3f4;
                     padding: 0.8rem 0.8rem 0.8rem 3rem;
-                border: solid 1px rgba(0, 0, 0, 0.36);
+                    border: solid 1px transparent;
                     outline: none;
                     width: 100%;
                     font-size: 1rem;
-                transition: 0.3s ease border;
-            }
+                }
+
                 input:focus {
-                    border: solid 2px #777;
+                    border: solid 1px #153964;
+                    background-color: white;
                 }
             }
 
             .login-btn {
+                margin: 1rem 0;
+                height: 2.2rem;
                 background-color: white;
                 font-size: 1rem;
-                border: solid 2px var(--gray-7);
+                border: solid 1px var(--gray-7);
                 padding: 0.45rem 2.5rem;
                 width: 100%;
                 border-radius: 4rem;
@@ -97,13 +102,13 @@
 
             .login-btn:focus {
                 background-color: var(--gray-9);
-                border: solid 2px var(--gray-9);
+                border: solid 1px var(--gray-9);
                 color: #fff;
             }
 
             .login-btn[disabled] {
                 background-color: transparent;
-                border: solid 2px var(--gray-5);
+                border: solid 1px var(--gray-5);
                 color: var(--gray-5);
             }
         }
