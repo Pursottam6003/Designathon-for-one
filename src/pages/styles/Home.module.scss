@@ -49,32 +49,6 @@
         }
     }
 
-    .parallax {
-        font-family: 'Cormorant', serif;
-        font-size: 1.25rem;
-        height: 32rem;
-
-
-        h4, h1, p {
-            text-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        h4 {
-            font-family: inherit;
-            font-weight: 400;
-            font-size: inherit;
-            font-style: oblique;
-            text-transform: capitalize;
-        }
-
-        p {
-            font-size: inherit;
-        }
-    }
 
     h1 {
         font-family: "Open Sans", sans-serif;
@@ -86,11 +60,9 @@
     }
 
     .home.hero {
-        background: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0)), url(../../images/basar.jpg);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0)), url(../../images/basar.jpg);
+        // background-position: center top;
         height: 36rem;
-        background-size: cover;
-        background-position: top center;
-        background-attachment: fixed;
         padding: 0;
 
         >div {
@@ -154,11 +126,7 @@
     }
 
     .counts {
-        background: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), url(../../images/nitap.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)), url(../../images/nitap.jpg);
 
         .publication-counts {
             display: flex;
@@ -258,7 +226,7 @@
                         position: absolute;
                         left: 1.2rem;
                         top: 1.2rem;
-                        transform: translateY(-40%);
+                        transform: translateY(-50%);
                         width: 2rem;
                         height: fit-content;
 
@@ -289,6 +257,40 @@
                     --clr: rgba(160, 66, 71, 0.692);
                 }
             }
+        }
+    }
+
+
+    .parallax {
+        --parallax-speed: 0.4;
+        font-family: 'Cormorant', serif;
+        font-size: 1.25rem;
+        height: 32rem;
+
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center calc(var(--parallax-speed) * var(--nav-height));
+        background-attachment: fixed;
+
+
+        h4, h1, p {
+            text-shadow: rgba(0, 0, 0, 0.5) 0 2px 2px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h4 {
+            font-family: inherit;
+            font-weight: 400;
+            font-size: inherit;
+            font-style: oblique;
+            text-transform: capitalize;
+        }
+
+        p {
+            font-size: inherit;
         }
     }
 }
