@@ -1,6 +1,6 @@
 import { Component, PureComponent } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import { DndSubmissions } from "../dnd/dndSubmissions"
+import { Section } from "../dnd/dndSubmissions"
 import styled from "styled-components"
 
 const Container = styled.div`
@@ -9,16 +9,17 @@ const Container = styled.div`
   display: flex;
 `;
 
-class InnerList extends PureComponent {
+class SectionWrapper extends PureComponent {
   render() {
-    const { column, taskMap, index } = this.props;
-    const tasks = column.taskIds.map(taskId => taskMap[taskId]);
-    return <DndSubmissions column={column} tasks={tasks} index={index} />
+    const { section, subSectionMap, activities, index } = this.props;
+    const mappedsubSecs = section.subSecIds.map(subSecId => subSectionMap[subSecId]);
+    return <Section section={section} subSections={mappedsubSecs} activities={activities} index={index} />
   }
 }
 
 export class DndMain extends Component {
   onDragEnd = result => {
+
     const { destination, source, draggableId, type } = result;
     const { orders, updateOrders } = this.props
 
@@ -30,37 +31,89 @@ export class DndMain extends Component {
       return;
     }
 
-    if (type === 'column') {
-      const newColumnOrder = Array.from(orders.columnOrder);
-      newColumnOrder.splice(source.index, 1);
-      newColumnOrder.splice(destination.index, 0, draggableId);
+    if (type === 'section') {
+      const newSectionOrder = Array.from(orders.sectionOrder);
+      newSectionOrder.splice(source.index, 1);
+      newSectionOrder.splice(destination.index, 0, draggableId);
 
       const newOrders = {
         ...orders,
-        columnOrder: newColumnOrder,
+        sectionOrder: newSectionOrder,
       };
       updateOrders(newOrders)
       return;
     }
 
-    const start = orders.columns[source.droppableId];
-    const finish = orders.columns[destination.droppableId];
+    if (type === 'subSection') {
+      const start = orders.sections[source.droppableId];
+      const finish = orders.sections[destination.droppableId];
+      if (start === finish) {
+        const newSubSecIds = Array.from(start.subSecIds);
+        newSubSecIds.splice(source.index, 1);
+        newSubSecIds.splice(destination.index, 0, draggableId);
 
-    if (start === finish) {
-      const newTaskIds = Array.from(start.taskIds);
-      newTaskIds.splice(source.index, 1);
-      newTaskIds.splice(destination.index, 0, draggableId);
+        const newSection = {
+          ...start,
+          subSecIds: newSubSecIds,
+        };
 
-      const newColumn = {
+        const newOrders = {
+          ...orders,
+          sections: {
+            ...orders.sections,
+            [newSection.id]: newSection,
+          },
+        };
+
+        updateOrders(newOrders);
+        return;
+      }
+
+      // Moving from one section to another
+      const startSubSecIds = Array.from(start.subSecIds);
+      startSubSecIds.splice(source.index, 1);
+      const newStart = {
         ...start,
-        taskIds: newTaskIds,
+        subSecIds: startSubSecIds,
+      };
+
+      const finishSubSecIds = Array.from(finish.subSecIds);
+      finishSubSecIds.splice(destination.index, 0, draggableId);
+      const newFinish = {
+        ...finish,
+        subSecIds: finishSubSecIds,
       };
 
       const newOrders = {
         ...orders,
-        columns: {
-          ...orders.columns,
-          [newColumn.id]: newColumn,
+        sections: {
+          ...orders.sections,
+          [newStart.id]: newStart,
+          [newFinish.id]: newFinish,
+        },
+      };
+      updateOrders(newOrders);
+      return;
+    }
+
+    const start = orders.subSections[source.droppableId];
+    const finish = orders.subSections[destination.droppableId];
+
+    if (start === finish) {
+      const newActivityIds = Array.from(start.activityIds);
+      newActivityIds.splice(source.index, 1);
+      newActivityIds.splice(destination.index, 0, draggableId);
+
+      const newSubSection = {
+        ...start,
+        activityIds: newActivityIds,
+      };
+
+      const newOrders = {
+        ...orders,
+        subSections: {
+          ...orders.subSections,
+          [newSubSection.id]: newSubSection,
         },
       };
 
@@ -69,24 +122,24 @@ export class DndMain extends Component {
     }
 
     // Moving from one list to another
-    const startTaskIds = Array.from(start.taskIds);
+    const startTaskIds = Array.from(start.activityIds);
     startTaskIds.splice(source.index, 1);
     const newStart = {
       ...start,
-      taskIds: startTaskIds,
+      activityIds: startTaskIds,
     };
 
-    const finishTaskIds = Array.from(finish.taskIds);
+    const finishTaskIds = Array.from(finish.activityIds);
     finishTaskIds.splice(destination.index, 0, draggableId);
     const newFinish = {
       ...finish,
-      taskIds: finishTaskIds,
+      activityIds: finishTaskIds,
     };
 
     const newOrders = {
       ...orders,
-      columns: {
-        ...orders.columns,
+      subSections: {
+        ...orders.subSections,
         [newStart.id]: newStart,
         [newFinish.id]: newFinish,
       },
@@ -98,25 +151,22 @@ export class DndMain extends Component {
     const { orders } = this.props
     return (
       <div className="dnd-h-scroll">
-        {/* <div className="dnd-wrapper"> */}
-          <DragDropContext onDragEnd={this.onDragEnd}>
-            <Droppable droppableId="all-columns" direction="horizontal" type="column">
-              {provided => (
-                <Container
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  {orders.columnOrder.map((columnId, index) => {
-                    const column = orders.columns[columnId];
-
-                    return <InnerList key={column.id} column={column} taskMap={orders.tasks} index={index} />
-                  })}
-                  {provided.placeholder}
-                </Container>
-              )}
-            </Droppable>
-          </DragDropContext>
-        {/* </div> */}
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <Droppable droppableId="all-columns" direction="horizontal" type="section">
+            {provided => (
+              <Container
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+              >
+                {orders.sectionOrder.map((sectionId, index) => {
+                  const section = orders.sections[sectionId];
+                  return <SectionWrapper key={`sw${sectionId}`} section={section} index={index} subSectionMap={orders.subSections} activities={orders.activities} />
+                })}
+                {provided.placeholder}
+              </Container>
+            )}
+          </Droppable>
+        </DragDropContext>
       </div>
     )
   }

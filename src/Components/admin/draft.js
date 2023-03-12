@@ -41,16 +41,20 @@ export class Draft extends Component {
     published: false,
     loading: false,
     orders: {
-      tasks: {},
-      columns: {
-        '0': {
-          id: '0',
-          title: 'Highlights',
-          taskIds: [],
-        },
+      activities: {},
+      subSections: {},
+      sections: {
+        'default': { id: 'default', title: 'All activiites', subSecIds: []},
+        's0': { id: 's0', title: 'Acadmic Activities', subSecIds: [] },
+        's1': { id: 's1', title: 'Research & Development', subSecIds: [], categories: [] },
+        's2': { id: 's2', title: 'Faculty Empowerment Programs', subSecIds: [], categories: [] },
+        's3': { id: 's3', title: 'Awards', subSecIds: [], categories: [] },
+        's4': { id: 's4', title: 'Outreach Activities', subSecIds: [], categories: [] },
+        's5': { id: 's5', title: 'Alumni Association', subSecIds: [], categories: [] },
+        's6': { id: 's6', title: 'Upcoming Events', subSecIds: [], categories: [] },
       },
-      columnOrder: ['0'],
-    }
+      sectionOrder: [ 'default', 's0','s1','s2','s3','s4','s5','s6' ]
+    },
   }
   state = this.initialState
 
@@ -58,9 +62,8 @@ export class Draft extends Component {
     const q = query(collection(db, 'submissions'), where('approved', '==', true));
     const querySnapshot = await getDocs(q);
 
-    const fetchedOrders = {
-      tasks: {}, columns: {}, columnOrder: []
-    }
+    const fetchedOrders = this.state.orders;
+
     querySnapshot.forEach(doc => {
       const sub = doc.data()
       const subObj = {
@@ -75,26 +78,20 @@ export class Draft extends Component {
         title: sub.title
       }
 
-      fetchedOrders.tasks[subObj.id] = subObj
-      fetchedOrders.columns[sub.categoryId] = {
+      fetchedOrders.activities[subObj.id] = subObj;
+
+      fetchedOrders.subSections[sub.categoryId] = {
         id: sub.categoryId,
         title: Categories[sub.categoryId],
-        taskIds: fetchedOrders.columns[sub.categoryId] ? [
-          ...fetchedOrders.columns[sub.categoryId].taskIds, subObj.id
+        activityIds: fetchedOrders.subSections[sub.categoryId] ? [
+          ...fetchedOrders.subSections[sub.categoryId].activityIds, subObj.id
         ] : [subObj.id],
       }
-      fetchedOrders.columnOrder = fetchedOrders.columnOrder.includes(sub.categoryId) ?
-        [...fetchedOrders.columnOrder] :
-        [...fetchedOrders.columnOrder, sub.categoryId]
     })
+    fetchedOrders.sections.default.subSecIds = Object.keys(fetchedOrders.subSections)
 
-    const { tasks, columns, columnOrder } = this.state.orders
-    this.setState({
-      orders: {
-        tasks: { ...tasks, ...fetchedOrders.tasks },
-        columns: { ...columns, ...fetchedOrders.columns },
-        columnOrder: [...columnOrder, ...fetchedOrders.columnOrder]
-      }
+    this.setState({ orders: fetchedOrders }, () => {
+      console.log(this.state.orders);
     })
   }
 
@@ -177,7 +174,7 @@ export class Draft extends Component {
 
       // upload cover
       const coverObj = {
-        index: parseInt(`${year}${iss}`) ,
+        index: parseInt(`${year}${iss}`),
         Title: title,
         publishedAt: new Date().toLocaleString('en-IN'),
         Vol: vol,
@@ -292,7 +289,8 @@ export class Draft extends Component {
             formView ? (
               <DraftForm handleChange={this.handleForm} {...formProps} />
             ) : (
-              <DndMain orders={orders} updateOrders={this.handleUpdateOrders} />
+              Object.keys(orders.activities).length !== 0 && 
+                <DndMain orders={orders} updateOrders={this.handleUpdateOrders} />
             )
           }
         </main >

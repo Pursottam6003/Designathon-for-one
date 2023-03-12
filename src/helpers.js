@@ -44,6 +44,16 @@ const CategoryTitles = [
     'Untitled'
 ]
 
+const Sections = {
+    's0': { id: 's0', title: 'Acadmic Activities', taskIds: [], categories: [] },
+    's1': { id: 's1', title: 'Research & Development', taskIds: [], categories: [] },
+    's2': { id: 's2', title: 'Faculty Empowerment Programs', taskIds: [], categories: [] },
+    's3': { id: 's3', title: 'Awards', taskIds: [], categories: [] },
+    's4': { id: 's4', title: 'Outreach Activities', taskIds: [], categories: [] },
+    's5': { id: 's5', title: 'Alumni Association', taskIds: [], categories: [] },
+    's6': { id: 's6', title: 'Upcoming Events', taskIds: [], categories: [] },
+}
+
 const BiMonthlyNames = [
     ['', ''],
     ['JanFeb', 'January - February'],
@@ -65,4 +75,4 @@ const toCapital = (s) => {
     return s.slice(0, 1).toUpperCase() + s.slice(1, len).toLowerCase()
 }
 
-export { Categories, CategoryTitles, toCapital, BiMonthlyNames, getBiMonth } 
+export { Categories, CategoryTitles, Sections, toCapital, BiMonthlyNames, getBiMonth } 
