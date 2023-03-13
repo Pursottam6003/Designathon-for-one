@@ -45,6 +45,7 @@ const CategoryTitles = [
 ]
 
 const Sections = {
+    'default': { id: 'default', title: 'All Activities', taskIds: [], categories: [] },
     's0': { id: 's0', title: 'Acadmic Activities', taskIds: [], categories: [] },
     's1': { id: 's1', title: 'Research & Development', taskIds: [], categories: [] },
     's2': { id: 's2', title: 'Faculty Empowerment Programs', taskIds: [], categories: [] },

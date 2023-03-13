@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
-import { CategoryTitles } from '../helpers';
+import { CategoryTitles, Sections } from '../helpers';
 import { Route, Routes, useParams } from 'react-router-dom';
 import { getBiMonth, BiMonthlyNames } from '../helpers';
 import { LoadingPage } from '../Components/Loading';
@@ -11,29 +11,26 @@ import { useFetchCollection } from '../hooks/hooks';
 import styles from './styles/Issue.module.scss';
 import NotFound from './NotFound';
 
-const MagazineArticle = ({ data, categoryId }) => {
+const MagazineActivity = ({ data, categoryId, id }) => {
   const { title, imgUrl, content, brochureUrl, imgCaption } = data;
   const images = imgUrl.map((url, i) => {
     return (
-      <div className={styles['img-wrapper']}>
+      <div key={`img${id}${i}`} className={styles['img-wrapper']}>
         <img src={url} key={`i${i}`} alt={imgCaption} />
       </div>
     )
   })
-  
+
   return (
     <li className={styles['magazine-article']}>
       {title !== CategoryTitles[parseInt(categoryId)] && (
-        <h4>
-          <ReactMarkdown children={title} rehypePlugins={[rehypeRaw]}
-            remarkPlugins={[remarkGfm]} />
-        </h4>
+        <h4>{title}</h4>
       )}
       <div className={styles.content}>
-        <p>
+        <div>
           <ReactMarkdown children={content} rehypePlugins={[rehypeRaw]}
             remarkPlugins={[remarkGfm]} />
-        </p>
+        </div>
         {categoryId === 17 && (
           <p>For more details, <a href={brochureUrl}>download brochure</a> or visit <a href='https://nitap.ac.in/'>NIT Arunachal Pradesh website</a>.</p>
         )}
@@ -51,21 +48,38 @@ const MagazineArticle = ({ data, categoryId }) => {
   )
 }
 
-const MagazineSection = ({ id, order, articles }) => {
-  const articlesCompArr = order.map((articleId) => {
-    return (
-      <MagazineArticle categoryId={id} data={articles[articleId]} key={articleId} />
-    )
-  })
-
+const MagazineSubSection = ({ id, order, activities }) => {
   return (
     <div className={styles['magazine-section']}>
       <header className={styles['category-header']}>
-        <h3 className={styles['category-heading']} id={`category${id}`}>{CategoryTitles[id]}</h3>
+        {CategoryTitles[id] !== 'Untitled' && (
+          <h3 className={styles['category-heading']}>
+            {CategoryTitles[id]}
+          </h3>
+        )}
       </header>
       <ol className={styles['article-ls']}>
-        {articlesCompArr}
+        {order.map(activityId => (
+          <MagazineActivity key={`activity${activityId}`} id={activityId} categoryId={id} data={activities[activityId]} />
+        ))}
       </ol>
+    </div>
+  )
+}
+
+const MagazineSection = ({ id, order, subSections, activities }) => {
+  return (
+    <div className={styles['magazine-section']}>
+      <header className={styles['category-header']}>
+        <h2 id={`category${id}`}>{Sections[id].title}</h2>
+      </header>
+      {order.map(subSecId => (
+        <MagazineSubSection id={subSecId}
+          key={`subsection${subSecId}`}
+          order={subSections[subSecId].activityIds}
+          activities={activities}
+        />
+      ))}
     </div>
   )
 }
@@ -74,15 +88,15 @@ const FetchedIssue = ({ slug }) => {
   const { year, biMonth } = useParams();
   const { fetching: loading, docs } = useFetchCollection(`${slug}/${year}/${biMonth}`);
   const [issueData, setIssueData] = useState(null);
-  const [magSecComponents, setMagSecComponents] = useState(null);
+  const [currentSectionIds, setCurrentSectionIds] = useState([]);
 
   useEffect(() => {
-    if (!loading) {
-      if (Object.keys(docs)) {
-        const data = docs[Object.keys(docs)[0]]
-        data.publishedAtStr = BiMonthlyNames[getBiMonth(data.month)][1] + ' ' + data.month.slice(0, 4);
-        setIssueData(data)
-      }
+    if (loading) return;
+    if (Object.keys(docs).length) {
+      const data = docs[Object.keys(docs)[0]]
+      data.publishedAtStr = BiMonthlyNames[getBiMonth(data.month)][1] + ' ' + data.month.slice(0, 4);
+      console.log(data);
+      setIssueData(data)
     }
   }, [loading])
 
@@ -93,16 +107,10 @@ const FetchedIssue = ({ slug }) => {
   }, [issueData])
 
   const createComponents = () => {
-    const { columns, columnOrder, tasks } = issueData.orders;
-    const categoriesCompArr = columnOrder.map(colId => {
-      if (columns[colId].taskIds.length) {
-        return (
-          <MagazineSection id={colId} key={`s${colId}`} order={columns[colId].taskIds} articles={tasks} />
-        )
-      }
-      return null;
-    })
-    setMagSecComponents(categoriesCompArr);
+    const { sections, sectionOrder } = issueData.orders;
+
+    const nonEmptySectionIds = sectionOrder.filter(secId => sections[secId].subSecIds.length !== 0)
+    setCurrentSectionIds(nonEmptySectionIds);
   }
 
   return (
@@ -118,7 +126,15 @@ const FetchedIssue = ({ slug }) => {
         <div className={styles['magazine-wrapper']}>
           <div className={styles.magazine}>
             <ul>
-              {magSecComponents}
+              {currentSectionIds.map(secId =>
+                <MagazineSection
+                  key={`section${secId}`}
+                  id={secId}
+                  activities={issueData.orders.activities}
+                  order={issueData.orders.sections[secId].subSecIds}
+                  subSections={issueData.orders.subSections}
+                />
+              )}
             </ul>
           </div>
         </div>

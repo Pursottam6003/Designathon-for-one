@@ -67,15 +67,23 @@ const Btn = styled.span`
     border: solid 1px transparent; 
     background-color: transparent;
     border-radius: 4px;
-    padding: 2px;
+    padding: 4px;
+    transition: 0.15s all ease-in;
 
     &:hover {
-      border: solid 1px rgba(0, 0, 0, 0.24); 
+      border: solid 1px #97c89f;
+      background-color: #f0f7f1;
+      cursor: pointer;
+
+      svg {
+        fill: darkgreen;
+      }
     }
   }
   svg {
     width: 14px;
     height: 14px;
+    fill: #888;
   }
 `
 

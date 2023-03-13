@@ -157,9 +157,13 @@ export class Draft extends Component {
     const biMonth = BiMonthlyNames[getBiMonth(month)][0]
     const publishObj = {
       orders: {
-        columnOrder: orders.columnOrder,
-        columns: orders.columns,
-        tasks: orders.tasks
+        activities: orders.activities,
+        subSections: orders.subSections,
+        sections: orders.sections,
+        sectionOrder: orders.sectionOrder
+        // columnOrder: orders.columnOrder,
+        // columns: orders.columns,
+        // tasks: orders.tasks
       },
       title: title,
       vol: vol,

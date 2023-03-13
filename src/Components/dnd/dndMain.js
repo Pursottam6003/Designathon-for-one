@@ -7,6 +7,7 @@ const Container = styled.div`
   margin: 0.5rem 0;
   border-radius: 2px;
   display: flex;
+  user-select: none;
 `;
 
 class SectionWrapper extends PureComponent {
