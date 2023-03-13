@@ -108,9 +108,6 @@ export class Draft extends Component {
         subSections: orders.subSections,
         sections: orders.sections,
         sectionOrder: orders.sectionOrder
-        // columnOrder: orders.columnOrder,
-        // columns: orders.columns,
-        // tasks: orders.tasks
       },
       title: title,
       vol: vol,
@@ -161,9 +158,6 @@ export class Draft extends Component {
         subSections: orders.subSections,
         sections: orders.sections,
         sectionOrder: orders.sectionOrder
-        // columnOrder: orders.columnOrder,
-        // columns: orders.columns,
-        // tasks: orders.tasks
       },
       title: title,
       vol: vol,

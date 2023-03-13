@@ -14,11 +14,23 @@ class SectionWrapper extends PureComponent {
   render() {
     const { section, subSectionMap, activities, index } = this.props;
     const mappedsubSecs = section.subSecIds.map(subSecId => subSectionMap[subSecId]);
-    return <Section section={section} subSections={mappedsubSecs} activities={activities} index={index} />
+    return <Section updateSubSecTitle={this.props.updateSubSecTitle} section={section} subSections={mappedsubSecs} activities={activities} index={index} />
   }
 }
 
 export class DndMain extends Component {
+  updateSubSecTitle = (id, txt) => {
+    const newSubSections = this.props.orders.subSections;
+    newSubSections[id].title = txt;
+
+    const newOrders = {
+      ...this.props.orders,
+      subSections: newSubSections
+    }
+
+    this.props.updateOrders(newOrders);
+  }
+
   onDragEnd = result => {
 
     const { destination, source, draggableId, type } = result;
@@ -161,7 +173,7 @@ export class DndMain extends Component {
               >
                 {orders.sectionOrder.map((sectionId, index) => {
                   const section = orders.sections[sectionId];
-                  return <SectionWrapper key={`sw${sectionId}`} section={section} index={index} subSectionMap={orders.subSections} activities={orders.activities} />
+                  return <SectionWrapper updateSubSecTitle={this.updateSubSecTitle} key={`sw${sectionId}`} section={section} index={index} subSectionMap={orders.subSections} activities={orders.activities} />
                 })}
                 {provided.placeholder}
               </Container>

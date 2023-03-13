@@ -1,4 +1,4 @@
-import React, { Component, PureComponent, useState } from 'react'
+import React, { Component, PureComponent, useEffect, useState } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
 
@@ -51,16 +51,23 @@ const TaskList = styled.div`
 const Title = styled.h5`
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding: 0.5rem;
   font-weight: 600;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
   cursor: ${props => (props.draggable ? 'grab' : 'default')}
 `;
 
 const TitleText = styled.span`
   flex-grow: 1;
+  margin-right: 0.8rem;
+`
+const TitleEdit = styled.input`
+  padding: 0.325rem 0.625rem;
+  font-size: inherit;
+  font-family: 'Zilla Slab', serif;
+  width: 100%;
 `
 const Btn = styled.span`
   button {
@@ -153,8 +160,17 @@ export const Activity = ({ activity, index, isDragDisabled }) => {
   )
 }
 
-export const SubSection = ({ subSection, index, activities }) => {
+export const SubSection = ({ subSection, index, activities, updateTitle }) => {
   const [isActive, setIsActive] = useState(false);
+  const [subSecTitle, setSubSecTitle] = useState('');
+
+  useEffect(() => {
+    if (subSection) setSubSecTitle(subSection.title);
+  }, [subSection])
+
+  const handleChange = (e) => {
+    setSubSecTitle(e.target.value);
+  }
 
   return (
     <Draggable draggableId={subSection.id} index={index} isDragDisabled={isActive} >
@@ -166,11 +182,16 @@ export const SubSection = ({ subSection, index, activities }) => {
             isDragging={snapshot.isDragging}
           >
             <Title {...provided.dragHandleProps} >
-              <TitleText>{subSection.title}</TitleText>
+              <TitleText>
+                {isActive ?
+                  <TitleEdit placeholder='Title' value={subSecTitle} onChange={handleChange} />
+                  : subSection.title ? subSection.title : <em>Untitled</em>}
+              </TitleText>
               <Btn>
                 <button type='button' onClick={(e) => {
                   e.preventDefault();
-                  setIsActive(!isActive)
+                  setIsActive(!isActive);
+                  if (subSecTitle !== subSection.title) updateTitle(subSection.id, subSecTitle)
                 }}>
                   {isActive ? <DoneIcon /> : <EditIcon />}
                 </button>

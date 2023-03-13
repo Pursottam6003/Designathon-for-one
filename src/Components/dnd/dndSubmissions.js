@@ -51,12 +51,12 @@ class SubSections extends PureComponent {
   render() {
     return this.props.subSections.map((subSection, index) => {
       const activities = subSection.activityIds.map((activityId) => this.props.activities[activityId])
-      return <SubSection key={subSection.id} subSection={subSection} activities={activities} index={index} />
+      return <SubSection updateTitle={this.props.updateSubSecTitle} key={subSection.id} subSection={subSection} activities={activities} index={index} />
     })
   }
 }
 
-const Section = ({ section, subSections, activities, index }) => (
+const Section = ({ section, subSections, activities, index, updateSubSecTitle }) => (
   <Draggable draggableId={section.id} index={index}>
     {(provided, snapshot) => (
       <Container {...provided.draggableProps} ref={provided.innerRef} isDragging={snapshot.isDragging} >
@@ -71,7 +71,7 @@ const Section = ({ section, subSections, activities, index }) => (
               {...provided.droppableProps}
               isDraggingOver={snapshot.isDraggingOver}
             >
-              <SubSections subSections={subSections} activities={activities} />
+              <SubSections subSections={subSections} activities={activities} updateSubSecTitle={updateSubSecTitle} />
               {provided.placeholder}
             </SubSectionList>
           )}
