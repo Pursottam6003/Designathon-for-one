@@ -125,17 +125,15 @@ const FetchedIssue = ({ slug }) => {
         </div>
         <div className={styles['magazine-wrapper']}>
           <div className={styles.magazine}>
-            <ul>
-              {currentSectionIds.map(secId =>
-                <MagazineSection
-                  key={`section${secId}`}
-                  id={secId}
-                  activities={issueData.orders.activities}
-                  order={issueData.orders.sections[secId].subSecIds}
-                  subSections={issueData.orders.subSections}
-                />
-              )}
-            </ul>
+            {currentSectionIds.map(secId =>
+              <MagazineSection
+                key={`section${secId}`}
+                id={secId}
+                activities={issueData.orders.activities}
+                order={issueData.orders.sections[secId].subSecIds}
+                subSections={issueData.orders.subSections}
+              />
+            )}
           </div>
         </div>
       </div>
