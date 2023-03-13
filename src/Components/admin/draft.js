@@ -45,7 +45,7 @@ export class Draft extends Component {
       subSections: {},
       sections: {
         'default': { id: 'default', title: 'All activiites', subSecIds: []},
-        's0': { id: 's0', title: 'Acadmic Activities', subSecIds: [] },
+        's0': { id: 's0', title: 'Academic Activities', subSecIds: [] },
         's1': { id: 's1', title: 'Research & Development', subSecIds: [], categories: [] },
         's2': { id: 's2', title: 'Faculty Empowerment Programs', subSecIds: [], categories: [] },
         's3': { id: 's3', title: 'Awards', subSecIds: [], categories: [] },
@@ -90,9 +90,7 @@ export class Draft extends Component {
     })
     fetchedOrders.sections.default.subSecIds = Object.keys(fetchedOrders.subSections)
 
-    this.setState({ orders: fetchedOrders }, () => {
-      console.log(this.state.orders);
-    })
+    this.setState({ orders: fetchedOrders })
   }
 
   handlePreviewIssue = (e) => {
@@ -106,9 +104,13 @@ export class Draft extends Component {
     const biMonth = BiMonthlyNames[getBiMonth(month)][0]
     const publishObj = {
       orders: {
-        columnOrder: orders.columnOrder,
-        columns: orders.columns,
-        tasks: orders.tasks
+        activities: orders.activities,
+        subSections: orders.subSections,
+        sections: orders.sections,
+        sectionOrder: orders.sectionOrder
+        // columnOrder: orders.columnOrder,
+        // columns: orders.columns,
+        // tasks: orders.tasks
       },
       title: title,
       vol: vol,
@@ -116,9 +118,11 @@ export class Draft extends Component {
       month: month,
     }
 
+    console.log(publishObj);
+
     const previewLink = `previews/${year}/${biMonth}`
 
-    // delete existing previes
+    // delete existing previews
     fs.collection(previewLink).get()
       .then(previews => {
         console.log(previews.docs);

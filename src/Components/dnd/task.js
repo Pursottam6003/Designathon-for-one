@@ -1,15 +1,16 @@
-import React, { Component, PureComponent } from 'react'
+import React, { Component, PureComponent, useState } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import { ReactComponent as EditIcon } from '../../images/icons/edit.svg'
+import { ReactComponent as DoneIcon } from '../../images/icons/done2.svg'
 
 
 const Container = styled.div`
-  border-radius: 0.25rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0;
   margin-bottom: 0.5rem; 
   background-color: white;
   border: ${props => (props.isDragging ? '2px solid #777' : '1px solid lightgrey')};
@@ -17,6 +18,18 @@ const Container = styled.div`
   overflow: hidden;
   transition: border 0.1s ease-out, box-shadow 0.3s ease-out;
 `
+const TaskContainer = styled.div`
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem; 
+  background-color: white;
+  border: ${props => (props.isDragging ? '2px solid #777' : '1px solid lightgrey')};
+  box-shadow: ${props => (props.isDragging ? '0 2px 8px rgb(0 0 0 / 12%)' : 'none')};
+  height: fit-content;
+  overflow: hidden;
+  transition: border 0.1s ease-out, box-shadow 0.3s ease-out;
+`
+
 const Flex = styled.div`
   display: flex;
   flex-direction: row;
@@ -26,21 +39,45 @@ const Flex = styled.div`
 `
 
 const TaskList = styled.div`
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 1.4rem;
   background-color: ${props => (props.isDraggingOver ? '#f0eff4' : 'inherit')};
+  max-height: ${props => (props.isActive) ? 'fit-content' : '7.8125rem'};
+  border: ${props => (props.isActive ? 'dashed 1px darkblue' : 'none')};
+  margin-bottom: ${props => (props.isActive ? '1rem' : 'unset')};
   flex-grow: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 `;
 
 const Title = styled.h5`
+  display: flex;
+  flex-direction: row;
   padding: 0.5rem;
   font-weight: 600;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  cursor: ${props => (props.draggable ? 'grab' : 'default')}
 `;
 
+const TitleText = styled.span`
+  flex-grow: 1;
+`
+const Btn = styled.span`
+  button {
+    border: solid 1px transparent; 
+    background-color: transparent;
+    border-radius: 4px;
+    padding: 2px;
+
+    &:hover {
+      border: solid 1px rgba(0, 0, 0, 0.24); 
+    }
+  }
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+`
 
 const Content = styled.div``
 const Desc = styled.article`
@@ -68,19 +105,19 @@ const Created = styled.time`
 class Activities extends PureComponent {
   render() {
     return this.props.activities.map((activity, index) => (
-      <Activity key={activity.id} activity={activity} index={index} />
+      <Activity key={activity.id} activity={activity} index={index} isDragDisabled={this.props.isDragDisabled} />
     ))
   }
 }
 
-export const Activity = ({ activity, index }) => {
+export const Activity = ({ activity, index, isDragDisabled }) => {
   const { id, content, created, author } = activity;
   const date = created.slice(0, 11);
   return (
-    <Draggable draggableId={id} index={index}>
+    <Draggable draggableId={id} index={index} isDragDisabled={isDragDisabled}>
       {(provided, snapshot) => {
         return (
-          <Container
+          <TaskContainer
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
@@ -101,7 +138,7 @@ export const Activity = ({ activity, index }) => {
                 </Created>
               </Flex>
             </Content>
-          </Container>
+          </TaskContainer>
         )
       }}
     </Draggable>
@@ -109,8 +146,10 @@ export const Activity = ({ activity, index }) => {
 }
 
 export const SubSection = ({ subSection, index, activities }) => {
+  const [isActive, setIsActive] = useState(false);
+
   return (
-    <Draggable draggableId={subSection.id} index={index}>
+    <Draggable draggableId={subSection.id} index={index} isDragDisabled={isActive} >
       {(provided, snapshot) => {
         return (
           <Container
@@ -118,17 +157,26 @@ export const SubSection = ({ subSection, index, activities }) => {
             {...provided.draggableProps}
             isDragging={snapshot.isDragging}
           >
-            <Title {...provided.dragHandleProps}>
-              {subSection.title}
+            <Title {...provided.dragHandleProps} >
+              <TitleText>{subSection.title}</TitleText>
+              <Btn>
+                <button type='button' onClick={(e) => {
+                  e.preventDefault();
+                  setIsActive(!isActive)
+                }}>
+                  {isActive ? <DoneIcon /> : <EditIcon />}
+                </button>
+              </Btn>
             </Title>
-            <Droppable droppableId={subSection.id} type="activity">
+            <Droppable droppableId={subSection.id} type="activity" isDropDisabled={!isActive}>
               {(provided, snapshot) => (
                 <TaskList
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                   isDraggingOver={snapshot.isDraggingOver}
+                  isActive={isActive}
                 >
-                  <Activities activities={activities} />
+                  <Activities activities={activities} isDragDisabled={!isActive} />
                   {provided.placeholder}
                 </TaskList>
               )}

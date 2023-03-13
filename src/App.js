@@ -53,6 +53,9 @@ function App() {
             <ProtectedComponent isAdmin={true} children={<AdminConsole />} />
           )} />
 
+
+          <Route path="/admin-test/*" element={(<AdminConsole />)} />
+
           <Route path="/issues/*" element={(
             <Issue slug='issues' />
           )} />
@@ -65,7 +68,7 @@ function App() {
 
           <Route path="/uploadcover" element={<UploadCover />} />
 
-          <Route path="*" element={<NotFound />}/>
+          <Route path="*" element={<NotFound />} />
 
 
           {/* <Route path="/signup" element={<Signup />} /> */}
