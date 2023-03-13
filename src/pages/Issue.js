@@ -11,15 +11,12 @@ import { useFetchCollection } from '../hooks/hooks';
 import styles from './styles/Issue.module.scss';
 import NotFound from './NotFound';
 
-const MagazineActivity = ({ data, categoryId, id }) => {
-  const { title, imgUrl, content, brochureUrl, imgCaption } = data;
-  const images = imgUrl.map((url, i) => {
-    return (
-      <div key={`img${id}${i}`} className={styles['img-wrapper']}>
-        <img src={url} key={`i${i}`} alt={imgCaption} />
-      </div>
-    )
-  })
+const MagazineActivity = ({ id, title, content, brochureUrl, imgUrl, imgCaption, categoryId }) => {
+  const images = imgUrl.map((url, i) => (
+    <div key={`img${id}${i}`} className={styles['img-wrapper']}>
+      <img src={url} key={`i${i}`} alt={imgCaption} />
+    </div>
+  ))
 
   return (
     <li className={styles['magazine-article']}>
@@ -31,7 +28,7 @@ const MagazineActivity = ({ data, categoryId, id }) => {
           <ReactMarkdown children={content} rehypePlugins={[rehypeRaw]}
             remarkPlugins={[remarkGfm]} />
         </div>
-        {categoryId === 17 && (
+        {brochureUrl && (
           <p>For more details, <a href={brochureUrl}>download brochure</a> or visit <a href='https://nitap.ac.in/'>NIT Arunachal Pradesh website</a>.</p>
         )}
         <div className={styles['mag-images']}>
@@ -48,35 +45,31 @@ const MagazineActivity = ({ data, categoryId, id }) => {
   )
 }
 
-const MagazineSubSection = ({ id, order, activities }) => {
+const MagazineSubSection = ({ id, title, activityIds, activities }) => {
   return (
     <div className={styles['magazine-section']}>
       <header className={styles['category-header']}>
-        {CategoryTitles[id] !== 'Untitled' && (
-          <h3 className={styles['category-heading']}>
-            {CategoryTitles[id]}
-          </h3>
-        )}
+        {title !== 'Other' && <h3 className={styles['category-heading']}>{title}</h3>}
       </header>
       <ol className={styles['article-ls']}>
-        {order.map(activityId => (
-          <MagazineActivity key={`activity${activityId}`} id={activityId} categoryId={id} data={activities[activityId]} />
+        {activityIds.map(activityId => (
+          <MagazineActivity key={`activity${activityId}`} {...activities[activityId]}
+            id={activityId} categoryId={id} data={activities[activityId]} />
         ))}
       </ol>
     </div>
   )
 }
 
-const MagazineSection = ({ id, order, subSections, activities }) => {
+const MagazineSection = ({ id, subSecIds, subSections, activities }) => {
   return (
     <div className={styles['magazine-section']}>
       <header className={styles['category-header']}>
         <h2 id={`category${id}`}>{Sections[id].title}</h2>
       </header>
-      {order.map(subSecId => (
-        <MagazineSubSection id={subSecId}
-          key={`subsection${subSecId}`}
-          order={subSections[subSecId].activityIds}
+      {subSecIds.map(subSecId => (
+        <MagazineSubSection key={`subsection${subSecId}`}
+          {...subSections[subSecId]}
           activities={activities}
         />
       ))}
@@ -95,15 +88,16 @@ const FetchedIssue = ({ slug }) => {
     if (Object.keys(docs).length) {
       const data = docs[Object.keys(docs)[0]]
       data.publishedAtStr = BiMonthlyNames[getBiMonth(data.month)][1] + ' ' + data.month.slice(0, 4);
-      console.log(data);
       setIssueData(data)
     }
+    // eslint-disable-next-line
   }, [loading])
 
   useEffect(() => {
     if (issueData) {
       createComponents();
     }
+    // eslint-disable-next-line
   }, [issueData])
 
   const createComponents = () => {
@@ -128,10 +122,9 @@ const FetchedIssue = ({ slug }) => {
             {currentSectionIds.map(secId =>
               <MagazineSection
                 key={`section${secId}`}
-                id={secId}
-                activities={issueData.orders.activities}
-                order={issueData.orders.sections[secId].subSecIds}
+                {...issueData.orders.sections[secId]}
                 subSections={issueData.orders.subSections}
+                activities={issueData.orders.activities}
               />
             )}
           </div>

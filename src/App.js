@@ -31,6 +31,7 @@ function App() {
     if (!checkingStatus) {
       setUser({ user: loggedIn, admin: admin });
     }
+    // eslint-disable-next-line
   }, [checkingStatus])
 
   return (
@@ -52,9 +53,6 @@ function App() {
           <Route path="/admin/*" element={(
             <ProtectedComponent isAdmin={true} children={<AdminConsole />} />
           )} />
-
-
-          <Route path="/admin-test/*" element={(<AdminConsole />)} />
 
           <Route path="/issues/*" element={(
             <Issue slug='issues' />
