@@ -652,6 +652,13 @@ h3 {
       input {
         max-width: 500px;
       }
+
+      .form-title.form-control {
+        border-bottom-color: #ced4da;
+      }
+      .form-title.form-control:focus {
+        border-bottom-color: rgb(57, 57, 160);
+      }
     }
 
     .dnd-h-scroll {

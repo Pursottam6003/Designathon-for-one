@@ -1,13 +1,14 @@
 import React, { useEffect } from "react"
-import { Routes, Route, useNavigate } from "react-router-dom"
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom"
 import { ConsoleNav } from "../Components/admin/consoleNav"
 import { Draft } from "../Components/admin/draft"
 import { Submissions } from "../Components/admin/Submissions"
 
 export const AdminConsole = () => {
   const history = useNavigate();
+  const location = useLocation();
   useEffect(() => {
-    history('./');
+    if (location.pathname === '/admin') history('./');
   }, []);
 
   return (

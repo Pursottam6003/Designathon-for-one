@@ -11,7 +11,7 @@ import { useFetchCollection } from '../hooks/hooks';
 import styles from './styles/Issue.module.scss';
 import NotFound from './NotFound';
 
-const MagazineActivity = ({ id, title, content, brochureUrl, imgUrl, imgCaption, categoryId }) => {
+const MagazineActivity = ({ id, title, content, brochureUrl, imgUrl, imgCaption }) => {
   const images = imgUrl.map((url, i) => (
     <div key={`img${id}${i}`} className={styles['img-wrapper']}>
       <img src={url} key={`i${i}`} alt={imgCaption} />
@@ -20,9 +20,7 @@ const MagazineActivity = ({ id, title, content, brochureUrl, imgUrl, imgCaption,
 
   return (
     <li className={styles['magazine-article']}>
-      {title !== CategoryTitles[parseInt(categoryId)] && (
-        <h4>{title}</h4>
-      )}
+      {title && <h4>{title}</h4>}
       <div className={styles.content}>
         <div>
           <ReactMarkdown children={content} rehypePlugins={[rehypeRaw]}
@@ -36,7 +34,7 @@ const MagazineActivity = ({ id, title, content, brochureUrl, imgUrl, imgCaption,
 
           {images.length !== 0 && (
             <p className={styles['img-caption']}>
-              {imgCaption ? imgCaption : CategoryTitles[parseInt(categoryId)]}
+              {imgCaption ? imgCaption : title ? title : ''}
             </p>
           )}
         </div>
@@ -45,16 +43,16 @@ const MagazineActivity = ({ id, title, content, brochureUrl, imgUrl, imgCaption,
   )
 }
 
-const MagazineSubSection = ({ id, title, activityIds, activities }) => {
+const MagazineSubSection = ({ title, activityIds, activities }) => {
   return (
     <div className={styles['magazine-section']}>
       <header className={styles['category-header']}>
-        {title !== 'Other' && <h3 className={styles['category-heading']}>{title}</h3>}
+        {title && title !== 'Other' && <h3 className={styles['category-heading']}>{title}</h3>}
       </header>
       <ol className={styles['article-ls']}>
         {activityIds.map(activityId => (
           <MagazineActivity key={`activity${activityId}`} {...activities[activityId]}
-            id={activityId} categoryId={id} data={activities[activityId]} />
+            id={activityId} data={activities[activityId]} />
         ))}
       </ol>
     </div>

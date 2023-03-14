@@ -41,7 +41,7 @@ const CategoryTitles = [
     'Outreach Activity',
     'Announcement',
     'Awards',
-    'Untitled'
+    ''
 ]
 
 const Sections = {

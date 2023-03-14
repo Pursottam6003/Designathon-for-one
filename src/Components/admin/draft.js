@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Field } from "../form/Field"
 import { DndMain } from "../dnd/dndMain"
 import { fs, db } from "../../config/config"
-import { Categories, getBiMonth, BiMonthlyNames } from "../../helpers"
+import { Categories, getBiMonth, BiMonthlyNames, CategoryTitles } from "../../helpers"
 import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 import { collection, getDocs, query, where } from "firebase/firestore"
 
@@ -46,12 +46,12 @@ export class Draft extends Component {
       sections: {
         'default': { id: 'default', title: 'All activiites', subSecIds: []},
         's0': { id: 's0', title: 'Academic Activities', subSecIds: [] },
-        's1': { id: 's1', title: 'Research & Development', subSecIds: [], categories: [] },
-        's2': { id: 's2', title: 'Faculty Empowerment Programs', subSecIds: [], categories: [] },
-        's3': { id: 's3', title: 'Awards', subSecIds: [], categories: [] },
-        's4': { id: 's4', title: 'Outreach Activities', subSecIds: [], categories: [] },
-        's5': { id: 's5', title: 'Alumni Association', subSecIds: [], categories: [] },
-        's6': { id: 's6', title: 'Upcoming Events', subSecIds: [], categories: [] },
+        's1': { id: 's1', title: 'Research & Development', subSecIds: [] },
+        's2': { id: 's2', title: 'Faculty Empowerment Programs', subSecIds: [] },
+        's3': { id: 's3', title: 'Awards', subSecIds: [] },
+        's4': { id: 's4', title: 'Outreach Activities', subSecIds: [] },
+        's5': { id: 's5', title: 'Alumni Association', subSecIds: [] },
+        's6': { id: 's6', title: 'Upcoming Events', subSecIds: [] },
       },
       sectionOrder: [ 'default', 's0','s1','s2','s3','s4','s5','s6' ]
     },
@@ -75,14 +75,15 @@ export class Draft extends Component {
         brochureUrl: sub.brochureUrl,
         imgCaption: sub.imgCaption,
         imgUrl: sub.imgUrl,
-        title: sub.title
+        title: sub.title,
+        categoryId: sub.categoryId
       }
 
       fetchedOrders.activities[subObj.id] = subObj;
 
       fetchedOrders.subSections[sub.categoryId] = {
         id: sub.categoryId,
-        title: Categories[sub.categoryId],
+        title: CategoryTitles[sub.categoryId],
         activityIds: fetchedOrders.subSections[sub.categoryId] ? [
           ...fetchedOrders.subSections[sub.categoryId].activityIds, subObj.id
         ] : [subObj.id],

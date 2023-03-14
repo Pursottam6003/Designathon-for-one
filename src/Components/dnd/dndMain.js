@@ -1,4 +1,4 @@
-import { Component, PureComponent } from "react";
+import { PureComponent } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { Section } from "../dnd/dndSubmissions"
 import styled from "styled-components"
@@ -14,27 +14,90 @@ class SectionWrapper extends PureComponent {
   render() {
     const { section, subSectionMap, activities, index } = this.props;
     const mappedsubSecs = section.subSecIds.map(subSecId => subSectionMap[subSecId]);
-    return <Section updateSubSecTitle={this.props.updateSubSecTitle} section={section} subSections={mappedsubSecs} activities={activities} index={index} />
+    return <Section addSubSection={this.props.addSubSection}
+      updateSubSecTitle={this.props.updateSubSecTitle}
+      deleteSubSection={this.props.deleteSubSection}
+      section={section}
+      subSections={mappedsubSecs}
+      activities={activities}
+      index={index}
+    />
   }
 }
 
-export class DndMain extends Component {
-  updateSubSecTitle = (id, txt) => {
-    const newSubSections = this.props.orders.subSections;
+export const DndMain = ({ orders, updateOrders }) => {
+  const deleteSubSec = (secId, subSecId) => {
+    const { sections, subSections: newSubSections } = orders;
+
+    delete newSubSections[subSecId];
+
+    const newSections = {
+      ...sections,
+      [secId]: {
+        ...sections[secId],
+        subSecIds: sections[secId].subSecIds.filter(id => id !== subSecId)
+      }
+    }
+
+    const newOrders = {
+      ...orders,
+      subSections: newSubSections,
+      sections: newSections,
+    }
+    updateOrders(newOrders);
+  }
+
+  const addSubSec = (sectionId) => {
+    const { sections, subSections } = orders;
+
+    const createdSubSecIds = Object.keys(subSections)
+      .filter(id => id.startsWith('created'))
+      .map(id => parseInt(id.slice('created'.length)));
+
+    const newSubSecId = createdSubSecIds.length
+      ? `created${createdSubSecIds.pop() + 1}`
+      : 'created0';
+
+    const newSubSections = {
+      ...subSections,
+      [newSubSecId]: {
+        id: newSubSecId,
+        title: '',
+        activityIds: [],
+      }
+    }
+    const newSections = {
+      ...sections,
+      [sectionId]: {
+        ...sections[sectionId],
+        subSecIds: [
+          ...sections[sectionId].subSecIds,
+          newSubSecId
+        ]
+      }
+    }
+    const newOrders = {
+      ...orders,
+      subSections: newSubSections,
+      sections: newSections
+    }
+    updateOrders(newOrders);
+  }
+
+  const updateSubSecTitle = (id, txt) => {
+    const newSubSections = orders.subSections;
     newSubSections[id].title = txt;
 
     const newOrders = {
-      ...this.props.orders,
+      ...orders,
       subSections: newSubSections
     }
 
-    this.props.updateOrders(newOrders);
+    updateOrders(newOrders);
   }
 
-  onDragEnd = result => {
-
+  const onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
-    const { orders, updateOrders } = this.props
 
     if (
       !destination ||
@@ -160,27 +223,30 @@ export class DndMain extends Component {
     updateOrders(newOrders);
   };
 
-  render() {
-    const { orders } = this.props
-    return (
-      <div className="dnd-h-scroll">
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable droppableId="all-columns" direction="horizontal" type="section">
-            {provided => (
-              <Container
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {orders.sectionOrder.map((sectionId, index) => {
-                  const section = orders.sections[sectionId];
-                  return <SectionWrapper updateSubSecTitle={this.updateSubSecTitle} key={`sw${sectionId}`} section={section} index={index} subSectionMap={orders.subSections} activities={orders.activities} />
-                })}
-                {provided.placeholder}
-              </Container>
-            )}
-          </Droppable>
-        </DragDropContext>
-      </div>
-    )
-  }
+  return (
+    <div className="dnd-h-scroll">
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="all-columns" direction="horizontal" type="section">
+          {provided => (
+            <Container
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {orders.sectionOrder.map((sectionId, index) => {
+                const section = orders.sections[sectionId];
+                return <SectionWrapper addSubSection={addSubSec} 
+                          deleteSubSection={deleteSubSec} 
+                          updateSubSecTitle={updateSubSecTitle} key={`sw${sectionId}`} 
+                          section={section} index={index} 
+                          subSectionMap={orders.subSections} 
+                          activities={orders.activities} 
+                        />
+              })}
+              {provided.placeholder}
+            </Container>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </div>
+  )
 }

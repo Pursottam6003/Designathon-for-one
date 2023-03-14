@@ -50,7 +50,7 @@ const MdInput = ({ value, updateVal, placeholder, editing }) => {
                     className={styles['formatted-output']}
                     title="Click to edit"
                 >
-                    <ReactMarkdown children={value ? value : `*Click to edit ${placeholder}*`} rehypePlugins={[rehypeRaw]}
+                    <ReactMarkdown children={value ? value : `*${placeholder}*`} rehypePlugins={[rehypeRaw]}
                         remarkPlugins={[remarkGfm]}
                     />
                 </div>

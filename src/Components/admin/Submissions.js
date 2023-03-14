@@ -11,6 +11,7 @@ import { ReactComponent as UndoIcon } from '../../images/icons/undo.svg'
 import { where, orderBy, setDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useFetchCollection } from "../../hooks/hooks"
 import { LoadingPage } from "../Loading"
+import { CategoryTitles } from "../../helpers"
 
 export const Submissions = () => {
   const [unsaved, setUnsaved] = useState({});
@@ -203,12 +204,12 @@ const Submission = ({ type, ls, approve, reject, update, moveBack }) => {
   )
 }
 
-const Sub = ({ id, author, title, created, desc, type, imgUrl, update, reject, approve, moveBack }) => (
+const Sub = ({ id, categoryId, author, title, created, desc, type, imgUrl, update, reject, approve, moveBack }) => (
   <tr>
     <td>{author}</td>
     <td>
       <PreviewedInput value={title}
-        placeholder='Title'
+        placeholder={CategoryTitles[categoryId]}
         updateVal={(txt) => { update(id, type, 'title', txt) }}
       />
     </td>
@@ -226,8 +227,8 @@ const Sub = ({ id, author, title, created, desc, type, imgUrl, update, reject, a
           gap: '1rem'
         }}>
           {imgUrl.map(url => (
-            <div style={{ maxWidth: '450px', }}>
-              <img style={{ width: '100%', height: 'auto' }} key={url} src={url} alt="" />
+            <div key={url} style={{ maxWidth: '450px' }}>
+              <img style={{ width: '100%', height: 'auto' }} src={url} alt="" />
             </div>
           ))}
         </div>

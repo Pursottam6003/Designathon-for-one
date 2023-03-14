@@ -7,8 +7,8 @@ const Container = styled.div`
   box-sizing: content-box;
   margin: 0.5rem 1rem 0.5rem 0;
   border-radius: 6px;
-  overflow: hidden;
   width: 350px;
+  overflow: hidden;
   background-color: #f6f8fa;
   display: flex;
   flex-direction: column;
@@ -47,38 +47,81 @@ const CountBadge = styled.span`
   height: 24px;
 `
 
+const Btn = styled.button`
+  display: block;
+  background-color: #fafcfe;
+  color: #24292f;
+  border: solid 1px rgba(27,31,36,0.15);
+  border-radius: 6px;
+  box-shadow: 0 1px 0 rgba(27,31,36,0.1), inset 0 1px 0 rgba(255,255,255,0.03);
+  padding: 5px 16px;
+  margin: 1rem auto;
+  width: 90%;
+  font-size: 14px;
+  transition: 80ms cubic-bezier(0.33, 1, 0.68, 1);
+
+  &:hover {
+    background-color: #f6f8fa;
+    border: solid 1px rgba(27,31,36,0.15);
+  }
+
+  &:active {
+    border-color: 
+    rgba(27,31,36,0.15);
+    background-color: #f3f4f6;
+    box-shadow: inset 0 1px 0 rgba(0,45,17,0.2);
+  }
+`
+
 class SubSections extends PureComponent {
   render() {
-    return this.props.subSections.map((subSection, index) => {
-      const activities = subSection.activityIds.map((activityId) => this.props.activities[activityId])
-      return <SubSection updateTitle={this.props.updateSubSecTitle} key={subSection.id} subSection={subSection} activities={activities} index={index} />
-    })
+    return this.props.subSections.filter(subSection => subSection)
+      .map((subSection, index) => {
+        const activities = subSection.activityIds.map((activityId) => this.props.activities[activityId])
+        return <SubSection updateTitle={this.props.updateSubSecTitle} deleteSubSection={this.props.deleteSubSection} key={subSection.id} subSection={subSection} activities={activities} index={index} />
+      })
   }
 }
 
-const Section = ({ section, subSections, activities, index, updateSubSecTitle }) => (
-  <Draggable draggableId={section.id} index={index}>
-    {(provided, snapshot) => (
-      <Container {...provided.draggableProps} ref={provided.innerRef} isDragging={snapshot.isDragging} >
-        <Title {...provided.dragHandleProps}>
-          <CountBadge>{subSections.length}</CountBadge>
-          <TitleText>{section.title}</TitleText>
-        </Title>
-        <Droppable droppableId={section.id} type="subSection">
-          {(provided, snapshot) => (
-            <SubSectionList
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-              isDraggingOver={snapshot.isDraggingOver}
-            >
-              <SubSections subSections={subSections} activities={activities} updateSubSecTitle={updateSubSecTitle} />
-              {provided.placeholder}
-            </SubSectionList>
-          )}
-        </Droppable>
-      </Container>
-    )}
-  </Draggable>
-)
+const Section = ({ section, subSections, activities, index, updateSubSecTitle, addSubSection, deleteSubSection }) => {
+  const deleteSubSec = (subSecId) => {
+    deleteSubSection(section.id, subSecId);
+  }
+
+  return (
+    <Draggable draggableId={section.id} index={index}>
+      {(provided, snapshot) => (
+        <Container {...provided.draggableProps} ref={provided.innerRef} isDragging={snapshot.isDragging} >
+          <Title {...provided.dragHandleProps}>
+            <CountBadge>{subSections.length}</CountBadge>
+            <TitleText>{section.title}</TitleText>
+          </Title>
+          <Droppable droppableId={section.id} type="subSection">
+            {(provided, snapshot) => (
+              <>
+              <SubSectionList
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+                isDraggingOver={snapshot.isDraggingOver}
+              >
+                <SubSections subSections={subSections} activities={activities} updateSubSecTitle={updateSubSecTitle} deleteSubSection={deleteSubSec} />
+                {provided.placeholder}
+
+              </SubSectionList>
+                <Btn type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    addSubSection(section.id)
+                }}>
+                  Add new sub section
+                </Btn>
+                </>
+            )}
+          </Droppable>
+        </Container>
+      )}
+    </Draggable>
+  )
+}
 
 export { Section }

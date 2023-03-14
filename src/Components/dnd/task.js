@@ -1,3 +1,4 @@
+
 import React, { Component, PureComponent, useEffect, useState } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
@@ -7,6 +8,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { ReactComponent as EditIcon } from '../../images/icons/edit.svg'
 import { ReactComponent as DoneIcon } from '../../images/icons/done2.svg'
+import { ReactComponent as DeleteIcon } from '../../images/icons/delete.svg'
 
 
 const Container = styled.div`
@@ -24,7 +26,6 @@ const TaskContainer = styled.div`
   margin-bottom: 0.5rem; 
   background-color: white;
   border: ${props => (props.isDragging ? '2px solid #777' : '1px solid lightgrey')};
-  box-shadow: ${props => (props.isDragging ? '0 2px 8px rgb(0 0 0 / 12%)' : 'none')};
   height: fit-content;
   overflow: hidden;
   transition: border 0.1s ease-out, box-shadow 0.3s ease-out;
@@ -40,7 +41,7 @@ const Flex = styled.div`
 
 const TaskList = styled.div`
   padding: 0.5rem 0.5rem 1.4rem;
-  background-color: ${props => (props.isDraggingOver ? '#f0eff4' : 'inherit')};
+  background-color: ${props => (props.isDraggingOver ? '#f0eff4' : 'transparent')};
   max-height: ${props => (props.isActive) ? 'fit-content' : '7.8125rem'};
   border: ${props => (props.isActive ? 'dashed 1px darkblue' : 'none')};
   margin-bottom: ${props => (props.isActive ? '1rem' : 'unset')};
@@ -51,7 +52,7 @@ const TaskList = styled.div`
 const Title = styled.h5`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   padding: 0.5rem;
   font-weight: 600;
   display: flex;
@@ -69,13 +70,17 @@ const TitleEdit = styled.input`
   font-family: 'Zilla Slab', serif;
   width: 100%;
 `
-const Btn = styled.span`
+const Btn = styled.div`
+  display: flex;
+  flex-direaction: row;
   button {
     border: solid 1px transparent; 
     background-color: transparent;
     border-radius: 4px;
     padding: 4px;
     transition: 0.15s all ease-in;
+    height: 24px;
+    width: 24px;
 
     &:hover {
       border: solid 1px #97c89f;
@@ -103,6 +108,17 @@ const Desc = styled.article`
     font-weight: 550;
   }
 `
+const ActivityTitle = styled.h2`
+    font-family: "Open Sans", sans-serif;
+    font-weight: 550;
+    text-transform: uppercase;
+    color: rgb(134, 142, 150);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.12rem;
+    white-space: pre;
+    overflow: hidden;
+`
 const Author = styled.p`
   font-size: 0.75rem;
   background-color: rgb(227, 252, 239);
@@ -126,7 +142,7 @@ class Activities extends PureComponent {
 }
 
 export const Activity = ({ activity, index, isDragDisabled }) => {
-  const { id, content, created, author } = activity;
+  const { id, title, content, created, author } = activity;
   const date = created.slice(0, 11);
   return (
     <Draggable draggableId={id} index={index} isDragDisabled={isDragDisabled}>
@@ -139,6 +155,7 @@ export const Activity = ({ activity, index, isDragDisabled }) => {
             isDragging={snapshot.isDragging}
           >
             <Content>
+              {title && <ActivityTitle>{title}</ActivityTitle>}
               <Desc>
                 <ReactMarkdown children={content} rehypePlugins={[rehypeRaw]}
                   remarkPlugins={[remarkGfm]}
@@ -160,7 +177,7 @@ export const Activity = ({ activity, index, isDragDisabled }) => {
   )
 }
 
-export const SubSection = ({ subSection, index, activities, updateTitle }) => {
+export const SubSection = ({ subSection, index, activities, updateTitle, deleteSubSection }) => {
   const [isActive, setIsActive] = useState(false);
   const [subSecTitle, setSubSecTitle] = useState('');
 
@@ -195,6 +212,15 @@ export const SubSection = ({ subSection, index, activities, updateTitle }) => {
                 }}>
                   {isActive ? <DoneIcon /> : <EditIcon />}
                 </button>
+
+                {subSection.activityIds.length === 0 && (
+                  <button type='button' onClick={(e) => {
+                    e.preventDefault();
+                    deleteSubSection(subSection.id);
+                  }}>
+                    <DeleteIcon />
+                  </button>
+                )} 
               </Btn>
             </Title>
             <Droppable droppableId={subSection.id} type="activity" isDropDisabled={!isActive}>

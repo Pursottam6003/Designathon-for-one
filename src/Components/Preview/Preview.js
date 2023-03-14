@@ -121,7 +121,7 @@ export class Preview extends Component {
 
   }
 
-  updatePreview(updateType) {
+  updatePreview() {
     const { fields, title, categoryId, images } = this.props
     const category = parseInt(categoryId)
 
@@ -197,23 +197,12 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
         break;
     }
 
-    if (updateType === "title") {
-      if (title.length !== 0) {
-        this.setState({
-          heading: title
-        })
-      } else {
-        this.setState({
-          heading: CategoryTitles[category]
-        })
-      }
-    } else {
       this.setState({
+        heading: title ? title : CategoryTitles[category],
         images: images,
         output: outMdStr
       })
     }
-  }
 
   resetPreview = () => {
     this.updatePreview()
@@ -234,12 +223,7 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props !== prevProps) {
-      if (this.props.title !== prevProps.title || this.props.categoryId !== prevProps.categoryId) {
-        this.updatePreview('title');
-      }
-      else {
-        this.updatePreview('rest');
-      }
+      this.updatePreview();
 
       this.setState({
         category: parseInt(this.props.categoryId),
@@ -257,22 +241,13 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
       })
     }
     return (
-      <>
         <div className={styles.preview} style={{ display: this.props.display }} >
 
           {this.state.category === 0 ? <NoPreview /> : (
             <>
               <div className={cx(styles['formatted-preview-wrapper'], {[styles.active] : this.state.edit})}>
                 <div className={styles.previews}>
-                  <h1>
-                    <MdInput 
-                      placeholder='Title'
-                      value={heading}
-                      updateVal={txt => {this.setState({heading: txt})}}
-                      editing={status => {this.setState({edit: status})}}
-                    />
-                  </h1>
-
+                  <h1>{heading}</h1>
                   <MdInput 
                     placeholder='Your output will show here'
                     value={output}
@@ -308,7 +283,6 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
           )}
 
         </div>
-      </>
     )
   }
 }
