@@ -2,9 +2,10 @@ import React, { Component } from "react"
 import { Field } from "../form/Field"
 import { DndMain } from "../dnd/dndMain"
 import { fs, db } from "../../config/config"
-import { Categories, getBiMonth, BiMonthlyNames, CategoryTitles } from "../../helpers"
+import { getBiMonth, BiMonthlyNames, CategoryTitles } from "../../helpers"
 import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 import { collection, getDocs, query, where } from "firebase/firestore"
+import WidthErrorGif from '../../images/width.gif'
 
 const DraftForm = ({ title, vol, iss, month, handleChange }) => {
   const handleInput = (e) => {
@@ -44,7 +45,7 @@ export class Draft extends Component {
       activities: {},
       subSections: {},
       sections: {
-        'default': { id: 'default', title: 'All activiites', subSecIds: []},
+        'default': { id: 'default', title: 'All activiites', subSecIds: [] },
         's0': { id: 's0', title: 'Academic Activities', subSecIds: [] },
         's1': { id: 's1', title: 'Research & Development', subSecIds: [] },
         's2': { id: 's2', title: 'Faculty Empowerment Programs', subSecIds: [] },
@@ -53,7 +54,7 @@ export class Draft extends Component {
         's5': { id: 's5', title: 'Alumni Association', subSecIds: [] },
         's6': { id: 's6', title: 'Upcoming Events', subSecIds: [] },
       },
-      sectionOrder: [ 'default', 's0','s1','s2','s3','s4','s5','s6' ]
+      sectionOrder: ['default', 's0', 's1', 's2', 's3', 's4', 's5', 's6']
     },
   }
   state = this.initialState
@@ -225,7 +226,8 @@ export class Draft extends Component {
     const { title, vol, iss, month, formView, orders, preview, published } = this.state
     const formProps = { title: title, vol: vol, iss: iss, month: month }
 
-    return (
+    return (<>
+      <SmallScreenError />
       <div className="draft">
         <header className="page-header container">
           <h1 className="heading">Draft an Issue</h1>
@@ -292,12 +294,30 @@ export class Draft extends Component {
             formView ? (
               <DraftForm handleChange={this.handleForm} {...formProps} />
             ) : (
-              Object.keys(orders.activities).length !== 0 && 
-                <DndMain orders={orders} updateOrders={this.handleUpdateOrders} />
+              Object.keys(orders.activities).length !== 0 &&
+              <DndMain orders={orders} updateOrders={this.handleUpdateOrders} />
             )
           }
         </main >
       </div >
-    )
+    </>)
   }
 }
+
+const SmallScreenError = () => (
+  <div className='error-bw'>
+    <div className="error-gif-wrapper">
+      <div className="error-gif">
+        <img src={WidthErrorGif} alt="Take my money" />
+      </div>
+      <div className="error-message">
+        <h1>
+          Get A Real<br /> Screen
+        </h1>
+      </div>
+    </div>
+    <div className="error-description">
+      <p>Drafting is only available on bigger screens</p>
+    </div>
+  </div>
+)

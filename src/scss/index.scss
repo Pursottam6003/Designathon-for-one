@@ -481,6 +481,10 @@ h3 {
         .workspace {
           padding: 0;
         }
+
+        @media screen and (max-width: 548px) {
+          display: none;
+        }
       }
     }
 
@@ -656,6 +660,7 @@ h3 {
       .form-title.form-control {
         border-bottom-color: #ced4da;
       }
+
       .form-title.form-control:focus {
         border-bottom-color: rgb(57, 57, 160);
       }
@@ -1285,18 +1290,21 @@ h3 {
     }
   }
 }
+
 @media screen and (max-width: 780px) {
   .add-blogs {
     .activity-form {
       .tablist-wrapper {
         padding: 2rem 1.6rem 0;
       }
+
       .form-wrapper {
         margin: 0 1.6rem 2rem;
       }
     }
   }
 }
+
 @media screen and (max-width: 548px) {
   .add-blogs {
     min-height: calc(100vh - var(--nav-height));
@@ -1465,5 +1473,55 @@ table {
     .remove:hover {
       background-color: rgb(161, 12, 12);
     }
+  }
+}
+
+.error-bw {
+  display: none;
+  background-color: black;
+  color: white;
+  height: calc(100vh - var(--nav-height) - 59px);
+  position: relative;
+
+  .error-gif,
+  .error-message {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .error-gif {
+    padding: 0 1rem;
+    margin: auto;
+
+    img {
+      width: 100%;
+      height: auto;
+      filter: brightness(80%);
+    }
+  }
+
+  .error-message {
+    width: 100%;
+    font-family: 'Crimson Text', serif;
+    font-family: "Cormorant", serif;
+
+    h1 {
+      font-family: inherit;
+      font-size: 3rem;
+      text-align: center;
+    }
+  }
+
+  .error-description {
+    position: absolute;
+    top: 80%;
+    right: 1rem;
+    max-width: 10rem;
+    font-size: 0.85rem;
+  }
+
+  @media screen and (max-width: 548px) {
+    display: block;
   }
 }

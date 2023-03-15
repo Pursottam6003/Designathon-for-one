@@ -27,14 +27,14 @@ class Submit extends Component {
     const { heading, output: wholeDescription } = out
     const { date, eventBrochure: Mybrochure } = this.state.formData
     const { category: category_Id } = this.state
-    const { uid: userId , displayName: userName } = this.props.user;
+    const { uid: userId, displayName: userName } = this.props.user;
     let imgCaption = this.state.imgCaption
     let brochureUrl = ''
 
     const uploadOnFirestore = () => {
       const currentTime = new Date().getTime()
       const uploadObj = {
-        created: new Date(currentTime).toLocaleString('en-IN', {dateStyle:"medium",timeStyle: "short",}),
+        created: new Date(currentTime).toLocaleString('en-IN', { dateStyle: "medium", timeStyle: "short", }),
         createdInSeconds: currentTime,
         author: userName,
         uid: userId,
@@ -115,7 +115,7 @@ class Submit extends Component {
       formData: data.formData ? data.formData : this.state.formData,
       activityTitle: data.activityTitle,
       images: data.images ? data.images : [],
-      imgCaption: data.imgCaption ? data.imgCaption : Categories[parseInt(this.state.category)]
+      imgCaption: data.imgCaption
     })
   }
 
@@ -134,8 +134,8 @@ class Submit extends Component {
               <button onClick={(e) => { this.switchForm(false) }} className={`tab ${!this.state.edit ? 'active' : ''}`} role="tab">Preview</button>
             </div>
 
-            <button onClick={(e) => { this.switchForm(!this.state.edit) }} 
-              className={`form-navigate${this.state.edit ? ' next' : ' prev'}`} 
+            <button onClick={(e) => { this.switchForm(!this.state.edit) }}
+              className={`form-navigate${this.state.edit ? ' next' : ' prev'}`}
               title={`${this.state.edit ? 'Next' : 'Go back'}`}
             >
               {this.state.edit ? <NextIcon /> : <PrevIcon />}
@@ -161,8 +161,8 @@ class Submit extends Component {
               display={this.state.edit ? 'none' : 'block'}
             />
 
-            <button onClick={(e) => { this.switchForm(!this.state.edit) }} 
-              className={`form-navigate${this.state.edit ? ' next' : ' prev'}`} 
+            <button onClick={(e) => { this.switchForm(!this.state.edit) }}
+              className={`form-navigate${this.state.edit ? ' next' : ' prev'}`}
               title={`${this.state.edit ? 'Next' : 'Go back'}`}
             >
               {this.state.edit ? <NextIcon /> : <PrevIcon />}

@@ -119,8 +119,8 @@ export const Submissions = () => {
 
   useEffect(() => {
     if (!(fetchingApproved && fetchingPending)) {
-      setLastUpdated(new Date().toLocaleString('en-IN', { 
-        timeStyle: "medium", 
+      setLastUpdated(new Date().toLocaleString('en-IN', {
+        timeStyle: "medium",
         dateStyle: "medium",
       }));
     }
@@ -204,7 +204,7 @@ const Submission = ({ type, ls, approve, reject, update, moveBack }) => {
   )
 }
 
-const Sub = ({ id, categoryId, author, title, created, desc, type, imgUrl, update, reject, approve, moveBack }) => (
+const Sub = ({ id, categoryId, author, title, created, desc, type, imgUrl, imgCaption, update, reject, approve, moveBack }) => (
   <tr>
     <td>{author}</td>
     <td>
@@ -218,12 +218,13 @@ const Sub = ({ id, categoryId, author, title, created, desc, type, imgUrl, updat
         placeholder='Description'
         updateVal={(txt) => { update(id, type, 'desc', txt) }}
       />
-      {imgUrl.length !== 0 && (
+      {imgUrl.length !== 0 && (<>
         <div style={{
           margin: '1rem 0 0',
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
+          justifyContent: 'center',
           gap: '1rem'
         }}>
           {imgUrl.map(url => (
@@ -232,7 +233,13 @@ const Sub = ({ id, categoryId, author, title, created, desc, type, imgUrl, updat
             </div>
           ))}
         </div>
-      )}
+        <div style={{ fontSize: '0.8rem', margin: '0.8rem auto', textAlign: 'center', maxWidth: 'fit-content' }}>
+          <PreviewedInput value={imgCaption}
+            placeholder='Image Caption'
+            updateVal={(txt) => { update(id, type, 'imgCaption', txt) }}
+          />
+        </div>
+      </>)}
     </td>
     <td>{created}</td>
     {type === 'pending' ? (<>

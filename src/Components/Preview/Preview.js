@@ -197,12 +197,12 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
         break;
     }
 
-      this.setState({
-        heading: title ? title : CategoryTitles[category],
-        images: images,
-        output: outMdStr
-      })
-    }
+    this.setState({
+      heading: title,
+      images: images,
+      output: outMdStr
+    })
+  }
 
   resetPreview = () => {
     this.updatePreview()
@@ -234,6 +234,7 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
 
   render() {
     const { heading, output, images } = this.state
+    const catId = parseInt(this.props.categoryId)
     let imgComponentArr = []
     if (images && images.length !== 0) {
       imgComponentArr = images.map((img, i) => {
@@ -241,48 +242,48 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
       })
     }
     return (
-        <div className={styles.preview} style={{ display: this.props.display }} >
+      <div className={styles.preview} style={{ display: this.props.display }} >
 
-          {this.state.category === 0 ? <NoPreview /> : (
-            <>
-              <div className={cx(styles['formatted-preview-wrapper'], {[styles.active] : this.state.edit})}>
-                <div className={styles.previews}>
-                  <h1>{heading}</h1>
-                  <MdInput 
-                    placeholder='Your output will show here'
-                    value={output}
-                    updateVal={txt => {this.setState({output: txt})}}
-                    editing={status => {this.setState({edit: status})}}
-                    />
-                </div>
-
-                <footer className={styles['markdown-support']}>
-                  <p>
-                    Click to edit
-                    <a className={styles['text-link']} target='_blank' rel='noreferrer' href='https://guides.github.com/features/mastering-markdown/'>
-                      <MarkdownIcon className={styles['markdown-icon']} />
-                      <span>Styling with Markdown is supported</span>
-                    </a>
-                  </p>
-                </footer>
+        {this.state.category === 0 ? <NoPreview /> : (
+          <>
+            <div className={cx(styles['formatted-preview-wrapper'], { [styles.active]: this.state.edit })}>
+              <div className={styles.previews}>
+                <h1>{heading ? heading : CategoryTitles[catId]}</h1>
+                <MdInput
+                  placeholder='Your output will show here'
+                  value={output}
+                  updateVal={txt => { this.setState({ output: txt }) }}
+                  editing={status => { this.setState({ edit: status }) }}
+                />
               </div>
 
-              <div className={styles['image-preview']}>
-                {imgComponentArr}
-              </div>
-              {imgComponentArr.length !== 0 && (this.state.category !== 1 || this.state.category !== 3) && (
-                <p className={styles['img-caption-preview']}>{this.state.imgCaption}</p>
-              )}
-              {this.state.category !== 0 && (
-                <div className={styles.actions}>
-                  <button id='submitBtn' form='activityForm' type='submit' onClick={this.handleSubmit} className={cx(styles.btn, styles.submit)}>Submit</button>
-                  <button onClick={this.resetPreview} className={cx(styles.btn, styles.reset)}>Reset</button>
-                </div>
-              )}
-            </>
-          )}
+              <footer className={styles['markdown-support']}>
+                <p>
+                  Click to edit
+                  <a className={styles['text-link']} target='_blank' rel='noreferrer' href='https://guides.github.com/features/mastering-markdown/'>
+                    <MarkdownIcon className={styles['markdown-icon']} />
+                    <span>Styling with Markdown is supported</span>
+                  </a>
+                </p>
+              </footer>
+            </div>
 
-        </div>
+            <div className={styles['image-preview']}>
+              {imgComponentArr}
+            </div>
+            {imgComponentArr.length !== 0 && (this.state.category !== 1 || this.state.category !== 3) && (
+              <p className={styles['img-caption-preview']}>{this.state.imgCaption}</p>
+            )}
+            {this.state.category !== 0 && (
+              <div className={styles.actions}>
+                <button id='submitBtn' form='activityForm' type='submit' onClick={this.handleSubmit} className={cx(styles.btn, styles.submit)}>Submit</button>
+                <button onClick={this.resetPreview} className={cx(styles.btn, styles.reset)}>Reset</button>
+              </div>
+            )}
+          </>
+        )}
+
+      </div>
     )
   }
 }
