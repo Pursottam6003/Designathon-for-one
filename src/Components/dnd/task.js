@@ -1,4 +1,3 @@
-
 import React, { Component, PureComponent, useEffect, useState } from 'react'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 import styled from 'styled-components'

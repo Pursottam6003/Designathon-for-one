@@ -1,7 +1,6 @@
 import React from "react"
 import EditorInChief from "../../src/images/logo/sir.jpeg"
 import Chairman from '../../src/images/chairman.png';
-import Daknya from "../../src/images/daknya.jpeg"
 import ashok from '../../src/images/ashok.jpg'
 import subhajitSir from '../../src/images/subhajitSir.jpg'
 import ProfileCard from "../Components/ProfileCard"
@@ -89,7 +88,7 @@ const People = {
       role: 'Front-end, UI-UX',
       designation: 'UG Student, CSE 3rd year',
       description: 'A coder. singer,guitarist a full pack of combination of computer science undergratuate',
-      profile: Daknya,
+      profile: 'https://avatars.githubusercontent.com/u/75485331',
       links: [
         { to: 'https://www.linkedin.com/in/daknya-bam-4a4812237', icon: 'linkedin' },
         { to: 'https://github.com/daknya', icon: 'github' },

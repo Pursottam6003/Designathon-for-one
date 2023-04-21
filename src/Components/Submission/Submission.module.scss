@@ -1,0 +1,53 @@
+.submission {
+    .images {
+        margin: 1rem 0 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+
+        .image-wrapper {
+            position: relative;
+            max-width: 450px;
+
+            > img {
+                width: 100%;
+                height: auto;
+            }
+
+            button.btn {
+                position: absolute;
+                top: 0;
+                right: 0;
+                transform: translate(50%, -50%);
+                background-color: #ff2d62;
+                border: solid 1px rgba(0, 0, 0, 0.24);
+                padding: 0.25rem;
+                border-radius: 16px;
+                width: 28px;
+                height: 28px;
+                transition: background-color 0.2s ease-out;
+
+                svg {
+                    fill: white;
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+            button.btn:hover {
+                background-color: #b6485a;
+                transition: background-color 0.1s ease-out;
+            }
+            button.btn:active {
+                background-color: #a40e26;
+            }
+        }
+    }
+    .img-caption {
+        font-size: 0.8rem;
+        margin: 0.8rem auto;
+        text-align: center;
+        max-width: fit-content;
+    }
+}

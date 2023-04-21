@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react"
+import Submission from "../Submission"
 import { db } from '../../config/config'
-import PreviewedInput from '../MdInput/MdInput'
-
+import { arrayRemove } from "firebase/firestore"
 import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
-
-import { ReactComponent as DoneIcon } from '../../images/icons/done.svg'
-import { ReactComponent as RemoveIcon } from '../../images/icons/remove.svg'
-import { ReactComponent as UndoIcon } from '../../images/icons/undo.svg'
-
 import { where, orderBy, setDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useFetchCollection } from "../../hooks/hooks"
 import { LoadingPage } from "../Loading"
-import { CategoryTitles } from "../../helpers"
 
 export const Submissions = () => {
   const [unsaved, setUnsaved] = useState({});
@@ -73,13 +67,21 @@ export const Submissions = () => {
   const update = (id, type, field, value) => {
     const ls = type === 'pending' ? pending : approved;
     const setLs = type === 'pending' ? setPending : setApproved;
-    ls[id][field] = value;
+
+    if (field === 'imgUrl') {
+      ls[id][field] = ls[id][field].filter(url => url !== value);
+      if (ls[id][field].length === 0) update(id, type, 'imgCaption', '');
+    } else {
+      ls[id][field] = value;
+    }
+
     setLs({ ...ls });
 
     handleUpdate(id, field, value);
   }
 
   const handleUpdate = (id, key, value) => {
+    if (key === 'imgUrl') value = arrayRemove(value);
     const updates = unsaved;
     if (!updates[id]) {
       updates[id] = { [key]: value };
@@ -89,7 +91,7 @@ export const Submissions = () => {
     setUnsaved(updates);
   }
 
-  const saveChanges = (e) => {
+  const saveChanges = () => {
     const updateDoc = (id) => {
       const docRef = doc(db, 'submissions', id);
       if (unsaved[id].delete) {
@@ -131,35 +133,30 @@ export const Submissions = () => {
       <header className="page-header">
         <h1 className="heading">Submissions</h1>
         <div className="btns-group">
-          {(fetchingApproved && fetchingPending) || uploading ? (
-            <button className="btn submit" disabled>
-              <SpinnerIcon />
-            </button>
-          ) : (
-            Object.keys(unsaved).length !== 0 ? (
-              <button className="btn submit" onClick={() => { saveChanges() }}>
+          {(fetchingApproved || fetchingPending) || uploading ? <SpinnerIcon /> : (<>
+            <p>Last updated: {lastUpdated}</p>
+            {Object.keys(unsaved).length !== 0 && (
+              <button className="btn submit" onClick={saveChanges}>
                 Save changes
               </button>
-            ) : (
-              <p>Last updated: {lastUpdated}</p>
-            )
-          )}
-          <button className="btn" onClick={refresh}>
-            Refresh
-          </button>
+            )}
+            <button className="btn" onClick={refresh}>
+              Refresh
+            </button>
+          </>)}
         </div>
       </header>
       <main className="workspace">
         {fetchingPending || fetchingApproved ? <LoadingPage /> : (
           <div className="submissions-wrapper">
             <div className="submission pending">
-              <Submission type='pending'
+              <SubmissionSection type='pending'
                 approve={approve} reject={reject} update={update} moveBack={moveBack}
                 ls={pending} fetching={fetchingPending}
               />
             </div>
             <div className="submission approved">
-              <Submission type='approved'
+              <SubmissionSection type='approved'
                 approve={approve} reject={reject} update={update} moveBack={moveBack}
                 ls={approved} fetching={fetchingApproved}
               />
@@ -171,7 +168,7 @@ export const Submissions = () => {
   )
 }
 
-const Submission = ({ type, ls, approve, reject, update, moveBack }) => {
+const SubmissionSection = ({ type, ls, approve, reject, update, moveBack }) => {
   return (
     <>
       <h3 className="sub-summary container">{Object.keys(ls).length} {type} submissions</h3>
@@ -192,7 +189,7 @@ const Submission = ({ type, ls, approve, reject, update, moveBack }) => {
             </thead>
             <tbody>
               {Object.keys(ls).map(id => (
-                <Sub key={`${id}sub`} {...ls[id]} type={type} approve={approve}
+                <Submission key={`${id}sub`} {...ls[id]} type={type} approve={approve}
                   reject={reject} update={update} moveBack={moveBack}
                 />
               ))}
@@ -203,68 +200,3 @@ const Submission = ({ type, ls, approve, reject, update, moveBack }) => {
     </>
   )
 }
-
-const Sub = ({ id, categoryId, author, title, created, desc, type, imgUrl, imgCaption, update, reject, approve, moveBack }) => (
-  <tr>
-    <td>{author}</td>
-    <td>
-      <PreviewedInput value={title}
-        placeholder={CategoryTitles[categoryId]}
-        updateVal={(txt) => { update(id, type, 'title', txt) }}
-      />
-    </td>
-    <td>
-      <PreviewedInput value={desc}
-        placeholder='Description'
-        updateVal={(txt) => { update(id, type, 'desc', txt) }}
-      />
-      {imgUrl.length !== 0 && (<>
-        <div style={{
-          margin: '1rem 0 0',
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: '1rem'
-        }}>
-          {imgUrl.map(url => (
-            <div key={url} style={{ maxWidth: '450px' }}>
-              <img style={{ width: '100%', height: 'auto' }} src={url} alt="" />
-            </div>
-          ))}
-        </div>
-        <div style={{ fontSize: '0.8rem', margin: '0.8rem auto', textAlign: 'center', maxWidth: 'fit-content' }}>
-          <PreviewedInput value={imgCaption}
-            placeholder='Image Caption'
-            updateVal={(txt) => { update(id, type, 'imgCaption', txt) }}
-          />
-        </div>
-      </>)}
-    </td>
-    <td>{created}</td>
-    {type === 'pending' ? (<>
-      <td>
-        <button className="action-btn remove" type="button"
-          onClick={(e) => { reject(id) }}
-        >
-          <RemoveIcon />
-        </button>
-      </td>
-      <td>
-        <button className="action-btn add" type="button"
-          onClick={(e) => { approve(id) }}
-        >
-          <DoneIcon />
-        </button>
-      </td>
-    </>) : (
-      <td>
-        <button className="action-btn" type="button"
-          onClick={(e) => { moveBack(id) }}
-        >
-          <UndoIcon />
-        </button>
-      </td>
-    )}
-  </tr>
-)

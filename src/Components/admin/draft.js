@@ -231,46 +231,43 @@ export class Draft extends Component {
       <div className="draft">
         <header className="page-header container">
           <h1 className="heading">Draft an Issue</h1>
-
-          <div>
-            <div className="btns-group">
-              {!formView && !preview && (
-                !this.state.loading ? <button
-                  form="draftForm"
-                  className="btn submit"
-                  id="publishBtn"
-                  onClick={this.handlePreviewIssue}
-                  type="submit"
-                >Generate preview</button> :
-                  <button
-                    className="btn submit"
-                    disabled
-                  >
-                    <SpinnerIcon />
-                  </button>
-              )}
-
-              {preview && (<>
-                <a target="_blank" rel="noreferrer" href={`/${preview}`}>
-                  Show preview
-                </a>
-
+          <div className="btns-group">
+            {!formView && !preview && (
+              !this.state.loading ? <button
+                form="draftForm"
+                className="btn submit"
+                id="publishBtn"
+                onClick={this.handlePreviewIssue}
+                type="submit"
+              >Generate preview</button> :
                 <button
-                  form="draftForm"
                   className="btn submit"
-                  id="publishBtn"
-                  onClick={this.handlePublish}
-                  type="submit"
+                  disabled
                 >
-                  Publish
+                  <SpinnerIcon />
                 </button>
-              </>)}
-              {title && iss && month && vol && (
-                <button className="btn" onClick={this.switchView} type="button">
-                  {formView ? 'Next' : 'Previous'}
-                </button>
-              )}
-            </div>
+            )}
+
+            {preview && (<>
+              <a target="_blank" rel="noreferrer" href={`/${preview}`}>
+                Show preview
+              </a>
+
+              <button
+                form="draftForm"
+                className="btn submit"
+                id="publishBtn"
+                onClick={this.handlePublish}
+                type="submit"
+              >
+                Publish
+              </button>
+            </>)}
+            {title && iss && month && vol && (
+              <button className="btn" onClick={this.switchView} type="button">
+                {formView ? 'Next' : 'Previous'}
+              </button>
+            )}
           </div>
 
         </header>

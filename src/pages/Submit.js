@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Form } from '../Components/form/Form'
 import { Preview } from '../Components/Preview/Preview'
 import { storage, fs } from '../config/config'
-import firebase from 'firebase/compat/app'
+import { arrayUnion } from 'firebase/firestore'
 import { Categories } from '../helpers'
 import { ReactComponent as NextIcon } from '../images/icons/forward-arrow.svg'
 import { ReactComponent as PrevIcon } from '../images/icons/back-arrow.svg'
@@ -42,9 +42,9 @@ class Submit extends Component {
         title: heading,
         desc: wholeDescription,
         eventDate: date ? date : '',
-        imgUrl: firebase.firestore.FieldValue.arrayUnion(...imageLinks),
+        imgUrl: arrayUnion(...imageLinks),
         brochureUrl: brochureUrl,
-        imgCaption: imgCaption,
+        imgCaption: imgCaption ? imgCaption : '',
         approved: false
       }
 
