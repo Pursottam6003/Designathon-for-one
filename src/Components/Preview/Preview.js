@@ -148,7 +148,7 @@ Principal Investigator: ${this.ov('facultyName')}, ${this.ov('designation')}, ${
         outMdStr = `${this.ov('invName')}. (${this.ov('year')}). ${this.ov('patId')}. ${this.ov('patOffice')}.`
         break;
       case 7:
-        outMdStr = `${this.ov('author')} (${this.ov('year')}). ${this.ov('title')}. *${this.ov('journalTitle')}* *${this.ov('volNo')}*(${this.ov('issueNo')}), ${this.ov('pageNos')}. ${this.ov('doiUrl')}`
+        outMdStr = `${this.ov('author')} (${this.ov('year')}). ${this.ov('title')}. *${this.ov('journalTitle')}*${fields.volNo ? ` *${this.ov('volNo')}*` : ""}${fields.issueNo ? `(${this.ov('issueNo')})` : ""}${fields.pageNos ? `, ${this.ov('pageNos')}` : ""}. ${fields.doiUrl ? this.ov('doiUrl') : ""}`
         break;
       case 8:
         outMdStr = `${this.ov('author')} (${this.ov('year')}). *${this.ov('title')}*. ${this.ov('publisher')}. ${this.ov('doiUrl')}`

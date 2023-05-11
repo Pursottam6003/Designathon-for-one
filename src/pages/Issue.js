@@ -13,9 +13,12 @@ import NotFound from './NotFound';
 
 const MagazineActivity = ({ id, title, content, brochureUrl, imgUrl, imgCaption }) => {
   const images = imgUrl.map((url, i) => (
-    <div key={`img${id}${i}`} className={styles['img-wrapper']}>
-      <img src={url} key={`i${i}`} alt={imgCaption} />
-    </div>
+    <a href={url} target='_blank' rel='noreferrer'>
+      <div key={`img${id}${i}`} className={styles['img-wrapper']}>
+        <img className={styles.bg} src={url} alt="" />
+        <img className={styles.img} src={url} alt={imgCaption} />
+      </div>
+    </a>
   ))
 
   return (
