@@ -679,7 +679,6 @@ export class CategoryForm extends Component {
           <Field showLabel={this.state.doiUrl.length} labeltxt="DOI (if available)">
             <input type="text"
               className='form-control'
-              required
               name="doiUrl"
               value={this.state.doiUrl}
               onChange={this.handleChange}
