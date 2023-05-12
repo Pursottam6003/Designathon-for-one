@@ -2,7 +2,6 @@
   "name": "technodaya-website",
   "version": "1.0.5",
   "private": true,
-  "homepage": ".",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
@@ -28,7 +27,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
-    "deploy": "react-scripts build && netlify deploy -d build --prod",
+    "deploy": "GENERATE_SOURCEMAP=false react-scripts build && netlify deploy -d build --prod",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
