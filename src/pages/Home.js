@@ -132,9 +132,9 @@ export const Home = () => {
           <h4>Stay updated with new Issues of Technodaya!</h4>
           <form>
             <div className={styles.inputs}>
-              <input type="text" placeholder="First Name" />
-              <input type="text" placeholder="Last Name" />
-              <input type="text" placeholder="Email" />
+              <input required type="text" placeholder="First Name" />
+              <input required type="text" placeholder="Last Name" />
+              <input required type="email" placeholder="Email" />
             </div>
             <button type="submit" className={styles.submit}>
               <div className={styles.circle}>
