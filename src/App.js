@@ -42,8 +42,12 @@ function App() {
           <Route path="/magazine" element={<Read />} />
           <Route path="/about" element={<About />} />
 
-          {/* UNSTABLE */}
           <Route path="/submit" element={(
+            <ProtectedComponent isAdmin={false} children={<Submit user={user.user} />} />
+          )} />
+
+          {/* UNSTABLE */}
+          <Route path="/submitfc" element={(
             <ProtectedComponent isAdmin={false} children={<SubmitFC user={user.user} />} />
           )} />
 
@@ -68,7 +72,6 @@ function App() {
           <Route path="/uploadcover" element={<UploadCover />} />
 
           <Route path="*" element={<NotFound />} />
-
 
           {/* <Route path="/signup" element={<Signup />} /> */}
         </Routes>
