@@ -44,7 +44,6 @@ const CategoryTitles = [
     ''
 ]
 
-
 const schema = {
     '0': [],
     '1': [
@@ -55,9 +54,10 @@ const schema = {
         { type: 'sectionHeading', label: 'MoU details' },
         { type: 'text', label: 'Theme', name: 'theme', required: true, placeholder: 'Theme' },
         { type: 'text', label: 'Purpose of Agreement', name: 'purposeAgreement', required: true, placeholder: 'Purpose of Agreement' },
-        { type: 'sectionHeading', label: 'Members present' },
-        { type: 'text', label: 'Members Present from NITAP with their designation', name: 'insMembers', required: true, placeholder: 'Members present from NITAP with their designation' },
-        { type: 'text', label: 'Members Present from partner Institute/Organization with their designation', name: 'outMembers', required: true, placeholder: 'Members present from partner Institute/Organization with their designation' },
+        { type: 'sectionHeading', label: 'Members present with designation' },
+        { type: 'text', label: 'Members from NITAP', name: 'insMembers', required: true, placeholder: 'Members from NITAP' },
+        { type: 'text', label: 'Members from partner organization', name: 'outMembers', required: true, placeholder: 'Members from partner organization' },
+        { type: 'text', label: 'Other renowned members', name: 'otherMembers', required: true, placeholder: 'Other renowned members' },
         { type: 'sectionHeading', label: 'Date' },
         { type: 'date', label: 'Date', name: 'date', required: true },
     ],
@@ -155,7 +155,7 @@ const schema = {
         { type: 'text', label: 'Location of conference', name: 'place', required: true, placeholder: 'Location of conference' },
         { type: 'text', label: 'DOI (if available)', name: 'doiUrl', placeholder: 'DOI (if available)' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { label: 'Date', name: 'date', required: true }, to: { label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
     ],
     '10': [
         { type: 'sectionHeading', label: 'Author details' },
@@ -182,7 +182,7 @@ const schema = {
         { type: 'text', label: 'Title of the programme', name: 'title', required: true, placeholder: 'Title of the programme' },
         { type: 'text', label: 'Organising institute name with address', name: 'organizer', required: true, placeholder: 'Organising institute name with address' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { label: 'Date', name: 'date', required: true }, to: { label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
     ],
     '12': [
         { type: 'sectionHeading', label: 'Faculty details' },
@@ -204,7 +204,7 @@ const schema = {
         { type: 'text', label: 'Name of workshop/conference/short term course etc.', name: 'eventName', required: true, placeholder: 'Name of workshop/conference/short term course etc.' },
         { type: 'text', label: 'Organising institute name with address', name: 'organizer', required: true, placeholder: 'Organising institute name with address' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { label: 'Date', name: 'date', required: true }, to: { label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
     ],
     '14': [
         { type: 'sectionHeading', label: 'Winner details' },
@@ -228,7 +228,7 @@ const schema = {
         { type: 'text', label: 'Title (theme)', name: 'theme', required: true, placeholder: 'Title (theme)' },
         { type: 'text', label: 'Place Name', name: 'place', required: true, placeholder: 'Place Name' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { label: 'Date', name: 'date', required: true }, to: { label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
     ],
     '16': [
         { type: 'sectionHeading', label: 'Activity details' },
@@ -239,7 +239,7 @@ const schema = {
         { type: 'text', label: 'Designation', name: 'designation', required: true, placeholder: 'Designation' },
         { type: 'text', label: 'If collaboration mention its name and full address', name: 'collaboration', required: true, placeholder: 'If collaboration mention its name and full address' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { label: 'Date', name: 'date', required: true }, to: { label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
     ],
     '17': [
         { type: 'sectionHeading', label: 'Event details' },
@@ -252,7 +252,7 @@ const schema = {
         { type: 'sectionHeading', label: 'Further details' },
         { type: 'text', label: 'Event link', name: 'eventLink', required: false, placeholder: 'Event link' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { label: 'Date', name: 'date', required: true }, to: { label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
         { type: 'sectionHeading', label: 'Upload Brochure (pdf/jpg/png)' },
         { type: 'file', label: 'Upload Brochure', name: 'eventBrochure', required: true, placeholder: 'Upload Brochure', accept: 'application/pdf, image/png, image/webp, image/jpeg' },
     ],

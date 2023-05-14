@@ -1,5 +1,4 @@
-import { Field } from "../form/Field";
-import TextInput from "./TextInput";
+import { DateInput, DateRangeInput, FileInput, RadioInput, TextInput, TextareaInput } from "./InputComponents";
 import { List } from "../form/List";
 import { Person } from "../form/Person";
 import { schema } from "../../helpers";
@@ -9,72 +8,29 @@ const SchemaForm = ({ currentCategory, formData, handleInputChange, addPerson, r
 
   return (
     fields ? fields.map((field, i) => {
-      if (field.type === 'text') {
+      if (field.type === 'sectionHeading') {
+        return <p key={i} className='sub-label'>{field.label}</p>
+      } else if (field.type === 'text' || field.type === 'number') {
         return (
           <TextInput
             key={i}
-            type="text"
-            name={field.name}
+            {...field}
             value={formData[field.name]}
             onChange={handleInputChange}
-            required={field.required}
-            placeholder={field.placeholder}
           />
         )
-      } else if (field.type === 'sectionHeading') {
-        return <p key={i} className='sub-label'>{field.label}</p>
-      } else if (field.type === 'date') {
+      } else if (field.type === 'date' || field.type === 'month') {
         return (
-          <div key={i} className='date-wrapper'>
-            <Field labeltxt="Date" showLabel={0}>
-              <input type="date"
-                className='form-control'
-                name={field.name}
-                value={formData[field.name]}
-                onChange={handleInputChange}
-                required={field.required}
-              />
-            </Field>
-          </div>
-        )
-      } else if (field.type === 'month') {
-        return (
-          <div key={i} className="date-wrapper">
-            <Field labeltxt="Date" showLabel={0}>
-              <input type="month"
-                className='form-control'
-                name={field.name}
-                value={formData[field.name]}
-                onChange={handleInputChange}
-                required={field.required}
-              />
-            </Field>
-          </div>
+          <DateInput key={i} {...field} onChange={handleInputChange} value={formData[field.name]} />
         )
       } else if (field.type === 'dateRange') {
         const { from, to } = field;
         return (
-          <div key={i} className="date-wrapper">
-            <Field labeltxt="Date" showLabel={0}>
-              <input type="date"
-                className='form-control'
-                name={from.name}
-                value={formData[from.name]}
-                onChange={handleInputChange}
-                required={from.required}
-              />
-            </Field>
-            <span>to</span>
-            <Field labeltxt="Date" showLabel={0}>
-              <input type="date"
-                className='form-control'
-                name={to.name}
-                value={formData[to.name]}
-                onChange={handleInputChange}
-                required={to.required}
-              />
-            </Field>
-          </div>
+          <DateRangeInput key={i} {...field} 
+            fromValue={formData[from.name]} 
+            toValue={formData[to.name]} 
+            onChange={handleInputChange} 
+          />
         )
       } else if (field.type === 'list') {
         return (
@@ -90,68 +46,22 @@ const SchemaForm = ({ currentCategory, formData, handleInputChange, addPerson, r
         return (
           <Person key={i} personType={field.personType}
             notFirst={
-              formData[field.personType.toLowerCase()]
-                ? formData[field.personType.toLowerCase()].length
+              field.personType === 'investigator' && formData.pi
+                ? formData.pi.length
                 : false
             } handleSubmit={addPerson}
           />
         )
-      } else if (field.type === 'number') {
-        return (
-          <TextInput
-            key={i}
-            type="number"
-            name={field.name}
-            value={formData[field.name]}
-            onChange={handleInputChange}
-            required={field.required}
-            placeholder={field.placeholder}
-            attrs={field.attrs}
-          />
-        )
       } else if (field.type === 'radio') {
-        return (
-          <div key={i} className='form-field'>
-            <Field showLabel={1} labeltxt="Journal type">
-              <div className='radio-inputs'>
-                {field.radios.map((radioInp, i) => (
-                  <div key={i} className='radio-btn'>
-                    <input type="radio"
-                      value={radioInp.value}
-                      required={field.required}
-                      defaultChecked={i === 0}
-                      onChange={handleInputChange}
-                      name={field.name}
-                    /> {radioInp.label}
-                  </div>
-                ))}
-              </div>
-            </Field>
-          </div>
-        )
+        return <RadioInput key={i} {...field} onChange={handleInputChange} />
       } else if (field.type === 'file') {
-        return (
-          <div key={i} className='form-field'>
-            <input type="file"
-              name={field.name}
-              className='form-control'
-              accept={field.accept}
-              required={field.required}
-              onChange={handleInputChange}
-            />
-          </div>
-        )
+        return <FileInput key={i} {...field} onChange={handleInputChange} />
       } else if (field.type === 'textarea') {
-        return (
-          <textarea
-            key={i}
-            className='form-control raw-md-desc'
-            name={field.name}
-            placeholder={field.placeholder}
-            onChange={handleInputChange}
-            required={field.required}
-          />
-        )
+        return <TextareaInput
+          key={i}
+          {...field}
+          onChange={handleInputChange}
+        />
       }
       else return <div key={i}>TODO: {field.type}</div>
     }) : <p>Invalid category</p>
