@@ -3,7 +3,7 @@ import { Form } from '../Components/form/Form'
 import { Preview } from '../Components/Preview/Preview'
 import { storage, fs } from '../config/config'
 import { arrayUnion } from 'firebase/firestore'
-import { Categories } from '../helpers'
+import { Categories } from '../helpers/helpers'
 import { ReactComponent as NextIcon } from '../images/icons/forward-arrow.svg'
 import { ReactComponent as PrevIcon } from '../images/icons/back-arrow.svg'
 

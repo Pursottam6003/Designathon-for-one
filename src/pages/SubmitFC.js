@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import FormFC from '../Components/formNew/FormFC'
 import PreviewFC from '../Components/formNew/PreviewFC'
-import { storage, fs } from '../config/config'
-import { arrayUnion } from 'firebase/firestore'
-import { Categories } from '../helpers'
+import { storage, db } from '../config/config'
+import { arrayUnion, collection, doc, setDoc } from 'firebase/firestore'
+import { Categories } from '../helpers/helpers'
 import { ReactComponent as NextIcon } from '../images/icons/forward-arrow.svg'
 import { ReactComponent as PrevIcon } from '../images/icons/back-arrow.svg'
+import Alert from '../Components/AlertComponent/Alert'
 
 const SubmitFC = (props) => {
   const [category, setCategory] = useState(0);
@@ -14,8 +15,14 @@ const SubmitFC = (props) => {
   const [images, setImages] = useState([]);
   const [imgCaption, setImgCaption] = useState('');
   const [formView, setFormView] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertSeverity, setAlertSeverity] = useState('info');
 
   const handleSubmit = (desc) => {
+    setLoading(true);
+    setAlertMessage('');
+    setAlertSeverity('info');
     const heading = activityTitle
     const { date, eventBrochure } = categoryFormData
     const category_Id = category;
@@ -23,7 +30,7 @@ const SubmitFC = (props) => {
     let caption = imgCaption
     let brochureUrl = ''
 
-    const uploadOnFirestore = () => {
+    const uploadOnFirestore = async () => {
       const currentTime = new Date().getTime()
       const uploadObj = {
         created: new Date(currentTime).toLocaleString('en-IN', { dateStyle: "medium", timeStyle: "short", }),
@@ -40,11 +47,20 @@ const SubmitFC = (props) => {
         approved: false
       }
 
-      fs.collection(`submissions/`).doc().set(uploadObj).then(() => {
-        alert("Sucecssfully uploaded");
+      try {
+        await setDoc(doc(collection(db, 'submissions')), uploadObj)
+        // alert("Successfully uploaded");
         setCategory(0);
+        setAlertMessage('Submitted successfully');
+        setAlertSeverity('success');
         resetForm();
-      })
+      } catch(err) {
+        console.error(err);
+        setAlertMessage(err.message);
+        setAlertSeverity('error');
+      } finally {
+        setLoading(false);
+      }
     }
 
     if (category_Id === 1) {
@@ -140,6 +156,7 @@ const SubmitFC = (props) => {
 
   return (
     <div className="add-blogs">
+      <Alert message={alertMessage} severity={alertSeverity} />
       <div className="mobile-bg" />
       <div className="activity-form container">
         <div className="tablist-wrapper">
@@ -199,6 +216,7 @@ const SubmitFC = (props) => {
             submit={handleSubmit}
             switchForm={() => { setFormView(true) }}
             display={formView ? "none" : "block"}
+            loading={loading}
           />
           <button
             onClick={(e) => {

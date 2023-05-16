@@ -1,0 +1,111 @@
+.alert {
+    --info-rgb: 233, 221, 255;
+    --success-rgb: 194, 255, 240;
+    --warning-rgb: 255, 235, 210;
+    --error-rgb: 255, 0, 76;
+    --info-color: rgb(0, 56, 82);
+    --success-color: rgb(48, 95, 50);
+    --warning-color: rgb(102, 60, 0);
+    --error-color: rgb(95, 33, 32);
+
+    --bg: rgba(240, 240, 240, 0.6);
+    --color: #444;
+    position: fixed;
+    top: calc(var(--nav-height) + 1.2rem);
+    right: 0;
+    min-width: 300px;
+    max-width: calc(100% - 3.2rem);
+    z-index: 99999;
+
+    display: flex;
+    align-items: flex-start;
+    padding: 1.2rem 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.25rem;
+    border-left: solid 4px var(--color);
+    background-color: var(--bg);
+    color: var(--color);
+    backdrop-filter: blur(4px);
+    font-family: "Open Sans", sans-serif;
+    transform: translateX(100%);
+    transition: 0.3s all cubic-bezier(.86, 0, .07, .995);
+
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+
+    .icon {
+        display: flex;
+        color: inherit;
+        margin-right: 0.8rem;
+
+        svg {
+            width: 1.375rem;
+            height: 1.375rem;
+            fill: var(--color);
+        }
+    }
+
+    .message {
+        flex-grow: 1;
+    }
+
+    .dismiss {
+        position: relative;
+        background-color: transparent;
+        border: none;
+        width: 24px;
+        height: 24px;
+        border-radius: 24px;
+        margin-left: 1rem;
+        flex-shrink: 0;
+        transition: background-color 0.2s ease;
+
+        >svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75%;
+            height: 75%;
+            fill: var(--color);
+        }
+    }
+
+    .dismiss:hover {
+        background-color: rgba(230, 230, 230, 0.9);
+    }
+
+    .dismiss:active {
+        background-color: rgba(214, 214, 214, 0.9);
+    }
+}
+
+.alert.info {
+    --color: var(--info-color);
+    --bg: rgba(var(--info-rgb), 0.6);
+}
+
+.alert.success {
+    --color: var(--success-color);
+    --bg: rgba(var(--success-rgb), 0.6);
+}
+
+.alert.warning {
+    --color: var(--warning-color);
+    --bg: rgba(var(--warning-rgb), 0.6);
+}
+
+.alert.error {
+    --color: var(--error-color);
+    --bg: rgba(var(--error-rgb), 0.6);
+}
+
+.alert.active {
+    transform: translateX(-1.2rem);
+}
+
+@media screen and (max-width: 550px) {
+    .alert {
+        width: calc(100% - 1.6rem);
+    }
+}

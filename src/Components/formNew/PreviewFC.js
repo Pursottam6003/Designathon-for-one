@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { ReactComponent as MarkdownIcon } from '../../images/icons/markdownIcon.svg';
-import { CategoryTitles } from '../../helpers';
+import { CategoryTitles } from '../../helpers/helpers';
 import NoPreview from '../NoPreview';
 import styles from './Preview.module.scss';
 import cx from 'classnames';
 import PreviewedInput from '../MdInput/MdInput'
 
-const PreviewFC = ({ display, title, fields, category, images = [], imgCaption, submit, switchForm }) => {
+const PreviewFC = ({ display, title, fields, category, images = [], imgCaption, submit, switchForm, loading=false }) => {
   const [desc, setDesc] = useState('');
   const [editing, setEditing] = useState(false);
 
@@ -192,10 +192,6 @@ Principal Investigator: ${ov('facultyName')}, ${ov('designation')}, ${ov('depart
   const handleSubmit = (event) => {
     if (document.getElementById('activityForm').checkValidity()) {
       event.preventDefault();
-
-      const btn = event.target
-      btn.setAttribute('disabled', '')
-      btn.innerHTML = 'Please wait...'
       submit(desc);
     } else {
       switchForm(true);
@@ -242,7 +238,15 @@ Principal Investigator: ${ov('facultyName')}, ${ov('designation')}, ${ov('depart
         )}
         {parseInt(category) !== 0 && (
           <div className={styles.actions}>
-            <button id='submitBtn' form='activityForm' type='submit' onClick={handleSubmit} className={cx(styles.btn, styles.submit)}>Submit</button>
+            <button 
+              id='submitBtn' 
+              form='activityForm' 
+              type='submit' 
+              disabled={loading}
+              onClick={handleSubmit} 
+              className={cx(styles.btn, styles.submit)}>
+                {!loading ? 'Submit' : 'Please wait...'} 
+              </button>
             <button onClick={updatePreview} className={cx(styles.btn, styles.reset)}>Reset</button>
           </div>
         )}

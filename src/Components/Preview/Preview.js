@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ReactComponent as MarkdownIcon } from '../../images/icons/markdownIcon.svg';
-import { CategoryTitles } from '../../helpers';
+import { CategoryTitles } from '../../helpers/helpers';
 import NoPreview from '../NoPreview';
 import MdInput from '../MdInput/MdInput';
 import styles from './Preview.module.scss';

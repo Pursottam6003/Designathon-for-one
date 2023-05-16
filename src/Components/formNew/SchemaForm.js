@@ -1,7 +1,7 @@
 import { DateInput, DateRangeInput, FileInput, RadioInput, TextInput, TextareaInput } from "./InputComponents";
 import { List } from "../form/List";
 import { Person } from "../form/Person";
-import { schema } from "../../helpers";
+import schema from "../../helpers/formSchema";
 
 const SchemaForm = ({ currentCategory, formData, handleInputChange, addPerson, removePerson }) => {
   const fields = schema[currentCategory];
@@ -45,11 +45,8 @@ const SchemaForm = ({ currentCategory, formData, handleInputChange, addPerson, r
       } else if (field.type === 'person') {
         return (
           <Person key={i} personType={field.personType}
-            notFirst={
-              field.personType === 'investigator' && formData.pi
-                ? formData.pi.length
-                : false
-            } handleSubmit={addPerson}
+            first={formData[field.itemType] ? formData[field.itemType].length === 0 : 1}
+            handleSubmit={addPerson}
           />
         )
       } else if (field.type === 'radio') {

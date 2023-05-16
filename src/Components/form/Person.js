@@ -57,231 +57,120 @@ export class Person extends Component {
   }
 
   render() {
-    const { personType, notFirst } = this.props
+    const { personType, first } = this.props
 
     if (personType === "author") {
-      if (notFirst) {
-        return (
-          <div className='person-form'>
-            <Field cls="short-field" labeltxt="Last name" showLabel={this.state.lastName.length}>
-              <input
-                className="short-field"
-                type="text"
-                placeholder='Last name'
-                name="lastName"
-                value={this.state.lastName}
-                onChange={this.handleChange}
-              />
-            </Field>
+      return (
+        <div className='person-form'>
+          <Field cls="short-field" labeltxt="Last name" showLabel={this.state.lastName.length}>
+            <input
+              className="short-field"
+              type="text"
+              placeholder='Last name'
+              required={first}
+              name="lastName"
+              value={this.state.lastName}
+              onChange={this.handleChange}
+            />
+          </Field>
 
-            <Field cls="short-field" labeltxt="First initials (second initials)" showLabel={this.state.firstInitials.length}>
-              <input
-                className="short-field"
-                type="text"
-                placeholder='First initials (second initials)'
-                name="firstInitials"
-                value={this.state.firstInitials}
-                onChange={this.handleChange}
-              />
-            </Field>
+          <Field cls="short-field" labeltxt="First initials (second initials)" showLabel={this.state.firstInitials.length}>
+            <input
+              className="short-field"
+              type="text"
+              placeholder='First initials (second initials)'
+              required={first}
+              name="firstInitials"
+              value={this.state.firstInitials}
+              onChange={this.handleChange}
+            />
+          </Field>
 
-            <Field labeltxt="" showLabel={0}>
-              <input
-                type="button"
-                value="+"
-                className='list-add'
-                onClick={this.addPerson}
-              />
-            </Field>
-          </div>
-        )
-      } else {
-        return (
-          // lastname and firstInitials
-          <div className='person-form'>
-            <Field cls="short-field" labeltxt="Last name" showLabel={this.state.lastName.length}>
-              <input
-                className="short-field"
-                type="text"
-                placeholder='Last name'
-                required
-                name="lastName"
-                value={this.state.lastName}
-                onChange={this.handleChange}
-              />
-            </Field>
-
-            <Field cls="short-field" labeltxt="First initials (second initials)" showLabel={this.state.firstInitials.length}>
-              <input
-                className="short-field"
-                type="text"
-                placeholder='First initials (second initials)'
-                required
-                name="firstInitials"
-                value={this.state.firstInitials}
-                onChange={this.handleChange}
-              />
-            </Field>
-
-            <Field labeltxt="" showLabel={0}>
-              <input
-                type="button"
-                value="+"
-                className='list-add'
-                onClick={this.addPerson}
-              />
-            </Field>
-          </div>
-        )
-      }
-
+          <Field labeltxt="" showLabel={0}>
+            <input
+              type="button"
+              value="+"
+              className='list-add'
+              onClick={this.addPerson}
+            />
+          </Field>
+        </div>
+      )
     } else {
-      if (notFirst) {
-        return (
-          <div className='person-form'>
-            <Field labeltxt="Select PI or CoPI" showLabel={0}>
-              <select
-                type="text"
-                name="investigatorType"
-                onChange={this.handleChange}
-                value={this.state.investigatorType}
-              >
-                <option value="PI">PI</option>
-                <option value="CoPI">CoPI</option>
-              </select>
-            </Field>
+      return (
+        <div className='person-form'>
+          <Field labeltxt="Select PI or CoPI" showLabel={0}>
+            <select
+              type="text"
+              required={first}
+              name="investigatorType"
+              onChange={this.handleChange}
+              value={this.state.investigatorType}
+            >
+              <option value="PI">PI</option>
+              {!first && <option value="CoPI">CoPI</option>}
+            </select>
+          </Field>
 
-            <Field cls="short-field" labeltxt="Name" showLabel={this.state.name.length}>
+          <Field cls="short-field" labeltxt="Name" showLabel={this.state.name.length}>
+            <input
+              className="short-field"
+              type="text"
+              placeholder='Name'
+              required={first}
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+          </Field>
+
+          <Field cls="short-field" labeltxt="Designation" showLabel={this.state.designation.length}>
+            <input
+              className="short-field"
+              type="text"
+              placeholder='Designation'
+              required={first}
+              name="designation"
+              value={this.state.designation}
+              onChange={this.handleChange}
+            />
+          </Field>
+
+          <Field cls="short-field" labeltxt="Department" showLabel={this.state.department.length}>
+            <input
+              className="short-field"
+              type="text"
+              placeholder='Department'
+              required={first}
+              name="department"
+              value={this.state.department}
+              onChange={this.handleChange}
+            />
+          </Field>
+
+          {this.state.investigatorType === "CoPI" && (
+            <Field labeltxt="Institute name (outside NITAP)" showLabel={this.state.insName.length}>
               <input
-                className="short-field"
                 type="text"
-                placeholder='Name'
-                name="name"
-                value={this.state.name}
-                onChange={this.handleChange}
-              />
-            </Field>
-
-            <Field cls="short-field" labeltxt="Designation" showLabel={this.state.designation.length}>
-              <input
-                className="short-field"
-                type="text"
-                placeholder='Designation'
-                name="designation"
-                value={this.state.designation}
-                onChange={this.handleChange}
-              />
-            </Field>
-
-            <Field cls="short-field" labeltxt="Department" showLabel={this.state.department.length}>
-              <input
-                className="short-field"
-                type="text"
-                placeholder='Department'
-                name="department"
-                value={this.state.department}
-                onChange={this.handleChange}
-              />
-            </Field>
-
-            {this.state.investigatorType === "CoPI" && (
-              <Field labeltxt="Institute name (outside NITAP)" showLabel={this.state.insName.length}>
-                <input
-                  type="text"
-                  placeholder='Institute (if outside NITAP)'
-                  name="insName"
-                  value={this.state.insName}
-                  onChange={this.handleChange}
-                />
-              </Field>
-            )}
-
-            <Field labeltxt="" showLabel={0}>
-              <input
-                type="button"
-                value="+"
-                className='list-add'
-                onClick={this.addPerson}
-              />
-            </Field>
-          </div>
-        )
-
-      } else {
-        return (
-          <div className='person-form'>
-            <Field labeltxt="Select PI or CoPI" showLabel={0}>
-              <select
-                type="text"
-                required
-                name="investigatorType"
-                onChange={this.handleChange}
-                value={this.state.investigatorType}
-              >
-                <option value="PI">PI</option>
-              </select>
-            </Field>
-
-            <Field cls="short-field" labeltxt="Name" showLabel={this.state.name.length}>
-              <input
-                className="short-field"
-                type="text"
-                placeholder='Name'
-                required
-                name="name"
-                value={this.state.name}
+                placeholder='Institute name (outside NITAP)'
+                required={first}
+                name="insName"
+                value={this.state.insName}
                 onChange={this.handleChange}
               />
             </Field>
+          )}
 
-            <Field cls="short-field" labeltxt="Designation" showLabel={this.state.designation.length}>
-              <input
-                className="short-field"
-                type="text"
-                placeholder='Designation'
-                required
-                name="designation"
-                value={this.state.designation}
-                onChange={this.handleChange}
-              />
-            </Field>
-
-            <Field cls="short-field" labeltxt="Department" showLabel={this.state.department.length}>
-              <input
-                className="short-field"
-                type="text"
-                placeholder='Department'
-                required
-                name="department"
-                value={this.state.department}
-                onChange={this.handleChange}
-              />
-            </Field>
-
-            {this.state.investigatorType === "CoPI" && (
-              <Field labeltxt="Institute name (outside NITAP)" showLabel={this.state.insName.length}>
-                <input
-                  type="text"
-                  placeholder='Institute name (outside NITAP)'
-                  required
-                  name="insName"
-                  value={this.state.insName}
-                  onChange={this.handleChange}
-                />
-              </Field>
-            )}
-
-            <Field labeltxt="" showLabel={0}>
-              <input
-                type="button"
-                value="+"
-                className='list-add'
-                onClick={this.addPerson}
-              />
-            </Field>
-          </div>
-        )
-      }
+          <Field labeltxt="" showLabel={0}>
+            <input
+              type="button"
+              value="+"
+              className='list-add'
+              onClick={this.addPerson}
+            />
+          </Field>
+        </div>
+      )
     }
   }
 }

@@ -1,5 +1,5 @@
 import SchemaForm from '../formNew/SchemaForm'
-import { Categories } from '../../helpers'
+import { Categories } from '../../helpers/helpers'
 
 const FormFC = ({
     category, setCategory,

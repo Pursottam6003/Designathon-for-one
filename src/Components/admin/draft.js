@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Field } from "../form/Field"
 import { DndMain } from "../dnd/dndMain"
 import { fs, db } from "../../config/config"
-import { getBiMonth, BiMonthlyNames, CategoryTitles } from "../../helpers"
+import { getBiMonth, BiMonthlyNames, CategoryTitles } from "../../helpers/helpers"
 import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 import { collection, getDocs, query, where } from "firebase/firestore"
 import WidthErrorGif from '../../images/width.gif'

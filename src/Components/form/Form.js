@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { CategoryForm } from './CategoryForm'
-import { Categories } from '../../helpers'
+import { Categories } from '../../helpers/helpers'
 
 export class Form extends Component {
 

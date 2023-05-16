@@ -2,7 +2,7 @@ import { ReactComponent as DoneIcon } from '../../images/icons/done.svg'
 import { ReactComponent as RemoveIcon } from '../../images/icons/remove.svg'
 import { ReactComponent as UndoIcon } from '../../images/icons/undo.svg'
 import { ReactComponent as DeleteIcon } from '../../images/icons/delete.svg'
-import { CategoryTitles } from "../../helpers"
+import { CategoryTitles } from "../../helpers/helpers"
 import PreviewedInput from '../MdInput/MdInput'
 import styles from './Submission.module.scss';
 

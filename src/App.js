@@ -42,14 +42,14 @@ function App() {
           <Route path="/magazine" element={<Read />} />
           <Route path="/about" element={<About />} />
 
+          {/* UNSTABLE */}
           <Route path="/submit" element={(
-            <ProtectedComponent isAdmin={false} children={<Submit user={user.user} />} />
+            <ProtectedComponent isAdmin={false} children={<SubmitFC user={user.user} />} />
           )} />
 
-          {/* UNSTABLE */}
-          <Route path="/submitfc" element={(
-            <SubmitFC user={{displayName: 'Demo user', uid: 'abcd1234'}} />
-            // <ProtectedComponent isAdmin={false} children={<SubmitFC user={user.user} />} />
+          {/* OLD */}
+          <Route path="/submitcc" element={(
+            <ProtectedComponent isAdmin={false} children={<Submit user={user.user} />} />
           )} />
 
           <Route path="/activity" element={(
