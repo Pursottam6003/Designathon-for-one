@@ -6,7 +6,7 @@ import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 import { where, orderBy, setDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useFetchCollection } from "../../hooks/hooks"
 import { LoadingPage } from "../Loading"
-import { deleteFileFromStorage } from "../../helpers"
+import { deleteFileFromStorage } from "../../helpers/helpers"
 
 export const Submissions = () => {
   const [unsaved, setUnsaved] = useState({});
