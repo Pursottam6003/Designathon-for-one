@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react"
 import Submission from "../Submission"
-import { db } from '../../config/config'
+import { db, storage } from '../../config/config'
 import { arrayRemove } from "firebase/firestore"
 import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 import { where, orderBy, setDoc, doc, deleteDoc } from 'firebase/firestore'
 import { useFetchCollection } from "../../hooks/hooks"
 import { LoadingPage } from "../Loading"
+import { deleteFileFromStorage } from "../../helpers"
 
 export const Submissions = () => {
   const [unsaved, setUnsaved] = useState({});
+  const [storageDeletes, setStorageDeletes] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [lastUpdated, setLastUpdated] = useState(null);
 
@@ -51,17 +53,13 @@ export const Submissions = () => {
   }
 
   const reject = (id) => {
-    if (pending[id]) {
-      const ls = pending;
-      delete ls[id];
-      setPending({ ...ls });
-    } else {
-      const ls = pending;
-      delete ls[id];
-      setPending({ ...ls });
-    }
+    const ls = pending;
+    let urls = pending[id].imgUrl;
+    if (pending[id].brochureUrl) urls.push(pending[id].brochureUrl);
+    delete ls[id];
+    setPending({ ...ls });
 
-    handleUpdate(id, 'delete', true);
+    handleUpdate(id, 'delete', true, urls);
   }
 
   const update = (id, type, field, value) => {
@@ -80,15 +78,14 @@ export const Submissions = () => {
     handleUpdate(id, field, value);
   }
 
-  const handleUpdate = (id, key, value) => {
-    if (key === 'imgUrl') value = arrayRemove(value);
-    const updates = unsaved;
-    if (!updates[id]) {
-      updates[id] = { [key]: value };
+  const handleUpdate = (id, key, value, urls=[]) => {
+    if (key === 'imgUrl') {
+      setStorageDeletes([...storageDeletes, ...urls, value]);
+      value = arrayRemove(value);
     } else {
-      updates[id][key] = value;
+      setStorageDeletes([...storageDeletes, ...urls]);
     }
-    setUnsaved(updates);
+    setUnsaved(prevData => ({ ...prevData, [id]: { ...prevData[id], [key]: value } }))
   }
 
   const saveChanges = () => {
@@ -111,12 +108,23 @@ export const Submissions = () => {
         })
         .catch(err => { console.log(err) });
     })
+
+    // delete storage files
+    storageDeletes.forEach((url, i) => {
+      if (!url) return;
+      const ref = storage.refFromURL(url);
+      deleteFileFromStorage(ref);
+      if (i <= storageDeletes.length - 1) {
+        setStorageDeletes([]);
+      }
+    })
   }
 
   const refresh = () => {
     refetchPending();
     refetchApproved();
     setUnsaved({});
+    setStorageDeletes([]);
   }
 
   useEffect(() => {

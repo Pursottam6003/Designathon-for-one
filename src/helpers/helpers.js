@@ -1,3 +1,5 @@
+import { deleteObject } from "firebase/storage"
+
 const Categories = [
     '',
     'Memorandum of Understanding (MoU)',
@@ -76,4 +78,14 @@ const toCapital = (s) => {
     return s.slice(0, 1).toUpperCase() + s.slice(1, len).toLowerCase()
 }
 
-export { Categories, CategoryTitles, Sections, toCapital, BiMonthlyNames, getBiMonth } 
+const deleteFileFromStorage = async (ref) => {
+    try {
+        await deleteObject(ref);
+        console.log('Deleted file');
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
+export { Categories, CategoryTitles, Sections, toCapital, BiMonthlyNames, getBiMonth, deleteFileFromStorage } 
