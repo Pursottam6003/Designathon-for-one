@@ -16,6 +16,7 @@ const TextInput = ({ value = '',
       data-name={`${placeholder} ${required ? '*' : ''}`} 
       className={cx({ [styles.filled]: value })}>
       <input
+        className={styles['form-control']}
         pattern={pattern}
         title={title}
         type={type}
@@ -35,6 +36,7 @@ const TextareaInput = ({
 }) => (
   <div className={styles['form-field']}>
     <textarea
+      className={styles['form-control']}
       name={name}
       placeholder={placeholder}
       onChange={onChange}
@@ -48,6 +50,7 @@ const DateInput = ({
 }) => (
   <div className={styles['form-field']}>
     <input type={type}
+      className={styles['form-control']}
       name={name}
       value={value}
       onChange={onChange}
@@ -89,13 +92,15 @@ const DateRangeInput = ({ from, to, fromValue, toValue, onChange }) => (
   </div>
 )
 
-const FileInput = ({ name, onChange, required = false, accept = '*' }) => (
+const FileInput = ({ name, onChange, required = false, accept = '*', attrs }) => (
   <div className={styles['form-field']}>
     <input type="file"
+      className={styles['form-control']}
       name={name}
       onChange={onChange}
       required={required}
       accept={accept}
+      {...attrs}
     />
   </div>
 )

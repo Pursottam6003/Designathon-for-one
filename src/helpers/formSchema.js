@@ -25,7 +25,7 @@ const  schema = {
         { type: 'sectionHeading', label: 'Event Details' },
         { type: 'text', label: 'Event name', name: 'eventName', required: true, placeholder: 'Event name' },
         { type: 'text', label: 'Title of speech', name: 'title', required: true, placeholder: 'Title of speech' },
-        { type: 'text', label: 'Keynote/special lecture/inagural address etc.', name: 'lectureType', required: true, placeholder: 'Keynote/special lecture/inagural address etc.' },
+        { type: 'text', label: 'Keynote/special lecture/inagural addr etc', name: 'lectureType', required: true, placeholder: 'Keynote/special lecture/inagural addr etc' },
         { type: 'text', label: 'Organizer with address', name: 'organizer', required: true, placeholder: 'Organizer with address' },
         { type: 'sectionHeading', label: 'Date' },
         { type: 'date', label: 'Date', name: 'date', required: true },
@@ -39,8 +39,8 @@ const  schema = {
         { type: 'text', label: 'Institute name', name: 'insName', required: true, placeholder: 'Institute name' },
         { type: 'sectionHeading', label: 'Event Details' },
         { type: 'text', label: 'Title of speech', name: 'title', required: true, placeholder: 'Title of speech' },
-        { type: 'text', label: 'Keynote/special lecture/inagural address etc.', name: 'lectureType', required: true, placeholder: 'Keynote/special lecture/inagural address etc.' },
-        { type: 'text', label: 'Organizing member/department/section (NITAP)', name: 'organizer', required: true, placeholder: 'Organizing member/department/section (NITAP)' },
+        { type: 'text', label: 'Keynote/special lecture/inagural addr etc', name: 'lectureType', required: true, placeholder: 'Keynote/special lecture/inagural addr etc' },
+        { type: 'text', label: 'Organizing member/section (NITAP)', name: 'organizer', required: true, placeholder: 'Organizing member/section (NITAP)' },
         { type: 'sectionHeading', label: 'Date' },
         { type: 'date', label: 'Date', name: 'date', required: true },
     ],
@@ -71,9 +71,9 @@ const  schema = {
     // Patent
     '6': [
         { type: 'sectionHeading', label: 'Patent details' },
-        { type: 'text', label: 'Name of inventor to whom the patent was issued', name: 'invName', required: true, placeholder: 'Name of inventor to whom the patent was issued' },
-        { type: 'number', label: 'Year the patent was issued', name: 'year', required: true, placeholder: 'Year the patent was issued', attrs: { min: 1950 } },
-        { type: 'text', label: 'Unique patent identifier (patent number)', name: 'patId', required: true, placeholder: 'Unique patent identifier (patent number)' },
+        { type: 'text', label: 'Name of inventor', name: 'invName', required: true, placeholder: 'Name of inventor' },
+        { type: 'number', label: 'Year patent was issued', name: 'year', required: true, placeholder: 'Year patent was issued', attrs: { min: 1950 } },
+        { type: 'text', label: 'Unique patent ID (patent no.)', name: 'patId', required: true, placeholder: 'Unique patent ID (patent no.)' },
         { type: 'text', label: 'Patent office name', name: 'patOffice', required: true, placeholder: 'Patent office name' },
     ],
     // Research Papers
@@ -247,8 +247,8 @@ const  schema = {
     ],
     // Others
     '19': [
-        { type: 'sectionHeading', label: 'Faculty member details' },
-        { type: 'text', label: 'Mention activity title', name: 'activityTitle', required: true, placeholder: 'Mention activity title' },
+        { type: 'sectionHeading', label: 'Mention activity title' },
+        { type: 'text', label: 'Activity title', name: 'activityTitle', required: true, placeholder: 'Activity title' },
         { type: 'sectionHeading', label: 'Activity description' },
         { type: 'textarea', label: 'Activity description', name: 'desc', required: true, placeholder: 'Paste activity description here (Use Markdown for formating)' },
     ]

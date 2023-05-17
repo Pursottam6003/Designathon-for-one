@@ -123,6 +123,7 @@ const SubmitFC = (props) => {
   }
 
   const addPerson = (person) => {
+    console.log(person);
     const personType = person["type"].toLowerCase();
     setCategoryFormData((prevData) => ({ ...prevData, [personType]: prevData[personType] ? [...prevData[personType], person] : [person] }))
   }

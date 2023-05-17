@@ -1,7 +1,9 @@
 import { DateInput, DateRangeInput, FileInput, RadioInput, TextInput, TextareaInput } from "./InputComponents";
 import { List } from "../form/List";
-import { Person } from "../form/Person";
+import { PersonFC } from "./Person";
 import schema from "../../helpers/formSchema";
+import styles from './Form.module.scss'
+import cx from "classnames";
 
 const SchemaForm = ({ currentCategory, formData, handleInputChange, addPerson, removePerson }) => {
   const fields = schema[currentCategory];
@@ -9,7 +11,7 @@ const SchemaForm = ({ currentCategory, formData, handleInputChange, addPerson, r
   return (
     fields ? fields.map((field, i) => {
       if (field.type === 'sectionHeading') {
-        return <p key={i} className='sub-label'>{field.label}</p>
+        return <p key={i} className={cx(styles['section-heading'], 'sub-label')}>{field.label}</p>
       } else if (field.type === 'text' || field.type === 'number') {
         return (
           <TextInput
@@ -44,7 +46,7 @@ const SchemaForm = ({ currentCategory, formData, handleInputChange, addPerson, r
         )
       } else if (field.type === 'person') {
         return (
-          <Person key={i} personType={field.personType}
+          <PersonFC key={i} personType={field.personType}
             first={formData[field.itemType] ? formData[field.itemType].length === 0 : 1}
             handleSubmit={addPerson}
           />

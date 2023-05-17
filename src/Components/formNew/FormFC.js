@@ -1,5 +1,8 @@
 import SchemaForm from '../formNew/SchemaForm'
+import { FileInput, TextInput } from './InputComponents'
 import { Categories } from '../../helpers/helpers'
+import styles from './Form.module.scss'
+import cx from 'classnames'
 
 const FormFC = ({
     category, setCategory,
@@ -32,29 +35,33 @@ const FormFC = ({
         <form
             id="activityForm"
             autoComplete="off"
-            className="form-group"
+            className={cx(
+                // "form-group", 
+                styles.form)}
             style={{ display: display }}
         >
-            <div className="initial-form">
+            <div className={styles['form-header']}>
                 <input
                     type="text"
                     name="activityTitle"
-                    className="form-control form-title"
+                    className={cx(styles['form-title'], styles['form-control'])}
                     placeholder="New activity title here..."
                     onChange={(e) => { setActivityTitle(e.target.value) }}
                     value={activityTitle}
                 />
 
-                <select
-                    type="number"
-                    name="category"
-                    className="category-select form-control"
-                    required
-                    onChange={(e) => { setCategory(e.target.value) }}
-                    value={category}
-                >
-                    {categoriesSelect}
-                </select>
+                <div className={styles['form-select-container']}>
+                    <select
+                        type="number"
+                        name="category"
+                        className={cx(styles['category-select'], styles['form-control'])}
+                        required
+                        onChange={(e) => { setCategory(e.target.value) }}
+                        value={category}
+                    >
+                        {categoriesSelect}
+                    </select>
+                </div>
             </div>
 
             {parseInt(category) !== 0 && (<>
@@ -68,23 +75,19 @@ const FormFC = ({
                 />
 
                 <p className="sub-label">Upload images (optional)</p>
-                <input
+                <FileInput
                     key={`i${category}`}
-                    type="file"
-                    name="images"
-                    className="form-control"
-                    accept="image/png, image/webp, image/jpeg"
-                    multiple
+                    name='images'
+                    accept='image/png, image/webp, image/jpeg'
+                    required
+                    attrs={{multiple: true}}
                     onChange={handleFileInput}
                 />
-
                 {images.length !== 0 && (
-                    <input
-                        type="text"
-                        className="form-control"
-                        name="imgCaption"
+                    <TextInput
+                        name='imgCaption'
                         value={imgCaption}
-                        onChange={(e) => { setImgCaption(e.target.value) }}
+                        onChange={(e) => {setImgCaption(e.target.value)}}
                         placeholder="Image caption"
                     />
                 )}

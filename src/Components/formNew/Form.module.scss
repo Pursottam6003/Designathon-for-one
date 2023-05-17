@@ -1,3 +1,87 @@
+.form {
+    font-family: 'Open Sans', sans-serif;
+    --form-primary: rgb(57, 57, 160);
+    --form-muted: #ced4da;
+}
+
+.form-control {
+    box-shadow: none;
+    outline: none;
+    padding: 0.625rem 0.875rem;
+    border: solid 1px var(--form-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    font-family: inherit;
+    width: 100%;
+    position: relative;
+    background-color: transparent;
+    transition: 0.3s border-color ease;
+}
+
+.form-control:focus {
+    border: solid 2px var(--form-primary);
+    padding: calc(0.625rem - 1px) calc(0.875rem - 1px);
+}
+
+.form-header {
+    margin-bottom: 2rem;
+
+    .form-title {
+        font-size: 2.2rem;
+        line-height: 1;
+        font-weight: 600;
+        margin: 0 0 1.6rem;
+        padding: 0 0 0.0825rem;
+        border: none;
+        border-bottom: solid 2px transparent;
+    }
+
+    .form-title:focus {
+        border-bottom: solid 2px var(--form-primary);
+        padding: 0 0 0.0825rem;
+    }
+
+    .form-select-container {
+        position: relative;
+    }
+
+    .category-select {
+        outline: 0;
+        font-size: 1rem;
+        background-color: var(--gray-2);
+        padding-left: 1rem;
+        padding-right: 3.6rem;
+        border-radius: 8rem;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+    .form-select-container::after {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        right: 1.5em;
+        bottom: 0;
+        z-index: 2;
+        width: 1.8rem;
+        height: 1rem;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44.48486 26.48486'%3E%3Cpolygon fill='%231c1c1c' points='22.243 26.485 0 4.243 4.243 0 22.243 18 40.243 0 44.485 4.243 22.243 26.485'/%3E%3C/svg%3E%0A");
+        background-position: center;
+        background-size: 2em;
+        background-repeat: no-repeat;
+        content: "";
+        pointer-events: none;
+    }
+}
+
+.section-heading {
+    font-family: 'Crimson', serif;
+    font-weight: 550;
+    font-size: 1.2rem;
+    color: var(--gray-9);
+}
+
 .form-field {
     position: relative;
     display: block;
@@ -9,23 +93,6 @@
         color: #333;
     }
 
-    input,
-    select,
-    textarea {
-        box-shadow: none;
-        outline: none;
-        padding: 0.5rem 0.8rem;
-        border: solid 1px #ced4da;
-        font-family: inherit;
-        font-size: 14px;
-        line-height: 1.4;
-        font-family: inherit;
-        transition: 0.2s border ease;
-        width: 100%;
-        position: relative;
-        background-color: transparent;
-    }
-
     input[type="date"],
     input[type="month"] {
         width: fit-content;
@@ -34,17 +101,11 @@
     textarea {
         width: 100%;
         min-height: 128px;
-        font-family: monospace;
+        font-family: 'Zilla Slab', serif;
+        font-size: 1rem;
+        letter-spacing: 0.1ch;
+        line-height: 1.15;
         resize: vertical;
-    }
-
-    input::before {
-        content: attr(placeholder);
-        position: absolute;
-        top: 50%;
-        transform: translate3d(0, -50%, 0);
-        font: inherit;
-        transition: all 0.1s;
     }
 
     label::before {
@@ -53,6 +114,7 @@
         top: 50%;
         transform: translate3d(0, -50%, 0);
         font: inherit;
+        line-height: 1;
         color: #555;
         padding: 0.5rem 0.8rem;
         font-size: 14px;
@@ -63,7 +125,7 @@
     label:focus-within::before {
         color: var(--primary);
         font-size: 0.7rem;
-        transform: translate3d(0.5rem, -180%, 0);
+        transform: translate3d(0.5rem, -220%, 0);
         background-color: white;
         color: rgb(57, 57, 160);
         padding: 0 0.3rem 0.1rem;
@@ -80,12 +142,6 @@
         resize: vertical;
         padding: 0.8rem;
         min-height: 6rem;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-        border: solid 2px rgb(57, 57, 160);
     }
 
     .radio-group {
@@ -176,6 +232,62 @@
 
         >input {
             width: 100%;
+        }
+    }
+}
+
+.person-form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 1.2rem 0 2rem;
+
+    > * {
+        flex: 1;
+        flex-basis: fit-content;
+        margin: 0;
+        
+        .form-control {
+            border-left-color: transparent;
+            border-right-color: transparent;
+        }
+        .form-control:focus {
+            border-color: var(--form-primary);
+        }
+    }
+    > :first-child .form-control {
+        border-left-color: var(--form-muted);
+    }
+    > :last-child .form-control {
+        border-right-color: var(--form-muted);
+    }
+    > :first-child .form-control:focus, > :last-child .form-control:focus {
+        border-color: var(--form-primary);
+    }
+    > :last-child, > .select-field {
+        flex-shrink: 1;
+        flex-grow: 0;
+        flex-basis: fit-content;
+
+        > button {
+            user-select: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1;
+            background-color: transparent;
+            border: solid 1px var(--form-muted);
+            border-left-color: transparent;
+            width: 2.5rem;
+            height: 100%;
+            transition: 0.1s ease-in border-color, 0.1s ease-in background-color;
+            outline: 0;
+        }
+        > button:active {
+            background-color: rgb(240, 240, 253);
+            border: solid 2px var(--form-primary);
+        }
+        > button:focus {
+            border: solid 2px var(--form-primary);
         }
     }
 }
