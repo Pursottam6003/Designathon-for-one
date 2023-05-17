@@ -5,6 +5,7 @@ import NoPreview from '../NoPreview';
 import styles from './Preview.module.scss';
 import cx from 'classnames';
 import PreviewedInput from '../MdInput/MdInput'
+import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 
 const PreviewFC = ({ display, title, fields, category, images = [], imgCaption, submit, switchForm, loading=false }) => {
   const [desc, setDesc] = useState('');
@@ -245,9 +246,9 @@ Principal Investigator: ${ov('facultyName')}, ${ov('designation')}, ${ov('depart
               disabled={loading}
               onClick={handleSubmit} 
               className={cx(styles.btn, styles.submit)}>
-                {!loading ? 'Submit' : 'Please wait...'} 
+                {!loading ? 'Submit' : <SpinnerIcon /> } 
               </button>
-            <button onClick={updatePreview} className={cx(styles.btn, styles.reset)}>Reset</button>
+            <button disabled={loading} onClick={updatePreview} className={cx(styles.btn, styles.reset)}>Reset</button>
           </div>
         )}
       </>)}

@@ -35,9 +35,7 @@ const FormFC = ({
         <form
             id="activityForm"
             autoComplete="off"
-            className={cx(
-                // "form-group", 
-                styles.form)}
+            className={styles.form}
             style={{ display: display }}
         >
             <div className={styles['form-header']}>
@@ -79,7 +77,6 @@ const FormFC = ({
                     key={`i${category}`}
                     name='images'
                     accept='image/png, image/webp, image/jpeg'
-                    required
                     attrs={{multiple: true}}
                     onChange={handleFileInput}
                 />

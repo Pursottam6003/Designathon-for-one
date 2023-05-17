@@ -89,61 +89,90 @@
 
     .actions {
         display: flex;
-        justify-content: space-around;
-        --color: rgb(3, 120, 124);
+        justify-content: center;
+        --color: var(--gray-7);
+        --bg: transparent;
 
         .btn {
             border-radius: 2rem;
             cursor: pointer;
             font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-            font-size: 0.875rem;
+            font-size: 1rem;
             font-weight: 600;
-            height: 2rem;
+            border-radius: 0;
             min-width: 5rem;
             outline: transparent;
-            padding: 0px 1rem;
+            padding: 0.625rem 2rem;
             position: relative;
             text-align: center;
             text-decoration: none;
-            border: 1px solid var(--color);
-            background-color: transparent;
+            border: 2px solid var(--color);
+            background-color: var(--bg);
             color: var(--color);
             user-select: none;
             transition: all 200ms ease;
+            max-width: 12rem;
+            flex-grow: 1;
+            width: 100%;
         }
 
-        .btn:hover {
-            background-color: var(--color);
-            color: #fff;
+        .btn:first-child {
+            border-top-left-radius: 10rem;
+            border-bottom-left-radius: 10rem;
+            margin-right: 2px;
+        }
+
+        .btn:last-child {
+            border-top-right-radius: 10rem;
+            border-bottom-right-radius: 10rem;
         }
 
         .btn.submit {
-            --color: rgb(117, 104, 84);
+            --bg: rgb(117, 104, 84);
+            --color: #fff;
+            border-color: var(--bg);
         }
 
-        .btn.submit:active {
-            --color: rgb(105, 94, 78);
-            box-shadow: 0 3px 8px -4px #222222b0;
+        .btn:hover {
+            --color: white;
+            --bg: var(--gray-8);
+            border-color: var(--bg);
         }
 
-        .btn.reset {
-            --color: #cb5c5c;
+        .btn:active {
+            --color: white;
+            --bg: var(--gray-9);
+            border-color: var(--gray-9);
         }
 
-        .btn.reset:active {
-            --color: #b34f4f;
-            box-shadow: 0 3px 8px -4px #222222b0;
+        .btn[disabled], .btn[disabled]:hover {
+            --color: var(--gray-6);
+            --bg: transparent;
+            border-color: var(--color);
+            cursor: not-allowed;
         }
 
-        .btn.submit[disabled] {
-            --color: rgb(117, 104, 84);
-            cursor: wait;
+        .btn.submit[disabled], .btn.submit[disabled]:hover {
+            --color: white;
+            --bg: var(--gray-10);
+            border-color: var(--bg);
         }
 
-        .btn.submit[disabled]:hover {
-            background-color: transparent;
-            color: var(--color);
+        .btn {
+            position: relative;
+            >svg {
+                fill: currentColor;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
         }
+
+        // .btn.submit[disabled]:hover {
+        //     background-color: transparent;
+        //     color: var(--color);
+        // }
     }
 
     .image-preview {

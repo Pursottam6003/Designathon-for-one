@@ -3,7 +3,7 @@ import styles from './Form.module.scss';
 import cx from "classnames";
 import { TextInput } from "./InputComponents";
 
-export const PersonFC = ({ personType, first, handleSubmit }) => {
+export const PersonFC = ({ personType, first=false, handleSubmit }) => {
   const [state, setState] = useState({});
 
   const handleChange = (e) => {
@@ -13,6 +13,7 @@ export const PersonFC = ({ personType, first, handleSubmit }) => {
 
   const checkValid = (person) => {
     if (person.type === 'author') {
+      console.log(person);
       return person.lastName && person.firstInitials
     } else if (person.type === 'PI' || person.type === 'CoPI') {
       return person.name && person.designation && person.department
@@ -24,7 +25,8 @@ export const PersonFC = ({ personType, first, handleSubmit }) => {
     e.preventDefault();
     console.log(state);
     if (!checkValid(state)) return;
-    setState({});
+    console.log("valid")
+    setState(prevData => ({ type: prevData.type }));
     handleSubmit(state);
   }
 
@@ -96,8 +98,7 @@ export const PersonFC = ({ personType, first, handleSubmit }) => {
           <TextInput
             name="insName"
             onChange={handleChange}
-            placeholder="Institute name (outsite NITAP)"
-            required={first}
+            placeholder="Institute (if not NITAP)"
             value={state.insName}
           />
         )}

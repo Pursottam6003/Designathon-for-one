@@ -49,7 +49,6 @@ const SubmitFC = (props) => {
 
       try {
         await setDoc(doc(collection(db, 'submissions')), uploadObj)
-        // alert("Successfully uploaded");
         setCategory(0);
         setAlertMessage('Submitted successfully');
         setAlertSeverity('success');
