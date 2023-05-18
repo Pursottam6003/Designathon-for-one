@@ -34,6 +34,10 @@
         padding: 0 0 0.0825rem;
         border: none;
         border-bottom: solid 2px transparent;
+
+        @media screen and (max-width: 600px) {
+            font-size: 1.8rem;
+        }
     }
 
     .form-title:focus {

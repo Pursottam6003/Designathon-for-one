@@ -88,6 +88,7 @@ const PreviewFc = ({ display, category, fields, images = [], imgCaption, submit,
 
   useEffect(() => {
     updatePreview();
+  // eslint-disable-next-line
   }, [fields])
 
   return (

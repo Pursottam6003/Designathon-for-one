@@ -748,6 +748,7 @@ h3 {
           padding: 0.6rem;
           cursor: pointer;
           transition: 0.1s border ease, 0.15s background-color ease;
+          -webkit-tap-highlight-color: transparent;
         }
 
         .tab:not(.active):hover {
