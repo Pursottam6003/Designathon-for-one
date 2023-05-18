@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import FormFC from '../Components/formNew/FormFC'
-import PreviewFC from '../Components/formNew/PreviewFC'
+// import PreviewFC from '../Components/formNew/PreviewFC'
+import PreviewFC from '../Components/formNew/PreviewFCNew'
 import { storage, db } from '../config/config'
 import { arrayUnion, collection, doc, setDoc } from 'firebase/firestore'
 import { Categories } from '../helpers/helpers'
@@ -122,7 +123,6 @@ const SubmitFC = (props) => {
   }
 
   const addPerson = (person) => {
-    console.log(person);
     const personType = person["type"].toLowerCase();
     setCategoryFormData((prevData) => ({ ...prevData, [personType]: prevData[personType] ? [...prevData[personType], person] : [person] }))
   }

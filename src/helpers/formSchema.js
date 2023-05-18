@@ -14,7 +14,7 @@ const  schema = {
         { type: 'text', label: 'Members from partner organization', name: 'outMembers', required: true, placeholder: 'Members from partner organization' },
         { type: 'text', label: 'Other renowned members', name: 'otherMembers', required: true, placeholder: 'Other renowned members' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'date', label: 'Date', name: 'date', required: true },
+        { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true },
     ],
     // Invited/Expert Lectures given by NIT AP members
     '2': [
@@ -28,7 +28,7 @@ const  schema = {
         { type: 'text', label: 'Keynote/special lecture/inagural addr etc', name: 'lectureType', required: true, placeholder: 'Keynote/special lecture/inagural addr etc' },
         { type: 'text', label: 'Organizer with address', name: 'organizer', required: true, placeholder: 'Organizer with address' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'date', label: 'Date', name: 'date', required: true },
+        { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true },
     ],
     // Visits and Invited/Expert Lectures to NITAP from other insitutes
     '3': [
@@ -42,19 +42,19 @@ const  schema = {
         { type: 'text', label: 'Keynote/special lecture/inagural addr etc', name: 'lectureType', required: true, placeholder: 'Keynote/special lecture/inagural addr etc' },
         { type: 'text', label: 'Organizing member/section (NITAP)', name: 'organizer', required: true, placeholder: 'Organizing member/section (NITAP)' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'date', label: 'Date', name: 'date', required: true },
+        { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true },
     ],
     // External Funded Projects
     '4': [
         { type: 'sectionHeading', label: 'Principal and Co-principal Investigators\' details' },
-        { type: 'list', itemType: 'PI' },
-        { type: 'list', itemType: 'CoPI' },
+        { type: 'list', itemType: 'PI', name: 'pi', label: 'Principal Investigators', placeholder: 'Principal Investigators' },
+        { type: 'list', itemType: 'CoPI', name: 'copi', label: 'Co-principal Investigators', placeholder: '' },
         { type: 'person', personType: 'investigator', itemType: 'pi' },
         { type: 'sectionHeading', label: 'Person details' },
         { type: 'text', label: 'Project title', name: 'title', required: true, placeholder: 'Project title' },
         { type: 'text', label: 'Funding Agency', name: 'fundAgency', required: true, placeholder: 'Funding Agency' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'date', label: 'Date', name: 'date', required: true },
+        { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true },
     ],
     // Consultancy Projects
     '5': [
@@ -66,7 +66,7 @@ const  schema = {
         { type: 'text', label: 'Nature/title of the work/job', name: 'title', required: true, placeholder: 'Nature/title of the work/job' },
         { type: 'text', label: 'Sponsored agency', name: 'fundAgency', required: true, placeholder: 'Sponsored agency' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'date', label: 'Date', name: 'date', required: true },
+        { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true },
     ],
     // Patent
     '6': [
@@ -85,7 +85,7 @@ const  schema = {
             ]
         },
         { type: 'sectionHeading', label: 'Author details' },
-        { type: 'list', itemType: 'author' },
+        { type: 'list', itemType: 'author', name: 'author', label: 'Authors', placeholder: 'Author(s)' },
         { type: 'person', personType: 'author', itemType: 'author' },
         { type: 'sectionHeading', label: 'Research details' },
         { type: 'number', label: 'Publication year', name: 'year', required: true, placeholder: 'Publication year', attrs: { min: 1950 } },
@@ -99,7 +99,7 @@ const  schema = {
     // Books
     '8': [
         { type: 'sectionHeading', label: 'Author details' },
-        { type: 'list', itemType: 'author' },
+        { type: 'list', itemType: 'author', name: 'author', label: 'Authors', placeholder: 'Author(s)' },
         { type: 'person', personType: 'author', itemType: 'author' },
         { type: 'sectionHeading', label: 'Book details' },
         { type: 'number', label: 'Publication year', name: 'year', required: true, placeholder: 'Publication year', attrs: { min: 1950 } },
@@ -110,7 +110,7 @@ const  schema = {
     // Conference Paper
     '9': [
         { type: 'sectionHeading', label: 'Author details' },
-        { type: 'list', itemType: 'author' },
+        { type: 'list', itemType: 'author', name: 'author', label: 'Authors', placeholder: 'Author(s)' },
         { type: 'person', personType: 'author' },
         { type: 'sectionHeading', label: 'Research details' },
         {
@@ -123,12 +123,12 @@ const  schema = {
         { type: 'text', label: 'Location of conference', name: 'place', required: true, placeholder: 'Location of conference' },
         { type: 'text', label: 'DOI (if available)', name: 'doiUrl', placeholder: 'DOI (if available)' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', placeholder: '', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
     ],
     // Book Chapters
     '10': [
         { type: 'sectionHeading', label: 'Author details' },
-        { type: 'list', itemType: 'author' },
+        { type: 'list', itemType: 'author', name: 'author', label: 'Authors', placeholder: 'Author(s)' },
         { type: 'person', personType: 'author' },
         { type: 'sectionHeading', label: 'Publication details' },
         { type: 'text', label: 'Chapter title', name: 'title', required: true, placeholder: 'Chapter title' },
@@ -139,7 +139,7 @@ const  schema = {
         { type: 'text', label: 'Publisher', name: 'publisher', required: true, placeholder: 'Publisher' },
         { type: 'text', label: 'DOI (if available)', name: 'doiUrl', placeholder: 'DOI (if available)' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'date', label: 'Date', name: 'date', required: true },
+        { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true },
     ],
     // Faculty Empowerment Programmes
     '11': [
@@ -152,7 +152,7 @@ const  schema = {
         { type: 'text', label: 'Title of the programme', name: 'title', required: true, placeholder: 'Title of the programme' },
         { type: 'text', label: 'Organising institute name with address', name: 'organizer', required: true, placeholder: 'Organising institute name with address' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
     ],
     // Reviewers
     '12': [
@@ -164,7 +164,7 @@ const  schema = {
         { type: 'text', label: 'Journal Name', name: 'journalTitle', required: true, placeholder: 'Journal Name' },
         { type: 'text', label: 'Publishing House', name: 'publisher', required: true, placeholder: 'Publishing House' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'date', label: 'Date', name: 'date', required: true },
+        { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true },
     ],
     // Session Chairs
     '13': [
@@ -176,7 +176,7 @@ const  schema = {
         { type: 'text', label: 'Name of workshop/seminar/short term course etc.', name: 'eventName', required: true, placeholder: 'Name of workshop/seminar/short term course etc.' },
         { type: 'text', label: 'Organising institute name with address', name: 'organizer', required: true, placeholder: 'Organising institute name with address' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
     ],
     // Winners of Competition
     '14': [
@@ -191,7 +191,7 @@ const  schema = {
         { type: 'text', label: 'Organising section/institute name', name: 'organizer', required: true, placeholder: 'Organising section/institute name' },
         { type: 'text', label: 'Institute Name if any collaboration/association (optional)', name: 'collaboration', required: true, placeholder: 'Institute Name if any collaboration/association (optional)' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'date', label: 'Date', name: 'date', required: true },
+        { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true },
     ],
     // Workshop / FDP / Conference / seminar / short term course etc.
     '15': [
@@ -203,7 +203,7 @@ const  schema = {
         { type: 'text', label: 'Title (theme)', name: 'theme', required: true, placeholder: 'Title (theme)' },
         { type: 'text', label: 'Place Name', name: 'place', required: true, placeholder: 'Place Name' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
     ],
     // Outreach Activity
     '16': [
@@ -215,7 +215,7 @@ const  schema = {
         { type: 'text', label: 'Designation', name: 'designation', required: true, placeholder: 'Designation' },
         { type: 'text', label: 'If collaboration mention name and full address', name: 'collaboration', placeholder: 'If collaboration mention name and full address' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
     ],
     // Announcement
     '17': [
@@ -229,7 +229,7 @@ const  schema = {
         { type: 'sectionHeading', label: 'Further details' },
         { type: 'text', label: 'Event link', name: 'eventLink', required: false, placeholder: 'Event link' },
         { type: 'sectionHeading', label: 'Date' },
-        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
+        { type: 'dateRange', from: { type: 'date', label: 'Date', name: 'date', placeholder: 'Date', required: true }, to: { type: 'date', label: 'Date', name: 'toDate', required: false } },
         { type: 'sectionHeading', label: 'Upload Brochure (pdf/jpg/png)' },
         { type: 'file', label: 'Upload Brochure', name: 'eventBrochure', required: true, placeholder: 'Upload Brochure', accept: 'application/pdf, image/png, image/webp, image/jpeg' },
     ],
@@ -243,7 +243,7 @@ const  schema = {
         { type: 'text', label: 'Award name', name: 'title', required: true, placeholder: 'Award name' },
         { type: 'text', label: 'Award Issuing Organization', name: 'fundAgency', required: true, placeholder: 'Award Issuing Organization' },
         { type: 'sectionHeading', label: 'Date (Optional)' },
-        { type: 'month', label: 'Date', name: 'date', required: false },
+        { type: 'month', label: 'Date', name: 'date', placeholder: 'Date', required: false },
     ],
     // Others
     '19': [
