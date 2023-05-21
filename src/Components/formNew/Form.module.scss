@@ -116,6 +116,12 @@
         content: attr(data-name);
         position: absolute;
         top: 50%;
+        left: 0;
+        right: 0;
+        max-width: fit-content;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         transform: translate3d(0, -50%, 0);
         font: inherit;
         line-height: 1;
@@ -129,11 +135,14 @@
     label:focus-within::before {
         color: var(--primary);
         font-size: 0.7rem;
-        transform: translate3d(0.5rem, -220%, 0);
+        transform: translate3d(0.5rem, -210%, 0);
         background-color: white;
-        color: rgb(57, 57, 160);
         padding: 0 0.3rem 0.1rem;
         z-index: 1;
+    }
+
+    label:focus-within::before {
+        color: rgb(57, 57, 160);
     }
 
     option {

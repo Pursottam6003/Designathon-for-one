@@ -44,8 +44,8 @@ function App() {
 
           {/* UNSTABLE */}
           <Route path="/submit" element={(
-            <ProtectedComponent isAdmin={false} children={<SubmitFC user={user.user} />} />
-            // <SubmitFC user={{ displayName: 'demo', uid: 'demouid' }} />
+            // <ProtectedComponent isAdmin={false} children={<SubmitFC user={user.user} />} />
+            <SubmitFC user={{ displayName: 'demo', uid: 'demouid' }} />
           )} />
 
           {/* OLD */}
