@@ -83,10 +83,7 @@ const SubmitFC = (props) => {
         () => {
           storage.ref(`Brochure/${Categories[category_Id]}/`).child(`${eventBrochure.name.split(/(\\|\/)/g).pop()}`).getDownloadURL().then(url => {
             brochureUrl = url
-            uploadOnFirestore();
           })
-
-          resetForm();
         }
       )
     }
@@ -122,8 +119,6 @@ const SubmitFC = (props) => {
     setCategoryFormData({ activityTitle: activityTitle });
     setImages([]);
     setImgCaption('');
-    setAlertMessage('');
-    setAlertSeverity('info');
   }
 
   const addPerson = (person) => {
@@ -154,6 +149,7 @@ const SubmitFC = (props) => {
   }, [activityTitle])
 
   useEffect(() => {
+    if (category === 0) setActivityTitle('');
     resetForm();
     // eslint-disable-next-line
   }, [category])

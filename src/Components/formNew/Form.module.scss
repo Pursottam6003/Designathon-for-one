@@ -36,7 +36,7 @@
     }
 
     .form-title:hover {
-        border-bottom: solid 2px #555;
+        border-bottom: solid 2px rgba(0, 0, 0, 0.25);
     }
 
     .form-title:focus {
@@ -62,13 +62,11 @@
     }
 
     .category-select:hover {
-        border: solid 1px #555;
+        border: solid 1px rgba(0, 0, 0, 0.25);
     }
 
     .category-select:focus {
-        border: solid 2px var(--form-primary);
-        padding-top: calc(0.625rem - 1px);
-        padding-bottom: calc(0.625rem - 1px);
+        border: solid 1px var(--form-primary);
     }
 
     .form-select-container::after {

@@ -19,7 +19,10 @@ const Alert = ({ severity = "info", message = "", handleDismiss = null }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        if (!message.length) return;
+        if (!message.length) {
+            setIsVisible(false);
+            return;
+        }
 
         setIsVisible(true);
         const timeout = setTimeout(() => {

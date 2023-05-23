@@ -8,7 +8,7 @@
     --warning-color: rgb(102, 60, 0);
     --error-color: rgb(95, 33, 32);
 
-    --bg: rgba(240, 240, 240, 0.6);
+    --bg: rgba(255, 255, 255, 0.6);
     --color: #444;
     position: fixed;
     top: calc(var(--nav-height) + 1.2rem);
@@ -26,7 +26,6 @@
     border-left: solid 4px var(--color);
     background-color: var(--bg);
     color: var(--color);
-    backdrop-filter: blur(4px);
     font-family: "Open Sans", sans-serif;
     transform: translateX(100%);
     transition: 0.3s all cubic-bezier(.86, 0, .07, .995);
