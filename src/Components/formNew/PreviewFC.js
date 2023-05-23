@@ -211,7 +211,7 @@ Principal Investigator: ${ov('facultyName')}, ${ov('designation')}, ${ov('depart
       {parseInt(category) === 0 ? <NoPreview /> : (<>
         <div className={cx(styles['formatted-preview-wrapper'], { [styles.active]: editing })}>
           <div className={styles.previews}>
-            <h1>{title ? title : CategoryTitles[parseInt(category)]}</h1>
+            <h1>{title ? title : CategoryTitles[parseInt(category)]?.length > 0 ? CategoryTitles[parseInt(category)] : 'Untitled' }</h1>
             <PreviewedInput
               placeholder='Your output will show here'
               value={desc}

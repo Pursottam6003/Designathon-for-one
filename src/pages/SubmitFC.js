@@ -54,7 +54,7 @@ const SubmitFC = (props) => {
         setAlertMessage('Submitted successfully');
         setAlertSeverity('success');
         resetForm();
-      } catch(err) {
+      } catch (err) {
         console.error(err);
         setAlertMessage(err.message);
         setAlertSeverity('error');
@@ -76,6 +76,8 @@ const SubmitFC = (props) => {
         console.log(progress);
       },
         (error) => {
+          setAlertMessage(error.message);
+          setAlertSeverity('error');
           console.log(error);
         },
         () => {
@@ -117,9 +119,11 @@ const SubmitFC = (props) => {
   }
 
   const resetForm = () => {
-    setCategoryFormData({activityTitle: activityTitle});
+    setCategoryFormData({ activityTitle: activityTitle });
     setImages([]);
     setImgCaption('');
+    setAlertMessage('');
+    setAlertSeverity('info');
   }
 
   const addPerson = (person) => {

@@ -11,9 +11,9 @@ const TextInput = ({ value = '',
   attrs = {},
   required = false
 }) => (
-  <div className={styles['form-field']}>
-    <label htmlFor={name} 
-      data-name={`${placeholder} ${required ? '*' : ''}`} 
+  <div className={cx(styles['form-field'], {[styles.filled]: value })}>
+    <label htmlFor={name}
+      data-name={`${placeholder} ${required ? '*' : ''}`}
       className={cx({ [styles.filled]: value })}>
       <input
         className={styles['form-control']}
@@ -28,25 +28,38 @@ const TextInput = ({ value = '',
         onChange={(e) => { onChange(e) }}
       />
     </label>
+    <fieldset aria-hidden="true">
+      <legend>
+        <span>{`${placeholder} ${required ? '*' : ''}`}</span>
+      </legend>
+    </fieldset>
   </div>
 )
 
 const TextareaInput = ({
-  name, placeholder, onChange, required = false
+  name, placeholder, onChange, required = false, value
 }) => (
-  <div className={styles['form-field']}>
-    <textarea
-      className={styles['form-control']}
-      name={name}
-      placeholder={placeholder}
-      onChange={onChange}
-      required={required}
-    />
+  <div className={cx(styles['form-field'], styles['textarea-field'])}>
+    <label htmlFor={name}
+      data-name={`${placeholder} ${required ? '*' : ''}`}
+      className={cx({ [styles.filled]: value })}>
+      <textarea
+        className={styles['form-control']}
+        name={name}
+        onChange={onChange}
+        required={required}
+      />
+    </label>
+    <fieldset aria-hidden="true">
+      <legend>
+        <span>{`${placeholder} ${required ? '*' : ''}`}</span>
+      </legend>
+    </fieldset>
   </div>
 )
 
 const DateInput = ({
-  name, onChange, required = false, value='', type
+  name, onChange, required = false, value = '', type
 }) => (
   <div className={styles['form-field']}>
     <input type={type}
@@ -56,31 +69,35 @@ const DateInput = ({
       onChange={onChange}
       required={required}
     />
+    <fieldset aria-hidden="true">
+      <legend >
+      </legend>
+    </fieldset>
   </div>
 )
 
 const RadioInput = ({
-  name, label, onChange, required, radios, 
+  name, label, onChange, required, radios,
 }) => (
   <div className={styles['form-field']}>
     <label htmlFor={name}>{label}</label>
-      <div className={styles['radio-group']}>
-        {radios.map((radioInp, i) => (
-          <div key={i} className={styles['radio-option']}>
-            <input className={styles['radio']}
-              type="radio"
-              value={radioInp.value}
-              defaultChecked={i === 0}
-              required={required}
-              onChange={onChange}
-              name={name}
-            />
-            <label className={styles['radio-label']} htmlFor={radioInp.value}>
-             {radioInp.label}
-            </label>
-          </div>
-        ))}
-      </div>
+    <div className={styles['radio-group']}>
+      {radios.map((radioInp, i) => (
+        <div key={i} className={styles['radio-option']}>
+          <input className={styles['radio']}
+            type="radio"
+            value={radioInp.value}
+            defaultChecked={i === 0}
+            required={required}
+            onChange={onChange}
+            name={name}
+          />
+          <label className={styles['radio-label']} htmlFor={radioInp.value}>
+            {radioInp.label}
+          </label>
+        </div>
+      ))}
+    </div>
   </div>
 )
 
@@ -102,6 +119,10 @@ const FileInput = ({ name, onChange, required = false, accept = '*', attrs }) =>
       accept={accept}
       {...attrs}
     />
+    <fieldset aria-hidden="true">
+      <legend >
+      </legend>
+    </fieldset>
   </div>
 )
 

@@ -13,7 +13,6 @@ export const PersonFC = ({ personType, first=false, handleSubmit }) => {
 
   const checkValid = (person) => {
     if (person.type === 'author') {
-      console.log(person);
       return person.lastName && person.firstInitials
     } else if (person.type === 'PI' || person.type === 'CoPI') {
       return person.name && person.designation && person.department
@@ -23,9 +22,7 @@ export const PersonFC = ({ personType, first=false, handleSubmit }) => {
 
   const addPerson = (e) => {
     e.preventDefault();
-    console.log(state);
     if (!checkValid(state)) return;
-    console.log("valid")
     setState(prevData => ({ type: prevData.type }));
     handleSubmit(state);
   }

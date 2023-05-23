@@ -77,14 +77,14 @@ const FormFC = ({
                     key={`i${category}`}
                     name='images'
                     accept='image/png, image/webp, image/jpeg'
-                    attrs={{multiple: true}}
+                    attrs={{ multiple: true }}
                     onChange={handleFileInput}
                 />
                 {images.length !== 0 && (
                     <TextInput
                         name='imgCaption'
                         value={imgCaption}
-                        onChange={(e) => {setImgCaption(e.target.value)}}
+                        onChange={(e) => { setImgCaption(e.target.value) }}
                         placeholder="Image caption"
                     />
                 )}

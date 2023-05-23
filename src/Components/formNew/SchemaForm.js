@@ -59,6 +59,7 @@ const SchemaForm = ({ currentCategory, formData, handleInputChange, addPerson, r
         return <TextareaInput
           key={i}
           {...field}
+          value={formData[field.name]}
           onChange={handleInputChange}
         />
       }
