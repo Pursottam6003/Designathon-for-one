@@ -9,6 +9,9 @@ export const Layout = ({ children, user, logoutUser, checkingStatus }) => {
 
   if (location.pathname.startsWith('/admin')) {
     return (<>
+      <p className="new-site">
+        <span>This site is no longer updated.</span>&nbsp;<span>Go to 👉 <a href="https://technodaya.vercel.app">technodaya.vercel.app</a></span>
+      </p>
       <Navbar user={user} logoutUser={logoutUser} checkingStatus={checkingStatus} />
       <main className={styles['main-no-ftr']}>
         {children}
@@ -17,6 +20,9 @@ export const Layout = ({ children, user, logoutUser, checkingStatus }) => {
   }
 
   return (<>
+    <p className="new-site">
+      <span>This site is no longer updated.</span>&nbsp;<span>Go to 👉 <a href="https://technodaya.vercel.app">technodaya.vercel.app</a></span>
+    </p>
     <Navbar user={user} logoutUser={logoutUser} checkingStatus={checkingStatus} />
     <main className={styles.main}>
       {children}

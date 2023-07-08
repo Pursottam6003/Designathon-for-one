@@ -27,8 +27,7 @@ firebase.initializeApp(firebaseConfig);
 // variables that it will reaturn after calling import
 const auth = firebase.auth()
 const fs = firebase.firestore();
-const storage= firebase.storage();
-
+const storage = firebase.storage();
 
 // redoing from docs
 const app = initializeApp(firebaseConfig);
@@ -36,6 +35,6 @@ const db = getFirestore(app);
 const reauth = getAuth(app);
 
 export {
-  auth,fs,storage,
+  auth, fs, storage,
   app, db, reauth
 }

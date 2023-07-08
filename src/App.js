@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Layout } from "./Components/layout/Layout"
 
-import { Home, Read, Issue, About, Submit, SubmitFC, AdminConsole, Login, Activity, NotFound } from './pages'
+import { Home, Read, Issue, About, SubmitFC, AdminConsole, Login, Activity, NotFound } from './pages'
 import ProtectedComponent from "./Components/ProtectedRoute";
 
 // import { Signup } from "./Components/SignUp";
@@ -42,17 +42,17 @@ function App() {
           <Route path="/magazine" element={<Read />} />
           <Route path="/about" element={<About />} />
 
-          {/* UNSTABLE */}
+          {/* New */}
           <Route path="/submit" element={(
             <ProtectedComponent isAdmin={false} children={<SubmitFC user={user.user} />} />
             // <SubmitFC user={{ displayName: 'demo', uid: 'demouid' }} />
           )} />
 
-          {/* OLD */}
-          <Route path="/submitcc" element={(
+          {/* legacy */}
+          {/* <Route path="/submitcc" element={(
             <ProtectedComponent isAdmin={false} children={<Submit user={user.user} />} />
             // <Submit user={{ displayName: 'demo', uid: 'demouid' }} />
-          )} />
+          )} /> */}
 
           <Route path="/activity" element={(
             <ProtectedComponent isAdmin={false} children={<Activity displayName={user.user ? user.user.displayName : ''} uid={user.user ? user.user.uid : null} />} />

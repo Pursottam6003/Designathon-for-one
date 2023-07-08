@@ -4,6 +4,9 @@
     --form-muted: #ced4da;
 }
 
+$form-primary: rgb(57, 57, 160);
+$form-muted: #ced4da;
+
 .form-control {
     box-shadow: none;
     outline: none;
@@ -118,7 +121,7 @@
         padding: 0 0.5rem;
         pointer-events: none;
         border-radius: inherit;
-        border: solid 1px var(--form-muted);
+        border: solid 1px $form-muted;
         overflow: hidden;
         min-width: 0%;
         transition: 0.3s border-color ease;
@@ -183,7 +186,7 @@
     label.filled::before,
     label:focus-within::before {
         color: var(--primary);
-        transform: translate3d(0.5rem, -50%, 0);
+        transform: translate3d(0.5rem, -40%, 0);
         font-size: 0.7rem;
         background-color: transparent;
         padding: 0 0.3rem 0.1rem;
@@ -376,7 +379,7 @@
 }
 
 .form-field:focus-within fieldset {
-    border: solid 2px var(--form-primary);
+    border: solid 2px $form-primary;
 
     >legend {
         max-width: 100%;

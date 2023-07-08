@@ -1,11 +1,13 @@
 import React, { Component } from "react"
-import { Field } from "../form/Field"
 import { DndMain } from "../dnd/dndMain"
 import { fs, db } from "../../config/config"
 import { getBiMonth, BiMonthlyNames, CategoryTitles } from "../../helpers/helpers"
 import { ReactComponent as SpinnerIcon } from '../../images/icons/spinner.svg'
 import { collection, getDocs, query, where } from "firebase/firestore"
 import WidthErrorGif from '../../images/width.gif'
+import { DateInput, TextInput } from "../formNew/InputComponents"
+import styles from '../formNew/Form.module.scss'
+import cx from "classnames"
 
 const DraftForm = ({ title, vol, iss, month, handleChange }) => {
   const handleInput = (e) => {
@@ -14,19 +16,22 @@ const DraftForm = ({ title, vol, iss, month, handleChange }) => {
   }
 
   return (
-    <form id="draftForm" className="draft-form form-group container">
-      <input type="text" required name="title" className='form-control form-title' placeholder="Title of newsletter" onChange={handleInput} value={title} />
-      <p className='sub-label'>Issue details</p>
-      <Field labeltxt="Volume no." showLabel={vol.length}>
-        <input type="text" required className='form-control' name="vol" value={vol} onChange={handleInput} placeholder="Volume no. (in Romans)" />
-      </Field>
-      <Field labeltxt="Issue" showLabel={iss.length}>
-        <input type="number" min="1" required className='form-control' name="iss" value={iss} onChange={handleInput} placeholder="Issue" />
-      </Field>
-      <p className='sub-label'>Month and year</p>
-      <Field labeltxt="Month" showLabel={month.length}>
-        <input type="month" className='form-control' required name="month" value={month} onChange={handleInput} placeholder="Month" />
-      </Field>
+    <form id="draftForm" className={cx("container", 'draft-form', styles.form)}>
+      <div className={styles['form-header']}>
+        <input
+          type="text"
+          name="title"
+          className={cx(styles['form-title'], styles['form-control'])}
+          placeholder="Title of newsletter"
+          onChange={handleInput}
+          value={title}
+        />
+      </div>
+      <p className={styles['section-heading']}>Issue details</p>
+      <TextInput required={true} name='vol' placeholder='Volume no. (in Romans)' onChange={handleInput} value={vol} />
+      <TextInput type="number" attrs={{ min: 1 }} required={true} name='iss' placeholder='Issue' onChange={handleInput} value={iss} />
+      <p className={styles['section-heading']}>Month and year</p>
+      <DateInput type="month" required={true} name='month' onChange={handleInput} value={month} />
     </form>
   )
 }

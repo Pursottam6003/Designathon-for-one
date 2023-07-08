@@ -648,10 +648,10 @@ h3 {
     height: 0;
     flex: auto;
 
-    .draft-form {
-      input {
-        max-width: 500px;
-      }
+    .draft-form.container {
+      max-width: 500px;
+      margin-left: 0;
+      margin-right: auto;
 
       .form-title.form-control {
         border-bottom-color: #ced4da;
@@ -1519,5 +1519,37 @@ table {
 
   @media screen and (max-width: 548px) {
     display: block;
+  }
+}
+
+.new-site {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #16171D;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  padding: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 999999;
+
+  span,
+  a {
+    font-family: inherit;
+    line-height: 1.1;
+    font-weight: inherit;
+    font-size: 0.85rem;
+  }
+
+  a {
+    color: #61dafb;
+    text-decoration: none;
+  }
+
+  a:hover {
+    border-bottom: solid 1px #61dafb;
   }
 }
