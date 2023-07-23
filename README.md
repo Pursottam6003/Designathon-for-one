@@ -3,7 +3,7 @@
 🚀 [Technodaya NIT AP](https://technodaya.netlify.app/)
 </h1>
 
-<p align="center"><img src="https://socialify.git.ci/Pursottam6003/Designathon-for-one/image?description=1&descriptionEditable=Technodaya%20is%20a%20Progressive%20Newsletter%20Web%20Application%0A&font=Source%20Code%20Pro&forks=1&issues=1&language=1&name=1&owner=1&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Auto" alt="project-image"></p>
+<p align="center"><img src="./public/media/hero.svg" alt="project-image"></p>
 
 <p id="description">The main objective of technodaya was to reduce time and efforts of magazine editors now it provides great accessibility to professors and students to share their recent work/achivements and the Admin (editorial team) will verify and generate magazines</p>
 
@@ -11,14 +11,17 @@
 
 Live website here : [https://technodaya.netlify.app/](https://technodaya.netlify.app/)
 
+
+<h2>Some insights of technodaya </h2>
+<img src="./public/media/before_signIn.png"/>
   
-<img src="./public/media/before_signIn.png">
-  
+<br>
 <details>
 
-<summary> <h2>Project Screenshorts: </h2>
-</summary>
+<summary>Project Screenshorts:(click on ▶️ to expand) </summary> 
 
+<br>
+<br>
 <h3>The landing page before sign in:</h3>
 <img src="./public/media/before_signIn.png">
 
@@ -29,35 +32,52 @@ Live website here : [https://technodaya.netlify.app/](https://technodaya.netlify
 <h3>After Sign in </h3>
 <img src="./public/media/after_signIn.png">
 
-<h3>Read Section </h3>
+
+<br>
+<br>
+<details>
+<summary>Show more  (click on ▶️ to expand)  </summary>
+
+<br>
+
+<h3>Read Section</h3>
 <img src="./public/media/read.png">
+<br>
 
 <h3>Submit Activity Section </h3>
 <img src="./public/media/submit.png">
+<br>
 
 <h3>Preview Activity Section </h3>
 <img src="./public/media/preview.png">
 
+<br>
 <h3>Manage and verify activity </h3>
 <img src="./public/media/verify_activity.png">
 
-
+<br>
 <h3>Admin Submission Querries </h3>
 <img src="./public/media/admin_submission.png">
-
+<br>
 <h3>Verify as admin </h3>
 <img src="./public/media/verify_admin.png">
 
-
+<br>
 <h3>Draft an Issue </h3>
 <img src="./public/media/draft_issue.png">
 
+<br>
 <h3>Publish an Issue </h3>
 <img src="./public/media/publish_issue.png">
 
+<br>
 <h3>Footer</h3>
 <img src="./public/media/footer.png">
+
 </details>
+</details>
+
+
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
