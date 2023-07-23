@@ -9,12 +9,55 @@
 
 <h2>🚀 Demo</h2>
 
-[https://technodaya.netlify.app/](https://technodaya.netlify.app/)
+Live website here : [https://technodaya.netlify.app/](https://technodaya.netlify.app/)
 
   
-<h2> Project Screenshorts: </h2>
-
+<img src="./public/media/before_signIn.png">
   
+<details>
+
+<summary> <h2>Project Screenshorts: </h2>
+</summary>
+
+<h3>The landing page before sign in:</h3>
+<img src="./public/media/before_signIn.png">
+
+
+<h3>Login Page </h3>
+<img src="./public/media/login.png">
+
+<h3>After Sign in </h3>
+<img src="./public/media/after_signIn.png">
+
+<h3>Read Section </h3>
+<img src="./public/media/read.png">
+
+<h3>Submit Activity Section </h3>
+<img src="./public/media/submit.png">
+
+<h3>Preview Activity Section </h3>
+<img src="./public/media/preview.png">
+
+<h3>Manage and verify activity </h3>
+<img src="./public/media/verify_activity.png">
+
+
+<h3>Admin Submission Querries </h3>
+<img src="./public/media/admin_submission.png">
+
+<h3>Verify as admin </h3>
+<img src="./public/media/verify_admin.png">
+
+
+<h3>Draft an Issue </h3>
+<img src="./public/media/draft_issue.png">
+
+<h3>Publish an Issue </h3>
+<img src="./public/media/publish_issue.png">
+
+<h3>Footer</h3>
+<img src="./public/media/footer.png">
+</details>
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
